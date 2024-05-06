@@ -1,6 +1,8 @@
+'use client';
 import React from 'react';
 import { Theme, ThemeProvider } from '@mui/material';
 import SafeThemeProvider from '@/components/theme/SafeThemeProvider';
+import PageLayout from '@/components/common/Layout';
 
 function Providers({ children }: { children: React.ReactNode }) {
   //   const themeMode = isDarkMode ? 'dark' : 'light';
@@ -9,7 +11,9 @@ function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SafeThemeProvider mode={themeMode}>
       {(safeTheme: Theme) => (
-        <ThemeProvider theme={safeTheme}>{children}</ThemeProvider>
+        <ThemeProvider theme={safeTheme}>
+          <PageLayout>{children}</PageLayout>
+        </ThemeProvider>
       )}
     </SafeThemeProvider>
   );
