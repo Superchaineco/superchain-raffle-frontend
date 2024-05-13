@@ -15,6 +15,14 @@ function DashBoard() {
             raffleCardText="48 Hour OP Raffle"
             raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
           />
+          <RaffleCard
+            raffleCardText="48 Hour OP Raffle"
+            raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
+          />
+          <RaffleCard
+            raffleCardText="48 Hour OP Raffle"
+            raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
+          />
         </div>
         <div className={styles["container--profile-rewards"]}>
           <ProfileCard rank={3} userHash="0xD0be...051e"/>

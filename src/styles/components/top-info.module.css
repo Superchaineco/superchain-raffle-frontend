@@ -1,4 +1,5 @@
 .container--top-info {
+  z-index: 120;
   position: fixed;
   display: flex;
   justify-content: center;
