@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "../../styles/views/dashBoard.module.css";
-import { RaffleCard, TopInfo } from "@/components";
+import { RaffleCard, RewardsCard, TopInfo } from "@/components";
 import { ProfileCard } from "@/components/ProfileCard";
 
 function DashBoard() {
@@ -18,6 +18,7 @@ function DashBoard() {
         </div>
         <div className={styles["container--profile-rewards"]}>
           <ProfileCard rank={3} userHash="0xD0be...051e"/>
+          <RewardsCard optimisim={0.002} basee={0.002} mode={0.002} />
         </div>
       </div>
     </>
