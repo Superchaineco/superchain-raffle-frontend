@@ -11,7 +11,6 @@
   gap: 4px;
 }
 .container--primary h5 {
-  font-family: Inter;
   font-size: 14px;
   font-weight: 400;
   line-height: 14px;
@@ -25,7 +24,6 @@
   align-items: center;
 }
 .container--secondary p {
-  font-family: Inter;
   font-size: 16px;
   font-weight: 600;
   line-height: 16px;
