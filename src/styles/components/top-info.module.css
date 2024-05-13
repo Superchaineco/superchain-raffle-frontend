@@ -3,17 +3,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 2px 4px;
+  gap: 10px;
+  padding: 12px 24px 12px 24px;
   top: var(--header-height);
   left: 0;
   right: 0;
   margin: auto;
   min-width: 40vw;
   max-width: 60vw;
-  height: 40px;
+  height: 54px;
   border-radius: 0px 0px 20px 20px;
-  box-shadow: 0px 0px 2px black;
+  box-shadow: 0px 0px 2px #A0A5AD;
 }
 
 .main-text{
@@ -30,5 +30,5 @@
 }
 
 .eth-bonus {
-  color: #0DA529;
+  color: var(--color-eth-bonus);
 }

@@ -1,1 +1,2 @@
-export {TopInfo} from './TopInfo'
+export { TopInfo } from "./TopInfo";
+export { RaffleCard } from "./RaffleCard";

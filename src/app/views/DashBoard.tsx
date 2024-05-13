@@ -1,13 +1,17 @@
 'use client'
 
 import React from "react";
-import { TopInfo } from "@/components";
+import styles from "../../styles/views/dashBoard.module.css"
+import { RaffleCard, TopInfo } from "@/components";
 
 function DashBoard() {
   return ( 
-    <div>
+    <>
       <TopInfo eth="0.01" ethBonus="0.004" />
-    </div>
+      <div className={styles["container--cards"]}>
+        <RaffleCard />
+      </div>
+    </>
   )
 }
 export { DashBoard };
