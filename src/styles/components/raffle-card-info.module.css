@@ -1,0 +1,34 @@
+.container--info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container--primary {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.container--primary h5 {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.25px;
+  text-align: left;
+}
+
+.container--secondary {
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+.container--secondary p {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.25px;
+  text-align: left;
+}

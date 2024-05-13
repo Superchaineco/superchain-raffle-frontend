@@ -9,7 +9,7 @@ function DashBoard() {
     <>
       <TopInfo eth="0.01" ethBonus="0.004" />
       <div className={styles["container--cards"]}>
-        <RaffleCard />
+        <RaffleCard raffleCardText="48 Hour OP Raffle" raffleCardChipsText={{left: 0.002, right: 'Optimisim'}}/>
       </div>
     </>
   )

@@ -38,6 +38,9 @@
   --color-logo-main: #121312;
   --color-logo-background: #eeeff0;
   --color-static-main: #121312;
+  --color-eth-bonus: #0da529;
+  --color-eth-chip: #5f6266;
+  --color-shadow-top-info: #A0A5AD;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -52,7 +55,7 @@
   --space-12: 96px;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --color-text-primary: #ffffff;
   --color-text-secondary: #636669;
   --color-text-disabled: #636669;
@@ -90,11 +93,13 @@
   --color-logo-main: #ffffff;
   --color-logo-background: #303033;
   --color-static-main: #121312;
+  --color-eth-bonus: #0da529;
+  --color-eth-chip: #5f6266;
 }
 
 /* The same as above for the brief moment before JS loads */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
+  :root:not([data-theme="light"]) {
     --color-text-primary: #ffffff;
     --color-text-secondary: #636669;
     --color-text-disabled: #636669;
@@ -133,7 +138,7 @@
     --color-logo-main: #ffffff;
     --color-logo-background: #303033;
     --color-static-main: #121312;
-    --color-eth-bonus: #0DA529;
-    --color-eth-chip: #5F6266;
+    --color-eth-bonus: #0da529;
+    --color-eth-chip: #5f6266;
   }
 }
