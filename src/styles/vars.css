@@ -98,6 +98,7 @@
     --color-text-primary: #ffffff;
     --color-text-secondary: #636669;
     --color-text-disabled: #636669;
+    --color-text-dark: black;
     --color-primary-dark: #0cb259;
     --color-primary-main: #12ff80;
     --color-primary-light: #a1a3a7;
@@ -132,5 +133,7 @@
     --color-logo-main: #ffffff;
     --color-logo-background: #303033;
     --color-static-main: #121312;
+    --color-eth-bonus: #0DA529;
+    --color-eth-chip: #5F6266;
   }
 }

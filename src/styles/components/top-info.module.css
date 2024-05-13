@@ -1,0 +1,34 @@
+.container--top-info {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  margin: auto;
+  min-width: 40vw;
+  max-width: 60vw;
+  height: 40px;
+  border-radius: 0px 0px 20px 20px;
+  box-shadow: 0px 0px 2px black;
+}
+
+.main-text{
+  color: black;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0.25px;
+}
+
+.eth-chip {
+  color: white;
+  background-color: #5F6266;
+}
+
+.eth-bonus {
+  color: #0DA529;
+}
