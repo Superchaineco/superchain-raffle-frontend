@@ -11,7 +11,7 @@ type RaffleCardProps = {
 
 function RaffleCard({ raffleCardText, raffleCardChipsText }: RaffleCardProps) {
   return (
-    <Card className={styles["container--card"]}>
+    <Card className={styles["container--all"]}>
       <div className={styles["container--header"]}>
         <h2 className={styles["card--title"]}>{raffleCardText}</h2>
         <div className={styles["container--header--chips"]}>

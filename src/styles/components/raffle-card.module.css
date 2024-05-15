@@ -1,4 +1,4 @@
-.container--card {
+.container--all{
   position: relative;
   padding: var(--space-3);
   display: flex;
@@ -6,7 +6,6 @@
   gap: var(--space-2);
   border-radius: var(--border-radius-2);
   box-shadow: var(--box-shadow-1);
-  background-color: var(--color-bg-light);
 }
 
 .container--header {
