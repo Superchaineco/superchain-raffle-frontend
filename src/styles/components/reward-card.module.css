@@ -1,11 +1,24 @@
 .container--all {
+  position: relative;
   width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
+  justify-content: left;
   gap: 16px;
-  border: 2px solid black;
   border-radius: 6px;
+}
+
+.container--all--color--red {
+  border: 2px solid var(--color-secondary-main);
+}
+
+.container--all--color--blue{
+  border: 2px solid var(--color-reward-card-blue);
+}
+
+.container--all--color--dark{
+  border: 2px solid black;
 }
 
 .container--icon {
@@ -15,6 +28,17 @@
   align-items: center;
   justify-content: center;
   color: white;
+}
+
+.container--icon--color--red {
+  background-color: var(--color-secondary-main);
+}
+
+.container--icon--color--blue {
+  background-color: var(--color-reward-card-blue);
+}
+
+.container--icon--color--dark{
   background-color: black;
 }
 
@@ -22,7 +46,8 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-right: var(--space-2);
   gap: var(--space-2);
 }
 
@@ -54,7 +79,6 @@
   width: 96px;
   height: 42px;
   padding: 12px 20px 12px 20px;
-  gap: 10px;
   color: white;
   background-color: black;
   border-radius: 6px;

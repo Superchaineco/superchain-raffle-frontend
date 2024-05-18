@@ -5,19 +5,29 @@ import styles from "../styles/components/rewards-card.module.css";
 import { RewardCard } from "./RewardCard";
 
 type RewardsCardProps = {
-  optimisim: number;
-  basee: number;
-  mode: number;
+  optimisimEth: number;
+  optimisimSrp: number;
+  baseEth: number;
+  baseSrp: number;
+  modeEth: number;
+  modeSrp: number;
 };
 
-function RewardsCard({ optimisim, basee, mode }: RewardsCardProps) {
+function RewardsCard({
+  optimisimEth,
+  optimisimSrp,
+  baseEth,
+  baseSrp,
+  modeEth,
+  modeSrp,
+}: RewardsCardProps) {
   return (
     <Card className={styles["container--all"]}>
       <h2>My Rewards</h2>
       <section className={styles["container--rewards"]}>
-        <RewardCard icon="OP" eth={0.002} srp={0.12} />
-        <RewardCard icon="O" eth={0.002} srp={0.12} />
-        <RewardCard icon="M" eth={0.002} srp={0.12} />
+        <RewardCard icon="OP" eth={optimisimEth} srp={optimisimSrp} color="red"/>
+        <RewardCard icon="O" eth={baseEth} srp={baseSrp} color="blue"/>
+        <RewardCard icon="M" eth={modeEth} srp={modeSrp} color="dark"/>
       </section>
     </Card>
   );
