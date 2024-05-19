@@ -8,11 +8,12 @@ type RewardCardProps = {
   eth: number;
   srp: number;
   color: "red" | "blue" | "dark";
+  opaque: boolean
 };
 
-function RewardCard({ icon, eth, srp, color }: RewardCardProps) {
+function RewardCard({ icon, eth, srp, color, opaque }: RewardCardProps) {
   return (
-    <div className={`${styles["container--all"]} ${styles[`container--all--color--${color}`]}`}>
+    <div className={`${styles["container--all"]} ${styles[`container--all--color--${color}`]} ${opaque ? styles["container--all--opaque"] : ""}`}>
       <div className={`${styles["container--icon"]} ${styles[`container--icon--color--${color}`]}`}>{icon}</div>
       <div className={styles["container--content"]}>
         <div className={styles["container--content--text"]}>

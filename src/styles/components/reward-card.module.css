@@ -21,6 +21,10 @@
   border: 2px solid black;
 }
 
+.container--all--opaque {
+  opacity: 20%;
+}
+
 .container--icon {
   width: 80px;
   height: 100%;

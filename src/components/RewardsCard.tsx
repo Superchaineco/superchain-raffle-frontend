@@ -25,9 +25,27 @@ function RewardsCard({
     <Card className={styles["container--all"]}>
       <h2>My Rewards</h2>
       <section className={styles["container--rewards"]}>
-        <RewardCard icon="OP" eth={optimisimEth} srp={optimisimSrp} color="red"/>
-        <RewardCard icon="O" eth={baseEth} srp={baseSrp} color="blue"/>
-        <RewardCard icon="M" eth={modeEth} srp={modeSrp} color="dark"/>
+        <RewardCard
+          icon="OP"
+          eth={optimisimEth}
+          srp={optimisimSrp}
+          color="red"
+          opaque={false}
+        />
+        <RewardCard
+          icon="O"
+          eth={baseEth}
+          srp={baseSrp}
+          color="blue"
+          opaque={false}
+        />
+        <RewardCard
+          icon="M"
+          eth={modeEth}
+          srp={modeSrp}
+          color="dark"
+          opaque={true}
+        />
       </section>
     </Card>
   );
