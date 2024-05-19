@@ -43,8 +43,21 @@ function DashBoard() {
           />
         </div>
         <div className={styles["container--profile-rewards"]}>
-          <ProfileCard rank={3} userHash="0xD0be...051e"/>
-          <RewardsCard optimisimEth={0.05} optimisimSrp={25} baseEth={0.05} baseSrp={25} modeEth={0.00} modeSrp={0} />
+          <ProfileCard
+            rank={3}
+            userHash="0xD0be...051e"
+            eth={0.12}
+            srp={150}
+            entries={12}
+          />
+          <RewardsCard
+            optimisimEth={0.05}
+            optimisimSrp={25}
+            baseEth={0.05}
+            baseSrp={25}
+            modeEth={0.0}
+            modeSrp={0}
+          />
         </div>
       </div>
     </>

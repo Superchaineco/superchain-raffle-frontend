@@ -5,9 +5,12 @@ import { ProfileInfoCard } from "./ProfileInfoCard";
 type ProfileCardProps = {
   rank: number;
   userHash: string;
+  eth: number
+  srp: number
+  entries: number
 };
 
-function ProfileCard({ rank, userHash }: ProfileCardProps) {
+function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
   return (
     <Card className={styles["container--all"]}>
       <div className={styles["contianer--header"]}>
@@ -22,9 +25,9 @@ function ProfileCard({ rank, userHash }: ProfileCardProps) {
         <p>{userHash}</p>
       </div>
       <div className={styles["container--profile--info-cards"]}>
-        <ProfileInfoCard secondary="ETH earned" primary={0.12} />
-        <ProfileInfoCard secondary="SRP earned" primary={150} />
-        <ProfileInfoCard secondary="Entries" primary={12} />
+        <ProfileInfoCard secondary="ETH earned" primary={eth} />
+        <ProfileInfoCard secondary="SRP earned" primary={srp} />
+        <ProfileInfoCard secondary="Entries" primary={entries} />
       </div>
     </Card>
   );
