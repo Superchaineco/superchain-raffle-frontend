@@ -22,9 +22,9 @@ function ProfileCard({ rank, userHash }: ProfileCardProps) {
         <p>{userHash}</p>
       </div>
       <div className={styles["container--profile--info-cards"]}>
-        <ProfileInfoCard primary="ETH earned" secondary={0.12} />
-        <ProfileInfoCard primary="SRP earned" secondary={150} />
-        <ProfileInfoCard primary="Entries" secondary={12} />
+        <ProfileInfoCard secondary="ETH earned" primary={0.12} />
+        <ProfileInfoCard secondary="SRP earned" primary={150} />
+        <ProfileInfoCard secondary="Entries" primary={12} />
       </div>
     </Card>
   );

@@ -1,15 +1,16 @@
 import { Card } from "@mui/material";
+import styles from "../styles/components/profile-info-card.module.css";
 
 type ProfileInfoCardProps = {
-  primary: string;
-  secondary: number;
+  primary: number;
+  secondary: string;
 };
 
 function ProfileInfoCard({primary, secondary}: ProfileInfoCardProps) {
   return (
-    <Card>
-      <h4>{primary}</h4>
-      <h4>{secondary}</h4>
+    <Card className={styles["container--all"]}>
+      <h4 className={styles["secondary--text"]}>{secondary}</h4>
+      <h4 className={styles["primary--text"]}>{primary}</h4>
     </Card>
   );
 }

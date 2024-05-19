@@ -57,6 +57,21 @@
   text-align: right;
 }
 
+.chip--blue {
+  background-color: var(--color-reward-card-blue);
+  color: white;
+}
+
+.chip--red {
+  background-color: var(--color-secondary-main);
+  color: white;
+}
+
+.chip--yellow {
+  background-color: var(--color-raffle-card-yellow);
+  color: black;
+}
+
 .card--title {
   font-size: 24px;
   font-weight: 600;

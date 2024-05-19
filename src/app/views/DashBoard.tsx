@@ -13,15 +13,18 @@ function DashBoard() {
         <div className={styles["container--raffle-cards"]}>
           <RaffleCard
             raffleCardText="48 Hour OP Raffle"
-            raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
+            raffleCardChipsText={{ left: 0.002, right: "Optimisim OP" }}
+            chipColor="red"
           />
           <RaffleCard
             raffleCardText="48 Hour OP Raffle"
-            raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
+            raffleCardChipsText={{ left: 0.002, right: "Base O" }}
+            chipColor="blue"
           />
           <RaffleCard
             raffleCardText="48 Hour OP Raffle"
-            raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
+            raffleCardChipsText={{ left: 0.002, right: "Mode M" }}
+            chipColor="yellow"
           />
         </div>
         <div className={styles["container--profile-rewards"]}>
