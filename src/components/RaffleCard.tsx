@@ -9,6 +9,10 @@ type RaffleCardProps = {
   raffleCardChipsText: { left: number; right: string };
   chipColor: "yellow" | "red" | "blue";
   entriesColor?: "blue" | "opaque";
+  endsIn: string;
+  prizePot: string;
+  totalEntries: string;
+  entries: string;
 };
 
 function RaffleCard({
@@ -16,6 +20,10 @@ function RaffleCard({
   raffleCardChipsText,
   chipColor,
   entriesColor,
+  endsIn,
+  prizePot,
+  totalEntries,
+  entries,
 }: RaffleCardProps) {
   return (
     <Card className={styles["container--all"]}>
@@ -37,24 +45,24 @@ function RaffleCard({
           <RaffleCardInfo
             icon="🎉"
             primary="Ends in"
-            secondary="1d: 01h: 22m"
+            secondary={endsIn}
           />
           <RaffleCardInfo
             icon="🎉"
             primary="Total entries"
-            secondary="34/250"
+            secondary={totalEntries}
           />
         </div>
         <div className={styles["container--body--right"]}>
           <RaffleCardInfo
             icon="🎉"
             primary="Prize pot"
-            secondary="0.05🎉 + 100🎉"
+            secondary={prizePot}
           />
           <RaffleCardInfo
             icon="🎉"
             primary="My entries"
-            secondary="1"
+            secondary={entries}
             color={entriesColor}
           />
         </div>

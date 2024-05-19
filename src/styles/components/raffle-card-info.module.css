@@ -7,13 +7,13 @@
 }
 
 .container--all--color--blue {
-  border: 2px solid var(--color-border-entries-blue);
+  border: 1.5px solid var(--color-border-entries-blue);
   background-color: rgba(0, 195, 255, 0.2);
 }
 
-.container--all--color--opaque{
+.container--all--color--opaque {
+  border: 1.5px solid rgba(0, 0, 0, 0.5);
   opacity: 40%;
-  border: 2px solid rgba(0, 0, 0, 0.5);
 }
 
 .container--primary {
