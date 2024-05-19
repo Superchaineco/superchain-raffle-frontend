@@ -6,11 +6,12 @@ type RaffleCardInfoProps = {
   icon: string;
   primary: string;
   secondary: string;
+  color?: "blue" | "opaque";
 };
 
-function RaffleCardInfo({ icon, primary, secondary }: RaffleCardInfoProps) {
+function RaffleCardInfo({ icon, primary, secondary, color}: RaffleCardInfoProps) {
   return (
-    <div className={styles["container--info"]}>
+    <div className={`${styles["container--all"]} ${color ? styles[`container--all--color--${color}`] : ""}`}>
       <div className={styles["container--primary"]}>
         <span>{icon}</span>
         <h5>{primary}</h5>
