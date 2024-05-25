@@ -1,5 +1,8 @@
 "use client";
 
+import Optimisim from "@/public/images/optimisim-icon.svg";
+import Mode from "@/public/images/mode-icon.svg";
+import Base from "@/public/images/base-icon.svg";
 import React from "react";
 import styles from "../../styles/views/dashBoard.module.css";
 import { RaffleCard, RewardsCard, TopInfo } from "@/components";
@@ -13,33 +16,36 @@ function DashBoard() {
         <div className={styles["container--raffle-cards"]}>
           <RaffleCard
             raffleCardText="48 Hour OP Raffle"
-            raffleCardChipsText={{ left: 0.002, right: "Optimisim OP" }}
+            raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
             chipColor="red"
             entriesColor="blue"
             endsIn="1d: 01h: 22m"
             prizePot="0.05🎉 + 100🎉"
             totalEntries="34/250"
             entries="1"
+            networkIcon={Optimisim}
           />
           <RaffleCard
             raffleCardText="48 Hour OP Raffle"
-            raffleCardChipsText={{ left: 0.002, right: "Base O" }}
+            raffleCardChipsText={{ left: 0.002, right: "Base" }}
             chipColor="blue"
             entriesColor="opaque"
             endsIn="1d: 01h: 22m"
             prizePot="0.05🎉 + 100🎉"
             totalEntries="34/250"
             entries="1"
+            networkIcon={Base}
           />
           <RaffleCard
             raffleCardText="48 Hour OP Raffle"
-            raffleCardChipsText={{ left: 0.002, right: "Mode M" }}
+            raffleCardChipsText={{ left: 0.002, right: "Mode" }}
             chipColor="yellow"
             entriesColor="opaque"
             endsIn="1d: 01h: 22m"
             prizePot="0.05🎉 + 100🎉"
             totalEntries="34/250"
             entries="1"
+            networkIcon={Mode}
           />
         </div>
         <div className={styles["container--profile-rewards"]}>
