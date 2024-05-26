@@ -15,6 +15,10 @@
   flex-direction: column;
   scrollbar-width: 0;
   gap: var(--space-3);
+  &::-webkit-scrollbar {
+    width: 0.1px;
+    opacity: 0;
+  }
 }
 .container--profile-rewards {
   width: 100%;

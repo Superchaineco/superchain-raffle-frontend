@@ -1,6 +1,14 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardMedia, Chip, Typography, SvgIcon } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Chip,
+  Typography,
+  SvgIcon,
+} from "@mui/material";
 import styles from "../styles/components/raffle-card.module.css";
 import { RaffleCardInfo } from "./RaffleCardInfo";
 import ethIcon from "@/public/images/raffle-card-eth-icon.svg";
@@ -20,6 +28,7 @@ type RaffleCardProps = {
   totalEntries: string;
   entries: string;
   networkIcon: any;
+  bgImg: any;
 };
 
 function RaffleCard({
@@ -30,17 +39,19 @@ function RaffleCard({
   endsIn,
   prizePot,
   totalEntries,
-
   entries,
   networkIcon,
+  bgImg,
 }: RaffleCardProps) {
   return (
-    <Card   className={styles["container--all"]}>
+    <Card className={styles["container--all"]}>
       <div className={styles["container--header"]}>
-        <Typography fontSize={24} fontWeight={600}>{raffleCardText}</Typography>
+        <Typography fontSize={24} fontWeight={600}>
+          {raffleCardText}
+        </Typography>
         <div className={styles["container--header--chips"]}>
           <Chip
-            className={styles["chip"]}
+            className={`${styles["chip"]} ${styles[`chip--white`]}`}
             label={`${raffleCardChipsText.left} ETH`}
             onDelete={() => {}}
             deleteIcon={
@@ -93,7 +104,9 @@ function RaffleCard({
             secondary={prizePot}
           />
           <RaffleCardInfo
-            icon={entriesColor === "blue" ? myEntriesBlueIcon : myEntriesOpaqueIcon}
+            icon={
+              entriesColor === "blue" ? myEntriesBlueIcon : myEntriesOpaqueIcon
+            }
             primary="My entries"
             secondary={entries}
             color={entriesColor}
@@ -102,9 +115,8 @@ function RaffleCard({
       </CardContent>
       <CardMedia
         className={styles["card--media"]}
-        component="img"
-        image="public\images\penrose.png"
-        alt="Live from space album cover"
+        component={bgImg}
+        style={{ position: "absolute", top: 0, right: "-32%", width: "100%", height: "100%" }}
       />
     </Card>
   );
