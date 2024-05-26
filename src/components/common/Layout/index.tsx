@@ -33,22 +33,15 @@ const PageLayout = ({ children }: { children: ReactNode }): ReactNode => {
         <SideDrawer isOpen={isSidebarOpen} onToggle={setSidebarOpen} />
       )} */}
 
-      <div
-        className={classnames(css.main, {
-          [css.mainNoSidebar]: true,
-          [css.mainAnimated]: true,
-        })}
-      >
-        <div className={css.content}>
-          {/* <SocialLoginDeprecation /> */}
+      <main className={css.main}>
+        {/* <SocialLoginDeprecation /> */}
 
-          {children}
-        </div>
+        {children}
 
         {/* <BatchSidebar isOpen={isBatchOpen} onToggle={setBatchOpen} /> */}
 
         <Footer />
-      </div>
+      </main>
     </>
   );
 };

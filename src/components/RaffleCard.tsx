@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardMedia, Chip, SvgIcon } from "@mui/material";
+import { Card, CardContent, CardHeader, CardMedia, Chip, Typography, SvgIcon } from "@mui/material";
 import styles from "../styles/components/raffle-card.module.css";
 import { RaffleCardInfo } from "./RaffleCardInfo";
 import ethIcon from "@/public/images/raffle-card-eth-icon.svg";
@@ -30,13 +30,14 @@ function RaffleCard({
   endsIn,
   prizePot,
   totalEntries,
+
   entries,
   networkIcon,
 }: RaffleCardProps) {
   return (
-    <Card className={styles["container--all"]}>
+    <Card   className={styles["container--all"]}>
       <div className={styles["container--header"]}>
-        <h2 className={styles["card--title"]}>{raffleCardText}</h2>
+        <Typography fontSize={24} fontWeight={600}>{raffleCardText}</Typography>
         <div className={styles["container--header--chips"]}>
           <Chip
             className={styles["chip"]}
@@ -72,7 +73,7 @@ function RaffleCard({
           />
         </div>
       </div>
-      <section className={styles["container--body"]}>
+      <CardContent className={styles["container--body"]}>
         <div className={styles["container--body--left"]}>
           <RaffleCardInfo
             icon={endsInIcon}
@@ -98,7 +99,7 @@ function RaffleCard({
             color={entriesColor}
           />
         </div>
-      </section>
+      </CardContent>
       <CardMedia
         className={styles["card--media"]}
         component="img"

@@ -1,12 +1,19 @@
 .container--all {
-  display: flex;
+  display: grid;
+  grid-template-columns: 4fr 3fr;
   gap: var(--space-6);
+  width: 100%;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  overflow-y: scroll;
+  padding: var(--space-6);
 }
 .container--raffle-cards {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  scrollbar-width: 0;
   gap: var(--space-3);
 }
 .container--profile-rewards {
