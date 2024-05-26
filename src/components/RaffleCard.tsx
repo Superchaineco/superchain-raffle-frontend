@@ -3,7 +3,6 @@
 import {
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Chip,
   Typography,
@@ -12,6 +11,7 @@ import {
 import styles from "../styles/components/raffle-card.module.css";
 import { RaffleCardInfo } from "./RaffleCardInfo";
 import ethIcon from "@/public/images/raffle-card-eth-icon.svg";
+import srIcon from "@/public/images/profile-info-sr-icon.svg";
 import myEntriesBlueIcon from "@/public/images/my-entries-icon-blue.svg";
 import myEntriesOpaqueIcon from "@/public/images/my-entries-icon-opaque.svg";
 import prizePotIcon from "@/public/images/prize-pot-icon.svg";
@@ -24,7 +24,8 @@ type RaffleCardProps = {
   chipColor: "yellow" | "red" | "blue";
   entriesColor?: "blue" | "opaque";
   endsIn: string;
-  prizePot: string;
+  prizePotEth: string;
+  prizePotSr: string;
   totalEntries: string;
   entries: string;
   networkIcon: any;
@@ -37,7 +38,8 @@ function RaffleCard({
   chipColor,
   entriesColor,
   endsIn,
-  prizePot,
+  prizePotEth,
+  prizePotSr,
   totalEntries,
   entries,
   networkIcon,
@@ -89,26 +91,29 @@ function RaffleCard({
           <RaffleCardInfo
             icon={endsInIcon}
             primary="Ends in"
-            secondary={endsIn}
+            secondary1={endsIn}
           />
           <RaffleCardInfo
             icon={totalEntriesIcon}
             primary="Total entries"
-            secondary={totalEntries}
+            secondary1={totalEntries}
           />
         </div>
         <div className={styles["container--body--right"]}>
           <RaffleCardInfo
             icon={prizePotIcon}
             primary="Prize pot"
-            secondary={prizePot}
+            secondary1={prizePotEth}
+            secondary2={prizePotSr}
+            iconS1={ethIcon}
+            iconS2={srIcon}
           />
           <RaffleCardInfo
             icon={
               entriesColor === "blue" ? myEntriesBlueIcon : myEntriesOpaqueIcon
             }
             primary="My entries"
-            secondary={entries}
+            secondary1={entries}
             color={entriesColor}
           />
         </div>

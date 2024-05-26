@@ -34,6 +34,7 @@
   height: 20px;
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 .container--secondary p {
   font-size: 16px;
@@ -41,4 +42,9 @@
   line-height: 16px;
   letter-spacing: 0.25px;
   text-align: left;
+}
+.container--secondary--group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

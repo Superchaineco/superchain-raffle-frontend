@@ -23,7 +23,8 @@ function DashBoard() {
           chipColor="red"
           entriesColor="blue"
           endsIn="1d: 01h: 22m"
-          prizePot="0.05🎉 + 100🎉"
+          prizePotEth="0.05"
+          prizePotSr="100"
           totalEntries="34/250"
           entries="1"
           networkIcon={Optimisim}
@@ -35,7 +36,8 @@ function DashBoard() {
           chipColor="blue"
           entriesColor="opaque"
           endsIn="1d: 01h: 22m"
-          prizePot="0.05🎉 + 100🎉"
+          prizePotEth="0.05"
+          prizePotSr="100"
           totalEntries="34/250"
           entries="1"
           networkIcon={Base}
@@ -47,7 +49,8 @@ function DashBoard() {
           chipColor="yellow"
           entriesColor="opaque"
           endsIn="1d: 01h: 22m"
-          prizePot="0.05🎉 + 100🎉"
+          prizePotEth="0.05"
+          prizePotSr="100"
           totalEntries="34/250"
           entries="1"
           networkIcon={Mode}
