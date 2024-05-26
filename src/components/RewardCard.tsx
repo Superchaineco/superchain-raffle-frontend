@@ -1,20 +1,37 @@
 "use client";
 
-import { Button } from "@mui/material";
+import { Button, SvgIcon } from "@mui/material";
 import styles from "../styles/components/reward-card.module.css";
 
 type RewardCardProps = {
-  icon: string;
+  icon: any;
   eth: number;
   srp: number;
   color: "red" | "blue" | "dark";
-  opaque: boolean
+  opaque: boolean;
 };
 
 function RewardCard({ icon, eth, srp, color, opaque }: RewardCardProps) {
   return (
-    <div className={`${styles["container--all"]} ${styles[`container--all--color--${color}`]} ${opaque ? styles["container--all--opaque"] : ""}`}>
-      <div className={`${styles["container--icon"]} ${styles[`container--icon--color--${color}`]}`}>{icon}</div>
+    <div
+      className={`${styles["container--all"]} ${
+        styles[`container--all--color--${color}`]
+      } ${opaque ? styles["container--all--opaque"] : ""}`}
+    >
+      <div
+        className={`${styles["container--icon"]} ${
+          styles[`container--icon--color--${color}`]
+        }`}
+      >
+        <SvgIcon
+          component={icon}
+          inheritViewBox
+          style={{
+            width: "20px",
+            height: "20px",
+          }}
+        />
+      </div>
       <div className={styles["container--content"]}>
         <div className={styles["container--content--text"]}>
           <div className={styles["container--content--eth"]}>

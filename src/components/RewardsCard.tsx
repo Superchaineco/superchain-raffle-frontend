@@ -3,6 +3,9 @@
 import { Card } from "@mui/material";
 import styles from "../styles/components/rewards-card.module.css";
 import { RewardCard } from "./RewardCard";
+import OptimisimIcon from "@/public/images/optimisim-icon.svg";
+import BaseIcon  from "@/public/images/base-icon.svg";
+import ModeIcon from "@/public/images/mode-icon.svg";
 
 type RewardsCardProps = {
   optimisimEth: number;
@@ -26,21 +29,21 @@ function RewardsCard({
       <h2>My Rewards</h2>
       <section className={styles["container--rewards"]}>
         <RewardCard
-          icon="OP"
+          icon={OptimisimIcon}
           eth={optimisimEth}
           srp={optimisimSrp}
           color="red"
           opaque={false}
         />
         <RewardCard
-          icon="O"
+          icon={BaseIcon}
           eth={baseEth}
           srp={baseSrp}
           color="blue"
           opaque={false}
         />
         <RewardCard
-          icon="M"
+          icon={ModeIcon}
           eth={modeEth}
           srp={modeSrp}
           color="dark"

@@ -1,13 +1,17 @@
-import { Avatar, Button, Card } from "@mui/material";
+import { Avatar, Button, Card, SvgIcon } from "@mui/material";
 import styles from "../styles/components/profile-card.module.css";
 import { ProfileInfoCard } from "./ProfileInfoCard";
+import rankIcon from "@/public/images/profile-rank-icon.svg";
+import profileInfoEthIcon from "@/public/images/profile-info-eth-icon.svg";
+import profileInfoSrIcon from "@/public/images/profile-info-sr-icon.svg";
+import profileInfoEntriesIcon from "@/public/images/profile-info-entries-icon.svg";
 
 type ProfileCardProps = {
   rank: number;
   userHash: string;
-  eth: number
-  srp: number
-  entries: number
+  eth: number;
+  srp: number;
+  entries: number;
 };
 
 function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
@@ -17,7 +21,17 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
         <h2>Profile</h2>
         <div className={styles["container--header--rigth"]}>
           <Button className={styles["button--rank"]}>Rank: {rank}</Button>
-          <Button className={styles["button--rank--icon"]}>#</Button>
+          <Button className={styles["button--rank--icon"]}>
+            <SvgIcon
+              component={rankIcon}
+              inheritViewBox
+              style={{
+                width: "16px",
+                height: "16px",
+                boxShadow: "0px 4px 4px 0px #00000024",
+              }}
+            />
+          </Button>
         </div>
       </div>
       <div className={styles["container--profile"]}>
@@ -25,9 +39,9 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
         <p>{userHash}</p>
       </div>
       <div className={styles["container--profile--info-cards"]}>
-        <ProfileInfoCard secondary="ETH earned" primary={eth} />
-        <ProfileInfoCard secondary="SRP earned" primary={srp} />
-        <ProfileInfoCard secondary="Entries" primary={entries} />
+        <ProfileInfoCard secondary="ETH earned" primary={eth} icon={profileInfoEthIcon}/>
+        <ProfileInfoCard secondary="SRP earned" primary={srp} icon={profileInfoSrIcon}/>
+        <ProfileInfoCard secondary="Entries" primary={entries} icon={profileInfoEntriesIcon}/>
       </div>
     </Card>
   );

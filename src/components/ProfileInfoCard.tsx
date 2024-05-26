@@ -1,16 +1,27 @@
-import { Card } from "@mui/material";
+import { Card, SvgIcon } from "@mui/material";
 import styles from "../styles/components/profile-info-card.module.css";
 
 type ProfileInfoCardProps = {
   primary: number;
   secondary: string;
+  icon: any;
 };
 
-function ProfileInfoCard({primary, secondary}: ProfileInfoCardProps) {
+function ProfileInfoCard({ primary, secondary, icon }: ProfileInfoCardProps) {
   return (
     <Card className={styles["container--all"]}>
       <h4 className={styles["secondary--text"]}>{secondary}</h4>
-      <h4 className={styles["primary--text"]}>{primary}</h4>
+      <div className={styles["container--primary"]}>
+        <h4 className={styles["primary--text"]}>{primary}</h4>
+        <SvgIcon
+          component={icon}
+          inheritViewBox
+          style={{
+            width: "16px",
+            height: "16px",
+          }}
+        />
+      </div>
     </Card>
   );
 }
