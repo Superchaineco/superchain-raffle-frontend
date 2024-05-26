@@ -25,14 +25,20 @@
 }
 
 .button--rank {
+  padding: 8px 16px;
+  background-color: var(--color-button-rank);
+}
+.button--rank:hover {
   background-color: var(--color-button-rank);
 }
 
-.button--rank--icon {
+.container--rank-icon {
+  height: 100%;
+  padding: 8px 10px;
   color: white;
-  background-color: var(--color-button-rank-icon);
+  background-color: black;
+  border-radius: 6px;
 }
-
 .container--profile {
   display: flex;
   justify-content: left;

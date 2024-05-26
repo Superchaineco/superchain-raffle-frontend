@@ -21,7 +21,7 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
         <h2>Profile</h2>
         <div className={styles["container--header--rigth"]}>
           <Button className={styles["button--rank"]}>Rank: {rank}</Button>
-          <Button className={styles["button--rank--icon"]}>
+          <div className={styles["container--rank-icon"]}>
             <SvgIcon
               component={rankIcon}
               inheritViewBox
@@ -31,7 +31,7 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
                 boxShadow: "0px 4px 4px 0px #00000024",
               }}
             />
-          </Button>
+          </div>
         </div>
       </div>
       <div className={styles["container--profile"]}>
@@ -39,9 +39,21 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
         <p>{userHash}</p>
       </div>
       <div className={styles["container--profile--info-cards"]}>
-        <ProfileInfoCard secondary="ETH earned" primary={eth} icon={profileInfoEthIcon}/>
-        <ProfileInfoCard secondary="SRP earned" primary={srp} icon={profileInfoSrIcon}/>
-        <ProfileInfoCard secondary="Entries" primary={entries} icon={profileInfoEntriesIcon}/>
+        <ProfileInfoCard
+          secondary="ETH earned"
+          primary={eth}
+          icon={profileInfoEthIcon}
+        />
+        <ProfileInfoCard
+          secondary="SRP earned"
+          primary={srp}
+          icon={profileInfoSrIcon}
+        />
+        <ProfileInfoCard
+          secondary="Entries"
+          primary={entries}
+          icon={profileInfoEntriesIcon}
+        />
       </div>
     </Card>
   );

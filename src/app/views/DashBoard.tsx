@@ -38,7 +38,7 @@ function DashBoard() {
           endsIn="1d: 01h: 22m"
           prizePotEth="0.05"
           prizePotSr="100"
-          totalEntries="34/250"
+          totalEntries="34 / 250"
           entries="1"
           networkIcon={Base}
           bgImg={BaseBgImg}
