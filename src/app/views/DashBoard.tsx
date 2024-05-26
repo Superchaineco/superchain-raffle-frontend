@@ -14,7 +14,7 @@ import { ProfileCard } from "@/components/ProfileCard";
 function DashBoard() {
   return (
     <div className={styles["container--all"]}>
-      {/* <TopInfo eth='0.01' ethBonus='0.004' /> */}
+      <TopInfo eth="0.01" ethBonus="0.004" />
 
       <div className={styles["container--raffle-cards"]}>
         <RaffleCard

@@ -55,8 +55,8 @@ function RaffleCardInfo({
             />
           )}
         </div>
+        {secondary2 && <p>+</p>}
         <div className={styles["container--secondary--group"]}>
-          {secondary2 && <p>+</p>}
           {secondary2 && <p>{secondary2}</p>}
           {iconS2 && (
             <SvgIcon

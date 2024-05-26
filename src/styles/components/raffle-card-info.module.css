@@ -34,7 +34,7 @@
   height: 20px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 .container--secondary p {
   font-size: 16px;
