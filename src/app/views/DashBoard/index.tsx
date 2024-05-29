@@ -7,7 +7,7 @@ import React from "react";
 import OptimisimBgImg from "@/public/images/optimisim-bg-img.svg";
 import BaseBgImg from "@/public/images/base-bg-img.svg";
 import ModeBgImg from "@/public/images/mode-bg-img.svg";
-import styles from "../../styles/views/dashBoard.module.css";
+import styles from "./styles.module.css"
 import { TopInfo } from "@/app/components/TopInfo";
 import RaffleCard from "@/app/components/RaffleCard";
 import ProfileCard from "@/app/components/ProfileCard";
@@ -79,4 +79,4 @@ function DashBoard() {
     </div>
   );
 }
-export { DashBoard };
+export default DashBoard
