@@ -3,7 +3,6 @@
   grid-template-columns: 4fr 3fr;
   gap: var(--space-6);
   width: 100%;
-  height: calc(100vh - var(--header-height) - var(--footer-height));
   overflow-y: scroll;
   padding: var(--space-10) var(--space-6);
 }

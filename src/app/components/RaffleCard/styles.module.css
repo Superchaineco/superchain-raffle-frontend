@@ -47,6 +47,10 @@
   align-items: left;
   gap: var(--space-2);
 }
+.container--detail {
+  z-index: 20;
+  display: flex;
+}
 
 .chip {
   font-size: 14px;
