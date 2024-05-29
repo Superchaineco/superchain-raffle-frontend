@@ -104,7 +104,7 @@
   --color-eth-chip: #5f6266;
 }
 
-/* The same as above for the brief moment before JS loads */
+/* The same as above for the brief moment beforee JS loads */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-text-primary: #ffffff;

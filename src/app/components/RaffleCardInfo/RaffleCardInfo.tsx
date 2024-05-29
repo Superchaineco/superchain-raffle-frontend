@@ -35,7 +35,6 @@ function RaffleCardInfo({
           style={{
             width: "16px",
             height: "12px",
-            boxShadow: "0px 4px 4px 0px #00000024",
           }}
         />
         <h5>{primary}</h5>
@@ -50,7 +49,6 @@ function RaffleCardInfo({
               style={{
                 width: "16px",
                 height: "12px",
-                boxShadow: "0px 4px 4px 0px #00000024",
               }}
             />
           )}
@@ -65,7 +63,6 @@ function RaffleCardInfo({
               style={{
                 width: "16px",
                 height: "12px",
-                boxShadow: "0px 4px 4px 0px #00000024",
               }}
             />
           )}

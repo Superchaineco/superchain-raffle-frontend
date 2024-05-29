@@ -66,6 +66,7 @@ function RaffleCard({
                   style={{
                     width: "16px",
                     height: "12px",
+                    cursor: "default",
                     boxShadow: "0px 4px 4px 0px #00000024",
                   }}
                 />
@@ -82,6 +83,7 @@ function RaffleCard({
                   style={{
                     width: "20px",
                     height: "20px",
+                    cursor: "default",
                     boxShadow: "0px 4px 4px 0px #00000024",
                   }}
                 />
@@ -136,7 +138,7 @@ function RaffleCard({
           top: 0,
           right: "-32%",
           width: "100%",
-          height: "100%",
+          height: "60%",
         }}
       />
     </Card>
