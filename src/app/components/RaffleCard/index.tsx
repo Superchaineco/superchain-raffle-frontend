@@ -67,7 +67,6 @@ function RaffleCard({
                     width: "16px",
                     height: "12px",
                     cursor: "default",
-                    boxShadow: "0px 4px 4px 0px #00000024",
                   }}
                 />
               }
@@ -125,22 +124,22 @@ function RaffleCard({
             />
           </div>
         </CardContent>
+        <CardMedia
+          className={styles["card--media"]}
+          component={bgImg}
+          style={{
+            position: "absolute",
+            top: 0,
+            right: "-32%",
+            width: "100%",
+            height: "120%",
+          }}
+        />
       </div>
       <div className={styles["container--detail"]}>
         <PurchaseTickets />
         <MyTickets tickets={0} />
       </div>
-      <CardMedia
-        className={styles["card--media"]}
-        component={bgImg}
-        style={{
-          position: "absolute",
-          top: 0,
-          right: "-32%",
-          width: "100%",
-          height: "60%",
-        }}
-      />
     </Card>
   );
 }
