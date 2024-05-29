@@ -18,6 +18,7 @@ import prizePotIcon from "@/public/images/prize-pot-icon.svg";
 import totalEntriesIcon from "@/public/images/total-entries-icon.svg";
 import endsInIcon from "@/public/images/ends-in-icon.svg";
 import PurchaseTickets from "../PurchaseTickets";
+import MyTickets from "../MyTickets";
 
 type RaffleCardProps = {
   raffleCardText: string;
@@ -125,6 +126,7 @@ function RaffleCard({
       </div>
       <div className={styles["container--detail"]}>
         <PurchaseTickets />
+        <MyTickets tickets={0} />
       </div>
       <CardMedia
         className={styles["card--media"]}
