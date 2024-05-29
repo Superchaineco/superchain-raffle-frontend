@@ -1,10 +1,10 @@
 "use client";
 
 import { Card } from "@mui/material";
-import styles from "../styles/components/rewards-card.module.css";
-import { RewardCard } from "./RewardCard";
+import styles from "./styles.module.css";
 import OptimisimIcon from "@/public/images/optimisim-icon.svg";
-import BaseIcon  from "@/public/images/base-icon.svg";
+import RewardCard from "../RewardCard";
+import BaseIcon from "@/public/images/base-icon.svg";
 import ModeIcon from "@/public/images/mode-icon.svg";
 
 type RewardsCardProps = {
@@ -54,4 +54,4 @@ function RewardsCard({
   );
 }
 
-export { RewardsCard };
+export default RewardsCard;

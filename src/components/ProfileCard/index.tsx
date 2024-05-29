@@ -1,6 +1,6 @@
 import { Avatar, Button, Card, SvgIcon } from "@mui/material";
-import styles from "../styles/components/profile-card.module.css";
-import { ProfileInfoCard } from "./ProfileInfoCard";
+import styles from "./styles.module.css";
+import ProfileInfoCard from "../ProfileInfoCard";
 import rankIcon from "@/public/images/profile-rank-icon.svg";
 import profileInfoEthIcon from "@/public/images/profile-info-eth-icon.svg";
 import profileInfoSrIcon from "@/public/images/profile-info-sr-icon.svg";
@@ -59,4 +59,4 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
   );
 }
 
-export { ProfileCard };
+export default ProfileCard;

@@ -1,5 +1,5 @@
 import { Card, SvgIcon } from "@mui/material";
-import styles from "../styles/components/profile-info-card.module.css";
+import styles from "./styles.module.css";
 
 type ProfileInfoCardProps = {
   primary: number;
@@ -26,4 +26,4 @@ function ProfileInfoCard({ primary, secondary, icon }: ProfileInfoCardProps) {
   );
 }
 
-export { ProfileInfoCard };
+export default ProfileInfoCard;

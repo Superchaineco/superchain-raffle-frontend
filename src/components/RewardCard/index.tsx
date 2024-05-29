@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, SvgIcon } from "@mui/material";
-import styles from "../styles/components/reward-card.module.css";
+import styles from "./styles.module.css";
 import SrIcon from "@/public/images/profile-info-sr-icon.svg";
 import EthIcon from "@/public/images/profile-info-eth-icon.svg";
 
@@ -66,4 +66,4 @@ function RewardCard({ icon, eth, srp, color, opaque }: RewardCardProps) {
   );
 }
 
-export { RewardCard };
+export default RewardCard;

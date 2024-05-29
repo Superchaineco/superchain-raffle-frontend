@@ -1,7 +1,7 @@
 "use client";
 
 import { SvgIcon } from "@mui/material";
-import styles from "../styles/components/raffle-card-info.module.css";
+import styles from "./styles.module.css";
 
 type RaffleCardInfoProps = {
   icon: any;
@@ -75,4 +75,4 @@ function RaffleCardInfo({
   );
 }
 
-export { RaffleCardInfo };
+export default RaffleCardInfo;

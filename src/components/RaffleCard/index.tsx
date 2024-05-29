@@ -8,8 +8,8 @@ import {
   Typography,
   SvgIcon,
 } from "@mui/material";
-import styles from "../styles/components/raffle-card.module.css";
-import { RaffleCardInfo } from "./RaffleCardInfo";
+import styles from "./styles.module.css";
+import RaffleCardInfo from "../RaffleCardInfo/RaffleCardInfo";
 import ethIcon from "@/public/images/raffle-card-eth-icon.svg";
 import srIcon from "@/public/images/profile-info-sr-icon.svg";
 import myEntriesBlueIcon from "@/public/images/my-entries-icon-blue.svg";
@@ -126,4 +126,4 @@ function RaffleCard({
     </Card>
   );
 }
-export { RaffleCard };
+export default RaffleCard
