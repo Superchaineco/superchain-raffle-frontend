@@ -58,6 +58,7 @@
 }
 .container--detail {
   z-index: 20;
+  padding: var(--space-3);
   position: relative;
   display: flex;
   gap: 20px;

@@ -3,23 +3,33 @@
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
 import Base from "@/public/images/base-icon.svg";
-import React from "react";
+import React, { useState } from "react";
 import OptimisimBgImg from "@/public/images/optimisim-bg-img.svg";
 import BaseBgImg from "@/public/images/base-bg-img.svg";
 import ModeBgImg from "@/public/images/mode-bg-img.svg";
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 import { TopInfo } from "@/app/components/TopInfo";
 import RaffleCard from "@/app/components/RaffleCard";
 import ProfileCard from "@/app/components/ProfileCard";
 import RewardsCard from "@/app/components/RewardsCard";
+import { cards } from "@/app/types/commons";
+
 
 function DashBoard() {
+  const [expandedCard, setExpandedCard] = useState<cards>("");
+
+  const handleCardClick = (id: cards) => {
+    setExpandedCard(id)
+  }
+
   return (
     <div className={styles["container--all"]}>
       <TopInfo eth="0.01" ethBonus="0.004" />
 
       <div className={styles["container--raffle-cards"]}>
         <RaffleCard
+          onClick={handleCardClick}
+          id="optimisim"
           raffleCardText="48 Hour OP Raffle"
           raffleCardChipsText={{ left: 0.002, right: "Optimisim" }}
           chipColor="red"
@@ -31,8 +41,12 @@ function DashBoard() {
           entries="1"
           networkIcon={Optimisim}
           bgImg={OptimisimBgImg}
+          expandedCard={expandedCard}
+          
         />
         <RaffleCard
+          onClick={handleCardClick}
+          id="base"
           raffleCardText="48 Hour OP Raffle"
           raffleCardChipsText={{ left: 0.002, right: "Base" }}
           chipColor="blue"
@@ -44,8 +58,11 @@ function DashBoard() {
           entries="1"
           networkIcon={Base}
           bgImg={BaseBgImg}
+          expandedCard={expandedCard}
         />
         <RaffleCard
+          onClick={handleCardClick}
+          id="mode"
           raffleCardText="48 Hour OP Raffle"
           raffleCardChipsText={{ left: 0.002, right: "Mode" }}
           chipColor="yellow"
@@ -57,6 +74,7 @@ function DashBoard() {
           entries="1"
           networkIcon={Mode}
           bgImg={ModeBgImg}
+          expandedCard={expandedCard}
         />
       </div>
       <div className={styles["container--profile-rewards"]}>
@@ -79,4 +97,4 @@ function DashBoard() {
     </div>
   );
 }
-export default DashBoard
+export default DashBoard;

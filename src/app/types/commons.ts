@@ -1,0 +1,1 @@
+export type cards = "optimisim" | "base" | "mode" | "";
