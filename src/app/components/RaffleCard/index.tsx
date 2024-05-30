@@ -22,6 +22,7 @@ import MyTickets from "../MyTickets";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
 import { cards } from "@/app/types/commons";
+import { useEffect, useState } from "react";
 
 type RaffleCardProps = {
   id: cards;
@@ -56,22 +57,29 @@ function RaffleCard({
   expandedCard,
   onClick,
 }: RaffleCardProps) {
+  const [isMainCard, setIsMainCard] = useState<boolean>(false);
+  const [noMainCard, setNoMainCard] = useState<boolean>(true);
+
   const handleClick = (argId: cards) => {
-    if (expandedCard == id && argId == "") {
+    if (isMainCard && argId == "") {
       onClick(argId);
-    } else if (expandedCard != id) {
+    } else if (!isMainCard) {
       onClick(argId);
     }
   };
+  useEffect(() => {
+    setIsMainCard(expandedCard == id ? true : false);
+    setNoMainCard(expandedCard == "" ? true : false);
+  }, [expandedCard, id]);
+
   return (
     <AnimatePresence>
       <motion.div
         onClick={() => handleClick(id)}
         initial={{ height: "238px", visibility: "visible" }}
         animate={{
-          height:
-            expandedCard == id ? "100%" : expandedCard == "" ? "238px" : "0px",
-          display: expandedCard == id || expandedCard == "" ? "flex" : "none",
+          height: isMainCard ? "100%" : noMainCard ? "238px" : "0px",
+          display: isMainCard || noMainCard ? "flex" : "none",
         }}
         transition={{
           type: "spring",
@@ -83,7 +91,7 @@ function RaffleCard({
         <Card className={styles["container--all"]}>
           <div className={styles["container--principal"]}>
             <div className={styles["container--header"]}>
-              {expandedCard == id && (
+              {isMainCard && (
                 <div className={styles["container--back"]}>
                   <SvgIcon
                     onClick={() => handleClick("")}
@@ -98,13 +106,13 @@ function RaffleCard({
                   <h4>All Raffles</h4>
                 </div>
               )}
-              {expandedCard == "" && (
+              {noMainCard && (
                 <Typography fontSize={24} fontWeight={600}>
                   {raffleCardText}
                 </Typography>
               )}
               <div className={styles["container--header--chips"]}>
-                {expandedCard == "" && (
+                {noMainCard && (
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
                     label={`${raffleCardChipsText.left} ETH`}
@@ -145,12 +153,12 @@ function RaffleCard({
             </div>
             <CardContent className={styles["container--body"]}>
               <AnimatePresence>
-                {expandedCard == id && (
+                {isMainCard && (
                   <motion.div
                     key={`text-${id}`}
                     initial={{ opacity: 0 }}
                     animate={{
-                      opacity: expandedCard == id ? 1 : 0,
+                      opacity: isMainCard ? 1 : 0,
                     }}
                     transition={{
                       type: "spring",
@@ -172,11 +180,11 @@ function RaffleCard({
               </AnimatePresence>
               <motion.div
                 key={`container-info-${id}`}
-                initial={{ display: "grid", gap: "12px"}}
+                initial={{ display: "grid", gap: "12px" }}
                 animate={{
-                  gridTemplateRows: expandedCard == id ? "1fr" : "1fr 1fr",
-                  gridTemplateColumns: expandedCard == id ? "1fr 1fr 1fr" : "1fr 1fr",
-                  width: expandedCard == id ? "100%" : "44%",
+                  gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
+                  width: isMainCard ? "100%" : "44%",
                 }}
                 transition={{
                   type: "spring",
@@ -205,7 +213,7 @@ function RaffleCard({
                   iconS1={ethIcon}
                   iconS2={srIcon}
                 />
-                {expandedCard == "" && (
+                {!isMainCard && (
                   <RaffleCardInfo
                     icon={
                       entriesColor === "blue"
@@ -215,6 +223,7 @@ function RaffleCard({
                     primary="My entries"
                     secondary1={entries}
                     color={entriesColor}
+                    isMainCard
                   />
                 )}
               </motion.div>

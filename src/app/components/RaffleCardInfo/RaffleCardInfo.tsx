@@ -11,6 +11,7 @@ type RaffleCardInfoProps = {
   iconS1?: any;
   iconS2?: any;
   color?: "blue" | "opaque";
+  isMainCard?: boolean
 };
 
 function RaffleCardInfo({
@@ -21,6 +22,7 @@ function RaffleCardInfo({
   iconS1,
   iconS2,
   color,
+  isMainCard
 }: RaffleCardInfoProps) {
   return (
     <div
