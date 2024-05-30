@@ -14,18 +14,16 @@ import ProfileCard from "@/app/components/ProfileCard";
 import RewardsCard from "@/app/components/RewardsCard";
 import { cards } from "@/app/types/commons";
 
-
 function DashBoard() {
   const [expandedCard, setExpandedCard] = useState<cards>("");
 
   const handleCardClick = (id: cards) => {
-    setExpandedCard(id)
-  }
+    setExpandedCard(id);
+  };
 
   return (
     <div className={styles["container--all"]}>
       <TopInfo eth="0.01" ethBonus="0.004" />
-
       <div className={styles["container--raffle-cards"]}>
         <RaffleCard
           onClick={handleCardClick}
@@ -42,7 +40,6 @@ function DashBoard() {
           networkIcon={Optimisim}
           bgImg={OptimisimBgImg}
           expandedCard={expandedCard}
-          
         />
         <RaffleCard
           onClick={handleCardClick}
