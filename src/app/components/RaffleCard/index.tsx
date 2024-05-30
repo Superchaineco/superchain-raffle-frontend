@@ -170,7 +170,23 @@ function RaffleCard({
                   </motion.div>
                 )}
               </AnimatePresence>
-              <div className={styles["container--info"]}>
+              <motion.div
+                key={`container-info-${id}`}
+                initial={{ display: "grid", gap: "12px"}}
+                animate={{
+                  gridTemplateRows: expandedCard == id ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns: expandedCard == id ? "1fr 1fr 1fr" : "1fr 1fr",
+                  width: expandedCard == id ? "100%" : "44%",
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                  duration: 0.2,
+                }}
+                exit={{ opacity: 0 }}
+                className={styles["container--info"]}
+              >
                 <RaffleCardInfo
                   icon={endsInIcon}
                   primary="Ends in"
@@ -201,7 +217,7 @@ function RaffleCard({
                     color={entriesColor}
                   />
                 )}
-              </div>
+              </motion.div>
             </CardContent>
             <CardMedia
               className={styles["card--media"]}
