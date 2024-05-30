@@ -22,7 +22,6 @@ import MyTickets from "../MyTickets";
 import { motion } from "framer-motion";
 import { cards } from "@/app/types/commons";
 
-
 type RaffleCardProps = {
   id: cards;
   raffleCardText: string;
@@ -37,7 +36,7 @@ type RaffleCardProps = {
   networkIcon: any;
   bgImg: any;
   expandedCard: cards;
-  onClick: (id: cards) => void
+  onClick: (id: cards) => void;
 };
 
 function RaffleCard({
@@ -54,13 +53,25 @@ function RaffleCard({
   networkIcon,
   bgImg,
   expandedCard,
-  onClick
+  onClick,
 }: RaffleCardProps) {
-  const handleClick = () => {
-    onClick(id)
-  }
+  const handleClick = (argId: cards) => {
+    if (expandedCard == id && argId == "") {
+      onClick(argId);
+    } else if (expandedCard != id) {
+      onClick(argId);
+    }
+  };
   return (
-    <motion.div onClick={handleClick} initial={{ height: "238px" }} animate={{ height: expandedCard == id ? "100%" : "238px" }}>
+    <motion.div
+      onClick={() => handleClick(id)}
+      initial={{ height: "238px", visibility: "visible" }}
+      animate={{
+        height:
+          expandedCard == id ? "100%" : expandedCard == "" ? "238px" : "0px",
+        display: expandedCard == id || expandedCard == "" ? "flex" : "none",
+      }}
+    >
       <Card className={styles["container--all"]}>
         <div className={styles["container--principal"]}>
           <div className={styles["container--header"]}>
@@ -152,6 +163,7 @@ function RaffleCard({
         <div className={styles["container--detail"]}>
           <PurchaseTickets />
           <MyTickets tickets={0} />
+          <button onClick={() => handleClick("")}></button>
         </div>
       </Card>
     </motion.div>
