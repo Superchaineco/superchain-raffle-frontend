@@ -19,7 +19,8 @@ import totalEntriesIcon from "@/public/images/total-entries-icon.svg";
 import endsInIcon from "@/public/images/ends-in-icon.svg";
 import PurchaseTickets from "../PurchaseTickets";
 import MyTickets from "../MyTickets";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import BackIcon from "@/public/images/back-icon.svg";
 import { cards } from "@/app/types/commons";
 
 type RaffleCardProps = {
@@ -63,29 +64,29 @@ function RaffleCard({
     }
   };
   return (
-    <motion.div
-      onClick={() => handleClick(id)}
-      initial={{ height: "238px", visibility: "visible" }}
-      animate={{
-        height:
-          expandedCard == id ? "100%" : expandedCard == "" ? "238px" : "0px",
-        display: expandedCard == id || expandedCard == "" ? "flex" : "none",
-      }}
-    >
-      <Card className={styles["container--all"]}>
-        <div className={styles["container--principal"]}>
-          <div className={styles["container--header"]}>
-            <Typography fontSize={24} fontWeight={600}>
-              {raffleCardText}
-            </Typography>
-            <div className={styles["container--header--chips"]}>
-              <Chip
-                className={`${styles["chip"]} ${styles[`chip--white`]}`}
-                label={`${raffleCardChipsText.left} ETH`}
-                onDelete={() => {}}
-                deleteIcon={
+    <AnimatePresence>
+      <motion.div
+        onClick={() => handleClick(id)}
+        initial={{ height: "238px", visibility: "visible" }}
+        animate={{
+          height:
+            expandedCard == id ? "100%" : expandedCard == "" ? "238px" : "0px",
+          display: expandedCard == id || expandedCard == "" ? "flex" : "none",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          duration: 0.3,
+        }}
+      >
+        <Card className={styles["container--all"]}>
+          <div className={styles["container--principal"]}>
+            <div className={styles["container--header"]}>
+              {expandedCard == id && (
+                <div className={styles["container--back"]}>
                   <SvgIcon
-                    component={ethIcon}
+                    component={BackIcon}
                     inheritViewBox
                     style={{
                       width: "16px",
@@ -93,80 +94,129 @@ function RaffleCard({
                       cursor: "default",
                     }}
                   />
-                }
-              />
-              <Chip
-                className={`${styles["chip"]} ${styles[`chip--${chipColor}`]}`}
-                label={raffleCardChipsText.right}
-                onDelete={() => {}}
-                deleteIcon={
-                  <SvgIcon
-                    component={networkIcon}
-                    inheritViewBox
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      cursor: "default",
-                      boxShadow: "0px 4px 4px 0px #00000024",
-                    }}
+                  <h4>All Raffles</h4>
+                </div>
+              )}
+              {expandedCard == "" && (
+                <Typography fontSize={24} fontWeight={600}>
+                  {raffleCardText}
+                </Typography>
+              )}
+              <div className={styles["container--header--chips"]}>
+                {expandedCard == "" && (
+                  <Chip
+                    className={`${styles["chip"]} ${styles[`chip--white`]}`}
+                    label={`${raffleCardChipsText.left} ETH`}
+                    onDelete={() => {}}
+                    deleteIcon={
+                      <SvgIcon
+                        component={ethIcon}
+                        inheritViewBox
+                        style={{
+                          width: "16px",
+                          height: "12px",
+                          cursor: "default",
+                        }}
+                      />
+                    }
                   />
-                }
-              />
+                )}
+                <Chip
+                  className={`${styles["chip"]} ${
+                    styles[`chip--${chipColor}`]
+                  }`}
+                  label={raffleCardChipsText.right}
+                  onDelete={() => {}}
+                  deleteIcon={
+                    <SvgIcon
+                      component={networkIcon}
+                      inheritViewBox
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                        cursor: "default",
+                        boxShadow: "0px 4px 4px 0px #00000024",
+                      }}
+                    />
+                  }
+                />
+              </div>
             </div>
+            <CardContent className={styles["container--body"]}>
+              <AnimatePresence>
+                {expandedCard == id && (
+                  <motion.p
+                    key={`text-${id}`}
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: expandedCard == id ? 1 : 0,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 20,
+                      duration: 0.2,
+                    }}
+                    exit={{ opacity: 0 }}
+                  >
+                    Take part in this raffle for a chance to receive rewards
+                    lorem ipsum established fact that a reader.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+              <div className={styles["container--info"]}>
+                <RaffleCardInfo
+                  icon={endsInIcon}
+                  primary="Ends in"
+                  secondary1={endsIn}
+                />
+                <RaffleCardInfo
+                  icon={totalEntriesIcon}
+                  primary="Total entries"
+                  secondary1={totalEntries}
+                />
+                <RaffleCardInfo
+                  icon={prizePotIcon}
+                  primary="Prize pot"
+                  secondary1={prizePotEth}
+                  secondary2={prizePotSr}
+                  iconS1={ethIcon}
+                  iconS2={srIcon}
+                />
+                {expandedCard == "" && (
+                  <RaffleCardInfo
+                    icon={
+                      entriesColor === "blue"
+                        ? myEntriesBlueIcon
+                        : myEntriesOpaqueIcon
+                    }
+                    primary="My entries"
+                    secondary1={entries}
+                    color={entriesColor}
+                  />
+                )}
+              </div>
+            </CardContent>
+            <CardMedia
+              className={styles["card--media"]}
+              component={bgImg}
+              style={{
+                position: "absolute",
+                top: 0,
+                right: "-32%",
+                width: "100%",
+                height: "120%",
+              }}
+            />
           </div>
-          <CardContent className={styles["container--body"]}>
-            <div className={styles["container--body--left"]}>
-              <RaffleCardInfo
-                icon={endsInIcon}
-                primary="Ends in"
-                secondary1={endsIn}
-              />
-              <RaffleCardInfo
-                icon={totalEntriesIcon}
-                primary="Total entries"
-                secondary1={totalEntries}
-              />
-            </div>
-            <div className={styles["container--body--right"]}>
-              <RaffleCardInfo
-                icon={prizePotIcon}
-                primary="Prize pot"
-                secondary1={prizePotEth}
-                secondary2={prizePotSr}
-                iconS1={ethIcon}
-                iconS2={srIcon}
-              />
-              <RaffleCardInfo
-                icon={
-                  entriesColor === "blue"
-                    ? myEntriesBlueIcon
-                    : myEntriesOpaqueIcon
-                }
-                primary="My entries"
-                secondary1={entries}
-                color={entriesColor}
-              />
-            </div>
-          </CardContent>
-          <CardMedia
-            className={styles["card--media"]}
-            component={bgImg}
-            style={{
-              position: "absolute",
-              top: 0,
-              right: "-32%",
-              width: "100%",
-              height: "120%",
-            }}
-          />
-        </div>
-        <div className={styles["container--detail"]}>
-          <PurchaseTickets />
-          <MyTickets tickets={0} />
-          <button onClick={() => handleClick("")}></button>
-        </div>
-      </Card>
-    </motion.div>
+          <div className={styles["container--detail"]}>
+            <PurchaseTickets />
+            <MyTickets tickets={0} />
+            <button onClick={() => handleClick("")}></button>
+          </div>
+        </Card>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 export default RaffleCard;
