@@ -86,12 +86,13 @@ function RaffleCard({
               {expandedCard == id && (
                 <div className={styles["container--back"]}>
                   <SvgIcon
+                    onClick={() => handleClick("")}
                     component={BackIcon}
                     inheritViewBox
                     style={{
                       width: "16px",
                       height: "12px",
-                      cursor: "default",
+                      cursor: "pointer",
                     }}
                   />
                   <h4>All Raffles</h4>
@@ -145,7 +146,7 @@ function RaffleCard({
             <CardContent className={styles["container--body"]}>
               <AnimatePresence>
                 {expandedCard == id && (
-                  <motion.p
+                  <motion.div
                     key={`text-${id}`}
                     initial={{ opacity: 0 }}
                     animate={{
@@ -159,9 +160,14 @@ function RaffleCard({
                     }}
                     exit={{ opacity: 0 }}
                   >
-                    Take part in this raffle for a chance to receive rewards
-                    lorem ipsum established fact that a reader.
-                  </motion.p>
+                    <Typography fontSize={24} fontWeight={600}>
+                      {raffleCardText}
+                    </Typography>
+                    <p>
+                      Take part in this raffle for a chance to receive rewards
+                      lorem ipsum established fact that a reader.
+                    </p>
+                  </motion.div>
                 )}
               </AnimatePresence>
               <div className={styles["container--info"]}>
@@ -212,7 +218,6 @@ function RaffleCard({
           <div className={styles["container--detail"]}>
             <PurchaseTickets />
             <MyTickets tickets={0} />
-            <button onClick={() => handleClick("")}></button>
           </div>
         </Card>
       </motion.div>
