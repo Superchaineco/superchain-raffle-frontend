@@ -22,15 +22,14 @@ import MyTickets from "../MyTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { cards } from "@/app/types/commons";
 import { useEffect, useState } from "react";
 
 type RaffleCardProps = {
-  id: cards;
+  id: string;
   raffleCardText: string;
   raffleCardChipsText: { left: number; right: string };
-  chipColor: "yellow" | "red" | "blue";
-  entriesColor?: "blue" | "opaque";
+  chipColor: string
+  entriesColor?: string
   endsIn: string;
   prizePotEth: string;
   prizePotSr: string;
@@ -38,9 +37,9 @@ type RaffleCardProps = {
   entries: string;
   networkIcon: any;
   bgImg: any;
-  expandedCard: cards;
+  expandedCard: string;
   round: number;
-  onClick: (id: cards) => void;
+  onClick: (id: string) => void;
 };
 
 function RaffleCard({
@@ -63,7 +62,7 @@ function RaffleCard({
   const [isMainCard, setIsMainCard] = useState(false);
   const [noMainCard, setNoMainCard] = useState(true);
 
-  const handleClick = (argId: cards) => {
+  const handleClick = (argId: string) => {
     if (isMainCard && argId == "") {
       onClick("");
     } else if (!isMainCard) {

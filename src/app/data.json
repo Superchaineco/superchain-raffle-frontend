@@ -1,0 +1,59 @@
+[
+  {
+    "id": "optimisim",
+    "raffleCardText": "48 Hour OP Raffle",
+    "raffleCardChipsText": {
+      "left": 0.002,
+      "right": "Optimisim"
+    },
+    "chipColor": "red",
+    "entriesColor": "blue",
+    "endsIn": "1d: 01h: 22m",
+    "prizePotEth": "0.05",
+    "prizePotSr": "100",
+    "totalEntries": "34/250",
+    "entries": "1",
+    "networkIcon": "Optimisim",
+    "bgImg": "OptimisimBgImg",
+    "expandedCard": "expandedCard",
+    "round": 1
+  },
+  {
+    "id": "base",
+    "raffleCardText": "48 Hour OP Raffle",
+    "raffleCardChipsText": {
+      "left": 0.002,
+      "right": "Base"
+    },
+    "chipColor": "blue",
+    "entriesColor": "opaque",
+    "endsIn": "1d: 01h: 22m",
+    "prizePotEth": "0.05",
+    "prizePotSr": "100",
+    "totalEntries": "34 / 250",
+    "entries": "1",
+    "networkIcon": "Base",
+    "bgImg": "BaseBgImg",
+    "expandedCard": "expandedCard",
+    "round": 1
+  },
+  {
+    "id": "mode",
+    "raffleCardText": "48 Hour OP Raffle",
+    "raffleCardChipsText": {
+      "left": 0.002,
+      "right": "Mode"
+    },
+    "chipColor": "yellow",
+    "entriesColor": "opaque",
+    "endsIn": "1d: 01h: 22m",
+    "prizePotEth": "0.05",
+    "prizePotSr": "100",
+    "totalEntries": "34/250",
+    "entries": "1",
+    "networkIcon": "Mode",
+    "bgImg": "ModeBgImg",
+    "expandedCard": "expandedCard",
+    "round": 1
+  }
+]

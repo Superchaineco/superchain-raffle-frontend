@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { Chip, Paper } from "@mui/material";
+import { Chip } from "@mui/material";
 import { motion } from "framer-motion";
 
 type TopInfoProps = {

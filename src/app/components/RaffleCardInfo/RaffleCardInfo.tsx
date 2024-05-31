@@ -3,7 +3,6 @@
 import { SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 type RaffleCardInfoProps = {
   icon: any;
@@ -12,7 +11,7 @@ type RaffleCardInfoProps = {
   secondary2?: string;
   iconS1?: any;
   iconS2?: any;
-  color?: "blue" | "opaque";
+  color?: string;
   noMainCard: boolean
 };
 
