@@ -158,7 +158,7 @@ function RaffleCard({
                 {isMainCard && (
                   <motion.div
                     key={`text-${id}`}
-                    initial={{ opacity: 0 }}
+                    initial={{ opacity: 0, maxWidth: "60%"}}
                     animate={{
                       opacity: isMainCard ? 1 : 0,
                     }}
@@ -204,6 +204,7 @@ function RaffleCard({
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
+                  width: isMainCard ? "80%" : "60%",
                 }}
                 transition={{
                   type: "spring",
@@ -253,6 +254,7 @@ function RaffleCard({
               initial={{
                 position: "absolute",
                 width: "100%",
+                height: "120%",
                 right: "-32%",
                 top: 0,
               }}
