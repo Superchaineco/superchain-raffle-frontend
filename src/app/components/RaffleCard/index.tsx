@@ -19,6 +19,7 @@ import totalEntriesIcon from "@/public/images/total-entries-icon.svg";
 import endsInIcon from "@/public/images/ends-in-icon.svg";
 import PurchaseTickets from "../PurchaseTickets";
 import MyTickets from "../MyTickets";
+import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
 import { cards } from "@/app/types/commons";
@@ -38,6 +39,7 @@ type RaffleCardProps = {
   networkIcon: any;
   bgImg: any;
   expandedCard: cards;
+  round: number;
   onClick: (id: cards) => void;
 };
 
@@ -55,6 +57,7 @@ function RaffleCard({
   networkIcon,
   bgImg,
   expandedCard,
+  round,
   onClick,
 }: RaffleCardProps) {
   const [isMainCard, setIsMainCard] = useState(false);
@@ -175,6 +178,24 @@ function RaffleCard({
                       Take part in this raffle for a chance to receive rewards
                       lorem ipsum established fact that a reader.
                     </p>
+                    <div className={styles["container--raffle--text--buttons"]}>
+                      <Chip
+                        className={`${styles["chip"]} ${styles[`chip--black`]}`}
+                        label={`Round ${round}`}
+                      />
+                      <div className={styles["container--raffle-history"]}>
+                        <SvgIcon
+                          component={HistoryIcon}
+                          inheritViewBox
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            cursor: "default",
+                          }}
+                        />
+                        <h4>Raffle history</h4>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -184,7 +205,6 @@ function RaffleCard({
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
-                  width: isMainCard ? "100%" : "52%",
                 }}
                 transition={{
                   type: "spring",
@@ -230,17 +250,24 @@ function RaffleCard({
                 )}
               </motion.div>
             </CardContent>
-            <CardMedia
-              className={styles["card--media"]}
-              component={bgImg}
-              style={{
+            <motion.div
+              initial={{
                 position: "absolute",
-                top: 0,
-                right: "-32%",
                 width: "100%",
-                height: "120%",
+                right: "-32%",
+                top: 0,
               }}
-            />
+              animate={{height: isMainCard ? "140%" : "120%"}}
+            >
+              <CardMedia
+                className={styles["card--media"]}
+                component={bgImg}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            </motion.div>
           </div>
           <div className={styles["container--detail"]}>
             <PurchaseTickets />

@@ -40,6 +40,7 @@ function DashBoard() {
           networkIcon={Optimisim}
           bgImg={OptimisimBgImg}
           expandedCard={expandedCard}
+          round={1}
         />
         <RaffleCard
           onClick={handleCardClick}
@@ -56,6 +57,7 @@ function DashBoard() {
           networkIcon={Base}
           bgImg={BaseBgImg}
           expandedCard={expandedCard}
+          round={1}
         />
         <RaffleCard
           onClick={handleCardClick}
@@ -72,6 +74,7 @@ function DashBoard() {
           networkIcon={Mode}
           bgImg={ModeBgImg}
           expandedCard={expandedCard}
+          round={1}
         />
       </div>
       <div className={styles["container--profile-rewards"]}>
