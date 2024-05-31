@@ -57,19 +57,19 @@ function RaffleCard({
   expandedCard,
   onClick,
 }: RaffleCardProps) {
-  const [isMainCard, setIsMainCard] = useState<boolean>(false);
-  const [noMainCard, setNoMainCard] = useState<boolean>(true);
+  const [isMainCard, setIsMainCard] = useState(false);
+  const [noMainCard, setNoMainCard] = useState(true);
 
   const handleClick = (argId: cards) => {
     if (isMainCard && argId == "") {
-      onClick(argId);
+      onClick("");
     } else if (!isMainCard) {
       onClick(argId);
     }
   };
   useEffect(() => {
-    setIsMainCard(expandedCard == id ? true : false);
-    setNoMainCard(expandedCard == "" ? true : false);
+    setIsMainCard(expandedCard === id);
+    setNoMainCard(!(expandedCard != ""));
   }, [expandedCard, id]);
 
   return (
@@ -184,7 +184,7 @@ function RaffleCard({
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
-                  width: isMainCard ? "100%" : "44%",
+                  width: isMainCard ? "100%" : "52%",
                 }}
                 transition={{
                   type: "spring",
@@ -193,17 +193,18 @@ function RaffleCard({
                   duration: 0.2,
                 }}
                 exit={{ opacity: 0 }}
-                className={styles["container--info"]}
               >
                 <RaffleCardInfo
                   icon={endsInIcon}
                   primary="Ends in"
                   secondary1={endsIn}
+                  noMainCard={noMainCard}
                 />
                 <RaffleCardInfo
                   icon={totalEntriesIcon}
                   primary="Total entries"
                   secondary1={totalEntries}
+                  noMainCard={noMainCard}
                 />
                 <RaffleCardInfo
                   icon={prizePotIcon}
@@ -212,6 +213,7 @@ function RaffleCard({
                   secondary2={prizePotSr}
                   iconS1={ethIcon}
                   iconS2={srIcon}
+                  noMainCard={noMainCard}
                 />
                 {!isMainCard && (
                   <RaffleCardInfo
@@ -223,7 +225,7 @@ function RaffleCard({
                     primary="My entries"
                     secondary1={entries}
                     color={entriesColor}
-                    isMainCard
+                    noMainCard={noMainCard}
                   />
                 )}
               </motion.div>

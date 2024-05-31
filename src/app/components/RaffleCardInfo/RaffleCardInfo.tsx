@@ -2,6 +2,8 @@
 
 import { SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 type RaffleCardInfoProps = {
   icon: any;
@@ -11,7 +13,7 @@ type RaffleCardInfoProps = {
   iconS1?: any;
   iconS2?: any;
   color?: "blue" | "opaque";
-  isMainCard?: boolean
+  noMainCard: boolean
 };
 
 function RaffleCardInfo({
@@ -22,12 +24,13 @@ function RaffleCardInfo({
   iconS1,
   iconS2,
   color,
-  isMainCard
+  noMainCard
 }: RaffleCardInfoProps) {
   return (
-    <div
+    <motion.div
       className={`${styles["container--all"]} ${
-        color ? styles[`container--all--color--${color}`] : ""
+        color ? styles[`container--all--color--${color}`] :
+        !noMainCard ? styles["container--all--main-card"] : ""
       }`}
     >
       <div className={styles["container--primary"]}>
@@ -70,7 +73,7 @@ function RaffleCardInfo({
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

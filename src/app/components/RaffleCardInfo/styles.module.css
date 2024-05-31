@@ -1,9 +1,9 @@
 .container--all {
-  padding: 4px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 4px
+  border-radius: 4px;
 }
 
 .container--all--color--blue {
@@ -15,7 +15,9 @@
   border: 1.5px solid rgba(0, 0, 0, 0.5);
   opacity: 40%;
 }
-
+.container--all--main-card {
+  background-color: var(--color-profile-card-bg);
+}
 .container--primary {
   height: 20px;
   display: flex;
