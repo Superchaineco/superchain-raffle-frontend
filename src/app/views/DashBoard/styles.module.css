@@ -6,7 +6,7 @@
   padding: var(--space-10) var(--space-6);
 }
 .container--raffle-cards {
-  max-height: 780px;
+  height: 780px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
