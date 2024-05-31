@@ -51,7 +51,7 @@
 
 .container--detail {
   z-index: 20;
-  padding: var(--space-3);
+  padding: var(--space-3) 0px;
   position: relative;
   display: flex;
   gap: 20px;
