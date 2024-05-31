@@ -98,8 +98,9 @@ function RaffleCard({
                     component={BackIcon}
                     inheritViewBox
                     style={{
-                      width: "16px",
-                      height: "12px",
+                      zIndex: 120,
+                      width: "20px",
+                      height: "16px",
                       cursor: "pointer",
                     }}
                   />
