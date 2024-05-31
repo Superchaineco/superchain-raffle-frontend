@@ -14,6 +14,16 @@ import ProfileCard from "@/app/components/ProfileCard";
 import RewardsCard from "@/app/components/RewardsCard";
 import data from "@/app/data.json";
 
+enum AssetsParser {
+  'OptimisimBg' = OptimisimBgImg,
+  'BaseBg' = BaseBgImg,
+  'ModeBg' = ModeBgImg,
+  'OptimisimIcon' = Optimisim,
+  'BaseIcon' = Base,
+  'ModeIcon' = Mode,
+
+}
+
 function DashBoard() {
   const [expandedCard, setExpandedCard] = useState<string>("");
 
@@ -30,7 +40,9 @@ function DashBoard() {
       <TopInfo eth="0.01" ethBonus="0.004" />
       <div className={styles["container--raffle-cards"]}>
         {
-          data.map((item, index) => {
+          data.map((item) => {
+            const bgImg = item.bgImg as keyof typeof AssetsParser;
+            const networdIcon = item.networkIcon as keyof typeof AssetsParser;
             return (
               <RaffleCard
                 key={item.id}
@@ -45,8 +57,8 @@ function DashBoard() {
                 prizePotSr={item.prizePotSr}
                 totalEntries={item.totalEntries}
                 entries={item.entries}
-                networkIcon={item.networkIcon}
-                bgImg={item.bgImg}
+                networkIcon={AssetsParser[networdIcon]}
+                bgImg={AssetsParser[bgImg]}
                 expandedCard={expandedCard}
                 round={item.round}
               />

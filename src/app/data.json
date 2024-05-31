@@ -13,8 +13,8 @@
     "prizePotSr": "100",
     "totalEntries": "34/250",
     "entries": "1",
-    "networkIcon": "Optimisim",
-    "bgImg": "OptimisimBgImg",
+    "networkIcon": "OptimisimIcon",
+    "bgImg": "OptimisimBg",
     "expandedCard": "expandedCard",
     "round": 1
   },
@@ -32,8 +32,8 @@
     "prizePotSr": "100",
     "totalEntries": "34 / 250",
     "entries": "1",
-    "networkIcon": "Base",
-    "bgImg": "BaseBgImg",
+    "networkIcon": "BaseIcon",
+    "bgImg": "BaseBg",
     "expandedCard": "expandedCard",
     "round": 1
   },
@@ -51,8 +51,8 @@
     "prizePotSr": "100",
     "totalEntries": "34/250",
     "entries": "1",
-    "networkIcon": "Mode",
-    "bgImg": "ModeBgImg",
+    "networkIcon": "ModeIcon",
+    "bgImg": "ModeBg",
     "expandedCard": "expandedCard",
     "round": 1
   }
