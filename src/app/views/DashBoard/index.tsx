@@ -25,15 +25,11 @@ enum AssetsParser {
 }
 
 function DashBoard() {
-  const [expandedCard, setExpandedCard] = useState<string>("");
+  const [expandedCard, setExpandedCard] = useState<string | null>("");
 
-  const handleCardClick = (id: string) => {
+  const handleCardClick = (id: string | null) => {
     setExpandedCard(id);
   };
-
-  useEffect(() => {
-    console.log(data);
-  }, [])
 
   return (
     <div className={styles["container--all"]}>

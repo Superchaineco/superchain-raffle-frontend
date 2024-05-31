@@ -3,10 +3,10 @@
   grid-template-columns: 4fr 3fr;
   gap: var(--space-6);
   width: 100%;
-  overflow-y: scroll;
   padding: var(--space-10) var(--space-6);
 }
 .container--raffle-cards {
+  max-height: 780px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

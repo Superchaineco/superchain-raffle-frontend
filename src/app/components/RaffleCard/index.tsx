@@ -7,6 +7,7 @@ import {
   Chip,
   Typography,
   SvgIcon,
+  Stack,
 } from "@mui/material";
 import styles from "./styles.module.css";
 import RaffleCardInfo from "../RaffleCardInfo/RaffleCardInfo";
@@ -22,14 +23,14 @@ import MyTickets from "../MyTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type RaffleCardProps = {
   id: string;
   raffleCardText: string;
   raffleCardChipsText: { left: number; right: string };
-  chipColor: string
-  entriesColor?: string
+  chipColor: string;
+  entriesColor?: string;
   endsIn: string;
   prizePotEth: string;
   prizePotSr: string;
@@ -37,9 +38,9 @@ type RaffleCardProps = {
   entries: string;
   networkIcon: any;
   bgImg: any;
-  expandedCard: string;
+  expandedCard: string | null;
   round: number;
-  onClick: (id: string) => void;
+  onClick: (id: string | null) => void;
 };
 
 function RaffleCard({
@@ -59,35 +60,24 @@ function RaffleCard({
   round,
   onClick,
 }: RaffleCardProps) {
-  const [isMainCard, setIsMainCard] = useState(false);
-  const [noMainCard, setNoMainCard] = useState(true);
-
-  const handleClick = (argId: string) => {
-    if (isMainCard && argId == "") {
-      onClick("");
-    } else if (!isMainCard) {
-      onClick(argId);
-    }
-  };
-  useEffect(() => {
-    setIsMainCard(expandedCard === id);
-    setNoMainCard(!(expandedCard != ""));
-  }, [expandedCard, id]);
+  const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
+  const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
 
   return (
     <AnimatePresence>
       <motion.div
-        onClick={() => handleClick(id)}
+        onClick={() => isMainCard ? {} : onClick(id)}
         initial={{ height: "238px", visibility: "visible" }}
         animate={{
-          height: isMainCard ? "100%" : noMainCard ? "238px" : "0px",
+          height: isMainCard ? "100%" : "238px",
           display: isMainCard || noMainCard ? "flex" : "none",
+          flex: isMainCard ? 1 : 'none',
         }}
         transition={{
           type: "spring",
           stiffness: 100,
           damping: 20,
-          duration: 0.3,
+          duration: 0.5,
         }}
       >
         <Card className={styles["container--all"]}>
@@ -96,7 +86,7 @@ function RaffleCard({
               {isMainCard && (
                 <div className={styles["container--back"]}>
                   <SvgIcon
-                    onClick={() => handleClick("")}
+                    onClick={() => onClick(null)}
                     component={BackIcon}
                     inheritViewBox
                     style={{
@@ -105,14 +95,23 @@ function RaffleCard({
                       cursor: "pointer",
                     }}
                   />
-                  <h4>All Raffles</h4>
+                  <span>All Raffles</span>
                 </div>
               )}
-              {noMainCard && (
+              <motion.div 
+                initial={{paddingTop: 0}}
+                animate={{paddingTop: isMainCard ? 64 : 0}}
+              > 
                 <Typography fontSize={24} fontWeight={600}>
                   {raffleCardText}
                 </Typography>
-              )}
+                {!noMainCard && (
+                  <p>
+                    Take part in this raffle for a chance to receive rewards
+                    lorem ipsum established fact that a reader.
+                  </p>
+                )}
+              </motion.div>
               <div className={styles["container--header--chips"]}>
                 {noMainCard && (
                   <Chip
@@ -158,25 +157,12 @@ function RaffleCard({
                 {isMainCard && (
                   <motion.div
                     key={`text-${id}`}
-                    initial={{ opacity: 0, maxWidth: "60%"}}
+                    initial={{ opacity: 0, maxWidth: "60%" }}
                     animate={{
                       opacity: isMainCard ? 1 : 0,
                     }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 20,
-                      duration: 0.2,
-                    }}
                     exit={{ opacity: 0 }}
                   >
-                    <Typography fontSize={24} fontWeight={600}>
-                      {raffleCardText}
-                    </Typography>
-                    <p>
-                      Take part in this raffle for a chance to receive rewards
-                      lorem ipsum established fact that a reader.
-                    </p>
                     <div className={styles["container--raffle--text--buttons"]}>
                       <Chip
                         className={`${styles["chip"]} ${styles[`chip--black`]}`}
@@ -258,7 +244,7 @@ function RaffleCard({
                 right: "-32%",
                 top: 0,
               }}
-              animate={{height: isMainCard ? "140%" : "120%"}}
+              animate={{ height: isMainCard ? "140%" : "120%" }}
             >
               <CardMedia
                 className={styles["card--media"]}
