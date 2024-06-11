@@ -1,5 +1,3 @@
-"use client";
-
 import { Card } from "@mui/material";
 import styles from "./styles.module.css";
 import OptimisimIcon from "@/public/images/optimisim-icon.svg";

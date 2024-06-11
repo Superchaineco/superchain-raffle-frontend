@@ -74,13 +74,13 @@ function RaffleCard({
           isMainCard
             ? { height: offset, opacity: 1 }
             : expandedCard
-            ? {
-                height: "0px",
-                opacity: 0,
+              ? {
+                  height: "0px",
+                  opacity: 0,
 
-                display: "none",
-              }
-            : { height: "238px", opacity: 1 }
+                  display: "none",
+                }
+              : { height: "238px", opacity: 1 }
         }
         exit={{ height: "0px", opacity: 0 }}
         style={{

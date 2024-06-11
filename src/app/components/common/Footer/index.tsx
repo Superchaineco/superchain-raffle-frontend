@@ -1,10 +1,10 @@
-'use client';
-import type { ReactElement, ReactNode } from 'react';
-import { Typography } from '@mui/material';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import css from './styles.module.css';
-import MUILink from '@mui/material/Link';
+"use client";
+import type { ReactElement, ReactNode } from "react";
+import { Typography } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import css from "./styles.module.css";
+import MUILink from "@mui/material/Link";
 
 const FooterLink = ({
   children,
@@ -29,13 +29,13 @@ const Footer = (): ReactElement | null => {
     <footer className={css.container}>
       <ul>
         <li>
-          <Typography variant='caption'>Kolektivo Labs © 2024</Typography>
+          <Typography variant="caption">Kolektivo Labs © 2024</Typography>
         </li>
         <li>
-          <FooterLink href='/#'>Terms</FooterLink>
+          <FooterLink href="/#">Terms</FooterLink>
         </li>
         <li>
-          <FooterLink href='/#'>Docs</FooterLink>
+          <FooterLink href="/#">Docs</FooterLink>
         </li>
       </ul>
     </footer>
