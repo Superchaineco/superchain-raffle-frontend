@@ -1,3 +1,27 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "next/core-web-vitals"
+  ],
+  "plugins": ["@typescript-eslint", "import"],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "@typescript-eslint/consistent-type-imports": "error",
+    "import/no-duplicates": "error"
+  },
+  "settings": {
+    "next": {
+      "rootDir": ["apps/*/"]
+    }
+  }
 }
