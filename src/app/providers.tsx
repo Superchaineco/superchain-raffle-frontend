@@ -1,12 +1,12 @@
-'use client';
-import React from 'react';
-import { Theme, ThemeProvider } from '@mui/material';
-import SafeThemeProvider from '@/app/components/theme/SafeThemeProvider';
-import PageLayout from '@/app/components/common/Layout';
+"use client";
+import React from "react";
+import { type Theme, ThemeProvider } from "@mui/material";
+import SafeThemeProvider from "@/components/theme/SafeThemeProvider";
+import PageLayout from "@/components/common/Layout";
 
 function Providers({ children }: { children: React.ReactNode }) {
   //   const themeMode = isDarkMode ? 'dark' : 'light';
-  const themeMode = 'light';
+  const themeMode = "light";
 
   return (
     <SafeThemeProvider mode={themeMode}>

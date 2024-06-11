@@ -1,5 +1,4 @@
-import styles from './page.module.css';
-import DashBoard from './views/DashBoard';
+import styles from "./page.module.css";
 export default function Home() {
   return <DashBoard />;
 }
