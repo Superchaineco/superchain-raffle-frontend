@@ -12,7 +12,7 @@ function ProfileInfoCard({ primary, secondary, icon }: ProfileInfoCardProps) {
     <Card className={styles["container--all"]}>
       <h4 className={styles["secondary--text"]}>{secondary}</h4>
       <div className={styles["container--primary"]}>
-        <h4 className={styles["primary--text"]}>{primary}</h4>
+        <span className={styles["primary--text"]}>{primary}</span>
         <SvgIcon
           component={icon}
           inheritViewBox

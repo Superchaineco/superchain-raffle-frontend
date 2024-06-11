@@ -41,7 +41,7 @@ function DashBoard() {
   }, [expandedCard]);
 
   return (
-    <div className={styles["container--all"]}>
+    <main className={styles["container--all"]}>
       <TopInfo eth="0.01" ethBonus="0.004" />
       <div ref={containerRef} className={styles["container--raffle-cards"]}>
         {data.map((item) => {
@@ -91,7 +91,7 @@ function DashBoard() {
           modeSrp={0}
         />
       </div>
-    </div>
+    </main>
   );
 }
 export default DashBoard;
