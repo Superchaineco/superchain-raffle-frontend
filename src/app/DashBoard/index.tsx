@@ -9,10 +9,10 @@ import OptimisimBgImg from "@/public/images/optimisim-bg-img.svg";
 import BaseBgImg from "@/public/images/base-bg-img.svg";
 import ModeBgImg from "@/public/images/mode-bg-img.svg";
 import styles from "./styles.module.css";
-import { TopInfo } from "@/app/components/TopInfo";
-import RaffleCard from "@/app/components/RaffleCard";
-import ProfileCard from "@/app/components/ProfileCard";
-import RewardsCard from "@/app/components/RewardsCard";
+import { TopInfo } from "@/components/TopInfo";
+import RaffleCard from "@/components/RaffleCard";
+import ProfileCard from "@/components/ProfileCard";
+import RewardsCard from "@/components/RewardsCard";
 import data from "@/app/data.json";
 
 enum AssetsParser {
