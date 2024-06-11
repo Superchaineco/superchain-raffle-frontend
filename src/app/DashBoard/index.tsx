@@ -55,15 +55,16 @@ function DashBoard() {
               id={item.id}
               raffleCardText={item.raffleCardText}
               raffleCardChipsText={{
-                left: item.raffleCardChipsText.left,
-                right: item.raffleCardChipsText.right,
+                value: item.raffleCardChip.value,
+                network: item.raffleCardChip.network,
               }}
               chipColor={item.chipColor}
               entriesColor={item.entriesColor}
-              endsIn={item.endsIn}
+              endsIn={item.end}
               prizePotEth={item.prizePotEth}
               prizePotSr={item.prizePotSr}
               totalEntries={item.totalEntries}
+              currentEntries={item.currentEntries}
               entries={item.entries}
               networkIcon={AssetsParser[networdIcon]}
               bgImg={AssetsParser[bgImg]}

@@ -23,19 +23,26 @@ import MyTickets from "../MyTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+
+enum ColorParser {
+  "#FF0420" = "red",
+  "#354FFC" = "blue",
+  "#DEFE2A" = "yellow",
+}
 
 type RaffleCardProps = {
   id: string;
   offset: number;
   raffleCardText: string;
-  raffleCardChipsText: { left: number; right: string };
+  raffleCardChipsText: { value: number; network: string };
   chipColor: string;
   entriesColor?: string;
   endsIn: string;
   prizePotEth: string;
   prizePotSr: string;
   totalEntries: string;
+  currentEntries: string;
   entries: string;
   networkIcon: any;
   bgImg: any;
@@ -55,6 +62,7 @@ function RaffleCard({
   prizePotEth,
   prizePotSr,
   totalEntries,
+  currentEntries,
   entries,
   networkIcon,
   bgImg,
@@ -125,7 +133,7 @@ function RaffleCard({
                 {noMainCard && (
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
-                    label={`${raffleCardChipsText.left} ETH`}
+                    label={`${raffleCardChipsText.value} ETH`}
                     onDelete={() => {}}
                     deleteIcon={
                       <SvgIcon
@@ -142,9 +150,9 @@ function RaffleCard({
                 )}
                 <Chip
                   className={`${styles["chip"]} ${
-                    styles[`chip--${chipColor}`]
+                    styles[`chip--${ColorParser[chipColor as keyof typeof ColorParser]}`]
                   }`}
-                  label={raffleCardChipsText.right}
+                  label={raffleCardChipsText.network}
                   onDelete={() => {}}
                   deleteIcon={
                     <SvgIcon
@@ -218,7 +226,7 @@ function RaffleCard({
                 <RaffleCardInfo
                   icon={totalEntriesIcon}
                   primary="Total entries"
-                  secondary1={totalEntries}
+                  secondary1={totalEntries + '/' + currentEntries}
                   noMainCard={noMainCard}
                 />
                 <RaffleCardInfo
@@ -233,7 +241,7 @@ function RaffleCard({
                 {!isMainCard && (
                   <RaffleCardInfo
                     icon={
-                      entriesColor === "blue"
+                      entriesColor === "#00C2FF"
                         ? myEntriesBlueIcon
                         : myEntriesOpaqueIcon
                     }

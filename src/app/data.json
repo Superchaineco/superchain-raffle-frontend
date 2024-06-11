@@ -2,58 +2,58 @@
   {
     "id": "optimisim",
     "raffleCardText": "48 Hour OP Raffle",
-    "raffleCardChipsText": {
-      "left": 0.002,
-      "right": "Optimisim"
+    "raffleCardChip": {
+      "value": 0.002,
+      "network": "Optimisim"
     },
-    "chipColor": "red",
-    "entriesColor": "blue",
-    "endsIn": "1d: 01h: 22m",
+    "chipColor": "#FF0420",
+    "entriesColor": "#00C2FF",
+    "end": "1d: 01h: 22m",
     "prizePotEth": "0.05",
     "prizePotSr": "100",
-    "totalEntries": "34/250",
+    "totalEntries": "250",
+    "currentEntries": "34",
     "entries": "1",
     "networkIcon": "OptimisimIcon",
     "bgImg": "OptimisimBg",
-    "expandedCard": "expandedCard",
     "round": 1
   },
   {
     "id": "base",
     "raffleCardText": "48 Hour OP Raffle",
-    "raffleCardChipsText": {
-      "left": 0.002,
-      "right": "Base"
+    "raffleCardChip": {
+      "value": 0.002,
+      "network": "Base"
     },
-    "chipColor": "blue",
-    "entriesColor": "opaque",
-    "endsIn": "1d: 01h: 22m",
+    "chipColor": "#354FFC",
+    "entriesColor": "#000000",
+    "end": "1d: 01h: 22m",
     "prizePotEth": "0.05",
     "prizePotSr": "100",
-    "totalEntries": "34 / 250",
+    "totalEntries": "250",
+    "currentEntries": "34",
     "entries": "1",
     "networkIcon": "BaseIcon",
     "bgImg": "BaseBg",
-    "expandedCard": "expandedCard",
     "round": 1
   },
   {
     "id": "mode",
     "raffleCardText": "48 Hour OP Raffle",
-    "raffleCardChipsText": {
-      "left": 0.002,
-      "right": "Mode"
+    "raffleCardChip": {
+      "value": 0.002,
+      "network": "Mode"
     },
-    "chipColor": "yellow",
-    "entriesColor": "opaque",
-    "endsIn": "1d: 01h: 22m",
+    "chipColor": "#DEFE2A",
+    "entriesColor": "#000000",
+    "end": "1d: 01h: 22m",
     "prizePotEth": "0.05",
     "prizePotSr": "100",
-    "totalEntries": "34/250",
+    "totalEntries": "250",
+    "currentEntries": "34",
     "entries": "1",
     "networkIcon": "ModeIcon",
     "bgImg": "ModeBg",
-    "expandedCard": "expandedCard",
     "round": 1
   }
 ]

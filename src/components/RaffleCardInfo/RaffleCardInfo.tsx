@@ -12,8 +12,13 @@ type RaffleCardInfoProps = {
   iconS1?: any;
   iconS2?: any;
   color?: string;
-  noMainCard: boolean
+  noMainCard: boolean;
 };
+
+enum ColorParser {
+  "#00C2FF" = "blue",
+  "#000000" = "opaque",
+}
 
 function RaffleCardInfo({
   icon,
@@ -23,13 +28,18 @@ function RaffleCardInfo({
   iconS1,
   iconS2,
   color,
-  noMainCard
+  noMainCard,
 }: RaffleCardInfoProps) {
   return (
     <motion.div
       className={`${styles["container--all"]} ${
-        color ? styles[`container--all--color--${color}`] :
-        !noMainCard ? styles["container--all--main-card"] : ""
+        color
+          ? styles[
+              `container--all--color--${ColorParser[color as keyof typeof ColorParser]}`
+            ]
+          : !noMainCard
+            ? styles["container--all--main-card"]
+            : ""
       }`}
     >
       <div className={styles["container--primary"]}>
