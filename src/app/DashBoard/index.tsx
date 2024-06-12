@@ -1,79 +1,18 @@
 "use client";
-
-import { useRef } from "react";
-import Optimisim from "@/public/images/optimisim-icon.svg";
-import Mode from "@/public/images/mode-icon.svg";
-import Base from "@/public/images/base-icon.svg";
-import React, { useEffect, useState } from "react";
-import OptimisimBgImg from "@/public/images/optimisim-bg-img.svg";
-import BaseBgImg from "@/public/images/base-bg-img.svg";
-import ModeBgImg from "@/public/images/mode-bg-img.svg";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { TopInfo } from "@/components/TopInfo";
-import RaffleCard from "@/components/RaffleCard";
 import ProfileCard from "@/components/ProfileCard";
 import RewardsCard from "@/components/RewardsCard";
-import data from "@/app/data.json";
+import RaffleCardContainer from "@/components/RaffleCardsContainer";
 
-enum AssetsParser {
-  "OptimisimBg" = OptimisimBgImg,
-  "BaseBg" = BaseBgImg,
-  "ModeBg" = ModeBgImg,
-  "OptimisimIcon" = Optimisim,
-  "BaseIcon" = Base,
-  "ModeIcon" = Mode,
-}
 
 function DashBoard() {
-  const [expandedCard, setExpandedCard] = useState<string | null>("");
-
-  const handleCardClick = (id: string | null) => {
-    setExpandedCard(id);
-  };
-
-  const [containerHeight, setContainerHeight] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      setContainerHeight(containerRef.current.offsetHeight);
-    }
-  }, [expandedCard]);
 
   return (
     <main className={styles["container--all"]}>
       <TopInfo eth="0.01" ethBonus="0.004" />
-      <div ref={containerRef} className={styles["container--raffle-cards"]}>
-        {data.map((item) => {
-          const bgImg = item.bgImg as keyof typeof AssetsParser;
-          const networdIcon = item.networkIcon as keyof typeof AssetsParser;
-          return (
-            <RaffleCard
-              offset={containerHeight}
-              key={item.id}
-              onClick={handleCardClick}
-              id={item.id}
-              raffleCardText={item.raffleCardText}
-              raffleCardChipsText={{
-                value: item.raffleCardChip.value,
-                network: item.raffleCardChip.network,
-              }}
-              chipColor={item.chipColor}
-              entriesColor={item.entriesColor}
-              endsIn={item.end}
-              prizePotEth={item.prizePotEth}
-              prizePotSr={item.prizePotSr}
-              totalEntries={item.totalEntries}
-              currentEntries={item.currentEntries}
-              entries={item.entries}
-              networkIcon={AssetsParser[networdIcon]}
-              bgImg={AssetsParser[bgImg]}
-              expandedCard={expandedCard}
-              round={item.round}
-            />
-          );
-        })}
-      </div>
+      <RaffleCardContainer />
       <div className={styles["container--profile-rewards"]}>
         <ProfileCard
           rank={3}
