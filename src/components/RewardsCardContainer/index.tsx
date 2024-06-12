@@ -14,7 +14,7 @@ type RewardsCardProps = {
   modeSrp: number;
 };
 
-function RewardsCard({
+function RewardsCardContainer({
   optimisimEth,
   optimisimSrp,
   baseEth,
@@ -52,4 +52,4 @@ function RewardsCard({
   );
 }
 
-export default RewardsCard;
+export default RewardsCardContainer;

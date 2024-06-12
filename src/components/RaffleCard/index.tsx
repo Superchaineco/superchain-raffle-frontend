@@ -150,7 +150,9 @@ function RaffleCard({
                 )}
                 <Chip
                   className={`${styles["chip"]} ${
-                    styles[`chip--${ColorParser[chipColor as keyof typeof ColorParser]}`]
+                    styles[
+                      `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
+                    ]
                   }`}
                   label={raffleCardChipsText.network}
                   onDelete={() => {}}
@@ -226,7 +228,7 @@ function RaffleCard({
                 <RaffleCardInfo
                   icon={totalEntriesIcon}
                   primary="Total entries"
-                  secondary1={totalEntries + '/' + currentEntries}
+                  secondary1={totalEntries + "/" + currentEntries}
                   noMainCard={noMainCard}
                 />
                 <RaffleCardInfo
@@ -273,7 +275,7 @@ function RaffleCard({
               />
             </motion.div>
             <div className={styles["container--detail"]}>
-              <PurchaseTickets />
+              <PurchaseTickets tickets={8} />
               <MyTickets tickets={0} />
             </div>
           </div>
