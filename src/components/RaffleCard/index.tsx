@@ -6,7 +6,7 @@ import Base from "@/public/images/base-icon.svg";
 import OptimisimBgImg from "@/public/images/optimisim-bg-img.svg";
 import BaseBgImg from "@/public/images/base-bg-img.svg";
 import ModeBgImg from "@/public/images/mode-bg-img.svg";
-import RaffleCard from "../RaffleCard";
+import RaffleCard from ".";
 import styles from "./styles.module.css";
 
 enum AssetsParser {

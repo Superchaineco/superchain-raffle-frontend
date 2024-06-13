@@ -3,8 +3,8 @@ import React, { useRef, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { TopInfo } from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
-import RewardsCardContainer from "@/components/RewardCards";
-import RaffleCardContainer from "@/components/RaffleCards";
+import RewardsCardContainer from "@/components/RewardCard";
+import RaffleCardContainer from "@/components/RaffleCard";
 
 
 function DashBoard() {
