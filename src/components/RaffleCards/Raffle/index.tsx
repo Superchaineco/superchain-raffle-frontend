@@ -10,7 +10,6 @@ import {
   Stack,
 } from "@mui/material";
 import styles from "./styles.module.css";
-import RaffleCardInfo from "../RaffleCardInfo/RaffleCardInfo";
 import ethIcon from "@/public/images/raffle-card-eth-icon.svg";
 import srIcon from "@/public/images/profile-info-sr-icon.svg";
 import myEntriesBlueIcon from "@/public/images/my-entries-icon-blue.svg";
@@ -19,11 +18,12 @@ import prizePotIcon from "@/public/images/prize-pot-icon.svg";
 import totalEntriesIcon from "@/public/images/total-entries-icon.svg";
 import endsInIcon from "@/public/images/ends-in-icon.svg";
 import PurchaseTickets from "../PurchaseTickets";
-import MyTickets from "../MyTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
 import { useMemo } from "react";
+import RaffleInfo from "../RaffleInfo";
+import MyTickets from "../MyTickets";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -31,7 +31,7 @@ enum ColorParser {
   "#DEFE2A" = "yellow",
 }
 
-type RaffleCardProps = {
+type RaffleProps = {
   id: string;
   offset: number;
   raffleCardText: string;
@@ -51,7 +51,7 @@ type RaffleCardProps = {
   onClick: (id: string | null) => void;
 };
 
-function RaffleCard({
+function Raffle({
   id,
   offset,
   raffleCardText,
@@ -69,7 +69,7 @@ function RaffleCard({
   expandedCard,
   round,
   onClick,
-}: RaffleCardProps) {
+}: RaffleProps) {
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
 
@@ -219,19 +219,19 @@ function RaffleCard({
                 }}
                 exit={{ opacity: 0 }}
               >
-                <RaffleCardInfo
+                <RaffleInfo
                   icon={endsInIcon}
                   primary="Ends in"
                   secondary1={endsIn}
                   noMainCard={noMainCard}
                 />
-                <RaffleCardInfo
+                <RaffleInfo
                   icon={totalEntriesIcon}
                   primary="Total entries"
                   secondary1={totalEntries + "/" + currentEntries}
                   noMainCard={noMainCard}
                 />
-                <RaffleCardInfo
+                <RaffleInfo
                   icon={prizePotIcon}
                   primary="Prize pot"
                   secondary1={prizePotEth}
@@ -241,7 +241,7 @@ function RaffleCard({
                   noMainCard={noMainCard}
                 />
                 {!isMainCard && (
-                  <RaffleCardInfo
+                  <RaffleInfo
                     icon={
                       entriesColor === "#00C2FF"
                         ? myEntriesBlueIcon
@@ -284,4 +284,4 @@ function RaffleCard({
     </AnimatePresence>
   );
 }
-export default RaffleCard;
+export default Raffle;

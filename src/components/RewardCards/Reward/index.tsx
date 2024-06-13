@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import SrIcon from "@/public/images/profile-info-sr-icon.svg";
 import EthIcon from "@/public/images/profile-info-eth-icon.svg";
 
-type RewardCardProps = {
+type RewardProps = {
   icon: any;
   eth: number;
   srp: number;
@@ -13,7 +13,7 @@ type RewardCardProps = {
   opaque: boolean;
 };
 
-function RewardCard({ icon, eth, srp, color, opaque }: RewardCardProps) {
+function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
   return (
     <div
       className={`${styles["container--all"]} ${
@@ -66,4 +66,4 @@ function RewardCard({ icon, eth, srp, color, opaque }: RewardCardProps) {
   );
 }
 
-export default RewardCard;
+export default Reward;

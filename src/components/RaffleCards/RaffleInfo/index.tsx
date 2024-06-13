@@ -4,7 +4,7 @@ import { SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import { motion } from "framer-motion";
 
-type RaffleCardInfoProps = {
+type RaffleInfoProps = {
   icon: any;
   primary: string;
   secondary1: string;
@@ -20,7 +20,7 @@ enum ColorParser {
   "#000000" = "opaque",
 }
 
-function RaffleCardInfo({
+function RaffleInfo({
   icon,
   primary,
   secondary1,
@@ -29,7 +29,7 @@ function RaffleCardInfo({
   iconS2,
   color,
   noMainCard,
-}: RaffleCardInfoProps) {
+}: RaffleInfoProps) {
   return (
     <motion.div
       className={`${styles["container--all"]} ${
@@ -86,4 +86,4 @@ function RaffleCardInfo({
   );
 }
 
-export default RaffleCardInfo;
+export default RaffleInfo;

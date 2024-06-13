@@ -1,6 +1,6 @@
 import { Avatar, Button, Card, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
-import ProfileInfoCard from "../ProfileInfoCard";
+import ProfileInfoCard from "./ProfileInfo/ProfileInfoCard";
 import rankIcon from "@/public/images/profile-rank-icon.svg";
 import profileInfoEthIcon from "@/public/images/profile-info-eth-icon.svg";
 import profileInfoSrIcon from "@/public/images/profile-info-sr-icon.svg";

@@ -1,11 +1,11 @@
 import { Card } from "@mui/material";
 import styles from "./styles.module.css";
 import OptimisimIcon from "@/public/images/optimisim-icon.svg";
-import RewardCard from "../RewardCard";
 import BaseIcon from "@/public/images/base-icon.svg";
 import ModeIcon from "@/public/images/mode-icon.svg";
+import Reward from "./Reward";
 
-type RewardsCardProps = {
+type RewardCards = {
   optimisimEth: number;
   optimisimSrp: number;
   baseEth: number;
@@ -14,33 +14,33 @@ type RewardsCardProps = {
   modeSrp: number;
 };
 
-function RewardsCardContainer({
+function RewardCards({
   optimisimEth,
   optimisimSrp,
   baseEth,
   baseSrp,
   modeEth,
   modeSrp,
-}: RewardsCardProps) {
+}: RewardCards) {
   return (
     <Card className={styles["container--all"]}>
       <h2>My Rewards</h2>
       <section className={styles["container--rewards"]}>
-        <RewardCard
+        <Reward
           icon={OptimisimIcon}
           eth={optimisimEth}
           srp={optimisimSrp}
           color="red"
           opaque={false}
         />
-        <RewardCard
+        <Reward
           icon={BaseIcon}
           eth={baseEth}
           srp={baseSrp}
           color="blue"
           opaque={false}
         />
-        <RewardCard
+        <Reward
           icon={ModeIcon}
           eth={modeEth}
           srp={modeSrp}
@@ -52,4 +52,4 @@ function RewardsCardContainer({
   );
 }
 
-export default RewardsCardContainer;
+export default RewardCards;
