@@ -1,4 +1,23 @@
 .container--all {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
   width: 100vw;
   padding: var(--space-10) var(--space-6);
+}
+
+.container--back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+
+  & p {
+    transform: translateY(-3px);
+  }
+}
+
+.title {
+  margin: 0px;
 }

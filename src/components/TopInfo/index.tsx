@@ -41,4 +41,4 @@ function TopInfo({ eth, ethBonus }: TopInfoProps) {
   );
 }
 
-export { TopInfo };
+export default TopInfo

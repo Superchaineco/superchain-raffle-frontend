@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./styles.module.css";
-import { TopInfo } from "@/components/TopInfo";
+import TopInfo from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
 import RaffleCards from "@/components/RaffleCards";
 import RewardCards from "@/components/RewardCard";
