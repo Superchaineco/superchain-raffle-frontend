@@ -5,6 +5,7 @@ import rankIcon from "@/public/images/profile-rank-icon.svg";
 import profileInfoEthIcon from "@/public/images/profile-info-eth-icon.svg";
 import profileInfoSrIcon from "@/public/images/profile-info-sr-icon.svg";
 import profileInfoEntriesIcon from "@/public/images/profile-info-entries-icon.svg";
+import Link from "next/link";
 
 type ProfileCardProps = {
   rank: number;
@@ -21,7 +22,7 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
         <h2>Profile</h2>
         <div className={styles["container--header--rigth"]}>
           <Button className={styles["button--rank"]}>Rank: {rank}</Button>
-          <div className={styles["container--rank-icon"]}>
+          <Link href="/leaderBoard" className={styles["container--rank-icon"]}>
             <SvgIcon
               component={rankIcon}
               inheritViewBox
@@ -31,7 +32,7 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
                 boxShadow: "0px 4px 4px 0px #00000024",
               }}
             />
-          </div>
+          </Link>
         </div>
       </div>
       <div className={styles["container--profile"]}>

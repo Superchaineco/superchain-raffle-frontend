@@ -1,0 +1,4 @@
+.container--all {
+  width: 100vw;
+  padding: var(--space-10) var(--space-6);
+}
