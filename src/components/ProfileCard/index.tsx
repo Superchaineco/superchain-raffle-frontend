@@ -1,6 +1,6 @@
 import { Avatar, Button, Card, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
-import ProfileInfoCard from "./ProfileInfo/ProfileInfoCard";
+import ProfileInfo from "./ProfileInfo";
 import rankIcon from "@/public/images/profile-rank-icon.svg";
 import profileInfoEthIcon from "@/public/images/profile-info-eth-icon.svg";
 import profileInfoSrIcon from "@/public/images/profile-info-sr-icon.svg";
@@ -39,17 +39,17 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
         <p>{userHash}</p>
       </div>
       <div className={styles["container--profile--info-cards"]}>
-        <ProfileInfoCard
+        <ProfileInfo
           secondary="ETH earned"
           primary={eth}
           icon={profileInfoEthIcon}
         />
-        <ProfileInfoCard
+        <ProfileInfo
           secondary="SRP earned"
           primary={srp}
           icon={profileInfoSrIcon}
         />
-        <ProfileInfoCard
+        <ProfileInfo
           secondary="Entries"
           primary={entries}
           icon={profileInfoEntriesIcon}

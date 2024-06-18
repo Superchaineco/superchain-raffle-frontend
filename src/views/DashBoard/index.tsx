@@ -1,18 +1,16 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import styles from "./styles.module.css";
 import { TopInfo } from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
-import RewardsCardContainer from "@/components/RewardCard";
-import RaffleCardContainer from "@/components/RaffleCard";
-
+import RaffleCards from "@/components/RaffleCards";
+import RewardCards from "@/components/RewardCard";
 
 function DashBoard() {
-
   return (
     <main className={styles["container--all"]}>
       <TopInfo eth="0.01" ethBonus="0.004" />
-      <RaffleCardContainer />
+      <RaffleCards />
       <div className={styles["container--profile-rewards"]}>
         <ProfileCard
           rank={3}
@@ -21,7 +19,7 @@ function DashBoard() {
           srp={150}
           entries={12}
         />
-        <RewardsCardContainer
+        <RewardCards
           optimisimEth={0.05}
           optimisimSrp={25}
           baseEth={0.05}
