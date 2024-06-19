@@ -1,12 +1,9 @@
+import { LeaderBoardAccountType } from "@/types/commons";
 import { NextApiRequest, NextApiResponse } from "next";
-
-type ResponseData = {
-  message: string;
-};
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<LeaderBoardAccountType>
 ) {
-  res.status(200).json({ message: "Hello World" });
+  res.status(200).json({ address: "0xD0be338562D78fAf8B3Sv567a9943bfaab0a3051e", position: 5, tickets: 12,  eth: 0.12, sr: 150});
 }
