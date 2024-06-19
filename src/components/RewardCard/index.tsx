@@ -1,9 +1,9 @@
 import { Card } from "@mui/material";
-import styles from "./styles.module.css";
 import OptimisimIcon from "@/public/images/optimisim-icon.svg";
 import BaseIcon from "@/public/images/base-icon.svg";
 import ModeIcon from "@/public/images/mode-icon.svg";
 import Reward from "./Reward";
+import styles from "./styles.module.css";
 
 type RewardCards = {
   optimisimEth: number;

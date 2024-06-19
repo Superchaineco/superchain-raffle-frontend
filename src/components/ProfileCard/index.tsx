@@ -1,10 +1,10 @@
 import { Avatar, Button, Card, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import ProfileInfo from "./ProfileInfo";
-import rankIcon from "@/public/images/profile-rank-icon.svg";
-import profileInfoEthIcon from "@/public/images/profile-info-eth-icon.svg";
-import profileInfoSrIcon from "@/public/images/profile-info-sr-icon.svg";
-import profileInfoEntriesIcon from "@/public/images/profile-info-entries-icon.svg";
+import RankIcon from "@/public/images/rank-icon.svg";
+import EthIcon from "@/public/images/eth-icon.svg";
+import SrIcon from "@/public/images/sr-icon.svg";
+import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
 import Link from "next/link";
 
 type ProfileCardProps = {
@@ -24,7 +24,7 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
           <Button className={styles["button--rank"]}>Rank: {rank}</Button>
           <Link href="/leaderBoard" className={styles["container--rank-icon"]}>
             <SvgIcon
-              component={rankIcon}
+              component={RankIcon}
               inheritViewBox
               style={{
                 width: "16px",
@@ -43,17 +43,17 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
         <ProfileInfo
           secondary="ETH earned"
           primary={eth}
-          icon={profileInfoEthIcon}
+          icon={EthIcon}
         />
         <ProfileInfo
           secondary="SRP earned"
           primary={srp}
-          icon={profileInfoSrIcon}
+          icon={SrIcon}
         />
         <ProfileInfo
           secondary="Entries"
           primary={entries}
-          icon={profileInfoEntriesIcon}
+          icon={TicketsIcon}
         />
       </div>
     </Card>

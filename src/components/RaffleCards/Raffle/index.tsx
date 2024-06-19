@@ -7,16 +7,14 @@ import {
   Chip,
   Typography,
   SvgIcon,
-  Stack,
 } from "@mui/material";
-import styles from "./styles.module.css";
-import ethIcon from "@/public/images/raffle-card-eth-icon.svg";
-import srIcon from "@/public/images/profile-info-sr-icon.svg";
-import myEntriesBlueIcon from "@/public/images/my-entries-icon-blue.svg";
-import myEntriesOpaqueIcon from "@/public/images/my-entries-icon-opaque.svg";
-import prizePotIcon from "@/public/images/prize-pot-icon.svg";
-import totalEntriesIcon from "@/public/images/total-entries-icon.svg";
-import endsInIcon from "@/public/images/ends-in-icon.svg";
+import ethIcon from "@/public/images/eth-icon.svg";
+import srIcon from "@/public/images/sr-icon.svg";
+import myEntriesBlueIcon from "@/public/images/tickets-icon-blue.svg";
+import myEntriesOpaqueIcon from "@/public/images/tickets-icon-opaque.svg";
+import prizePotIcon from "@/public/images/trophy-icon.svg";
+import totalEntriesIcon from "@/public/images/tickets-icon-gray-dotted.svg";
+import endsInIcon from "@/public/images/clock-icon.svg";
 import PurchaseTickets from "../PurchaseTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
@@ -24,6 +22,7 @@ import BackIcon from "@/public/images/back-icon.svg";
 import { useMemo } from "react";
 import RaffleInfo from "../RaffleInfo";
 import MyTickets from "../MyTickets";
+import styles from "./styles.module.css";
 
 enum ColorParser {
   "#FF0420" = "red",
