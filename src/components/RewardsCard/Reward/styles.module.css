@@ -67,12 +67,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: var(--space-1);
 }
 
 .container--content--srp {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: var(--space-1);
 }
 
 .reward--text {

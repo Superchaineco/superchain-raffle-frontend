@@ -10,7 +10,7 @@ function LeaderBoards() {
   if (status === "loading") return <p>Loading...</p>;
   if (status === "error") return <p>Error</p>;
   return (
-    <Stack>
+    <Stack alignItems={'center'} justifyContent={'center'} spacing={1}>
       {data.map((account: LeaderBoardAccountType) => (
         <LeaderBoardProfileCard account={account}/>
       ))}

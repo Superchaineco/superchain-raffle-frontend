@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import TopInfo from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
 import RaffleCards from "@/components/RaffleCards";
-import RewardCards from "@/components/RewardCard";
+import RewardsCard from "@/components/RewardsCard";
 
 function DashBoard() {
   return (
@@ -19,7 +19,7 @@ function DashBoard() {
           srp={150}
           entries={12}
         />
-        <RewardCards
+        <RewardsCard
           optimisimEth={0.05}
           optimisimSrp={25}
           baseEth={0.05}

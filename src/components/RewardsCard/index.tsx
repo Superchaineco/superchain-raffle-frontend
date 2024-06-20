@@ -5,7 +5,7 @@ import ModeIcon from "@/public/images/mode-icon.svg";
 import Reward from "./Reward";
 import styles from "./styles.module.css";
 
-type RewardCards = {
+type Props = {
   optimisimEth: number;
   optimisimSrp: number;
   baseEth: number;
@@ -14,14 +14,14 @@ type RewardCards = {
   modeSrp: number;
 };
 
-function RewardCards({
+function RewardsCard({
   optimisimEth,
   optimisimSrp,
   baseEth,
   baseSrp,
   modeEth,
   modeSrp,
-}: RewardCards) {
+}: Props) {
   return (
     <Card className={styles["container--all"]}>
       <h2>My Rewards</h2>
@@ -52,4 +52,4 @@ function RewardCards({
   );
 }
 
-export default RewardCards;
+export default RewardsCard;
