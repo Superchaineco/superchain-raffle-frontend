@@ -9,16 +9,18 @@ import ProfileImage from "@/public/images/profile-icon.svg";
 
 type Props = {
   account: LeaderBoardAccountType;
+  isMyProfileCard?: boolean;
 };
 
-function LeaderBoardProfileCard({ account }: Props) {
+function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
+  if (!account) return <div>Loading ...</div>;
   return (
     <Stack
       direction={"row"}
       alignItems={"center"}
       justifyContent={"space-between"}
       width={"100%"}
-      className={styles["container--all"]}
+      className={styles[`container--all--${isMyProfileCard ? "my-profile" : "another-profile"}`]}
     >
       <Stack
         direction={"row"}

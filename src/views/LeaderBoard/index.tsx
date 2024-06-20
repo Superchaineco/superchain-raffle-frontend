@@ -7,11 +7,25 @@ import { Stack, SvgIcon } from "@mui/material";
 import Link from "next/link";
 import YourRanking from "@/components/YourRanking";
 import LeaderBoards from "@/components/LeaderBoards";
+import { getMyLeaderBoardInfo } from "@/functions/fetchFunctions";
+import { useQuery } from "react-query";
 
 function LeaderBoard() {
+  const { data, status } = useQuery("account", getMyLeaderBoardInfo);
   return (
-    <Stack direction={'column'} alignContent={'start'} width={'100vw'} spacing={4} className={styles["container--all"]}>
-      <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'start'}>
+    <Stack
+      direction={"column"}
+      alignContent={"start"}
+      width={"100vw"}
+      spacing={4}
+      className={styles["container--all"]}
+    >
+      <Stack
+        direction={"row"}
+        spacing={2}
+        alignItems={"center"}
+        justifyContent={"start"}
+      >
         <Link href="/">
           <SvgIcon
             component={BackIcon}
@@ -25,12 +39,17 @@ function LeaderBoard() {
         </Link>
         <p className={styles["back--text"]}>Back to dashboard </p>
       </Stack>
-      <Stack direction={'column'} spacing={2} alignItems={'start'} justifyContent={'center'}>
+      <Stack
+        direction={"column"}
+        spacing={2}
+        alignItems={"start"}
+        justifyContent={"center"}
+      >
         <h1 className={styles["title"]}>Leaderboard</h1>
         <p>Join the raffles and watch your name climb the leaderboard</p>
       </Stack>
-      <YourRanking />
-      <LeaderBoards />
+      <YourRanking account={data} status={status} />
+      <LeaderBoards myInfo={data} />
     </Stack>
   );
 }

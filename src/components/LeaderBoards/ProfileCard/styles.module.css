@@ -1,9 +1,17 @@
-.container--all {
+.container--all--another-profile {
   width: Fill (1, 344px) px;
   height: Fixed (72px) px;
   padding: 16px 12px;
-  border-radius: 6px 0px 0px 0px;
+  border-radius: 6px;
   background-color: white;
+}
+.container--all--my-profile {
+  width: Fill (1, 344px) px;
+  height: Fixed (72px) px;
+  padding: 16px 12px;
+  border-radius: 6px;
+  background-color: var(--color-my-profile-bg);
+  border: 1px solid var(--color-my-profile-border);
 }
 
 .container--rank {

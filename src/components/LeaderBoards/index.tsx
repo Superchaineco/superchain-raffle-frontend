@@ -5,14 +5,14 @@ import React from "react";
 import { useQuery } from "react-query";
 import LeaderBoardProfileCard from "./ProfileCard";
 
-function LeaderBoards() {
+function LeaderBoards({ myInfo }: { myInfo: LeaderBoardAccountType }) {
   const { data, status } = useQuery("leaderBoardData", getLeaderBoardData);
   if (status === "loading") return <p>Loading...</p>;
   if (status === "error") return <p>Error</p>;
   return (
-    <Stack alignItems={'center'} justifyContent={'center'} spacing={1}>
+    <Stack alignItems={"center"} justifyContent={"center"} spacing={1}>
       {data.map((account: LeaderBoardAccountType) => (
-        <LeaderBoardProfileCard account={account}/>
+        <LeaderBoardProfileCard account={account} />
       ))}
     </Stack>
   );
