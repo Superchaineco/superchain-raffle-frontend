@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import data from "@/app/data.json";
+import raffleCardsData from "@/raffleCardsData.json";
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
 import Base from "@/public/images/base-icon.svg";
@@ -35,7 +35,7 @@ function RaffleCards() {
   }, [expandedCard]);
   return (
     <div ref={containerRef} className={styles["container--raffle-cards"]}>
-      {data.map((item) => {
+      {raffleCardsData.map((item) => {
         const bgImg = item.bgImg as keyof typeof AssetsParser;
         const networdIcon = item.networkIcon as keyof typeof AssetsParser;
         return (

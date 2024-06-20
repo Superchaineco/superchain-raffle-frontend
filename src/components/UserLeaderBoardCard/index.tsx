@@ -1,8 +1,8 @@
 import React from "react";
 import { Stack, SvgIcon } from "@mui/material";
 import { LeaderBoardAccountType } from "@/types/commons";
-import EthIcon from "@/public/images/profile-info-eth-icon.svg";
-import SrIcon from "@/public/images/profile-info-sr-icon.svg";
+import EthIcon from "@/public/images/eth-icon.svg";
+import SrIcon from "@/public/images/sr-icon.svg";
 import styles from "./styles.module.css";
 
 type Props = {

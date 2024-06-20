@@ -1,15 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./styles.module.css";
 import UserLeaderBoardCard from "../UserLeaderBoardCard";
+import { getMyLeaderBoardInfo } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
-
-async function getMyLeaderBoardInfo() {
-  const res = await fetch("/api/getMyLeaderBoardInfo");
-  if (!res.ok) {
-    throw new Error("Failed to get my LeaderBoard info profile");
-  }
-  return res.json();
-}
 
 function YourRanking() {
   const { data, status } = useQuery("account", getMyLeaderBoardInfo);
