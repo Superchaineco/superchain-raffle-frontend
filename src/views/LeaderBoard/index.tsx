@@ -9,6 +9,7 @@ import YourRanking from "@/components/YourRanking";
 import LeaderBoards from "@/components/LeaderBoards";
 import { getMyLeaderBoardInfo } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
+import LeaderBoardProfileCardSkeleton from "@/components/LeaderBoards/CardSkeleton";
 
 function LeaderBoard() {
   const { data, status } = useQuery("account", getMyLeaderBoardInfo);
