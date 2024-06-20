@@ -6,6 +6,7 @@ import BackIcon from "@/public/images/back-icon.svg";
 import { Stack, SvgIcon } from "@mui/material";
 import Link from "next/link";
 import YourRanking from "@/components/YourRanking";
+import LeaderBoards from "@/components/LeaderBoards";
 
 function LeaderBoard() {
   return (
@@ -24,11 +25,12 @@ function LeaderBoard() {
         </Link>
         <p className={styles["back--text"]}>Back to dashboard </p>
       </Stack>
-      <div className={styles["container--title"]}>
+      <Stack direction={'column'} spacing={2} alignItems={'start'} justifyContent={'center'}>
         <h1 className={styles["title"]}>Leaderboard</h1>
         <p>Join the raffles and watch your name climb the leaderboard</p>
-      </div>
+      </Stack>
       <YourRanking />
+      <LeaderBoards />
     </Stack>
   );
 }

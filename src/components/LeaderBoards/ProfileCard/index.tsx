@@ -9,7 +9,7 @@ type Props = {
   account: LeaderBoardAccountType;
 };
 
-function UserLeaderBoardCard({ account }: Props) {
+function LeaderBoardProfileCard({ account }: Props) {
   return (
     <Stack
       direction={"row"}
@@ -83,4 +83,4 @@ function UserLeaderBoardCard({ account }: Props) {
   );
 }
 
-export default UserLeaderBoardCard;
+export default LeaderBoardProfileCard;

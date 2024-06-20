@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
-import UserLeaderBoardCard from "../UserLeaderBoardCard";
+import LeaderBoardProfileCard from "../LeaderBoards/ProfileCard";
 import { getMyLeaderBoardInfo } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
 
@@ -11,7 +11,7 @@ function YourRanking() {
   return (
     <div className={styles["container--all"]}>
       <p>Your Ranking</p>
-      <UserLeaderBoardCard account={data} />
+      <LeaderBoardProfileCard account={data} />
     </div>
   );
 }
