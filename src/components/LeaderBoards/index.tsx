@@ -11,6 +11,9 @@ function LeaderBoards({ myInfo }: { myInfo: LeaderBoardAccountType }) {
   const { data, status } = useQuery("leaderBoardData", getLeaderBoardData);
   return (
     <Stack alignItems={"center"} justifyContent={"center"} spacing={1}>
+      <Stack width={"100%"} alignItems={"start"} justifyContent={"center"}>
+        <p className={styles["title"]}>Top users of all-time</p>
+      </Stack>
       {status === "loading" ? (
         <>
           <LeaderBoardProfileCardSkeleton />
@@ -19,9 +22,6 @@ function LeaderBoards({ myInfo }: { myInfo: LeaderBoardAccountType }) {
         </>
       ) : myInfo ? (
         <>
-          <Stack width={"100%"} alignItems={"start"} justifyContent={"center"}>
-            <p className={styles["title"]}>Top users of all-time</p>
-          </Stack>
           {data.map((account: LeaderBoardAccountType) => (
             <LeaderBoardProfileCard
               account={account}

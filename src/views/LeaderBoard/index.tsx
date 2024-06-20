@@ -10,6 +10,7 @@ import LeaderBoards from "@/components/LeaderBoards";
 import { getMyLeaderBoardInfo } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
 import LeaderBoardProfileCardSkeleton from "@/components/LeaderBoards/CardSkeleton";
+import LeaderBoardProfileCard from "@/components/LeaderBoards/ProfileCard";
 
 function LeaderBoard() {
   const { data, status } = useQuery("account", getMyLeaderBoardInfo);
@@ -47,9 +48,12 @@ function LeaderBoard() {
         justifyContent={"center"}
       >
         <h1 className={styles["title"]}>Leaderboard</h1>
-        <p>Join the raffles and watch your name climb the leaderboard</p>
+        <p className={styles["text--join"]}>Join the raffles and watch your name climb the leaderboard</p>
       </Stack>
-      <YourRanking account={data} status={status} />
+      <Stack spacing={1}>
+        <p className={styles["title--your-ranking"]}>Your Ranking</p>
+        <YourRanking account={data} status={status} />
+      </Stack>
       <LeaderBoards myInfo={data} />
     </Stack>
   );

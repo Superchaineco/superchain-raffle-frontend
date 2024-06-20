@@ -51,6 +51,12 @@
   --color-soft-gray: #7C8086;
   --color-my-profile-bg: #CED4DD;
   --color-my-profile-border: #A0A5AD;
+  --color-rank-first-bg: #EBB000;
+  --color-rank-first-border: #FFEE05;
+  --color-rank-second-bg: #A2ACB4;
+  --color-rank-second-border: #D3D4D4;
+  --color-rank-third-bg: #DB8466;
+  --color-rank-third-border: #F2AA7D;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;

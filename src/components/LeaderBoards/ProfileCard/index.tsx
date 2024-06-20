@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { Stack, SvgIcon } from "@mui/material";
 import { LeaderBoardAccountType } from "@/types/commons";
 import EthIcon from "@/public/images/eth-icon.svg";
@@ -6,6 +6,9 @@ import SrIcon from "@/public/images/sr-icon.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
 import styles from "./styles.module.css";
 import ProfileImage from "@/public/images/profile-icon.svg";
+import { getPodiumPosition } from "@/functions/auxiliarFunctions";
+
+
 
 type Props = {
   account: LeaderBoardAccountType;
@@ -13,7 +16,10 @@ type Props = {
 };
 
 function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
-  if (!account) return <div>Loading ...</div>;
+  const podiumPositon = useMemo(() => getPodiumPosition(account.position), [account.position]);
+  useEffect(() => {
+    console.log(podiumPositon);
+  }, [])
   return (
     <Stack
       direction={"row"}
@@ -28,7 +34,7 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
         justifyContent={"space-center"}
         spacing={2}
       >
-        <div className={styles["container--rank"]}>
+        <div className={`${styles["container--rank"]} ${styles[`rank--${podiumPositon != 'offThePodium' ? podiumPositon : 'off-podium'}`]}`}>
           <p>{account.position}</p>
         </div>
         <Stack

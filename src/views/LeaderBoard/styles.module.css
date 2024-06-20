@@ -4,8 +4,27 @@
 
 .back--text {
   transform: translateY(-3px);
+  color: var(--color-soft-gray);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.36px;
+  letter-spacing: 0.25px;
+  text-align: left;
 }
 
 .title {
   margin: 0px;
+}
+
+.text--join {
+  color: var(--color-soft-gray);
+}
+
+.title--your-ranking {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.94px;
+  letter-spacing: 0.25px;
+  text-align: left;
+  color: var(--color-soft-gray);
 }
