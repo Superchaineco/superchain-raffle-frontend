@@ -7,7 +7,7 @@ import { QueryStatus } from "react-query";
 function YourRanking({account, status}: {account: LeaderBoardAccountType, status: QueryStatus}) {
   return (
     <div className={styles["container--all"]}>
-      <p>Your Ranking</p>
+      <p className={styles["title"]}>Your Ranking</p>
       <LeaderBoardProfileCard account={account} isMyProfileCard={true} />
     </div>
   );
