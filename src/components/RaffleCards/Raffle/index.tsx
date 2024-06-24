@@ -115,7 +115,7 @@ function Raffle({
                 </div>
               )}
               <motion.div
-                initial={{ marginTop: 0 }}
+                initial={{ marginTop: 0, width: "60%"}}
                 animate={{ marginTop: isMainCard ? 64 : 0 }}
               >
                 <Typography fontSize={24} fontWeight={600}>
@@ -204,7 +204,7 @@ function Raffle({
               </AnimatePresence>
               <motion.div
                 key={`container-info-${id}`}
-                initial={{ display: "grid", gap: "12px" }}
+                initial={{ display: "grid", gap: "12px"}}
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
