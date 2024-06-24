@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import raffleCardsData from "@/raffleCardsData.json";
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
 import Base from "@/public/images/base-icon.svg";
@@ -8,6 +7,9 @@ import BaseBgImg from "@/public/images/base-bg-img.svg";
 import ModeBgImg from "@/public/images/mode-bg-img.svg";
 import Raffle from "./Raffle";
 import styles from "./styles.module.css";
+import { useQuery } from "react-query";
+import { getRaffleCardsData } from "@/functions/fetchFunctions";
+import { RaffleCardsData } from "@/types/raffleCards";
 
 enum AssetsParser {
   "OptimisimBg" = OptimisimBgImg,
@@ -19,6 +21,7 @@ enum AssetsParser {
 }
 
 function RaffleCards() {
+  const { data: raffleCardsData, status } = useQuery<RaffleCardsData[]>("leaderBoardData", getRaffleCardsData);
   const [expandedCard, setExpandedCard] = useState<string | null>("");
 
   const handleCardClick = (id: string | null) => {
@@ -35,7 +38,7 @@ function RaffleCards() {
   }, [expandedCard]);
   return (
     <div ref={containerRef} className={styles["container--raffle-cards"]}>
-      {raffleCardsData.map((item) => {
+      {raffleCardsData?.map((item) => {
         const bgImg = item.bgImg as keyof typeof AssetsParser;
         const networdIcon = item.networkIcon as keyof typeof AssetsParser;
         return (

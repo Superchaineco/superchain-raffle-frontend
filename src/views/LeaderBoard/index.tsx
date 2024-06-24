@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import BackIcon from "@/public/images/back-icon.svg";
 import { Stack, SvgIcon } from "@mui/material";
 import Link from "next/link";
-import YourRanking from "@/components/YourRanking";
+import YourRanking from "@/components/LeaderBoards/YourRanking";
 import LeaderBoards from "@/components/LeaderBoards";
 import { getMyLeaderBoardInfo } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
