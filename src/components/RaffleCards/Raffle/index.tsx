@@ -38,11 +38,11 @@ type RaffleProps = {
   chipColor: string;
   entriesColor?: string;
   endsIn: string;
-  prizePotEth: string;
-  prizePotSr: string;
-  totalEntries: string;
-  currentEntries: string;
-  entries: string;
+  prizePotEth: number;
+  prizePotSr: number;
+  totalEntries: number;
+  currentEntries: number;
+  entries: number;
   networkIcon: any;
   bgImg: any;
   expandedCard: string | null;

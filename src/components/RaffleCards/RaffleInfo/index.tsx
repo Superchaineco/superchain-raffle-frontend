@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 type RaffleInfoProps = {
   icon: any;
   primary: string;
-  secondary1: string;
-  secondary2?: string;
+  secondary1: string | number;
+  secondary2?: string | number;
   iconS1?: any;
   iconS2?: any;
   color?: string;
