@@ -7,7 +7,7 @@ import LeaderBoardProfileCard from "./ProfileCard";
 import styles from "./styles.module.css";
 import LeaderBoardProfileCardSkeleton from "./CardSkeleton";
 
-function LeaderBoards({ myInfo }: { myInfo: LeaderBoardAccountType }) {
+function LeaderBoard({ myInfo }: { myInfo: LeaderBoardAccountType }) {
   const { data, status } = useQuery("leaderBoardData", getLeaderBoardData);
   return (
     <Stack alignItems={"center"} justifyContent={"center"} spacing={1}>
@@ -36,4 +36,4 @@ function LeaderBoards({ myInfo }: { myInfo: LeaderBoardAccountType }) {
   );
 }
 
-export default LeaderBoards;
+export default LeaderBoard;

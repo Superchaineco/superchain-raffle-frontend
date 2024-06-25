@@ -10,6 +10,7 @@ import styles from "./styles.module.css";
 import { useQuery } from "react-query";
 import { getRaffleCardsData } from "@/functions/fetchFunctions";
 import { RaffleCardsData } from "@/types/raffleCards";
+import RaffleCardSkeleton from "./Raffle/Skeleton";
 
 enum AssetsParser {
   "OptimisimBg" = OptimisimBgImg,
@@ -21,7 +22,10 @@ enum AssetsParser {
 }
 
 function RaffleCards() {
-  const { data: raffleCardsData, status } = useQuery<RaffleCardsData[]>("leaderBoardData", getRaffleCardsData);
+  const { data: raffleCardsData, status } = useQuery<RaffleCardsData[]>(
+    "leaderBoardData",
+    getRaffleCardsData
+  );
   const [expandedCard, setExpandedCard] = useState<string | null>("");
 
   const handleCardClick = (id: string | null) => {
@@ -36,39 +40,48 @@ function RaffleCards() {
       setContainerHeight(containerRef.current.offsetHeight);
     }
   }, [expandedCard]);
-  return (
-    <div ref={containerRef} className={styles["container--raffle-cards"]}>
-      {raffleCardsData?.map((item) => {
-        const bgImg = item.bgImg as keyof typeof AssetsParser;
-        const networdIcon = item.networkIcon as keyof typeof AssetsParser;
-        return (
-          <Raffle
-            offset={containerHeight}
-            key={item.id}
-            onClick={handleCardClick}
-            id={item.id}
-            raffleCardText={item.raffleCardText}
-            raffleCardChipsText={{
-              value: item.raffleCardChip.value,
-              network: item.raffleCardChip.network,
-            }}
-            chipColor={item.chipColor}
-            entriesColor={item.entriesColor}
-            endsIn={item.end}
-            prizePotEth={item.prizePotEth}
-            prizePotSr={item.prizePotSr}
-            totalEntries={item.totalEntries}
-            currentEntries={item.currentEntries}
-            entries={item.entries}
-            networkIcon={AssetsParser[networdIcon]}
-            bgImg={AssetsParser[bgImg]}
-            expandedCard={expandedCard}
-            round={item.round}
-          />
-        );
-      })}
-    </div>
-  );
+  if (raffleCardsData) {
+    return (
+      <div ref={containerRef} className={styles["container--raffle-cards"]}>
+        {raffleCardsData?.map((item) => {
+          const bgImg = item.bgImg as keyof typeof AssetsParser;
+          const networdIcon = item.networkIcon as keyof typeof AssetsParser;
+          return (
+            <Raffle
+              offset={containerHeight}
+              key={item.id}
+              onClick={handleCardClick}
+              id={item.id}
+              raffleCardText={item.raffleCardText}
+              raffleCardChipsText={{
+                value: item.raffleCardChip?.value,
+                network: item.raffleCardChip?.network,
+              }}
+              chipColor={item.chipColor}
+              entriesColor={item.entriesColor}
+              endsIn={item.end}
+              prizePotEth={item.prizePotEth}
+              prizePotSr={item.prizePotSr}
+              totalEntries={item.totalEntries}
+              currentEntries={item.currentEntries}
+              entries={item.entries}
+              networkIcon={AssetsParser[networdIcon]}
+              bgImg={AssetsParser[bgImg]}
+              expandedCard={expandedCard}
+              round={item.round}
+            />
+          );
+        })}
+      </div>
+    );
+  } else {
+    return (
+      <div ref={containerRef} className={styles["container--raffle-cards"]}>
+        <RaffleCardSkeleton />
+        <RaffleCardSkeleton />
+      </div>
+    );
+  }
 }
 
 export default RaffleCards;

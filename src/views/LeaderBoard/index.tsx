@@ -1,18 +1,15 @@
 "use client";
-
 import React from "react";
 import styles from "./styles.module.css";
 import BackIcon from "@/public/images/back-icon.svg";
 import { Stack, SvgIcon } from "@mui/material";
 import Link from "next/link";
-import YourRanking from "@/components/LeaderBoards/YourRanking";
-import LeaderBoards from "@/components/LeaderBoards";
+import YourRanking from "@/components/LeaderBoard/YourRanking";
 import { getMyLeaderBoardInfo } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
-import LeaderBoardProfileCardSkeleton from "@/components/LeaderBoards/CardSkeleton";
-import LeaderBoardProfileCard from "@/components/LeaderBoards/ProfileCard";
+import LeaderBoard from "@/components/LeaderBoard";
 
-function LeaderBoard() {
+function LeaderBoardView() {
   const { data, status } = useQuery("account", getMyLeaderBoardInfo);
   return (
     <Stack
@@ -54,9 +51,9 @@ function LeaderBoard() {
         <p className={styles["title--your-ranking"]}>Your Ranking</p>
         <YourRanking account={data} status={status} />
       </Stack>
-      <LeaderBoards myInfo={data} />
+      <LeaderBoard myInfo={data} />
     </Stack>
   );
 }
 
-export default LeaderBoard;
+export default LeaderBoardView;
