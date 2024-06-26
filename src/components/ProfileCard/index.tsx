@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, SvgIcon } from "@mui/material";
+import { Avatar, Button, Card, Stack, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import ProfileInfo from "./ProfileInfo";
 import RankIcon from "@/public/images/rank-icon.svg";
@@ -6,6 +6,7 @@ import EthIcon from "@/public/images/eth-icon.svg";
 import SrIcon from "@/public/images/sr-icon.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
 import Link from "next/link";
+import { useState } from "react";
 
 type ProfileCardProps = {
   rank: number;
@@ -16,12 +17,17 @@ type ProfileCardProps = {
 };
 
 function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
+  const [walletState, setWalletState] = useState<
+    "disconnected" | "connected" | "loading"
+  >("connected");
   return (
     <Card className={styles["container--all"]}>
       <div className={styles["contianer--header"]}>
         <h2>Profile</h2>
         <div className={styles["container--header--rigth"]}>
-          <Button className={styles["button--rank"]}>Rank: {rank}</Button>
+          {walletState == "connected" && (
+            <Button className={styles["button--rank"]}>Rank: {rank}</Button>
+          )}
           <Link href="/leaderBoard" className={styles["container--rank-icon"]}>
             <SvgIcon
               component={RankIcon}
@@ -35,27 +41,34 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
           </Link>
         </div>
       </div>
-      <div className={styles["container--profile"]}>
-        <Avatar sx={{ bgcolor: "black" }}>N</Avatar>
-        <p>{userHash}</p>
-      </div>
-      <div className={styles["container--profile--info-cards"]}>
-        <ProfileInfo
-          secondary="ETH earned"
-          primary={eth}
-          icon={EthIcon}
-        />
-        <ProfileInfo
-          secondary="SRP earned"
-          primary={srp}
-          icon={SrIcon}
-        />
-        <ProfileInfo
-          secondary="Entries"
-          primary={entries}
-          icon={TicketsIcon}
-        />
-      </div>
+      {walletState == "disconnected" && (
+        <Stack alignItems={'center'} justifyContent={'center'}>
+          <p className={styles["connect-wallet-text"]}>Connect your wallet to view your Profile.</p>
+          <Button
+            className={styles["button--connect-wallet"]}
+            onClick={() => setWalletState("loading")}
+          >
+            Connect Wallet
+          </Button>
+        </Stack>
+      )}
+      {walletState == "connected" && (
+        <div className={styles["container--profile"]}>
+          <Avatar sx={{ bgcolor: "black" }}>N</Avatar>
+          <p>{userHash}</p>
+        </div>
+      )}
+      {walletState == "connected" && (
+        <div className={styles["container--profile--info-cards"]}>
+          <ProfileInfo secondary="ETH earned" primary={eth} icon={EthIcon} />
+          <ProfileInfo secondary="SRP earned" primary={srp} icon={SrIcon} />
+          <ProfileInfo
+            secondary="Entries"
+            primary={entries}
+            icon={TicketsIcon}
+          />
+        </div>
+      )}
     </Card>
   );
 }
