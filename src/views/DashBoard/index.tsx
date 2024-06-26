@@ -5,7 +5,6 @@ import TopInfo from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
 import RaffleCards from "@/components/RaffleCards";
 import RewardsCard from "@/components/RewardsCard";
-import ProfileCardSkeleton from "@/components/ProfileCard/Skeleton";
 
 function DashBoard() {
   return (
@@ -13,14 +12,7 @@ function DashBoard() {
       <TopInfo eth="0.01" ethBonus="0.004" />
       <RaffleCards />
       <div className={styles["container--profile-rewards"]}>
-        <ProfileCardSkeleton />
-        <ProfileCard
-          rank={3}
-          userHash="0xD0be...051e"
-          eth={0.12}
-          srp={150}
-          entries={12}
-        />
+        <ProfileCard />
         <RewardsCard
           optimisimEth={0.05}
           optimisimSrp={25}

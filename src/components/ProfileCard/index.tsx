@@ -6,27 +6,39 @@ import EthIcon from "@/public/images/eth-icon.svg";
 import SrIcon from "@/public/images/sr-icon.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
 import Link from "next/link";
-import { useState } from "react";
+import ProfileCardSkeleton from "./Skeleton";
+import { useQuery } from "react-query";
+import { getProfileData } from "@/functions/fetchFunctions";
+import { useEffect, useState } from "react";
 
-type ProfileCardProps = {
-  rank: number;
-  userHash: string;
-  eth: number;
-  srp: number;
-  entries: number;
-};
+function ProfileCard() {
+  const [getWallet, setGetWallet] = useState(false);
+  const [loading, setIsLoading] = useState(false);
+  const { data, status } = useQuery("profileData", getProfileData, {
+    enabled: getWallet,
+  });
 
-function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
-  const [walletState, setWalletState] = useState<
-    "disconnected" | "connected" | "loading"
-  >("connected");
+  function handleConnectWallet() {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    setGetWallet(true);
+    return () => clearTimeout(timer);
+  }
+
+  if (loading) {
+    return <ProfileCardSkeleton />;
+  }
   return (
     <Card className={styles["container--all"]}>
       <div className={styles["contianer--header"]}>
         <h2>Profile</h2>
         <div className={styles["container--header--rigth"]}>
-          {walletState == "connected" && (
-            <Button className={styles["button--rank"]}>Rank: {rank}</Button>
+          {data && (
+            <Button className={styles["button--rank"]}>
+              Rank: {data.rank}
+            </Button>
           )}
           <Link href="/leaderBoard" className={styles["container--rank-icon"]}>
             <SvgIcon
@@ -41,30 +53,40 @@ function ProfileCard({ rank, userHash, eth, srp, entries }: ProfileCardProps) {
           </Link>
         </div>
       </div>
-      {walletState == "disconnected" && (
-        <Stack alignItems={'center'} justifyContent={'center'}>
-          <p className={styles["connect-wallet-text"]}>Connect your wallet to view your Profile.</p>
+      {!data && (
+        <Stack alignItems={"center"} justifyContent={"center"}>
+          <p className={styles["connect-wallet-text"]}>
+            Connect your wallet to view your Profile.
+          </p>
           <Button
             className={styles["button--connect-wallet"]}
-            onClick={() => setWalletState("loading")}
+            onClick={() => handleConnectWallet()}
           >
             Connect Wallet
           </Button>
         </Stack>
       )}
-      {walletState == "connected" && (
+      {data && (
         <div className={styles["container--profile"]}>
           <Avatar sx={{ bgcolor: "black" }}>N</Avatar>
-          <p>{userHash}</p>
+          <p>{data.userHash}</p>
         </div>
       )}
-      {walletState == "connected" && (
+      {data && (
         <div className={styles["container--profile--info-cards"]}>
-          <ProfileInfo secondary="ETH earned" primary={eth} icon={EthIcon} />
-          <ProfileInfo secondary="SRP earned" primary={srp} icon={SrIcon} />
+          <ProfileInfo
+            secondary="ETH earned"
+            primary={data.eth}
+            icon={EthIcon}
+          />
+          <ProfileInfo
+            secondary="SRP earned"
+            primary={data.srp}
+            icon={SrIcon}
+          />
           <ProfileInfo
             secondary="Entries"
-            primary={entries}
+            primary={data.entries}
             icon={TicketsIcon}
           />
         </div>
