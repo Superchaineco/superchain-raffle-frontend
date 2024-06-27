@@ -1,5 +1,5 @@
-import { Card } from "@mui/material";
-import Optimisim from "@/public/images/optimisim-icon.svg"
+import { Button, Card, Stack } from "@mui/material";
+import Optimisim from "@/public/images/optimisim-icon.svg";
 import Base from "@/public/images/base-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
 import Reward from "./Reward";
@@ -20,9 +20,22 @@ function RewardsCard() {
     getMyRewardsData
   );
 
+  function handleConnectWallet() {
+    console.log("Connect Wallet");  
+  }
+
   return (
     <Card className={styles["container--all"]}>
-      <h2 className={styles["title"]}>My Rewards</h2>
+      <Stack direction={'row'} spacing={2}>
+        <h2 className={styles["title"]}>My Rewards</h2>
+
+        <Button
+          className={styles["button--connect-wallet"]}
+          onClick={() => handleConnectWallet()}
+        >
+          Connect Wallet
+        </Button>
+      </Stack>
       {data && (
         <section className={styles["container--rewards"]}>
           {data.map((rewardCardData) => (
@@ -40,27 +53,9 @@ function RewardsCard() {
       )}
       {!data && (
         <section className={styles["container--rewards"]}>
-          <Reward
-            icon={Optimisim}
-            eth={0}
-            srp={0}
-            color="dark"
-            opaque={true}
-          />
-          <Reward
-            icon={Base}
-            eth={0}
-            srp={0}
-            color="dark"
-            opaque={true}
-          />
-          <Reward
-            icon={Mode}
-            eth={0}
-            srp={0}
-            color="dark"
-            opaque={true}
-          />
+          <Reward icon={Optimisim} eth={0} srp={0} color="dark" opaque={true} />
+          <Reward icon={Base} eth={0} srp={0} color="dark" opaque={true} />
+          <Reward icon={Mode} eth={0} srp={0} color="dark" opaque={true} />
         </section>
       )}
     </Card>
