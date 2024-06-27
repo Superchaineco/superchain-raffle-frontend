@@ -7,7 +7,7 @@ function MyTickets({ tickets }: { tickets: number }) {
       className={`${styles["container--all"]} ${styles["container--all--dark"]}`}
     >
       <h2 style={{ margin: "0px" }}>My Tickets</h2>
-      <p>You have not bought any tickets yet.</p>
+      <p>You have not bought any tickets yet {tickets}.</p>
     </div>
   );
 }

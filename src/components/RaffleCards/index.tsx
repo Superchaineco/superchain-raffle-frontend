@@ -1,4 +1,4 @@
-import React, { ElementType, useEffect, useRef, useState } from "react";
+import React, { type ElementType, useEffect, useRef, useState } from "react";
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
 import Base from "@/public/images/base-icon.svg";
@@ -11,15 +11,6 @@ import { useQuery } from "react-query";
 import { getRaffleCardsData } from "@/functions/fetchFunctions";
 import type { RaffleCardsData } from "@/types/raffleCards";
 import RaffleCardSkeleton from "./Raffle/Skeleton";
-
-// enum AssetsParser {
-//   "OptimisimBg" = OptimisimBgImg,
-//   "BaseBg" = BaseBgImg,
-//   "ModeBg" = ModeBgImg,
-//   "OptimisimIcon" = Optimisim,
-//   "BaseIcon" = Base,
-//   "ModeIcon" = Mode,
-// }
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {
@@ -41,10 +32,9 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RaffleCards() {
-  const { data: raffleCardsData, status } = useQuery<RaffleCardsData[]>(
-    "leaderBoardData",
-    getRaffleCardsData
-  );
+  const { data: raffleCardsData, status: _status } = useQuery<
+    RaffleCardsData[]
+  >("leaderBoardData", getRaffleCardsData);
   const [expandedCard, setExpandedCard] = useState<string | null>("");
 
   const handleCardClick = (id: string | null) => {

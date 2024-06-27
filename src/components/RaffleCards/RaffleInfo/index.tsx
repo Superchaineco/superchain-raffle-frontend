@@ -3,7 +3,7 @@
 import { SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import { motion } from "framer-motion";
-import { ElementType } from "react";
+import type { ElementType } from "react";
 
 type RaffleInfoProps = {
   icon: ElementType;

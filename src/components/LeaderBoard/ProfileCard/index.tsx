@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Stack, SvgIcon } from "@mui/material";
 import type { LeaderBoardAccountType } from "@/types/commons";
 import EthIcon from "@/public/images/eth-icon.svg";
@@ -18,9 +18,6 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
     () => getPodiumPosition(account.position),
     [account.position]
   );
-  useEffect(() => {
-    console.log(podiumPositon);
-  }, []);
   return (
     <Stack
       direction={"row"}

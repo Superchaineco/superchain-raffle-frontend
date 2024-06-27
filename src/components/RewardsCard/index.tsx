@@ -3,12 +3,12 @@ import Optimisim from "@/public/images/optimisim-icon.svg";
 import Base from "@/public/images/base-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
 import Reward from "./Reward";
-import styles from "./styles.module.css";
 import { getMyRewardsData } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
 import type { MyRewardsData } from "@/types/rewardsCard";
 import RewardsCardSkeleton from "./Skeleton";
-import { ElementType, useState } from "react";
+import { type ElementType, useState } from "react";
+import styles from "./styles.module.css";
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {

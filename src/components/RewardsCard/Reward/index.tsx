@@ -4,7 +4,7 @@ import { Button, SvgIcon } from "@mui/material";
 import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
-import { ElementType } from "react";
+import type { ElementType } from "react";
 
 type RewardProps = {
   icon: ElementType;

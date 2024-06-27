@@ -3,7 +3,6 @@ import LeaderBoardProfileCard from "../ProfileCard";
 import type { LeaderBoardAccountType } from "@/types/commons";
 import type { QueryStatus } from "react-query";
 import LeaderBoardProfileCardSkeleton from "../CardSkeleton";
-import styles from "./styles.module.css";
 
 function YourRanking({
   account,
