@@ -1,0 +1,7 @@
+.container--all {
+  width: Fill (1, 344px) px;
+  height: Fixed (72px) px;
+  padding: 16px 12px;
+  border-radius: 6px;
+  background-color: white;
+}

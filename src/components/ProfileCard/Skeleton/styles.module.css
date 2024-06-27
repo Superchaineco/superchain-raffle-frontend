@@ -1,0 +1,63 @@
+
+.container--all {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  min-width: 520px;
+  max-height: 240px;
+}
+.contianer--header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & h2 {
+    margin: 0;
+  }
+}
+
+.container--header--rigth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.button--rank {
+  padding: 8px 16px;
+  background-color: var(--color-button-rank);
+}
+.button--rank:hover {
+  background-color: var(--color-button-rank);
+}
+
+.container--rank-icon {
+  height: 100%;
+  padding: 8px 10px;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+}
+.container--profile {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.container--profile--info-cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--space-4);
+}
+
+.connect-wallet-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  letter-spacing: 0.25px;
+  text-align: center;
+}

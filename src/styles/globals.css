@@ -33,6 +33,8 @@ button {
 :root {
   --header-height: 52px;
   --footer-height: 67px;
+  --top-info-height: 54px;
+  --principal--raffle--container--hegiht: 238px;
 }
 
 input::-webkit-outer-spin-button,

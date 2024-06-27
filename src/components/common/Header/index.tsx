@@ -1,14 +1,14 @@
-'use client';
-import type { Dispatch, SetStateAction } from 'react';
-import { type ReactElement } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button, IconButton, Paper, SvgIcon } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import classnames from 'classnames';
-import css from './styles.module.css';
-import Link from 'next/link';
-import SuperChainEco from '@/public/images/common/superchain-eco.svg';
-import Image from 'next/image';
+"use client";
+import type { Dispatch, SetStateAction } from "react";
+import { type ReactElement } from "react";
+import { useRouter } from "next/navigation";
+import { Button, IconButton, Paper, SvgIcon } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import classnames from "classnames";
+import css from "./styles.module.css";
+import Link from "next/link";
+import SuperChainEco from "@/public/images/common/superchain-eco.svg";
+import Image from "next/image";
 // import ConnectWallet from '../ConnectWallet';
 
 type HeaderProps = {
@@ -18,7 +18,7 @@ type HeaderProps = {
 
 const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
   const router = useRouter();
-  const logoHref = '/#';
+  const logoHref = "/#";
 
   const handleMenuToggle = () => {
     if (onMenuToggle) {
@@ -39,9 +39,9 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
       >
         <IconButton
           onClick={handleMenuToggle}
-          size='large'
-          color='default'
-          aria-label='menu'
+          size="large"
+          color="default"
+          aria-label="menu"
         >
           <MenuIcon />
         </IconButton>
@@ -52,22 +52,22 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
           <SvgIcon
             component={SuperChainEco}
             inheritViewBox
-            style={{ width: '200px', height: '100px' }}
+            style={{ width: "200px", height: "100px" }}
           />
         </Link>
       </div>
 
       <div className={classnames(css.element, css.networkSelector)}>
         <span
-          data-testid='chain-logo'
+          data-testid="chain-logo"
           className={classnames(css.element, css.inline)}
         >
           <Image
-            src='https://safe-transaction-assets.safe.global/chains/10/chain_logo.png'
-            alt='Optimism Logo'
+            src="https://safe-transaction-assets.safe.global/chains/10/chain_logo.png"
+            alt="Optimism Logo"
             width={24}
             height={24}
-            loading='lazy'
+            loading="lazy"
           />
         </span>
       </div>

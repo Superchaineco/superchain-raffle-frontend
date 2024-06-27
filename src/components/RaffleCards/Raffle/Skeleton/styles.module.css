@@ -1,0 +1,133 @@
+.container--all {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  min-height: 238px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border: none;
+  overflow: hidden;
+}
+.container--principal {
+  position: relative;
+  height: var(--principal--raffle--container--hegiht);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.container--header {
+  z-index: 20;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+.container--header--chips {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.container--content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container--body {
+  z-index: 20;
+  padding: 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 90%;
+}
+
+.container--detail {
+  z-index: 20;
+  padding: var(--space-3) 0px;
+  position: relative;
+  display: flex;
+  gap: 20px;
+}
+
+.container--back {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--color-soft-gray);
+}
+
+.container--raffle--text--buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  height: min-content;
+}
+
+.container--raffle-history {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.chip {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.25px;
+  text-align: right;
+}
+
+.chip--white {
+  background-color: white;
+  color: black;
+}
+
+.chip--black {
+  background-color: black;
+  color: white;
+}
+.chip--blue {
+  background-color: var(--color-reward-card-blue);
+  color: white;
+}
+
+.chip--red {
+  background-color: var(--color-secondary-main);
+  color: white;
+}
+
+.chip--yellow {
+  background-color: var(--color-raffle-card-yellow);
+  color: black;
+}
+
+.card--title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  text-align: left;
+}
+
+.card--media {
+  display: block;
+  height: 120%;
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 100%;
+}

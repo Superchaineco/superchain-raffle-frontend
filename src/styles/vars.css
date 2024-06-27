@@ -38,6 +38,25 @@
   --color-logo-main: #121312;
   --color-logo-background: #eeeff0;
   --color-static-main: #121312;
+  --color-eth-bonus: #0da529;
+  --color-eth-chip: #5F6266;
+  --color-shadow-top-info: #A0A5AD;
+  --color-button-rank: #DB8466;
+  --color-button-rank-icon: #0B0B0B;
+  --color-reward-card-blue: #354FFC;
+  --color-raffle-card-yellow: #DEFE2A;
+  --color-profile-card-bg: #F2F5F9;
+  --color-border-entries-blue: #00C2FF;
+  --color-border-dark-detail-raffle-cards: #CED4DD;
+  --color-soft-gray: #7C8086;
+  --color-my-profile-bg: #CED4DD;
+  --color-my-profile-border: #A0A5AD;
+  --color-rank-first-bg: #EBB000;
+  --color-rank-first-border: #FFEE05;
+  --color-rank-second-bg: #A2ACB4;
+  --color-rank-second-border: #D3D4D4;
+  --color-rank-third-bg: #DB8466;
+  --color-rank-third-border: #F2AA7D;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -52,7 +71,7 @@
   --space-12: 96px;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --color-text-primary: #ffffff;
   --color-text-secondary: #636669;
   --color-text-disabled: #636669;
@@ -90,14 +109,17 @@
   --color-logo-main: #ffffff;
   --color-logo-background: #303033;
   --color-static-main: #121312;
+  --color-eth-bonus: #0da529;
+  --color-eth-chip: #5f6266;
 }
 
-/* The same as above for the brief moment before JS loads */
+/* The same as above for the brief moment beforee JS loads */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
+  :root:not([data-theme="light"]) {
     --color-text-primary: #ffffff;
     --color-text-secondary: #636669;
     --color-text-disabled: #636669;
+    --color-text-dark: black;
     --color-primary-dark: #0cb259;
     --color-primary-main: #12ff80;
     --color-primary-light: #a1a3a7;
@@ -132,5 +154,7 @@
     --color-logo-main: #ffffff;
     --color-logo-background: #303033;
     --color-static-main: #121312;
+    --color-eth-bonus: #0da529;
+    --color-eth-chip: #5f6266;
   }
 }
