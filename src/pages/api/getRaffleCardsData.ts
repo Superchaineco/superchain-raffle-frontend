@@ -6,7 +6,5 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<RaffleCardsData[]>
 ) {
-  res
-    .status(200)
-    .json(raffleCardsData);
+  res.status(200).json(raffleCardsData);
 }

@@ -45,7 +45,9 @@ function LeaderBoardView() {
         justifyContent={"center"}
       >
         <h1 className={styles["title"]}>Leaderboard</h1>
-        <p className={styles["text--join"]}>Join the raffles and watch your name climb the leaderboard</p>
+        <p className={styles["text--join"]}>
+          Join the raffles and watch your name climb the leaderboard
+        </p>
       </Stack>
       <Stack spacing={1}>
         <p className={styles["title--your-ranking"]}>Your Ranking</p>

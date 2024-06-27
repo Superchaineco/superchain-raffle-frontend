@@ -1,15 +1,15 @@
-export const base = 8
+export const base = 8;
 
 const getSpacings = (max: number) => {
-  const spacings: Record<number, number> = {}
+  const spacings: Record<number, number> = {};
 
   for (let i = 1; i <= max; i++) {
-    spacings[i] = base * i
+    spacings[i] = base * i;
   }
 
-  return spacings
-}
+  return spacings;
+};
 
-const spacings = getSpacings(12)
+const spacings = getSpacings(12);
 
-export default spacings
+export default spacings;

@@ -9,7 +9,7 @@ function Providers({ children }: { children: React.ReactNode }) {
   //   const themeMode = isDarkMode ? 'dark' : 'light';
   const themeMode = "light";
 
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
 
   return (
     <SafeThemeProvider mode={themeMode}>

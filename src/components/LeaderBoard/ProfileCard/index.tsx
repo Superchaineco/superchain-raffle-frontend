@@ -8,25 +8,30 @@ import styles from "./styles.module.css";
 import ProfileImage from "@/public/images/profile-icon.svg";
 import { getPodiumPosition } from "@/functions/auxiliarFunctions";
 
-
-
 type Props = {
   account: LeaderBoardAccountType;
   isMyProfileCard?: boolean;
 };
 
 function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
-  const podiumPositon = useMemo(() => getPodiumPosition(account.position), [account.position]);
+  const podiumPositon = useMemo(
+    () => getPodiumPosition(account.position),
+    [account.position]
+  );
   useEffect(() => {
     console.log(podiumPositon);
-  }, [])
+  }, []);
   return (
     <Stack
       direction={"row"}
       alignItems={"center"}
       justifyContent={"space-between"}
       width={"100%"}
-      className={styles[`container--all--${isMyProfileCard ? "my-profile" : "another-profile"}`]}
+      className={
+        styles[
+          `container--all--${isMyProfileCard ? "my-profile" : "another-profile"}`
+        ]
+      }
     >
       <Stack
         direction={"row"}
@@ -34,7 +39,9 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
         justifyContent={"space-center"}
         spacing={2}
       >
-        <div className={`${styles["container--rank"]} ${styles[`rank--${podiumPositon != 'offThePodium' ? podiumPositon : 'off-podium'}`]}`}>
+        <div
+          className={`${styles["container--rank"]} ${styles[`rank--${podiumPositon != "offThePodium" ? podiumPositon : "off-podium"}`]}`}
+        >
           <p>{account.position}</p>
         </div>
         <Stack

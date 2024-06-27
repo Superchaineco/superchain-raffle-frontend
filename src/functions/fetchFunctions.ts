@@ -1,5 +1,5 @@
 export async function getMyLeaderBoardInfo() {
-  const res = await fetch('/api/getMyLeaderBoardInfo');
+  const res = await fetch("/api/getMyLeaderBoardInfo");
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
@@ -7,7 +7,7 @@ export async function getMyLeaderBoardInfo() {
 }
 
 export async function getLeaderBoardData() {
-  const res = await fetch('/api/getLeaderBoardData');
+  const res = await fetch("/api/getLeaderBoardData");
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
@@ -15,7 +15,7 @@ export async function getLeaderBoardData() {
 }
 
 export async function getRaffleCardsData() {
-  const res = await fetch('/api/getRaffleCardsData');
+  const res = await fetch("/api/getRaffleCardsData");
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
@@ -23,7 +23,7 @@ export async function getRaffleCardsData() {
 }
 
 export async function getProfileData() {
-  const res = await fetch('/api/getProfileData');
+  const res = await fetch("/api/getProfileData");
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
@@ -31,7 +31,7 @@ export async function getProfileData() {
 }
 
 export async function getMyRewardsData() {
-  const res = await fetch('/api/getMyRewardsData');
+  const res = await fetch("/api/getMyRewardsData");
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }

@@ -4,4 +4,4 @@ export type LeaderBoardAccountType = {
   tickets: number;
   eth: number;
   sr: number;
-}
+};

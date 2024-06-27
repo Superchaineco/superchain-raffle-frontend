@@ -7,18 +7,17 @@
   justify-content: left;
   gap: 16px;
   border-radius: 6px;
-  
 }
 
 .container--all--color--red {
   border: 2px solid var(--color-secondary-main);
 }
 
-.container--all--color--blue{
+.container--all--color--blue {
   border: 2px solid var(--color-reward-card-blue);
 }
 
-.container--all--color--dark{
+.container--all--color--dark {
   border: 2px solid black;
 }
 
@@ -43,7 +42,7 @@
   background-color: var(--color-reward-card-blue);
 }
 
-.container--icon--color--dark{
+.container--icon--color--dark {
   background-color: black;
 }
 
@@ -92,5 +91,5 @@
 }
 
 .claim--button:hover {
-  background-color: black; 
+  background-color: black;
 }

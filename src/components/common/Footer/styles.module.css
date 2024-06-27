@@ -21,7 +21,7 @@
 }
 
 .container li:not(:last-of-type):after {
-  content: '|';
+  content: "|";
   margin-left: var(--space-2);
 }
 
