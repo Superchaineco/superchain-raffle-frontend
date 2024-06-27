@@ -1,10 +1,11 @@
 import { Card, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
+import type { ElementType } from "react";
 
 type ProfileInfoProps = {
   primary: number;
   secondary: string;
-  icon: any;
+  icon: ElementType;
 };
 
 function ProfileInfo({ primary, secondary, icon }: ProfileInfoProps) {

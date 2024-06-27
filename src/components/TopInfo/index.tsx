@@ -15,13 +15,15 @@ function TopInfo({ eth, ethBonus }: TopInfoProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsShowed(false);
-    }, 5000)
-    return () => clearTimeout(timer)
-  })
+    }, 5000);
+    return () => clearTimeout(timer);
+  });
   return (
     <motion.div
       initial={{ transform: "translateY(-80px)" }}
-      animate={{ transform: isShowed ? "translateY(0px)" : "translateY(-80px)" }}
+      animate={{
+        transform: isShowed ? "translateY(0px)" : "translateY(-80px)",
+      }}
       transition={{
         type: "spring",
         stiffness: 100,
@@ -41,4 +43,4 @@ function TopInfo({ eth, ethBonus }: TopInfoProps) {
   );
 }
 
-export default TopInfo
+export default TopInfo;

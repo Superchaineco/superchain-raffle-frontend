@@ -1,7 +1,8 @@
 export type MyRewardsData = {
-  icon: string
-  eth: number
-  srp: number
-  color: string
-  opaque: boolean
-}
+  id: string;
+  icon: string;
+  eth: number;
+  srp: number;
+  color: string;
+  opaque: boolean;
+};

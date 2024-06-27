@@ -19,7 +19,7 @@ import PurchaseTickets from "../PurchaseTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { useMemo } from "react";
+import { type ElementType, useMemo } from "react";
 import RaffleInfo from "../RaffleInfo";
 import MyTickets from "../MyTickets";
 import styles from "./styles.module.css";
@@ -43,8 +43,8 @@ type RaffleProps = {
   totalEntries: number;
   currentEntries: number;
   entries: number;
-  networkIcon: any;
-  bgImg: any;
+  networkIcon: ElementType;
+  bgImg: ElementType;
   expandedCard: string | null;
   round: number;
   onClick: (id: string | null) => void;
@@ -115,7 +115,7 @@ function Raffle({
                 </div>
               )}
               <motion.div
-                initial={{ marginTop: 0, width: "60%"}}
+                initial={{ marginTop: 0, width: "60%" }}
                 animate={{ marginTop: isMainCard ? 64 : 0 }}
               >
                 <Typography fontSize={24} fontWeight={600}>
@@ -204,7 +204,7 @@ function Raffle({
               </AnimatePresence>
               <motion.div
                 key={`container-info-${id}`}
-                initial={{ display: "grid", gap: "12px"}}
+                initial={{ display: "grid", gap: "12px" }}
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",

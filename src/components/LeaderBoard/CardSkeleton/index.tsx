@@ -1,6 +1,6 @@
 import { Skeleton, Stack } from "@mui/material";
 import React from "react";
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
 export default function LeaderBoardProfileCardSkeleton() {
   return (
@@ -25,8 +25,8 @@ export default function LeaderBoardProfileCardSkeleton() {
           justifyContent={"space-center"}
           spacing={1}
         >
-          <Skeleton variant="circular" width={40} height={40}/>
-          <Skeleton variant="text" width={400}/>
+          <Skeleton variant="circular" width={40} height={40} />
+          <Skeleton variant="text" width={400} />
         </Stack>
       </Stack>
       <Stack
@@ -43,8 +43,8 @@ export default function LeaderBoardProfileCardSkeleton() {
           width={"30%"}
           spacing={1}
         >
-          <Skeleton variant="text" height={20} width={32}/>
-          <Skeleton variant="circular" width={20} height={20}/>
+          <Skeleton variant="text" height={20} width={32} />
+          <Skeleton variant="circular" width={20} height={20} />
         </Stack>
         <Stack
           direction={"row"}
@@ -53,8 +53,8 @@ export default function LeaderBoardProfileCardSkeleton() {
           width={"30%"}
           spacing={1}
         >
-          <Skeleton variant="text" height={20} width={32}/>
-          <Skeleton variant="circular" width={20} height={20}/>
+          <Skeleton variant="text" height={20} width={32} />
+          <Skeleton variant="circular" width={20} height={20} />
         </Stack>
         <Stack
           direction={"row"}
@@ -63,8 +63,8 @@ export default function LeaderBoardProfileCardSkeleton() {
           width={"30%"}
           spacing={1}
         >
-          <Skeleton variant="text" height={20} width={32}/>
-          <Skeleton variant="circular" width={20} height={20}/>
+          <Skeleton variant="text" height={20} width={32} />
+          <Skeleton variant="circular" width={20} height={20} />
         </Stack>
       </Stack>
     </Stack>

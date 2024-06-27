@@ -9,14 +9,14 @@ const nextConfig = {
       issuer: { and: [/\.(js|ts|md)x?$/] },
       use: [
         {
-          loader: '@svgr/webpack',
+          loader: "@svgr/webpack",
           options: {
             prettier: false,
             svgo: false,
             svgoConfig: {
               plugins: [
                 {
-                  name: 'preset-default',
+                  name: "preset-default",
                   params: {
                     overrides: { removeViewBox: false },
                   },

@@ -9,16 +9,8 @@
   border-radius: 6px;
 }
 
-.container--all--color--red {
-  border: 2px solid var(--color-secondary-main);
-}
-
-.container--all--color--blue {
-  border: 2px solid var(--color-reward-card-blue);
-}
-
 .container--all--color--dark {
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .container--all--opaque {

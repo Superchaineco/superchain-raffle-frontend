@@ -1,9 +1,8 @@
 import React from "react";
 import LeaderBoardProfileCard from "../ProfileCard";
-import { LeaderBoardAccountType } from "@/types/commons";
-import { QueryStatus } from "react-query";
+import type { LeaderBoardAccountType } from "@/types/commons";
+import type { QueryStatus } from "react-query";
 import LeaderBoardProfileCardSkeleton from "../CardSkeleton";
-import styles from "./styles.module.css";
 
 function YourRanking({
   account,

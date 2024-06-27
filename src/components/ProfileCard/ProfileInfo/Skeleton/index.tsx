@@ -1,4 +1,4 @@
-import { Card, Skeleton} from "@mui/material";
+import { Card, Skeleton } from "@mui/material";
 import styles from "./styles.module.css";
 
 function ProfileInfoSkeleton() {

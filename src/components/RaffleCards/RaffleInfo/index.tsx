@@ -3,14 +3,15 @@
 import { SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import { motion } from "framer-motion";
+import type { ElementType } from "react";
 
 type RaffleInfoProps = {
-  icon: any;
+  icon: ElementType;
   primary: string;
   secondary1: string | number;
   secondary2?: string | number;
-  iconS1?: any;
-  iconS2?: any;
+  iconS1?: ElementType;
+  iconS2?: ElementType;
   color?: string;
   noMainCard: boolean;
 };

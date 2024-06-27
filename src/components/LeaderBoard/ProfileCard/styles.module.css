@@ -23,15 +23,15 @@
   border-radius: 100%;
 }
 
-.rank--first{
+.rank--first {
   background-color: var(--color-rank-first-bg);
   border: 1px solid var(--color-rank-first-border);
 }
-.rank--second{
+.rank--second {
   background-color: var(--color-rank-second-bg);
   border: 1px solid var(--color-rank-second-border);
 }
-.rank--third{
+.rank--third {
   background-color: var(--color-rank-third-bg);
   border: 1px solid var(--color-rank-third-border);
 }

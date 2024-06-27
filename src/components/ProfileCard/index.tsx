@@ -14,7 +14,7 @@ import { useState } from "react";
 function ProfileCard() {
   const [getWallet, setGetWallet] = useState(false);
   const [loading, setIsLoading] = useState(false);
-  const { data, status } = useQuery("profileData", getProfileData, {
+  const { data, status: _status } = useQuery("profileData", getProfileData, {
     enabled: getWallet,
   });
 

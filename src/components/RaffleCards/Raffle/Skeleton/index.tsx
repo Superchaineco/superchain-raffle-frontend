@@ -51,7 +51,7 @@ function RaffleCardSkeleton() {
               top: "-20%",
             }}
           >
-            <span className={styles["card--media"]} ></span>
+            <span className={styles["card--media"]}></span>
           </div>
           <div className={styles["container--detail"]}>
             <PurchaseTickets tickets={8} />

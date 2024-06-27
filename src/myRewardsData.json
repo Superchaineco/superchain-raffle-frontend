@@ -1,5 +1,6 @@
 [
   {
+    "id": "optimisim",
     "icon": "OptimisimIcon",
     "eth": 0.05,
     "srp": 25,
@@ -7,6 +8,7 @@
     "opaque": false
   },
   {
+    "id": "base",
     "icon": "BaseIcon",
     "eth": 0.05,
     "srp": 25,
@@ -14,6 +16,7 @@
     "opaque": false
   },
   {
+    "id": "mode",
     "icon": "ModeIcon",
     "eth": 0.05,
     "srp": 25,

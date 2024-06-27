@@ -38,7 +38,7 @@
   font-size: 14px;
 }
 
-[data-theme='dark'] .element :global(.MuiBadge-standard) {
+[data-theme="dark"] .element :global(.MuiBadge-standard) {
   background-color: var(--color-primary-main);
 }
 

@@ -13,14 +13,7 @@ function DashBoard() {
       <RaffleCards />
       <div className={styles["container--profile-rewards"]}>
         <ProfileCard />
-        <RewardsCard
-          optimisimEth={0.05}
-          optimisimSrp={25}
-          baseEth={0.05}
-          baseSrp={25}
-          modeEth={0.0}
-          modeSrp={0}
-        />
+        <RewardsCard />
       </div>
     </main>
   );
