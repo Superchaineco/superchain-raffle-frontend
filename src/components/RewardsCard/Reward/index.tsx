@@ -9,7 +9,7 @@ type RewardProps = {
   icon: any;
   eth: number;
   srp: number;
-  color: "red" | "blue" | "dark";
+  color: string;
   opaque: boolean;
 };
 

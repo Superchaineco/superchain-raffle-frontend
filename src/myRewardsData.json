@@ -1,0 +1,23 @@
+[
+  {
+    "icon": "OptimisimIcon",
+    "eth": 0.05,
+    "srp": 25,
+    "color": "red",
+    "opaque": false
+  },
+  {
+    "icon": "BaseIcon",
+    "eth": 0.05,
+    "srp": 25,
+    "color": "blue",
+    "opaque": false
+  },
+  {
+    "icon": "ModeIcon",
+    "eth": 0.05,
+    "srp": 25,
+    "color": "dark",
+    "opaque": true
+  }
+]

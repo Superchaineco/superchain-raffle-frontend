@@ -29,3 +29,11 @@ export async function getProfileData() {
   }
   return res.json();
 }
+
+export async function getMyRewardsData() {
+  const res = await fetch('/api/getMyRewardsData');
+  if (!res.ok) {
+    throw new Error("Failed to get my LeaderBoard info profile");
+  }
+  return res.json();
+}
