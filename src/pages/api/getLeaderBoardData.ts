@@ -1,5 +1,5 @@
-import { LeaderBoardAccountType } from "@/types/commons";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { LeaderBoardAccountType } from "@/types/commons";
+import type { NextApiRequest, NextApiResponse } from "next";
 import leaderBoardData from "@/leaderBoardData.json";
 
 export default function handler(

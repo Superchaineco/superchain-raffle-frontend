@@ -6,20 +6,27 @@ import Reward from "./Reward";
 import styles from "./styles.module.css";
 import { getMyRewardsData } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
-import { MyRewardsData } from "@/types/rewardsCard";
+import type { MyRewardsData } from "@/types/rewardsCard";
 import RewardsCardSkeleton from "./Skeleton";
-import { useState } from "react";
+import { ElementType, useState } from "react";
 
-enum AssetsParser {
-  "OptimisimIcon" = Optimisim,
-  "BaseIcon" = Base,
-  "ModeIcon" = Mode,
+function AssetsParser(asset: string): ElementType {
+  switch (asset) {
+    case "OptimisimIcon":
+      return Optimisim as ElementType;
+    case "BaseIcon":
+      return Base as ElementType;
+    case "ModeIcon":
+      return Mode as ElementType;
+    default:
+      return Optimisim as ElementType;
+  }
 }
 
 function RewardsCard() {
   const [getWallet, setGetWallet] = useState(false);
   const [loading, setIsLoading] = useState(false);
-  const { data, status } = useQuery<MyRewardsData[]>(
+  const { data, status: _status } = useQuery<MyRewardsData[]>(
     "myRewardsData",
     getMyRewardsData,
     {
@@ -57,9 +64,8 @@ function RewardsCard() {
         <section className={styles["container--rewards"]}>
           {data.map((rewardCardData) => (
             <Reward
-              icon={
-                AssetsParser[rewardCardData.icon as keyof typeof AssetsParser]
-              }
+              key={rewardCardData.id}
+              icon={AssetsParser(rewardCardData.icon)}
               eth={rewardCardData.eth}
               srp={rewardCardData.srp}
               color={rewardCardData.color}

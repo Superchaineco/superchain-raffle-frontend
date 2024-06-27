@@ -1,5 +1,5 @@
-import { ProfileData } from "@/types/profileCard";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { ProfileData } from "@/types/profileCard";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(
   req: NextApiRequest,

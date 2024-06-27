@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { Stack, SvgIcon } from "@mui/material";
-import { LeaderBoardAccountType } from "@/types/commons";
+import type { LeaderBoardAccountType } from "@/types/commons";
 import EthIcon from "@/public/images/eth-icon.svg";
 import SrIcon from "@/public/images/sr-icon.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";

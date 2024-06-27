@@ -1,6 +1,6 @@
-import { MyRewardsData } from "@/types/rewardsCard";
+import type { MyRewardsData } from "@/types/rewardsCard";
 import myRewardsData from "@/myRewardsData.json";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(
   req: NextApiRequest,

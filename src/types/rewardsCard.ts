@@ -1,4 +1,5 @@
 export type MyRewardsData = {
+  id: string;
   icon: string;
   eth: number;
   srp: number;

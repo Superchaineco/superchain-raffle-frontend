@@ -1,5 +1,5 @@
 import { getLeaderBoardData } from "@/functions/fetchFunctions";
-import { LeaderBoardAccountType } from "@/types/commons";
+import type { LeaderBoardAccountType } from "@/types/commons";
 import { Stack } from "@mui/material";
 import React from "react";
 import { useQuery } from "react-query";
@@ -24,6 +24,7 @@ function LeaderBoard({ myInfo }: { myInfo: LeaderBoardAccountType }) {
         <>
           {data.map((account: LeaderBoardAccountType) => (
             <LeaderBoardProfileCard
+              key={account.address}
               account={account}
               isMyProfileCard={myInfo.address == account.address}
             />

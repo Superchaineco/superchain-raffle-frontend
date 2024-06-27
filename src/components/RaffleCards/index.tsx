@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { ElementType, useEffect, useRef, useState } from "react";
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
 import Base from "@/public/images/base-icon.svg";
@@ -9,16 +9,35 @@ import Raffle from "./Raffle";
 import styles from "./styles.module.css";
 import { useQuery } from "react-query";
 import { getRaffleCardsData } from "@/functions/fetchFunctions";
-import { RaffleCardsData } from "@/types/raffleCards";
+import type { RaffleCardsData } from "@/types/raffleCards";
 import RaffleCardSkeleton from "./Raffle/Skeleton";
 
-enum AssetsParser {
-  "OptimisimBg" = OptimisimBgImg,
-  "BaseBg" = BaseBgImg,
-  "ModeBg" = ModeBgImg,
-  "OptimisimIcon" = Optimisim,
-  "BaseIcon" = Base,
-  "ModeIcon" = Mode,
+// enum AssetsParser {
+//   "OptimisimBg" = OptimisimBgImg,
+//   "BaseBg" = BaseBgImg,
+//   "ModeBg" = ModeBgImg,
+//   "OptimisimIcon" = Optimisim,
+//   "BaseIcon" = Base,
+//   "ModeIcon" = Mode,
+// }
+
+function AssetsParser(asset: string): ElementType {
+  switch (asset) {
+    case "OptimisimBg":
+      return OptimisimBgImg as ElementType;
+    case "BaseBg":
+      return BaseBgImg as ElementType;
+    case "ModeBg":
+      return ModeBgImg as ElementType;
+    case "OptimisimIcon":
+      return Optimisim as ElementType;
+    case "BaseIcon":
+      return Base as ElementType;
+    case "ModeIcon":
+      return Mode as ElementType;
+    default:
+      return Optimisim as ElementType;
+  }
 }
 
 function RaffleCards() {
@@ -65,8 +84,8 @@ function RaffleCards() {
               totalEntries={item.totalEntries}
               currentEntries={item.currentEntries}
               entries={item.entries}
-              networkIcon={AssetsParser[networdIcon]}
-              bgImg={AssetsParser[bgImg]}
+              networkIcon={AssetsParser(networdIcon)}
+              bgImg={AssetsParser(bgImg)}
               expandedCard={expandedCard}
               round={item.round}
             />
