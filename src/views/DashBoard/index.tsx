@@ -5,7 +5,6 @@ import TopInfo from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
 import RaffleCards from "@/components/RaffleCards";
 import RewardsCard from "@/components/RewardsCard";
-import ProfileCardSkeleton from "@/components/ProfileCard/Skeleton";
 
 function DashBoard() {
   return (

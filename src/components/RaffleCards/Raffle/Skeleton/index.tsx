@@ -29,7 +29,7 @@ function RaffleCardSkeleton() {
           <CardContent className={styles["container--body"]}>
             <div
               style={{
-                width: "60%",
+                width: "64%",
                 display: "grid",
                 gap: "12px",
                 gridTemplateRows: "1fr 1fr",
