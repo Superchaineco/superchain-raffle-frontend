@@ -9,7 +9,7 @@ import Link from "next/link";
 import ProfileCardSkeleton from "./Skeleton";
 import { useQuery } from "react-query";
 import { getProfileData } from "@/functions/fetchFunctions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function ProfileCard() {
   const [getWallet, setGetWallet] = useState(false);
