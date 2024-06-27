@@ -7,6 +7,8 @@ import styles from "./styles.module.css";
 import { getMyRewardsData } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
 import { MyRewardsData } from "@/types/rewardsCard";
+import RewardsCardSkeleton from "./Skeleton";
+import { useState } from "react";
 
 enum AssetsParser {
   "OptimisimIcon" = Optimisim,
@@ -15,26 +17,41 @@ enum AssetsParser {
 }
 
 function RewardsCard() {
+  const [getWallet, setGetWallet] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const { data, status } = useQuery<MyRewardsData[]>(
     "myRewardsData",
-    getMyRewardsData
+    getMyRewardsData,
+    {
+      enabled: getWallet,
+    }
   );
 
   function handleConnectWallet() {
-    console.log("Connect Wallet");  
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    setGetWallet(true);
+    return () => clearTimeout(timer);
+  }
+
+  if (loading) {
+    return <RewardsCardSkeleton />;
   }
 
   return (
     <Card className={styles["container--all"]}>
-      <Stack direction={'row'} spacing={2}>
+      <Stack direction={"row"} spacing={2}>
         <h2 className={styles["title"]}>My Rewards</h2>
-
-        <Button
-          className={styles["button--connect-wallet"]}
-          onClick={() => handleConnectWallet()}
-        >
-          Connect Wallet
-        </Button>
+        {!data && (
+          <Button
+            className={styles["button--connect-wallet"]}
+            onClick={() => handleConnectWallet()}
+          >
+            Connect Wallet
+          </Button>
+        )}
       </Stack>
       {data && (
         <section className={styles["container--rewards"]}>
