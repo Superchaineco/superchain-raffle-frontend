@@ -1,0 +1,49 @@
+.container--modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: var(--space-2);
+}
+
+.container--content {
+  background-color: white;
+  border: none;
+  border-radius: var(--space-1);
+}
+
+.text--my-tickets {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.6px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  color: var(--color-text-gray-soft);
+}
+
+.button--claim-rewards {
+  width: 100%;
+  background-color: var(--color-secondary-main);
+  border-radius: 0px;
+}
+
+.text--while {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  color: var(--color-text-gray-soft);
+}
+
+.text--while--strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.6px;
+  letter-spacing: 0.25px;
+  text-align: center;
+}
