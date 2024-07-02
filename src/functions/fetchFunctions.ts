@@ -37,3 +37,11 @@ export async function getMyRewardsData() {
   }
   return res.json();
 }
+
+export async function getWelcomeBackData() {
+  const res = await fetch("/api/getWelcomeBackData");
+  if (!res.ok) {
+    throw new Error("Failed to get my LeaderBoard info profile");
+  }
+  return res.json();
+}

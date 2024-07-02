@@ -17,14 +17,26 @@ import MyTicketsIcon from "@/public/images/tickets-icon-opaque.svg";
 import CloseIcon from "@/public/images/close-icon.svg";
 import styles from "./styles.module.css";
 import WellcomeBackModalTicketsToolTip from "./TicketsToolTip";
+import { useQuery } from "react-query";
+import { getWelcomeBackData } from "@/functions/fetchFunctions";
+import { WelcomeBackData } from "@/types/welcomeBack";
 
 function WellcomeBackModal() {
+  const { data, status } = useQuery<WelcomeBackData>("welcomeBackData", getWelcomeBackData);
   const [open, setOpen] = useState(true);
   const handleClose = () => {
     setOpen(false);
   };
-  return (
-    <Modal open={open} className={styles["modal"]}>
+  if (data) return (
+    <Modal
+      open={open}
+      className={styles["modal"]}
+      BackdropProps={{
+        style: {
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+        },
+      }}
+    >
       <Box className={styles["container--modal"]}>
         <SvgIcon
           component={CloseIcon}
@@ -41,7 +53,6 @@ function WellcomeBackModal() {
         />
         <Stack
           direction={"column"}
-          spacing={1}
           alignItems={"center"}
           justifyContent={"center"}
           className={styles["container--content"]}
@@ -72,12 +83,19 @@ function WellcomeBackModal() {
             paddingX={6}
             paddingY={2}
           >
-            <WellcomeBackInfoCard text="ETH" value={0.01} icon={ETHIcon} />
-            <WellcomeBackInfoCard text="SR Points" value={10} icon={SRIcon} />
+            <WellcomeBackInfoCard text="ETH" value={data.eth} icon={ETHIcon} />
+            <WellcomeBackInfoCard text="SR Points" value={data.srPoints} icon={SRIcon} />
           </Stack>
-          <Tooltip title={<WellcomeBackModalTicketsToolTip />} arrow placement="top" PopperProps={{sx: {
-            width: "16%",
-          }}}>
+          <Tooltip
+            title={<WellcomeBackModalTicketsToolTip opTickets={data.opTickets} baseTickets={data.baseTickets}/>}
+            arrow
+            placement="top"
+            PopperProps={{
+              sx: {
+                width: "16%",
+              },
+            }}
+          >
             <IconButton>
               <Stack
                 direction={"row"}
@@ -97,7 +115,7 @@ function WellcomeBackModal() {
             </IconButton>
           </Tooltip>
         </Stack>
-        <Button className={styles["button--claim-rewards"]} variant="text">
+        <Button className={styles["button--claim-rewards"]} variant="text" onClick={handleClose}>
           Claim Rewards
         </Button>
       </Box>
