@@ -7,13 +7,14 @@
   display: flex;
   flex-direction: column;
   border: none;
+  outline: 0;
   gap: var(--space-2);
 }
 
 .container--content {
   background-color: white;
   border: none;
-  border-radius: var(--space-1);
+  border-radius: 6px;
 }
 
 .text--my-tickets {
@@ -28,7 +29,8 @@
 .button--claim-rewards {
   width: 100%;
   background-color: var(--color-secondary-main);
-  border-radius: 0px;
+  border-radius: 6px;
+  color: white;
 }
 
 .text--while {

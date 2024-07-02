@@ -1,22 +1,34 @@
-import { Box, Button, Modal, Stack, SvgIcon, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Modal,
+  Stack,
+  SvgIcon,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import WellcomeBackImg from "@/public/images/welcome-back-img.svg";
-import React from "react";
+import React, { useState } from "react";
 import WellcomeBackInfoCard from "./InfoCard";
 import ETHIcon from "@/public/images/eth-icon.svg";
 import SRIcon from "@/public/images/sr-icon.svg";
 import MyTicketsIcon from "@/public/images/tickets-icon-opaque.svg";
 import CloseIcon from "@/public/images/close-icon.svg";
 import styles from "./styles.module.css";
+import WellcomeBackModalTicketsToolTip from "./TicketsToolTip";
 
-function WellcomeBackModal({ open }: { open: boolean }) {
+function WellcomeBackModal() {
+  const [open, setOpen] = useState(true);
   const handleClose = () => {
-    console.log("close");
+    setOpen(false);
   };
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open} className={styles["modal"]}>
       <Box className={styles["container--modal"]}>
         <SvgIcon
           component={CloseIcon}
+          onClick={handleClose}
           inheritViewBox
           style={{
             width: "12px",
@@ -63,21 +75,27 @@ function WellcomeBackModal({ open }: { open: boolean }) {
             <WellcomeBackInfoCard text="ETH" value={0.01} icon={ETHIcon} />
             <WellcomeBackInfoCard text="SR Points" value={10} icon={SRIcon} />
           </Stack>
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            spacing={1}
-          >
-            <Typography className={styles["text--my-tickets"]}>
-              My Winning Tickets
-            </Typography>
-            <SvgIcon
-              component={MyTicketsIcon}
-              inheritViewBox
-              style={{ width: "20px", height: "20px" }}
-            />
-          </Stack>
+          <Tooltip title={<WellcomeBackModalTicketsToolTip />} arrow placement="top" PopperProps={{sx: {
+            width: "16%",
+          }}}>
+            <IconButton>
+              <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                spacing={1}
+              >
+                <Typography className={styles["text--my-tickets"]}>
+                  My Winning Tickets
+                </Typography>
+                <SvgIcon
+                  component={MyTicketsIcon}
+                  inheritViewBox
+                  style={{ width: "20px", height: "20px" }}
+                />
+              </Stack>
+            </IconButton>
+          </Tooltip>
         </Stack>
         <Button className={styles["button--claim-rewards"]} variant="text">
           Claim Rewards
