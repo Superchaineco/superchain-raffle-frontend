@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, Stack, SvgIcon } from "@mui/material";
+import { Avatar, Box, Button, Card, Stack, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import ProfileInfo from "./ProfileInfo";
 import RankIcon from "@/public/images/rank-icon.svg";
@@ -9,25 +9,18 @@ import Link from "next/link";
 import ProfileCardSkeleton from "./Skeleton";
 import { useQuery } from "react-query";
 import { getProfileData } from "@/functions/fetchFunctions";
-import { useState } from "react";
+import { useAccount } from "wagmi";
 
 function ProfileCard() {
-  const [getWallet, setGetWallet] = useState(false);
-  const [loading, setIsLoading] = useState(false);
-  const { data, status: _status } = useQuery("profileData", getProfileData, {
-    enabled: getWallet,
+
+  
+  const {isConnected} = useAccount()
+  
+  const { data, status: _status, isLoading } = useQuery("profileData", getProfileData, {
+    enabled: isConnected,
   });
 
-  function handleConnectWallet() {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    setGetWallet(true);
-    return () => clearTimeout(timer);
-  }
-
-  if (loading) {
+  if (isLoading) {
     return <ProfileCardSkeleton />;
   }
   return (
@@ -54,17 +47,11 @@ function ProfileCard() {
         </div>
       </div>
       {!data && (
-        <Stack alignItems={"center"} justifyContent={"center"}>
+        <Box padding={2} >
           <p className={styles["connect-wallet-text"]}>
             Connect your wallet to view your Profile.
           </p>
-          <Button
-            className={styles["button--connect-wallet"]}
-            onClick={() => handleConnectWallet()}
-          >
-            Connect Wallet
-          </Button>
-        </Stack>
+        </Box>
       )}
       {data && (
         <div className={styles["container--profile"]}>

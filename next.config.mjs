@@ -4,6 +4,7 @@ const nextConfig = {
     unoptimized: true,
   },
   webpack(config, { isServer }) {
+    config.externals.push("pino-pretty", "lokijs", "encoding");
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: { and: [/\.(js|ts|md)x?$/] },

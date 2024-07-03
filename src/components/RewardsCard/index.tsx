@@ -9,6 +9,7 @@ import type { MyRewardsData } from "@/types/rewardsCard";
 import RewardsCardSkeleton from "./Skeleton";
 import { type ElementType, useState } from "react";
 import styles from "./styles.module.css";
+import { useAccount } from "wagmi";
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {
@@ -24,26 +25,17 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RewardsCard() {
-  const [getWallet, setGetWallet] = useState(false);
-  const [loading, setIsLoading] = useState(false);
-  const { data, status: _status } = useQuery<MyRewardsData[]>(
+  const {isConnected} = useAccount()
+
+  const { data, status: _status , isLoading} = useQuery<MyRewardsData[]>(
     "myRewardsData",
     getMyRewardsData,
     {
-      enabled: getWallet,
+      enabled: isConnected,
     }
   );
 
-  function handleConnectWallet() {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    setGetWallet(true);
-    return () => clearTimeout(timer);
-  }
-
-  if (loading) {
+  if (isLoading) {
     return <RewardsCardSkeleton />;
   }
 
@@ -51,14 +43,6 @@ function RewardsCard() {
     <Card className={styles["container--all"]}>
       <Stack direction={"row"} spacing={2}>
         <h2 className={styles["title"]}>My Rewards</h2>
-        {!data && (
-          <Button
-            className={styles["button--connect-wallet"]}
-            onClick={() => handleConnectWallet()}
-          >
-            Connect Wallet
-          </Button>
-        )}
       </Stack>
       {data && (
         <section className={styles["container--rewards"]}>

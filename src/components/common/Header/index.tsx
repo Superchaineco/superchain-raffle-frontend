@@ -8,6 +8,8 @@ import css from "./styles.module.css";
 import Link from "next/link";
 import SuperChainEco from "@/public/images/common/superchain-eco.svg";
 import Image from "next/image";
+import WalletButton from "../WalletButton";
+
 // import ConnectWallet from '../ConnectWallet';
 
 type HeaderProps = {
@@ -71,8 +73,7 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
         </span>
       </div>
       <div className={classnames(css.element, css.button)}>
-        <Button>Connect wallet</Button>
-        {/* <ConnectWallet /> */}
+        <WalletButton />
       </div>
     </Paper>
   );
