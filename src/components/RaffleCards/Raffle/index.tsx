@@ -82,11 +82,11 @@ function Raffle({
             ? { height: offset, opacity: 1 }
             : expandedCard
               ? {
-                height: "0px",
-                opacity: 0,
+                  height: "0px",
+                  opacity: 0,
 
-                display: "none",
-              }
+                  display: "none",
+                }
               : { height: "238px", opacity: 1 }
         }
         exit={{ height: "0px", opacity: 0 }}
@@ -133,7 +133,7 @@ function Raffle({
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
                     label={`${raffleCardChipsText.value} ETH`}
-                    onDelete={() => { }}
+                    onDelete={() => {}}
                     deleteIcon={
                       <SvgIcon
                         component={ethIcon}
@@ -148,12 +148,13 @@ function Raffle({
                   />
                 )}
                 <Chip
-                  className={`${styles["chip"]} ${styles[
-                    `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
+                  className={`${styles["chip"]} ${
+                    styles[
+                      `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
                     ]
-                    }`}
+                  }`}
                   label={raffleCardChipsText.network}
-                  onDelete={() => { }}
+                  onDelete={() => {}}
                   deleteIcon={
                     <SvgIcon
                       component={networkIcon}
@@ -264,11 +265,10 @@ function Raffle({
             >
               <CardMedia
                 style={{
-                  height: '320px',
-                  width: '320px',
+                  height: "320px",
+                  width: "320px",
                 }}
                 component={bgImg}
-
               />
             </motion.div>
             <div className={styles["container--detail"]}>
