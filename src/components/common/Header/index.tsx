@@ -1,7 +1,7 @@
 "use client";
 import type { Dispatch, SetStateAction, ReactElement } from "react";
 import { useRouter } from "next/navigation";
-import { Button, IconButton, Paper, SvgIcon } from "@mui/material";
+import { IconButton, Paper, SvgIcon } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import classnames from "classnames";
 import css from "./styles.module.css";
