@@ -15,6 +15,7 @@ function RewardSkeleton() {
         <div className={styles["container--content--text"]}>
           <div className={styles["container--content--eth"]}>
             <Skeleton variant="text" width={50} height={20} />
+            <Skeleton variant="circular" width={24} height={24} />
           </div>
           <Skeleton variant="circular" width={16} height={16} />
           <div className={styles["container--content--srp"]}>

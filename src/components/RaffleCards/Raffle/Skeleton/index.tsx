@@ -42,17 +42,6 @@ function RaffleCardSkeleton() {
               <RaffleInfoSkeleton />
             </div>
           </CardContent>
-          <div
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "120%",
-              right: "-60%",
-              top: "-20%",
-            }}
-          >
-            <span className={styles["card--media"]}></span>
-          </div>
           <div className={styles["container--detail"]}>
             <PurchaseTickets tickets={8} />
             <MyTickets tickets={0} />

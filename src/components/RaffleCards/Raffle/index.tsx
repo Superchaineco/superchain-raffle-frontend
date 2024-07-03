@@ -82,11 +82,11 @@ function Raffle({
             ? { height: offset, opacity: 1 }
             : expandedCard
               ? {
-                  height: "0px",
-                  opacity: 0,
+                height: "0px",
+                opacity: 0,
 
-                  display: "none",
-                }
+                display: "none",
+              }
               : { height: "238px", opacity: 1 }
         }
         exit={{ height: "0px", opacity: 0 }}
@@ -133,7 +133,7 @@ function Raffle({
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
                     label={`${raffleCardChipsText.value} ETH`}
-                    onDelete={() => {}}
+                    onDelete={() => { }}
                     deleteIcon={
                       <SvgIcon
                         component={ethIcon}
@@ -148,13 +148,12 @@ function Raffle({
                   />
                 )}
                 <Chip
-                  className={`${styles["chip"]} ${
-                    styles[
-                      `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
+                  className={`${styles["chip"]} ${styles[
+                    `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
                     ]
-                  }`}
+                    }`}
                   label={raffleCardChipsText.network}
-                  onDelete={() => {}}
+                  onDelete={() => { }}
                   deleteIcon={
                     <SvgIcon
                       component={networkIcon}
@@ -257,20 +256,19 @@ function Raffle({
             <motion.div
               initial={{
                 position: "absolute",
-                width: "100%",
                 height: "120%",
-                right: "-32%",
                 top: 0,
+                right: 0,
               }}
               animate={{ height: isMainCard ? "140%" : "120%" }}
             >
               <CardMedia
-                className={styles["card--media"]}
-                component={bgImg}
                 style={{
-                  width: "100%",
-                  height: "100%",
+                  height: '320px',
+                  width: '320px',
                 }}
+                component={bgImg}
+
               />
             </motion.div>
             <div className={styles["container--detail"]}>
