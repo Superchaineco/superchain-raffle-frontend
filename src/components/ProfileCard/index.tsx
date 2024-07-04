@@ -54,7 +54,7 @@ function ProfileCard() {
         </div>
       </div>
       {!data && (
-        <Stack alignItems={"center"} justifyContent={"center"}>
+        <Stack alignItems={"center"} justifyContent={"center"} width={'100%'} height={'100%'}>
           <p className={styles["connect-wallet-text"]}>
             Connect your wallet to view your Profile.
           </p>
