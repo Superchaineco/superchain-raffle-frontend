@@ -66,7 +66,7 @@ function WellcomeBackModal() {
             inheritViewBox
             style={{ width: "120px", height: "120px" }}
           />
-          <Stack direction={"row"} spacing={0.5}>
+          <Stack direction={"row"} spacing={0.5} paddingTop={1}>
             <Typography className={styles["text--while"]}>
               While you were away,
             </Typography>
@@ -76,11 +76,11 @@ function WellcomeBackModal() {
           </Stack>
           <Stack
             direction={"row"}
-            spacing={4}
+            spacing={1.5}
             justifyContent={"center"}
             alignItems={"center"}
             width={"100%"}
-            paddingX={6}
+            paddingX={4}
             paddingY={2}
           >
             <WellcomeBackInfoCard text="ETH" value={data.eth} icon={ETHIcon} />

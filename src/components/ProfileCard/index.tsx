@@ -58,12 +58,6 @@ function ProfileCard() {
           <p className={styles["connect-wallet-text"]}>
             Connect your wallet to view your Profile.
           </p>
-          <Button
-            className={styles["button--connect-wallet"]}
-            onClick={() => handleConnectWallet()}
-          >
-            Connect Wallet
-          </Button>
         </Stack>
       )}
       {data && (
