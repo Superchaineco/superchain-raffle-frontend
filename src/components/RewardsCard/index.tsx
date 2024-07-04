@@ -24,7 +24,7 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RewardsCard() {
-  const [getWallet, setGetWallet] = useState(false);
+  const [getWallet, setGetWallet] = useState(true);
   const [loading, setIsLoading] = useState(false);
   const { data, status: _status } = useQuery<MyRewardsData[]>(
     "myRewardsData",
@@ -49,17 +49,7 @@ function RewardsCard() {
 
   return (
     <Card className={styles["container--all"]}>
-      <Stack direction={"row"} spacing={2}>
-        <h2 className={styles["title"]}>My Rewards</h2>
-        {!data && (
-          <Button
-            className={styles["button--connect-wallet"]}
-            onClick={() => handleConnectWallet()}
-          >
-            Connect Wallet
-          </Button>
-        )}
-      </Stack>
+      <h2 className={styles["title"]}>My Rewards</h2>
       {data && (
         <section className={styles["container--rewards"]}>
           {data.map((rewardCardData) => (

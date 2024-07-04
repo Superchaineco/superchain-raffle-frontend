@@ -12,7 +12,7 @@ import { getProfileData } from "@/functions/fetchFunctions";
 import { useState } from "react";
 
 function ProfileCard() {
-  const [getWallet, setGetWallet] = useState(false);
+  const [getWallet, setGetWallet] = useState(true);
   const [loading, setIsLoading] = useState(false);
   const { data, status: _status } = useQuery("profileData", getProfileData, {
     enabled: getWallet,

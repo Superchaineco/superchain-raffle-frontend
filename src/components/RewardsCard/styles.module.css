@@ -1,8 +1,8 @@
 .container--all {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding: 24px;
+  gap: var(--space-1);
+  padding: var(--space-3);
   min-width: 520px;
 }
 
