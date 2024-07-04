@@ -1,7 +1,3 @@
-.container--all {
-  padding: var(--space-10) var(--space-6);
-}
-
 .back--text {
   transform: translateY(-3px);
   color: var(--color-soft-gray);
