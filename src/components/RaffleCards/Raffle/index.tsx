@@ -204,7 +204,13 @@ function Raffle({
               </AnimatePresence>
               <motion.div
                 key={`container-info-${id}`}
-                initial={{ display: "grid", gap: "12px" }}
+                initial={{
+                  display: "grid",
+                  gap: "12px",
+                  gridTemplateRows: "1fr 1fr",
+                  gridTemplateColumns: "1fr 1fr",
+                  width: "60%",
+                }}
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",

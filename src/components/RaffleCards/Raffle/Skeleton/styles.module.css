@@ -9,6 +9,8 @@
   gap: var(--space-3);
   border: none;
   overflow: hidden;
+  height: 238px;
+  opacity: 1;
 }
 .container--principal {
   position: relative;
@@ -48,6 +50,14 @@
   flex-direction: column;
   gap: var(--space-2);
   width: 90%;
+}
+
+.container--info {
+  width: 64%;
+  display: grid;
+  gap: 12px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .container--detail {
