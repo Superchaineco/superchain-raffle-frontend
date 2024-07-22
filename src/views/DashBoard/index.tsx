@@ -6,7 +6,7 @@ import ProfileCard from "@/components/ProfileCard";
 import RaffleCards from "@/components/RaffleCards";
 import RewardsCard from "@/components/RewardsCard";
 import WellcomeBackModal from "@/components/common/WellcomeBackModal";
-import ClaimRewardsModal from "@/components/ClaimModal";
+import ClaimRewardsModal from "@/components/ClaimRewardsModal";
 
 function DashBoard() {
   return (
@@ -18,7 +18,7 @@ function DashBoard() {
         <RewardsCard />
       </div>
       <WellcomeBackModal />
-      <ClaimRewardsModal title={'Confirm to Claim Your Rewards'} text={'Proceed in your wallet.'} state="success"/>
+      <ClaimRewardsModal />
     </main>
   );
 }

@@ -8,7 +8,7 @@ type ProfileInfoProps = {
   icon: ElementType;
 };
 
-function WellcomeBackInfoCard({ text, value, icon }: ProfileInfoProps) {
+function RewardsInfoCard({ text, value, icon }: ProfileInfoProps) {
   return (
     <Card className={styles["container--all"]}>
       <Typography className={styles["text--text"]}>
@@ -31,4 +31,4 @@ function WellcomeBackInfoCard({ text, value, icon }: ProfileInfoProps) {
   );
 }
 
-export default WellcomeBackInfoCard;
+export default RewardsInfoCard;

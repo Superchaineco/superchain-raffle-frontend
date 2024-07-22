@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import WellcomeBackImg from "@/public/images/welcome-back-img.svg";
 import React, { useState } from "react";
-import WellcomeBackInfoCard from "./InfoCard";
+import RewardsInfoCard from "../RewardsInfoCard";
 import ETHIcon from "@/public/images/eth-icon.svg";
 import SRIcon from "@/public/images/sr-icon.svg";
 import MyTicketsIcon from "@/public/images/tickets-icon-opaque.svg";
@@ -82,8 +82,8 @@ function WellcomeBackModal() {
             paddingX={4}
             paddingY={2}
           >
-            <WellcomeBackInfoCard text="ETH" value={data.eth} icon={ETHIcon} />
-            <WellcomeBackInfoCard text="SR Points" value={data.srPoints} icon={SRIcon} />
+            <RewardsInfoCard text="ETH" value={data.eth} icon={ETHIcon} />
+            <RewardsInfoCard text="SR Points" value={data.srPoints} icon={SRIcon} />
           </Stack>
           <Tooltip
             title={<WellcomeBackModalTicketsToolTip opTickets={data.opTickets} baseTickets={data.baseTickets}/>}
