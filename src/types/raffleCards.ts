@@ -4,7 +4,7 @@ export type RaffleCardsData = {
   raffleCardChip: RaffleCardChip;
   chipColor: string;
   entriesColor: string;
-  end: string;
+  end: number;
   prizePotEth: number;
   prizePotSr: number;
   totalEntries: number;

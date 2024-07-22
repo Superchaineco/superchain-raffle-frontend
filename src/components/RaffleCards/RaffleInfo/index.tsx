@@ -10,6 +10,7 @@ type RaffleInfoProps = {
   primary: string;
   secondary1: string | number;
   secondary2?: string | number;
+  secondaryColor?: string;
   iconS1?: ElementType;
   iconS2?: ElementType;
   color?: string;
@@ -26,6 +27,7 @@ function RaffleInfo({
   primary,
   secondary1,
   secondary2,
+  secondaryColor,
   iconS1,
   iconS2,
   color,
@@ -56,7 +58,7 @@ function RaffleInfo({
       </div>
       <div className={styles["container--secondary"]}>
         <div className={styles["container--secondary--group"]}>
-          <p>{secondary1}</p>
+          <p style={{color: secondaryColor}}>{secondary1}</p>
           {iconS1 && (
             <SvgIcon
               component={iconS1}

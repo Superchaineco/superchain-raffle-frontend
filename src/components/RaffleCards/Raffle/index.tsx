@@ -23,6 +23,7 @@ import { type ElementType, useMemo } from "react";
 import RaffleInfo from "../RaffleInfo";
 import MyTickets from "../MyTickets";
 import styles from "./styles.module.css";
+import { formatTime } from "@/functions/auxiliarFunctions";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -37,7 +38,7 @@ type RaffleProps = {
   raffleCardChipsText: { value: number; network: string };
   chipColor: string;
   entriesColor?: string;
-  endsIn: string;
+  endsIn: number;
   prizePotEth: number;
   prizePotSr: number;
   totalEntries: number;
@@ -227,13 +228,8 @@ function Raffle({
                 <RaffleInfo
                   icon={endsInIcon}
                   primary="Ends in"
-                  secondary1={endsIn}
-                  noMainCard={noMainCard}
-                />
-                <RaffleInfo
-                  icon={totalEntriesIcon}
-                  primary="Total entries"
-                  secondary1={totalEntries + "/" + currentEntries}
+                  secondary1={formatTime(endsIn)}
+                  secondaryColor={endsIn < 60 ? "#FF0420" : "#0B0B0B"}
                   noMainCard={noMainCard}
                 />
                 <RaffleInfo
@@ -243,6 +239,13 @@ function Raffle({
                   secondary2={prizePotSr}
                   iconS1={ethIcon}
                   iconS2={srIcon}
+                  noMainCard={noMainCard}
+                />
+                <RaffleInfo
+                  icon={totalEntriesIcon}
+                  primary="Total entries"
+                  secondary1={totalEntries + "/" + currentEntries}
+                  secondaryColor={totalEntries / currentEntries == 1 ? "#FF0420" : "#0B0B0B"}
                   noMainCard={noMainCard}
                 />
                 {!isMainCard && (
