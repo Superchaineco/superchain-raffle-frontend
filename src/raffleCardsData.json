@@ -7,7 +7,6 @@
       "network": "Optimisim"
     },
     "chipColor": "#FF0420",
-    "entriesColor": "#00C2FF",
     "end": 40,
     "prizePotEth": 0.05,
     "prizePotSr": 100,
@@ -26,13 +25,12 @@
       "network": "Base"
     },
     "chipColor": "#354FFC",
-    "entriesColor": "#000000",
     "end": 14000,
     "prizePotEth": 0.05,
     "prizePotSr": 100,
     "totalEntries": 250,
     "currentEntries": 34,
-    "entries": 1,
+    "entries": 0,
     "networkIcon": "BaseIcon",
     "bgImg": "BaseBg",
     "round": 1
@@ -45,13 +43,12 @@
       "network": "Mode"
     },
     "chipColor": "#DEFE2A",
-    "entriesColor": "#000000",
     "end": 8000,
     "prizePotEth": 0.05,
     "prizePotSr": 100,
     "totalEntries": 250,
     "currentEntries": 34,
-    "entries": 1,
+    "entries": 0,
     "networkIcon": "ModeIcon",
     "bgImg": "ModeBg",
     "round": 1

@@ -30,7 +30,6 @@ function WellcomeBackModal() {
   if (data) return (
     <Modal
       open={open}
-      className={styles["modal"]}
       BackdropProps={{
         style: {
           backgroundColor: "rgba(0, 0, 0, 0.8)",

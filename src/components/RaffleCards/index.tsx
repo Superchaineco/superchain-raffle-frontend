@@ -67,7 +67,6 @@ function RaffleCards() {
                 network: item.raffleCardChip?.network,
               }}
               chipColor={item.chipColor}
-              entriesColor={item.entriesColor}
               endsIn={item.end}
               prizePotEth={item.prizePotEth}
               prizePotSr={item.prizePotSr}

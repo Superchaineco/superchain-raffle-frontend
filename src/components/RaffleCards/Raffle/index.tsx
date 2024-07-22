@@ -37,7 +37,6 @@ type RaffleProps = {
   raffleCardText: string;
   raffleCardChipsText: { value: number; network: string };
   chipColor: string;
-  entriesColor?: string;
   endsIn: number;
   prizePotEth: number;
   prizePotSr: number;
@@ -57,7 +56,6 @@ function Raffle({
   raffleCardText,
   raffleCardChipsText,
   chipColor,
-  entriesColor,
   endsIn,
   prizePotEth,
   prizePotSr,
@@ -245,19 +243,17 @@ function Raffle({
                   icon={totalEntriesIcon}
                   primary="Total entries"
                   secondary1={totalEntries + "/" + currentEntries}
-                  secondaryColor={totalEntries / currentEntries == 1 ? "#FF0420" : "#0B0B0B"}
+                  secondaryColor={
+                    totalEntries / currentEntries == 1 ? "#FF0420" : "#0B0B0B"
+                  }
                   noMainCard={noMainCard}
                 />
                 {!isMainCard && (
                   <RaffleInfo
-                    icon={
-                      entriesColor === "#00C2FF"
-                        ? myEntriesBlueIcon
-                        : myEntriesOpaqueIcon
-                    }
+                    icon={entries > 0 ? myEntriesBlueIcon : myEntriesOpaqueIcon}
                     primary="My entries"
                     secondary1={entries}
-                    color={entriesColor}
+                    color={entries > 0 ? "#00C2FF" : "#000000"}
                     noMainCard={noMainCard}
                   />
                 )}
