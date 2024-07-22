@@ -9,25 +9,11 @@ import Link from "next/link";
 import ProfileCardSkeleton from "./Skeleton";
 import { useQuery } from "react-query";
 import { getProfileData } from "@/functions/fetchFunctions";
-import { useState } from "react";
 
 function ProfileCard() {
-  const [getWallet, setGetWallet] = useState(true);
-  const [loading, setIsLoading] = useState(false);
-  const { data, status: _status } = useQuery("profileData", getProfileData, {
-    enabled: getWallet,
-  });
+  const { data, status: status } = useQuery("profileData", getProfileData);
 
-  function handleConnectWallet() {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    setGetWallet(true);
-    return () => clearTimeout(timer);
-  }
-
-  if (loading) {
+  if (status == 'loading') {
     return <ProfileCardSkeleton />;
   }
   return (

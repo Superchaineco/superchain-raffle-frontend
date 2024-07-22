@@ -1,15 +1,16 @@
 import { Box, Modal, SvgIcon, Typography } from "@mui/material";
 import CloseIcon from "@/public/images/close-icon.svg";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./styles.module.css";
 import ClaimRewardsModalContent from "./Content";
 import ClaimRewardsModalContentInfo from "./Content/Rewards";
+import { ClaimRewardsModalContext } from "@/views/DashBoard";
 
-export default function ClaimRewardsModal() {
-  const [open, setOpen] = useState<boolean>(true);
+export default function ClaimRewardsModal({open}: {open: boolean}) {
+  const claimRewardsContext = useContext(ClaimRewardsModalContext);
   const handleClose = () => {
-    setOpen(false);
-  };
+    claimRewardsContext.setClaimRewards(false);
+  }
   return (
     <Modal
       open={open}

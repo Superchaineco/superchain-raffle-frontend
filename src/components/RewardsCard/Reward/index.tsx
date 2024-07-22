@@ -4,7 +4,8 @@ import { Button, SvgIcon } from "@mui/material";
 import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
-import type { ElementType } from "react";
+import { useContext, type ElementType } from "react";
+import { ClaimRewardsModalContext } from "@/views/DashBoard";
 
 type RewardProps = {
   icon: ElementType;
@@ -15,6 +16,11 @@ type RewardProps = {
 };
 
 function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
+  const claimRewardsContext = useContext(ClaimRewardsModalContext);
+
+  const onClaimRewards = () => {
+    claimRewardsContext.setClaimRewards(true);
+  }
   return (
     <div
       className={`${styles["container--all"]} ${
@@ -61,7 +67,7 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
             />
           </div>
         </div>
-        <Button className={styles["claim--button"]}>Claim</Button>
+        <Button onClick={onClaimRewards} className={styles["claim--button"]}>Claim</Button>
       </div>
     </div>
   );

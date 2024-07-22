@@ -1,4 +1,4 @@
-import { Button, Card, Stack } from "@mui/material";
+import { Card } from "@mui/material";
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Base from "@/public/images/base-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
@@ -7,7 +7,7 @@ import { getMyRewardsData } from "@/functions/fetchFunctions";
 import { useQuery } from "react-query";
 import type { MyRewardsData } from "@/types/rewardsCard";
 import RewardsCardSkeleton from "./Skeleton";
-import { type ElementType, useState } from "react";
+import { type ElementType } from "react";
 import styles from "./styles.module.css";
 
 function AssetsParser(asset: string): ElementType {
@@ -24,26 +24,12 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RewardsCard() {
-  const [getWallet, setGetWallet] = useState(true);
-  const [loading, setIsLoading] = useState(false);
-  const { data, status: _status } = useQuery<MyRewardsData[]>(
+  const { data, status } = useQuery<MyRewardsData[]>(
     "myRewardsData",
-    getMyRewardsData,
-    {
-      enabled: getWallet,
-    }
+    getMyRewardsData
   );
 
-  function handleConnectWallet() {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    setGetWallet(true);
-    return () => clearTimeout(timer);
-  }
-
-  if (loading) {
+  if (status == "loading") {
     return <RewardsCardSkeleton />;
   }
 

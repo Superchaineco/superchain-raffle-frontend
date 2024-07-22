@@ -3,6 +3,7 @@ export async function getMyLeaderBoardInfo() {
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.json();
 }
 
@@ -11,6 +12,7 @@ export async function getLeaderBoardData() {
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.json();
 }
 
@@ -19,14 +21,17 @@ export async function getRaffleCardsData() {
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.json();
 }
 
 export async function getProfileData() {
+
   const res = await fetch("/api/getProfileData");
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.json();
 }
 
@@ -35,6 +40,7 @@ export async function getMyRewardsData() {
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.json();
 }
 
@@ -43,5 +49,6 @@ export async function getWelcomeBackData() {
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");
   }
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   return res.json();
 }
