@@ -8,26 +8,28 @@ type Props = {
   title: string;
   text: string;
   status: QueryStatus;
-  content: ReactNode
+  content: ReactNode;
 };
 
 export default function ClaimRewardsModalContent({
   title,
   text,
-  status: state,
+  status,
   content,
 }: Props) {
   return (
     <div className={styles["container--content"]}>
-      <Typography className={styles["title"]}>{title}</Typography>
-      {state == "loading" && (
+      <Typography className={styles["title"]}>
+        {status == "loading" ? title : "Success!"}
+      </Typography>
+      {status == "loading" && (
         <img
           className={styles["icon-hexagon"]}
           src="/images/hexagon-loading.gif"
           alt="loading hexagon"
         />
       )}
-      {state == "success" && (
+      {status == "success" && (
         <SvgIcon
           component={HexagonSuccessIcon}
           inheritViewBox

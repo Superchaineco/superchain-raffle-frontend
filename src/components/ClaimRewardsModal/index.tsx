@@ -1,31 +1,31 @@
 import { Box, Modal, SvgIcon, Typography } from "@mui/material";
 import CloseIcon from "@/public/images/close-icon.svg";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import ClaimRewardsModalContent from "./Content";
 import ClaimRewardsModalContentInfo from "./Content/Rewards";
-import { ClaimRewardsModalContext } from "@/views/DashBoard";
+import { ActionModalContext } from "@/views/DashBoard";
 import { ClaimRewardsModalData } from "@/types/rewardsCard";
 import { useQuery } from "react-query";
 import { getClaimRewardsModalData } from "@/functions/fetchFunctions";
 
-export default function ClaimRewardsModal({ open }: { open: boolean }) {
-  const claimRewardsContext = useContext(ClaimRewardsModalContext);
+export default function ClaimRewardsModal() {
+  const claimRewardsContext = useContext(ActionModalContext);
   const { data, status } = useQuery<ClaimRewardsModalData>(
     "claimRewardsModalData",
     getClaimRewardsModalData,
     {
-      enabled: open
+      enabled: claimRewardsContext.actionModalState.open,
     }
   );
 
   const handleClose = () => {
-    claimRewardsContext.setClaimRewards(false);
+    claimRewardsContext.setActionModalState({ open: false, title: "" });
   };
 
   return (
     <Modal
-      open={open}
+      open={claimRewardsContext.actionModalState.open}
       BackdropProps={{
         style: {
           backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -49,15 +49,15 @@ export default function ClaimRewardsModal({ open }: { open: boolean }) {
         <ClaimRewardsModalContent
           status={status}
           text="Proceed in your wallet."
-          title="Confirm to Claim Your Rewards"
+          title={claimRewardsContext.actionModalState.title}
           content={
             <>
-              {status == 'loading' && (
+              {status == "loading" && (
                 <Typography className={styles["text"]}>
                   {"Proceed in your wallet."}
                 </Typography>
               )}
-              {status == 'success' && data && (
+              {status == "success" && data && (
                 <ClaimRewardsModalContentInfo
                   data={{
                     eth: 0.1,

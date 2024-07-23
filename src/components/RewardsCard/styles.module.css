@@ -1,8 +1,8 @@
 .container--all {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-3);
+  gap: var(--space-2);
+  padding: 20px var(--space-3);
   min-width: 520px;
 }
 
@@ -16,4 +16,5 @@
 
 .title {
   padding: 0px;
+  margin: 0px;
 }

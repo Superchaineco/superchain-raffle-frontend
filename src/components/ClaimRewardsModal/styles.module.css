@@ -8,6 +8,7 @@
   border: none;
   border-radius: 6px;
   padding: 40px 56px;
+  min-width: 36vw;
 }
 
 .text {

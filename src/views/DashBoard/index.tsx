@@ -8,11 +8,22 @@ import RewardsCard from "@/components/RewardsCard";
 import WellcomeBackModal from "@/components/common/WellcomeBackModal";
 import ClaimRewardsModal from "@/components/ClaimRewardsModal";
 
-export const ClaimRewardsModalContext = createContext({claimRewards: false, setClaimRewards: (value: boolean) => {}});
+export const ActionModalContext = createContext({
+  actionModalState: { open: false, title: "" },
+  setActionModalState: (value: { open: boolean; title: string }) => {},
+});
 function DashBoard() {
-  const [claimRewards, setClaimRewards] = useState(false);
+  const [actionModalState, setActionModalState] = useState<{
+    open: boolean;
+    title: string;
+  }>({ open: false, title: "" });
   return (
-    <ClaimRewardsModalContext.Provider value={{claimRewards, setClaimRewards}}>
+    <ActionModalContext.Provider
+      value={{
+        actionModalState: actionModalState,
+        setActionModalState: setActionModalState,
+      }}
+    >
       <main className={styles["container--all"]}>
         <TopInfo eth="0.01" ethBonus="0.004" />
         <RaffleCards />
@@ -21,9 +32,9 @@ function DashBoard() {
           <RewardsCard />
         </div>
         <WellcomeBackModal />
-        <ClaimRewardsModal open={claimRewards} />
+        <ClaimRewardsModal />
       </main>
-    </ClaimRewardsModalContext.Provider>
+    </ActionModalContext.Provider>
   );
 }
 export default DashBoard;

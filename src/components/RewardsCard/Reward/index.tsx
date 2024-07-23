@@ -5,7 +5,7 @@ import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
 import { useContext, type ElementType } from "react";
-import { ClaimRewardsModalContext } from "@/views/DashBoard";
+import { ActionModalContext } from "@/views/DashBoard";
 
 type RewardProps = {
   icon: ElementType;
@@ -16,10 +16,10 @@ type RewardProps = {
 };
 
 function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
-  const claimRewardsContext = useContext(ClaimRewardsModalContext);
+  const claimRewardsContext = useContext(ActionModalContext);
 
   const onClaimRewards = () => {
-    claimRewardsContext.setClaimRewards(true);
+    claimRewardsContext.setActionModalState({open: true, title: "Confirm to Claim Your Rewards"});
   }
   return (
     <div

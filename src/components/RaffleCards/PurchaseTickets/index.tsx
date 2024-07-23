@@ -11,7 +11,8 @@ import {
 import ArrowUpIcon from "@/public/images/arrow-up-icon.svg";
 import ArrowDownIcon from "@/public/images/arrow-down-icon.svg";
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ActionModalContext } from "@/views/DashBoard";
 
 type Props = {
   wallet: any;
@@ -19,7 +20,14 @@ type Props = {
 };
 
 function PurchaseTickets({ wallet, maxCuantity }: Props) {
+
   const [cuantity, setCuantity] = useState(0);
+  const claimRewardsContext = useContext(ActionModalContext);
+
+  const onClaimRewards = () => {
+    claimRewardsContext.setActionModalState({ open: true, title: "Confirm to Claim Your Rewards"});
+  }
+
   const increaseCuantity = () => {
     if (cuantity != maxCuantity) {
       setCuantity(cuantity + 1);
@@ -30,6 +38,7 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
       setCuantity(cuantity - 1);
     }
   };
+
   return (
     <div
       className={`${styles["container--all"]} ${styles[`${wallet ? "container--all--blue" : "container--all--dark"}`]}`}
