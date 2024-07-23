@@ -271,16 +271,23 @@ function Raffle({
               }}
               animate={{ height: isMainCard ? "140%" : "120%" }}
             >
-              <CardMedia
-                style={{
-                  height: "320px",
-                  width: "320px",
+              <motion.div
+                animate={{
+                  height: isMainCard ? "260px" : "320px",
+                  width: isMainCard ? "300px" : "320px",
                 }}
-                component={bgImg}
-              />
+              >
+                <CardMedia
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  component={bgImg}
+                />
+              </motion.div>
             </motion.div>
             <div className={styles["container--detail"]}>
-              <PurchaseTickets wallet={true} />
+              <PurchaseTickets wallet={true} maxCuantity={9} />
               <MyTickets tickets={2} />
             </div>
           </div>

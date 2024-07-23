@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Card, SvgIcon } from "@mui/material";
+import { Avatar, Box, Button, Card, Stack, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import ProfileInfo from "./ProfileInfo";
 import RankIcon from "@/public/images/rank-icon.svg";

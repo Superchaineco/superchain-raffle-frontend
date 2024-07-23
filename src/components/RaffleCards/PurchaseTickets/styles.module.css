@@ -36,3 +36,12 @@
   letter-spacing: 0.25px;
   text-align: left;
 }
+
+.decorator--max {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  letter-spacing: 0.25px;
+  text-align: right;
+  text-decoration: underline;
+}
