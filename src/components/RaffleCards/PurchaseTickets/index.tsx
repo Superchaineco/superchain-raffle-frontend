@@ -45,14 +45,14 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
         </>
       )}
       {wallet && (
-        <Box display="flex" alignItems="center">
+        <Stack direction={"row"} alignItems="center" justifyContent={"center"}>
           <TextField
+            className={styles["input--cuantity"]}
             value={cuantity}
-            variant="outlined"
             size="small"
-            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            inputProps={{ inputMode: "numeric" }}
             placeholder="0"
-            style={{ marginRight: 8 }}
+            style={{borderRadius: "0px 6px 6px 0px"}}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -66,7 +66,7 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
                       className={styles["decorator--max"]}
                       onClick={() => setCuantity(maxCuantity)}
                       style={{
-                        cursor: cuantity == maxCuantity ? "auto" : "pointer",
+                        cursor: cuantity == maxCuantity ? "default" : "pointer",
                       }}
                     >
                       Max
@@ -98,10 +98,8 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
               ),
             }}
           />
-          <Button variant="contained" color="primary">
-            Buy
-          </Button>
-        </Box>
+          <div className={styles["button--buy"]}>Buy</div>
+        </Stack>
       )}
     </div>
   );
