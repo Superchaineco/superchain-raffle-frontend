@@ -16,3 +16,11 @@
   background-color: rgba(0, 195, 255, 0.15);
   border: 2px solid var(--color-border-entries-blue);
 }
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  letter-spacing: 0.25px;
+  text-align: left;
+}

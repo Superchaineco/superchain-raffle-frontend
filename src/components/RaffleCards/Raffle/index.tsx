@@ -19,7 +19,7 @@ import PurchaseTickets from "../PurchaseTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { type ElementType, useEffect, useMemo, useState } from "react";
+import { type ElementType, useMemo } from "react";
 import RaffleInfo from "../RaffleInfo";
 import MyTickets from "../MyTickets";
 import styles from "./styles.module.css";
@@ -222,7 +222,7 @@ function Raffle({
                   stiffness: 100,
                   damping: 20,
                   duration: 0.2,
-                  opacity: { duration: .5 },
+                  opacity: { duration: 0.5 },
                 }}
                 exit={{ opacity: 0 }}
               >
@@ -282,8 +282,8 @@ function Raffle({
               />
             </motion.div>
             <div className={styles["container--detail"]}>
-              <PurchaseTickets tickets={8} />
-              <MyTickets tickets={0} />
+              <PurchaseTickets wallet={true} />
+              <MyTickets tickets={2} />
             </div>
           </div>
         </Card>
