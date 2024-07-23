@@ -2,7 +2,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-2);
   padding: var(--space-2);
   border-radius: 6px;
 }
@@ -22,5 +22,20 @@
   font-weight: 400;
   line-height: 19.6px;
   letter-spacing: 0.25px;
+  text-align: left;
+}
+
+.container--ticket {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container--ticket p {
+  z-index: 20;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.3333333432674408px;
   text-align: left;
 }

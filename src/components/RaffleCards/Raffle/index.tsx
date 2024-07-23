@@ -288,7 +288,7 @@ function Raffle({
             </motion.div>
             <div className={styles["container--detail"]}>
               <PurchaseTickets wallet={true} maxCuantity={9} />
-              <MyTickets tickets={2} />
+              <MyTickets tickets={10} />
             </div>
           </div>
         </Card>
