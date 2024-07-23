@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
 import styles from "./styles.module.css";
 import TopInfo from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
@@ -7,21 +7,31 @@ import RaffleCards from "@/components/RaffleCards";
 import RewardsCard from "@/components/RewardsCard";
 import WellcomeBackModal from "@/components/common/WellcomeBackModal";
 import ClaimRewardsModal from "@/components/ClaimRewardsModal";
+import { ActionModalContextStateType } from "@/types/commons";
 
 export const ActionModalContext = createContext({
-  actionModalState: { open: false, title: "" },
-  setActionModalState: (value: { open: boolean; title: string }) => {},
+  actionModalContextState: {
+    open: false,
+    title: "",
+    loadComponent: (<></>) as ReactNode,
+    contentComponent: (<></>) as ReactNode,
+  },
+  setActionModalContextState: (value: ActionModalContextStateType) => {},
 });
 function DashBoard() {
-  const [actionModalState, setActionModalState] = useState<{
-    open: boolean;
-    title: string;
-  }>({ open: false, title: "" });
+  const [actionModalState, setActionModalState] =
+    useState<ActionModalContextStateType>({
+      open: false,
+      title: "",
+      loadComponent: <></>,
+      contentComponent: <></>,
+    });
+
   return (
     <ActionModalContext.Provider
       value={{
-        actionModalState: actionModalState,
-        setActionModalState: setActionModalState,
+        actionModalContextState: actionModalState,
+        setActionModalContextState: setActionModalState,
       }}
     >
       <main className={styles["container--all"]}>

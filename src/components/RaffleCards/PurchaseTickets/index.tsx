@@ -20,13 +20,18 @@ type Props = {
 };
 
 function PurchaseTickets({ wallet, maxCuantity }: Props) {
-
   const [cuantity, setCuantity] = useState(0);
-  const claimRewardsContext = useContext(ActionModalContext);
+  const actionModalContext = useContext(ActionModalContext);
 
-  const onClaimRewards = () => {
-    claimRewardsContext.setActionModalState({ open: true, title: "Confirm to Claim Your Rewards"});
-  }
+  const onBuyTickets = () => {
+    console.log("buy");
+    actionModalContext.setActionModalContextState({
+      open: true,
+      title: "Securing your Tickets",
+      loadComponent: <div></div>,
+      contentComponent: <div></div>,
+    });
+  };
 
   const increaseCuantity = () => {
     if (cuantity != maxCuantity) {
@@ -61,7 +66,7 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
             size="small"
             inputProps={{ inputMode: "numeric" }}
             placeholder="0"
-            style={{borderRadius: "0px 6px 6px 0px"}}
+            style={{ borderRadius: "0px 6px 6px 0px" }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -107,7 +112,9 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
               ),
             }}
           />
-          <div className={styles["button--buy"]}>Buy</div>
+          <div onClick={onBuyTickets} className={styles["button--buy"]}>
+            Buy
+          </div>
         </Stack>
       )}
     </div>

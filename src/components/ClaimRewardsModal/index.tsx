@@ -15,17 +15,17 @@ export default function ClaimRewardsModal() {
     "claimRewardsModalData",
     getClaimRewardsModalData,
     {
-      enabled: claimRewardsContext.actionModalState.open,
+      enabled: claimRewardsContext.actionModalContextState.open,
     }
   );
 
   const handleClose = () => {
-    claimRewardsContext.setActionModalState({ open: false, title: "" });
+    claimRewardsContext.setActionModalContextState({ open: false, title: "", loadComponent: <></>, contentComponent: <></> });
   };
 
   return (
     <Modal
-      open={claimRewardsContext.actionModalState.open}
+      open={claimRewardsContext.actionModalContextState.open}
       BackdropProps={{
         style: {
           backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -49,21 +49,14 @@ export default function ClaimRewardsModal() {
         <ClaimRewardsModalContent
           status={status}
           text="Proceed in your wallet."
-          title={claimRewardsContext.actionModalState.title}
+          title={claimRewardsContext.actionModalContextState.title}
           content={
             <>
               {status == "loading" && (
-                <Typography className={styles["text"]}>
-                  {"Proceed in your wallet."}
-                </Typography>
+                claimRewardsContext.actionModalContextState.loadComponent
               )}
               {status == "success" && data && (
-                <ClaimRewardsModalContentInfo
-                  data={{
-                    eth: 0.1,
-                    srPoints: 100,
-                  }}
-                />
+                claimRewardsContext.actionModalContextState.contentComponent
               )}
             </>
           }

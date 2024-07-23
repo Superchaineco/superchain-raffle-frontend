@@ -1,11 +1,12 @@
 "use client";
 
-import { Button, SvgIcon } from "@mui/material";
+import { Button, SvgIcon, Typography } from "@mui/material";
 import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
 import { useContext, type ElementType } from "react";
 import { ActionModalContext } from "@/views/DashBoard";
+import ClaimRewardsModalContentInfo from "@/components/ClaimRewardsModal/Content/Rewards";
 
 type RewardProps = {
   icon: ElementType;
@@ -19,8 +20,24 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
   const claimRewardsContext = useContext(ActionModalContext);
 
   const onClaimRewards = () => {
-    claimRewardsContext.setActionModalState({open: true, title: "Confirm to Claim Your Rewards"});
-  }
+    claimRewardsContext.setActionModalContextState({
+      open: true,
+      title: "Confirm to Claim Your Rewards",
+      loadComponent: (
+        <Typography className={styles["text"]}>
+          {"Proceed in your wallet."}
+        </Typography>
+      ),
+      contentComponent: (
+        <ClaimRewardsModalContentInfo
+          data={{
+            eth: 0.1,
+            srPoints: 100,
+          }}
+        />
+      ),
+    });
+  };
   return (
     <div
       className={`${styles["container--all"]} ${
@@ -67,7 +84,9 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
             />
           </div>
         </div>
-        <Button onClick={onClaimRewards} className={styles["claim--button"]}>Claim</Button>
+        <Button onClick={onClaimRewards} className={styles["claim--button"]}>
+          Claim
+        </Button>
       </div>
     </div>
   );
