@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, Stack, SvgIcon } from "@mui/material";
+import { Avatar, Box, Button, Card, SvgIcon } from "@mui/material";
 import styles from "./styles.module.css";
 import ProfileInfo from "./ProfileInfo";
 import RankIcon from "@/public/images/rank-icon.svg";
@@ -9,11 +9,19 @@ import Link from "next/link";
 import ProfileCardSkeleton from "./Skeleton";
 import { useQuery } from "react-query";
 import { getProfileData } from "@/functions/fetchFunctions";
+import { useAccount } from "wagmi";
 
 function ProfileCard() {
-  const { data, status: status } = useQuery("profileData", getProfileData);
+  const { isConnected } = useAccount();
 
-  if (status == 'loading') {
+  const {
+    data,
+    status,
+  } = useQuery("profileData", getProfileData, {
+    enabled: isConnected,
+  });
+
+  if (status === "loading") {
     return <ProfileCardSkeleton />;
   }
   return (
@@ -41,9 +49,11 @@ function ProfileCard() {
       </div>
       {!data && (
         <Stack alignItems={"center"} justifyContent={"center"} width={'100%'} height={'100%'}>
+        <Box padding={2}>
           <p className={styles["connect-wallet-text"]}>
             Connect your wallet to view your Profile.
           </p>
+        </Box>
         </Stack>
       )}
       {data && (

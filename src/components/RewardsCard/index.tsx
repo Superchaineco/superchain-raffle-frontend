@@ -1,4 +1,4 @@
-import { Card } from "@mui/material";
+import { Card, Stack } from "@mui/material";
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Base from "@/public/images/base-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
@@ -8,7 +8,9 @@ import { useQuery } from "react-query";
 import type { MyRewardsData } from "@/types/rewardsCard";
 import RewardsCardSkeleton from "./Skeleton";
 import { type ElementType } from "react";
+import { type ElementType } from "react";
 import styles from "./styles.module.css";
+import { useAccount } from "wagmi";
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {
@@ -24,6 +26,17 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RewardsCard() {
+  const { isConnected } = useAccount();
+
+  const {
+    data,
+    status: _status,
+    isLoading,
+  } = useQuery<MyRewardsData[]>("myRewardsData", getMyRewardsData, {
+    enabled: isConnected,
+  });
+
+  if (isLoading) {
   const { data, status } = useQuery<MyRewardsData[]>(
     "myRewardsData",
     getMyRewardsData
