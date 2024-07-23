@@ -13,7 +13,7 @@ type Props = {
   };
 };
 
-export default function ClaimRewardsModalContentInfo({ data }: Props) {
+export default function ActionModalContentRewardInfo({ data }: Props) {
   return (
     <>
       <Stack width={'100%'} spacing={1}>

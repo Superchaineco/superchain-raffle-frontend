@@ -6,7 +6,7 @@ import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
 import { useContext, type ElementType } from "react";
 import { ActionModalContext } from "@/views/DashBoard";
-import ClaimRewardsModalContentInfo from "@/components/ClaimRewardsModal/Content/Rewards";
+import ActionModalContentRewardInfo from "@/components/ActionModal/Content/Rewards";
 
 type RewardProps = {
   icon: ElementType;
@@ -17,10 +17,10 @@ type RewardProps = {
 };
 
 function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
-  const claimRewardsContext = useContext(ActionModalContext);
+  const actionModalContext = useContext(ActionModalContext);
 
   const onClaimRewards = () => {
-    claimRewardsContext.setActionModalContextState({
+    actionModalContext.setActionModalContextState({
       open: true,
       title: "Confirm to Claim Your Rewards",
       loadComponent: (
@@ -29,7 +29,7 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
         </Typography>
       ),
       contentComponent: (
-        <ClaimRewardsModalContentInfo
+        <ActionModalContentRewardInfo
           data={{
             eth: 0.1,
             srPoints: 100,

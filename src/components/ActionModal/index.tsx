@@ -1,15 +1,14 @@
-import { Box, Modal, SvgIcon, Typography } from "@mui/material";
+import { Box, Modal, SvgIcon } from "@mui/material";
 import CloseIcon from "@/public/images/close-icon.svg";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./styles.module.css";
-import ClaimRewardsModalContent from "./Content";
-import ClaimRewardsModalContentInfo from "./Content/Rewards";
+import ActionModalContent from "./Content";
 import { ActionModalContext } from "@/views/DashBoard";
 import { ClaimRewardsModalData } from "@/types/rewardsCard";
 import { useQuery } from "react-query";
 import { getClaimRewardsModalData } from "@/functions/fetchFunctions";
 
-export default function ClaimRewardsModal() {
+export default function ActionModal() {
   const claimRewardsContext = useContext(ActionModalContext);
   const { data, status } = useQuery<ClaimRewardsModalData>(
     "claimRewardsModalData",
@@ -20,7 +19,12 @@ export default function ClaimRewardsModal() {
   );
 
   const handleClose = () => {
-    claimRewardsContext.setActionModalContextState({ open: false, title: "", loadComponent: <></>, contentComponent: <></> });
+    claimRewardsContext.setActionModalContextState({
+      open: false,
+      title: "",
+      loadComponent: <></>,
+      contentComponent: <></>,
+    });
   };
 
   return (
@@ -46,18 +50,17 @@ export default function ClaimRewardsModal() {
             cursor: "pointer",
           }}
         />
-        <ClaimRewardsModalContent
+        <ActionModalContent
           status={status}
           text="Proceed in your wallet."
           title={claimRewardsContext.actionModalContextState.title}
           content={
             <>
-              {status == "loading" && (
-                claimRewardsContext.actionModalContextState.loadComponent
-              )}
-              {status == "success" && data && (
-                claimRewardsContext.actionModalContextState.contentComponent
-              )}
+              {status == "loading" &&
+                claimRewardsContext.actionModalContextState.loadComponent}
+              {status == "success" &&
+                data &&
+                claimRewardsContext.actionModalContextState.contentComponent}
             </>
           }
         />

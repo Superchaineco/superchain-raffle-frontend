@@ -6,7 +6,7 @@ import ProfileCard from "@/components/ProfileCard";
 import RaffleCards from "@/components/RaffleCards";
 import RewardsCard from "@/components/RewardsCard";
 import WellcomeBackModal from "@/components/common/WellcomeBackModal";
-import ClaimRewardsModal from "@/components/ClaimRewardsModal";
+import ActionModal from "@/components/ActionModal";
 import { ActionModalContextStateType } from "@/types/commons";
 
 export const ActionModalContext = createContext({
@@ -42,7 +42,7 @@ function DashBoard() {
           <RewardsCard />
         </div>
         <WellcomeBackModal />
-        <ClaimRewardsModal />
+        <ActionModal />
       </main>
     </ActionModalContext.Provider>
   );

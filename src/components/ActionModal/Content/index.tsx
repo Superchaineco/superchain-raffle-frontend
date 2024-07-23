@@ -11,7 +11,7 @@ type Props = {
   content: ReactNode;
 };
 
-export default function ClaimRewardsModalContent({
+export default function ActionModalContent({
   title,
   text,
   status,

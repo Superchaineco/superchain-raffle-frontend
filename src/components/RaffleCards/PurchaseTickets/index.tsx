@@ -13,6 +13,7 @@ import ArrowDownIcon from "@/public/images/arrow-down-icon.svg";
 import styles from "./styles.module.css";
 import { useContext, useState } from "react";
 import { ActionModalContext } from "@/views/DashBoard";
+import ActionModalContentTicketsInfo from "@/components/ActionModal/Content/Tickets";
 
 type Props = {
   wallet: any;
@@ -24,12 +25,23 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
   const actionModalContext = useContext(ActionModalContext);
 
   const onBuyTickets = () => {
-    console.log("buy");
     actionModalContext.setActionModalContextState({
       open: true,
-      title: "Securing your Tickets",
-      loadComponent: <div></div>,
-      contentComponent: <div></div>,
+      title: "Confirm to Claim Your Rewards",
+      loadComponent: (
+        <Typography className={styles["text"]}>
+          {"Proceed in your wallet."}
+        </Typography>
+      ),
+      contentComponent: (
+        <ActionModalContentTicketsInfo
+          data={{
+            eth: 0.1,
+            srPoints: 10,
+            tickets: [2, 4, 8, 9, 10],
+          }}
+        />
+      ),
     });
   };
 
