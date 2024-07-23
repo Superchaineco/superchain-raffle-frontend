@@ -6,3 +6,8 @@ export type MyRewardsData = {
   color: string;
   opaque: boolean;
 };
+
+export type ClaimRewardsModalData = {
+  eth: number;
+  sr: number
+}

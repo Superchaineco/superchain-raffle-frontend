@@ -19,7 +19,7 @@ import PurchaseTickets from "../PurchaseTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { type ElementType, useMemo } from "react";
+import { type ElementType, useEffect, useMemo, useState } from "react";
 import RaffleInfo from "../RaffleInfo";
 import MyTickets from "../MyTickets";
 import styles from "./styles.module.css";
@@ -70,7 +70,6 @@ function Raffle({
 }: RaffleProps) {
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
-
   return (
     <AnimatePresence>
       <motion.div
@@ -91,7 +90,7 @@ function Raffle({
         exit={{ height: "0px", opacity: 0 }}
         style={{
           overflow: "hidden",
-          cursor: "pointer",
+          cursor: isMainCard ? "auto" : "pointer",
         }}
       >
         <Card className={styles["container--all"]}>
@@ -214,12 +213,16 @@ function Raffle({
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
                   width: isMainCard ? "80%" : "60%",
+                  opacity: isMainCard
+                    ? [1, 0, 0, 0, 0, 0, 1]
+                    : [1, 0, 0, 0, 0, 0, 0, 1],
                 }}
                 transition={{
                   type: "spring",
                   stiffness: 100,
                   damping: 20,
                   duration: 0.2,
+                  opacity: { duration: .5 },
                 }}
                 exit={{ opacity: 0 }}
               >

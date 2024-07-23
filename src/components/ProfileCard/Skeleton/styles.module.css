@@ -5,7 +5,7 @@
   gap: var(--space-1);
   padding: var(--space-3);
   min-width: 520px;
-  max-height: 240px;
+  height: 238px;
 }
 .contianer--header {
   width: 100%;

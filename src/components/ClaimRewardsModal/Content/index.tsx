@@ -2,18 +2,19 @@ import { SvgIcon, Typography } from "@mui/material";
 import HexagonSuccessIcon from "@/public/images/hexagon-success.svg";
 import styles from "./styles.module.css";
 import React, { ReactNode } from "react";
+import { QueryStatus } from "react-query";
 
 type Props = {
   title: string;
   text: string;
-  state: "loading" | "success";
+  status: QueryStatus;
   content: ReactNode
 };
 
 export default function ClaimRewardsModalContent({
   title,
   text,
-  state,
+  status: state,
   content,
 }: Props) {
   return (

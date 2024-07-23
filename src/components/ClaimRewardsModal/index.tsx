@@ -5,12 +5,24 @@ import styles from "./styles.module.css";
 import ClaimRewardsModalContent from "./Content";
 import ClaimRewardsModalContentInfo from "./Content/Rewards";
 import { ClaimRewardsModalContext } from "@/views/DashBoard";
+import { ClaimRewardsModalData } from "@/types/rewardsCard";
+import { useQuery } from "react-query";
+import { getClaimRewardsModalData } from "@/functions/fetchFunctions";
 
-export default function ClaimRewardsModal({open}: {open: boolean}) {
+export default function ClaimRewardsModal({ open }: { open: boolean }) {
   const claimRewardsContext = useContext(ClaimRewardsModalContext);
+  const { data, status } = useQuery<ClaimRewardsModalData>(
+    "claimRewardsModalData",
+    getClaimRewardsModalData,
+    {
+      enabled: open
+    }
+  );
+
   const handleClose = () => {
     claimRewardsContext.setClaimRewards(false);
-  }
+  };
+
   return (
     <Modal
       open={open}
@@ -35,17 +47,17 @@ export default function ClaimRewardsModal({open}: {open: boolean}) {
           }}
         />
         <ClaimRewardsModalContent
-          state="success"
+          status={status}
           text="Proceed in your wallet."
           title="Confirm to Claim Your Rewards"
           content={
             <>
-              {false && (
+              {status == 'loading' && (
                 <Typography className={styles["text"]}>
                   {"Proceed in your wallet."}
                 </Typography>
               )}
-              {true && (
+              {status == 'success' && data && (
                 <ClaimRewardsModalContentInfo
                   data={{
                     eth: 0.1,
