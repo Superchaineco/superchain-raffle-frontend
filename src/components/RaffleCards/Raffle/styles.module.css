@@ -52,6 +52,7 @@
 
 .container--detail {
   z-index: 20;
+  margin: 0px;
   padding: var(--space-3) 0px;
   position: relative;
   display: flex;
@@ -82,6 +83,12 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-1);
+}
+
+.container--raffle-history h4 {
+  color: var(--color-soft-gray);
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .chip {

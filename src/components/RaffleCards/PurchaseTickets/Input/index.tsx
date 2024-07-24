@@ -19,7 +19,7 @@ type Props = {
   maxCuantity: number;
 };
 
-export default function PurchaseTicketsInput({maxCuantity}: Props) {
+export default function PurchaseTicketsInput({ maxCuantity }: Props) {
   const [cuantity, setCuantity] = useState(0);
   const actionModalContext = useContext(ActionModalContext);
 
@@ -54,7 +54,7 @@ export default function PurchaseTicketsInput({maxCuantity}: Props) {
   };
   return (
     <Stack
-      style={{ opacity: cuantity ? 1 : 0.5 }}
+      style={{ opacity: cuantity > 0 && cuantity != maxCuantity ? 1 : 0.5 }}
       direction={"row"}
       alignItems="center"
       justifyContent={"center"}
@@ -112,7 +112,10 @@ export default function PurchaseTicketsInput({maxCuantity}: Props) {
         }}
       />
       <div
-        style={{ cursor: cuantity > 0 ? "pointer" : "default" }}
+        style={{
+          cursor:
+            cuantity > 0 && cuantity != maxCuantity ? "pointer" : "default",
+        }}
         onClick={onBuyTickets}
         className={styles["button--buy"]}
       >

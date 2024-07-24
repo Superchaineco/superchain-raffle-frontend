@@ -1,0 +1,37 @@
+[
+  {
+    "address": "0x34de84Eaa0Dff677E88D707cfbEfDb323B1F13d1",
+    "position": 1,
+    "tickets": 10,
+    "eth": 0.22,
+    "sr": 471
+  },
+  {
+    "address": "0x85F372A625bAac3BD6cEe264ef68a275D1cD475f",
+    "position": 2,
+    "tickets": 25,
+    "eth": 0.33,
+    "sr": 201
+  },
+  {
+    "address": "0x817cD58dDb30456FC1EE9cA3307f47417FEECaf8",
+    "position": 3,
+    "tickets": 45,
+    "eth": 0.86,
+    "sr": 267
+  },
+  {
+    "address": "0xDc0e5C42b712cE3F50F7EAbEA9ac2941bAFCE2F5",
+    "position": 4,
+    "tickets": 40,
+    "eth": 0.06,
+    "sr": 498
+  },
+  {
+    "address": "0xD0be338562D78fAf8B3Sv567a9943bfaab0a3051e",
+    "position": 5,
+    "tickets": 43,
+    "eth": 0.05,
+    "sr": 230
+  }
+]

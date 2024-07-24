@@ -1,0 +1,29 @@
+.container--modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  outline: 0;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 16px;
+  min-width: 36vw;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  text-align: left;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  color: var(--color-text-gray-soft);
+}

@@ -1,0 +1,35 @@
+.container--all {
+  background-color: var(--color-profile-card-bg);
+}
+.container--all--another-profile {
+  width: Fill (1, 344px) px;
+  height: Fixed (72px) px;
+  padding: 16px 12px;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.container--rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+}
+
+.rank--first {
+  background-color: var(--color-rank-first-bg);
+  border: 1px solid var(--color-rank-first-border);
+}
+.rank--second {
+  background-color: var(--color-rank-second-bg);
+  border: 1px solid var(--color-rank-second-border);
+}
+.rank--third {
+  background-color: var(--color-rank-third-bg);
+  border: 1px solid var(--color-rank-third-border);
+}
+.rank--off-podium {
+  background-color: white;
+}

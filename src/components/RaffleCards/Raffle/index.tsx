@@ -7,8 +7,10 @@ import {
   Chip,
   Typography,
   SvgIcon,
+  Alert,
+  Stack,
 } from "@mui/material";
-import ethIcon from "@/public/images/eth-icon.svg";
+import ethIcon from "@/public/images/eth-chip-icon.svg";
 import srIcon from "@/public/images/sr-icon.svg";
 import myEntriesBlueIcon from "@/public/images/tickets-icon-blue.svg";
 import myEntriesOpaqueIcon from "@/public/images/tickets-icon-opaque.svg";
@@ -19,11 +21,12 @@ import PurchaseTickets from "../PurchaseTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { type ElementType, useMemo } from "react";
+import { type ElementType, useContext, useMemo } from "react";
 import RaffleInfo from "../RaffleInfo";
 import MyTickets from "../MyTickets";
 import styles from "./styles.module.css";
 import { formatTime } from "@/functions/auxiliarFunctions";
+import { RaffleHistoryModalContext } from "@/views/DashBoard";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -70,6 +73,12 @@ function Raffle({
 }: RaffleProps) {
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
+
+  const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
+
+  const onShowRaffleHistory = () => {
+    raffleHistoryModalContext.setRaffleHistoryModalState({ open: true });
+  };
   return (
     <AnimatePresence>
       <motion.div
@@ -194,7 +203,7 @@ function Raffle({
                             cursor: "default",
                           }}
                         />
-                        <h4>Raffle history</h4>
+                        <h4 onClick={onShowRaffleHistory}>Raffle history</h4>
                       </div>
                     </div>
                   </motion.div>
@@ -286,10 +295,18 @@ function Raffle({
                 />
               </motion.div>
             </motion.div>
-            <div className={styles["container--detail"]}>
-              <PurchaseTickets wallet={true} maxCuantity={9} />
-              <MyTickets tickets={10} />
-            </div>
+            <Stack marginTop={4} spacing={2}>
+              {isMainCard && (
+                <Alert severity="warning">
+                  This raffle has reached the maximum amount of raffle entries.
+                  You can try your luck again when this round is over.
+                </Alert>
+              )}
+              <div className={styles["container--detail"]}>
+                <PurchaseTickets wallet={true} maxCuantity={9} />
+                <MyTickets tickets={10} />
+              </div>
+            </Stack>
           </div>
         </Card>
       </motion.div>

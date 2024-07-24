@@ -8,6 +8,7 @@ import RewardsCard from "@/components/RewardsCard";
 import WellcomeBackModal from "@/components/common/WellcomeBackModal";
 import ActionModal from "@/components/ActionModal";
 import { ActionModalContextStateType } from "@/types/commons";
+import RaffleHistoryModal from "@/components/RaffleHistoryModal";
 
 export const ActionModalContext = createContext({
   actionModalContextState: {
@@ -18,6 +19,13 @@ export const ActionModalContext = createContext({
   },
   setActionModalContextState: (value: ActionModalContextStateType) => {},
 });
+
+export const RaffleHistoryModalContext = createContext({
+  raffleHistoryModalState: {
+    open: false,
+  },
+  setRaffleHistoryModalState: (value: { open: boolean }) => {},
+});
 function DashBoard() {
   const [actionModalState, setActionModalState] =
     useState<ActionModalContextStateType>({
@@ -26,6 +34,11 @@ function DashBoard() {
       loadComponent: <></>,
       contentComponent: <></>,
     });
+  const [raffleHistoryModalState, setRaffleHistoryModalState] = useState<{
+    open: boolean;
+  }>({
+    open: false,
+  });
 
   return (
     <ActionModalContext.Provider
@@ -36,7 +49,15 @@ function DashBoard() {
     >
       <main className={styles["container--all"]}>
         <TopInfo eth="0.01" ethBonus="0.004" />
-        <RaffleCards />
+        <RaffleHistoryModalContext.Provider
+          value={{
+            raffleHistoryModalState,
+            setRaffleHistoryModalState,
+          }}
+        >
+          <RaffleHistoryModal />
+          <RaffleCards />
+        </RaffleHistoryModalContext.Provider>
         <div className={styles["container--profile-rewards"]}>
           <ProfileCard />
           <RewardsCard />
