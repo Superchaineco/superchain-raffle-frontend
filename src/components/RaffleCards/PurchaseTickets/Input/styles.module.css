@@ -1,0 +1,30 @@
+.decorator--max {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  letter-spacing: 0.25px;
+  text-align: right;
+  text-decoration: underline;
+}
+
+.input--cuantity {
+  flex: 1;
+  border: none;
+  height: 100%;
+  border-radius: 6px 0px 0px 6px;
+}
+.button--buy {
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--color-text-black);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.36px;
+  letter-spacing: 0.25px;
+  text-align: left;
+  color: white;
+  border-radius: 0px, 12px, 12px, 0px;
+}

@@ -51,7 +51,7 @@ export default function ActionModal() {
           }}
         />
         <ActionModalContent
-          status={"error"}
+          status={status}
           title={claimRewardsContext.actionModalContextState.title}
           content={
             <>
