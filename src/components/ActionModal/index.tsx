@@ -51,8 +51,7 @@ export default function ActionModal() {
           }}
         />
         <ActionModalContent
-          status={status}
-          text="Proceed in your wallet."
+          status={"error"}
           title={claimRewardsContext.actionModalContextState.title}
           content={
             <>

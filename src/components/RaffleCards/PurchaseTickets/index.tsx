@@ -28,17 +28,13 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
     actionModalContext.setActionModalContextState({
       open: true,
       title: "Confirm to Claim Your Rewards",
-      loadComponent: (
-        <Typography className={styles["text"]}>
-          {"Proceed in your wallet."}
-        </Typography>
-      ),
+      loadComponent: (<></>),
       contentComponent: (
         <ActionModalContentTicketsInfo
           data={{
             eth: 0.1,
             srPoints: 10,
-            tickets: [2, 4, 8, 9, 10],
+            tickets: [1, 2, 3, 4, 15, 16, 17, 18, 249, 250],
           }}
         />
       ),

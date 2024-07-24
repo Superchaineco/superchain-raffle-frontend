@@ -23,11 +23,7 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
     actionModalContext.setActionModalContextState({
       open: true,
       title: "Confirm to Claim Your Rewards",
-      loadComponent: (
-        <Typography className={styles["text"]}>
-          {"Proceed in your wallet."}
-        </Typography>
-      ),
+      loadComponent: (<></>),
       contentComponent: (
         <ActionModalContentRewardInfo
           data={{

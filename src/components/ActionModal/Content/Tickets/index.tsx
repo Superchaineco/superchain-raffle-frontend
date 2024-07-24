@@ -32,7 +32,13 @@ export default function ActionModalContentTicketsInfo({ data }: Props) {
             <Typography className={styles["tickets--info--text"]}>
               Tickets
             </Typography>
-            <div className={styles["container--tickets--info--primary"]}>
+            <Stack
+              width={"100%"}
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              spacing={1}
+            >
               {data.tickets.map((ticket, index) => (
                 <Typography
                   key={index}
@@ -41,7 +47,7 @@ export default function ActionModalContentTicketsInfo({ data }: Props) {
                   {ticket}
                 </Typography>
               ))}
-            </div>
+            </Stack>
           </Card>
           <RewardsInfoCard
             text="SR Points"
