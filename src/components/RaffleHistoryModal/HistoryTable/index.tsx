@@ -9,12 +9,13 @@ import raffleHistoryRecords from "@/raffleHistoryRecods.json";
 export default function RaffleHistoryTable() {
   const records = raffleHistoryRecords;
   return (
-    <Stack className={styles["container--all"]} spacing={1}>
+    <Stack className={styles["container--all"]} spacing={2} paddingY={1}>
       {records.map((record, index) => (
         <Stack
           direction={"row"}
           alignItems={"center"}
           justifyContent={"space-between"}
+          paddingX={2}
           width={"100%"}
         >
           <Stack
@@ -24,7 +25,7 @@ export default function RaffleHistoryTable() {
             spacing={2}
           >
             <div
-              className={`${styles["container--rank"]} ${styles[`rank--${record.position > 3 ? record.position : "off-podium"}`]}`}
+              className={`${styles["container--rank"]} ${styles[`rank--${record.position <= 3 ? record.position : "off-podium"}`]}`}
             >
               <p>{record.position}</p>
             </div>
@@ -35,7 +36,8 @@ export default function RaffleHistoryTable() {
             alignItems={"center"}
             justifyContent={"end"}
             width={"30%"}
-            spacing={3}
+            paddingRight={4}
+            spacing={4}
           >
             <Stack
               direction={"row"}
@@ -59,7 +61,7 @@ export default function RaffleHistoryTable() {
               alignItems={"center"}
               justifyContent={"space-center"}
               width={"30%"}
-              spacing={1}
+              spacing={.2}
             >
               <p>{record.eth}</p>
               <SvgIcon

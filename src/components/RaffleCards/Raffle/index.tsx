@@ -216,12 +216,12 @@ function Raffle({
                   gap: "12px",
                   gridTemplateRows: "1fr 1fr",
                   gridTemplateColumns: "1fr 1fr",
-                  width: "60%",
+                  width: "56%",
                 }}
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
-                  width: isMainCard ? "80%" : "60%",
+                  width: isMainCard ? "80%" : "56%",
                   opacity: isMainCard
                     ? [1, 0, 0, 0, 0, 0, 1]
                     : [1, 0, 0, 0, 0, 0, 0, 1],
@@ -282,8 +282,8 @@ function Raffle({
             >
               <motion.div
                 animate={{
-                  height: isMainCard ? "260px" : "320px",
-                  width: isMainCard ? "300px" : "320px",
+                  height: isMainCard ? "280px" : "320px",
+                  width: isMainCard ? "280px" : "320px",
                 }}
               >
                 <CardMedia

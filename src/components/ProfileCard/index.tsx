@@ -4,7 +4,10 @@ import ProfileInfo from "./ProfileInfo";
 import RankIcon from "@/public/images/rank-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import SrIcon from "@/public/images/sr-icon.svg";
+import ProfileIcon from "@/public/images/profile-icon.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
+import CopyIcon from "@/public/images/copy-icon.svg";
+import RedirectIcon from "@/public/images/redirect-icon-opaque.svg";
 import Link from "next/link";
 import ProfileCardSkeleton from "./Skeleton";
 import { useQuery } from "react-query";
@@ -14,10 +17,7 @@ import { useAccount } from "wagmi";
 function ProfileCard() {
   const { isConnected } = useAccount();
 
-  const {
-    data,
-    status,
-  } = useQuery("profileData", getProfileData, {
+  const { data, status } = useQuery("profileData", getProfileData, {
     enabled: isConnected,
   });
 
@@ -48,18 +48,49 @@ function ProfileCard() {
         </div>
       </div>
       {!data && (
-        <Stack alignItems={"center"} justifyContent={"center"} width={'100%'} height={'100%'}>
-        <Box padding={2}>
-          <p className={styles["connect-wallet-text"]}>
-            Connect your wallet to view your Profile.
-          </p>
-        </Box>
+        <Stack
+          alignItems={"center"}
+          justifyContent={"center"}
+          width={"100%"}
+          height={"100%"}
+        >
+          <Box padding={2}>
+            <p className={styles["connect-wallet-text"]}>
+              Connect your wallet to view your Profile.
+            </p>
+          </Box>
         </Stack>
       )}
       {data && (
         <div className={styles["container--profile"]}>
-          <Avatar sx={{ bgcolor: "black" }}>N</Avatar>
+          <SvgIcon
+            component={ProfileIcon}
+            inheritViewBox
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "100%",
+            }}
+          />
           <p>{data.userHash}</p>
+          <SvgIcon
+            component={CopyIcon}
+            inheritViewBox
+            style={{
+              width: "16px",
+              height: "16px",
+              cursor: "pointer",
+            }}
+          />
+          <SvgIcon
+            component={RedirectIcon}
+            inheritViewBox
+            style={{
+              width: "16px",
+              height: "16px",
+              cursor: "pointer",
+            }}
+          />
         </div>
       )}
       {data && (

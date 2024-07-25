@@ -26,6 +26,7 @@
 .button--rank {
   padding: 8px 16px;
   background-color: var(--color-button-rank);
+  color: white;
 }
 .button--rank:hover {
   background-color: var(--color-button-rank);
@@ -42,7 +43,7 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
 .container--profile--info-cards {

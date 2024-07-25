@@ -26,14 +26,17 @@
 .rank--first {
   background-color: var(--color-rank-first-bg);
   border: 1px solid var(--color-rank-first-border);
+  color: white;
 }
 .rank--second {
   background-color: var(--color-rank-second-bg);
   border: 1px solid var(--color-rank-second-border);
+  color: white;
 }
 .rank--third {
   background-color: var(--color-rank-third-bg);
   border: 1px solid var(--color-rank-third-border);
+  color: white;
 }
 .rank--off-podium {
   background-color: white;

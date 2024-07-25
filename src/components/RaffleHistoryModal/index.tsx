@@ -58,8 +58,8 @@ export default function RaffleHistoryModal() {
             width: "12px",
             height: "12px",
             position: "absolute",
-            top: "12px",
-            right: "12px",
+            top: "20px",
+            right: "20px",
             cursor: "pointer",
           }}
         />
@@ -69,6 +69,7 @@ export default function RaffleHistoryModal() {
             disablePortal
             id="combo-box-demo"
             options={rounds}
+            className={styles["dropdown"]}
             renderInput={(params) => <TextField {...params} />}
           />
           <Stack direction={"row"} spacing={2}>

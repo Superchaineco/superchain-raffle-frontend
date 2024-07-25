@@ -13,22 +13,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 100%;
 }
 
-.rank--first {
+.rank--1 {
   background-color: var(--color-rank-first-bg);
   border: 1px solid var(--color-rank-first-border);
+  color: white;
 }
-.rank--second {
+.rank--2 {
   background-color: var(--color-rank-second-bg);
   border: 1px solid var(--color-rank-second-border);
+  color: white;
 }
-.rank--third {
+.rank--3 {
   background-color: var(--color-rank-third-bg);
   border: 1px solid var(--color-rank-third-border);
+  color: white;
 }
 .rank--off-podium {
   background-color: white;

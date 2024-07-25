@@ -7,7 +7,7 @@
   background-color: white;
   border: none;
   border-radius: 6px;
-  padding: 16px;
+  padding: var(--space-5);
   min-width: 36vw;
 }
 
@@ -26,4 +26,8 @@
   letter-spacing: 0.25px;
   text-align: center;
   color: var(--color-text-gray-soft);
+}
+
+.dropdown {
+  width: 30%;
 }

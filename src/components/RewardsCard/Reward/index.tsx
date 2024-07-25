@@ -49,8 +49,8 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
           component={icon}
           inheritViewBox
           style={{
-            width: "20px",
-            height: "20px",
+            width: "36px",
+            height: "36px",
           }}
         />
       </div>
