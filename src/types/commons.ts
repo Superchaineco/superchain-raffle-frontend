@@ -15,3 +15,8 @@ export type ActionModalContextStateType = {
   loadComponent: ReactNode;
   contentComponent: ReactNode;
 }
+
+export type TicketsContextType = {
+  max: number;
+  tickets: number[];
+}

@@ -1,20 +1,23 @@
 import { Stack } from "@mui/material";
 import styles from "./styles.module.css";
 import PurchaseTicketsInput from "./Input";
+import { useContext } from "react";
+import { TicketsContext } from "../Raffle";
 
 type Props = {
   wallet: any;
-  maxCuantity: number;
 };
 
-function PurchaseTickets({ wallet, maxCuantity }: Props) {
+function PurchaseTickets({ wallet }: Props) {
+
+  const ticketsContext = useContext(TicketsContext)
   return (
     <div
       className={`${styles["container--all"]} ${styles[`${wallet ? "container--all--blue" : "container--all--dark"}`]}`}
     >
       <h3 style={{ margin: "0px" }}>Purchase tickets</h3>
       <p className={styles["text"]}>
-        You can purchase up to <strong> {maxCuantity} </strong> more tickets
+        You can purchase up to <strong> {ticketsContext.state.max} </strong> more tickets
         this round.
       </p>
       {!wallet && (
@@ -24,7 +27,7 @@ function PurchaseTickets({ wallet, maxCuantity }: Props) {
       )}
       {wallet && (
         <Stack>
-          <PurchaseTicketsInput maxCuantity={maxCuantity} />
+          <PurchaseTicketsInput/>
         </Stack>
       )}
     </div>

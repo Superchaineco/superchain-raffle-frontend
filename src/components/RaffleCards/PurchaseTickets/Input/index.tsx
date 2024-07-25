@@ -1,8 +1,5 @@
 import React, { useContext, useState } from "react";
 import {
-  Box,
-  Button,
-  IconButton,
   InputAdornment,
   Stack,
   SvgIcon,
@@ -14,17 +11,26 @@ import ArrowDownIcon from "@/public/images/arrow-down-icon.svg";
 import styles from "./styles.module.css";
 import ActionModalContentTicketsInfo from "@/components/ActionModal/Content/Tickets";
 import { ActionModalContext } from "@/views/DashBoard";
+import { TicketsContext } from "../../Raffle";
 
-type Props = {
-  maxCuantity: number;
-};
-
-export default function PurchaseTicketsInput({ maxCuantity }: Props) {
+export default function PurchaseTicketsInput() {
   const [cuantity, setCuantity] = useState(0);
   const actionModalContext = useContext(ActionModalContext);
 
+  const ticketsContext = useContext(TicketsContext);
+
   const onBuyTickets = () => {
-    if (cuantity > 0) {
+    const purchasedTickets = [
+      ...Array.from(
+        { length: cuantity },
+        () => Math.floor(Math.random() * (100 - 1 + 1)) + 1
+      ),
+    ];
+    if (cuantity > 0 && cuantity <= ticketsContext.state.max) {
+      ticketsContext.setState({
+        max: ticketsContext.state.max - cuantity,
+        tickets: [...ticketsContext.state.tickets, ...purchasedTickets],
+      });
       actionModalContext.setActionModalContextState({
         open: true,
         title: "Confirm to Claim Your Rewards",
@@ -34,7 +40,7 @@ export default function PurchaseTicketsInput({ maxCuantity }: Props) {
             data={{
               eth: 0.1,
               srPoints: 10,
-              tickets: [1, 2, 3, 4, 15, 16, 17, 18, 249, 250],
+              tickets: purchasedTickets,
             }}
           />
         ),
@@ -43,7 +49,7 @@ export default function PurchaseTicketsInput({ maxCuantity }: Props) {
   };
 
   const increaseCuantity = () => {
-    if (cuantity != maxCuantity) {
+    if (cuantity != ticketsContext.state.max) {
       setCuantity(cuantity + 1);
     }
   };
@@ -54,7 +60,9 @@ export default function PurchaseTicketsInput({ maxCuantity }: Props) {
   };
   return (
     <Stack
-      style={{ opacity: cuantity > 0 && cuantity != maxCuantity ? 1 : 0.5 }}
+      style={{
+        opacity: cuantity > 0 && cuantity <= ticketsContext.state.max ? 1 : 0.5,
+      }}
       direction={"row"}
       alignItems="center"
       justifyContent={"center"}
@@ -77,9 +85,12 @@ export default function PurchaseTicketsInput({ maxCuantity }: Props) {
               >
                 <Typography
                   className={styles["decorator--max"]}
-                  onClick={() => setCuantity(maxCuantity)}
+                  onClick={() => setCuantity(ticketsContext.state.max)}
                   style={{
-                    cursor: cuantity == maxCuantity ? "default" : "pointer",
+                    cursor:
+                      cuantity == ticketsContext.state.max
+                        ? "default"
+                        : "pointer",
                   }}
                 >
                   Max
@@ -92,7 +103,10 @@ export default function PurchaseTicketsInput({ maxCuantity }: Props) {
                     style={{
                       width: "8px",
                       height: "8px",
-                      cursor: cuantity != maxCuantity ? "pointer" : "auto",
+                      cursor:
+                        cuantity != ticketsContext.state.max
+                          ? "pointer"
+                          : "auto",
                     }}
                   />
                   <SvgIcon
@@ -114,7 +128,9 @@ export default function PurchaseTicketsInput({ maxCuantity }: Props) {
       <div
         style={{
           cursor:
-            cuantity > 0 && cuantity != maxCuantity ? "pointer" : "default",
+            cuantity > 0 && cuantity <= ticketsContext.state.max
+              ? "pointer"
+              : "default",
         }}
         onClick={onBuyTickets}
         className={styles["button--buy"]}

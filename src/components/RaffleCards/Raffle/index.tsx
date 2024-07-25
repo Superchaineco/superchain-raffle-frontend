@@ -21,12 +21,19 @@ import PurchaseTickets from "../PurchaseTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
-import { type ElementType, useContext, useMemo } from "react";
+import {
+  createContext,
+  type ElementType,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import RaffleInfo from "../RaffleInfo";
 import MyTickets from "../MyTickets";
 import styles from "./styles.module.css";
 import { formatTime } from "@/functions/auxiliarFunctions";
 import { RaffleHistoryModalContext } from "@/views/DashBoard";
+import type { TicketsContextType } from "@/types/commons";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -53,6 +60,14 @@ type RaffleProps = {
   onClick: (id: string | null) => void;
 };
 
+export const TicketsContext = createContext({
+  state: {
+    max: 9,
+    tickets: [] as number[],
+  },
+  setState: (value: TicketsContextType) => {},
+});
+
 function Raffle({
   id,
   offset,
@@ -73,6 +88,10 @@ function Raffle({
 }: RaffleProps) {
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
+  const [ticketsState, setTicketsState] = useState<TicketsContextType>({
+    max: 9,
+    tickets: [],
+  });
 
   const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
 
@@ -303,8 +322,12 @@ function Raffle({
                 </Alert>
               )}
               <div className={styles["container--detail"]}>
-                <PurchaseTickets wallet={true} maxCuantity={9} />
-                <MyTickets tickets={10} />
+                <TicketsContext.Provider
+                  value={{ state: ticketsState, setState: setTicketsState }}
+                >
+                  <PurchaseTickets wallet={true} />
+                  <MyTickets />
+                </TicketsContext.Provider>
               </div>
             </Stack>
           </div>
