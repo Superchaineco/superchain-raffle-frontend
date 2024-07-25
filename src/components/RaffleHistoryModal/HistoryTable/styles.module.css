@@ -1,5 +1,6 @@
 .container--all {
   background-color: var(--color-profile-card-bg);
+  border-radius: var(--space-1);
 }
 .container--all--another-profile {
   width: Fill (1, 344px) px;
@@ -35,4 +36,13 @@
 }
 .rank--off-podium {
   background-color: white;
+}
+
+.text-rank {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.25px;
+  text-align: left;
+  color: var(--color-text-black);
 }

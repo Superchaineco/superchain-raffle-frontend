@@ -1,7 +1,7 @@
 import { Stack, SvgIcon } from "@mui/material";
 import EthIcon from "@/public/images/eth-icon.svg";
 import SrIcon from "@/public/images/sr-icon.svg";
-import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
+import TicketsIcon from "@/public/images/tickets-icon-blue.svg";
 import React from "react";
 import styles from "./styles.module.css";
 import raffleHistoryRecords from "@/raffleHistoryRecods.json";
@@ -27,9 +27,11 @@ export default function RaffleHistoryTable() {
             <div
               className={`${styles["container--rank"]} ${styles[`rank--${record.position <= 3 ? record.position : "off-podium"}`]}`}
             >
-              <p>{record.position}</p>
+              <p className={styles["text-rank"]}>{record.position}</p>
             </div>
-            <p>{record.address.substring(0, 10)}</p>
+            <p className={styles["text-rank"]}>
+              {record.address.substring(0, 10)}
+            </p>
           </Stack>
           <Stack
             direction={"row"}
@@ -46,7 +48,7 @@ export default function RaffleHistoryTable() {
               width={"30%"}
               spacing={1}
             >
-              <p>{record.tickets}</p>
+              <p className={styles["text-rank"]}>{record.tickets}</p>
               <SvgIcon
                 component={TicketsIcon}
                 inheritViewBox
@@ -61,9 +63,9 @@ export default function RaffleHistoryTable() {
               alignItems={"center"}
               justifyContent={"space-center"}
               width={"30%"}
-              spacing={.2}
+              spacing={0.2}
             >
-              <p>{record.eth}</p>
+              <p className={styles["text-rank"]}>{record.eth}</p>
               <SvgIcon
                 component={EthIcon}
                 inheritViewBox
@@ -80,7 +82,7 @@ export default function RaffleHistoryTable() {
               width={"30%"}
               spacing={1}
             >
-              <p>{record.sr}</p>
+              <p className={styles["text-rank"]}>{record.sr}</p>
               <SvgIcon
                 component={SrIcon}
                 inheritViewBox
