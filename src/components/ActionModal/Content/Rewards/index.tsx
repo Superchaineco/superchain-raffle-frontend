@@ -16,7 +16,7 @@ type Props = {
 export default function ActionModalContentRewardInfo({ data }: Props) {
   return (
     <>
-      <Stack width={'100%'} spacing={1}>
+      <Stack width={"100%"} spacing={1}>
         <Typography className={styles["text--while"]}>
           You have claimed:
         </Typography>

@@ -1,5 +1,4 @@
 import { Card, Stack, SvgIcon, Typography } from "@mui/material";
-import ETHIcon from "@/public/images/eth-icon.svg";
 import SRIcon from "@/public/images/sr-icon.svg";
 import RedirectIcon from "@/public/images/redirect-icon.svg";
 import React from "react";

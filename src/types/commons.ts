@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export type LeaderBoardAccountType = {
   address: string;
@@ -8,15 +8,14 @@ export type LeaderBoardAccountType = {
   sr: number;
 };
 
-
 export type ActionModalContextStateType = {
   open: boolean;
   title: string;
   loadComponent: ReactNode;
   contentComponent: ReactNode;
-}
+};
 
 export type TicketsContextType = {
   max: number;
   tickets: number[];
-}
+};

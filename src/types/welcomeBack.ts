@@ -3,4 +3,4 @@ export type WelcomeBackData = {
   srPoints: number;
   opTickets: number[];
   baseTickets: number[];
-}
+};

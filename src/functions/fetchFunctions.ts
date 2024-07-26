@@ -26,7 +26,6 @@ export async function getRaffleCardsData() {
 }
 
 export async function getProfileData() {
-
   const res = await fetch("/api/getProfileData");
   if (!res.ok) {
     throw new Error("Failed to get my LeaderBoard info profile");

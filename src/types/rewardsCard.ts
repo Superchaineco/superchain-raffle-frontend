@@ -9,5 +9,5 @@ export type MyRewardsData = {
 
 export type ClaimRewardsModalData = {
   eth: number;
-  sr: number
-}
+  sr: number;
+};

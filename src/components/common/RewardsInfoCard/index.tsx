@@ -11,13 +11,9 @@ type ProfileInfoProps = {
 function RewardsInfoCard({ text, value, icon }: ProfileInfoProps) {
   return (
     <Card className={styles["container--all"]}>
-      <Typography className={styles["text--text"]}>
-        {text}
-      </Typography>
+      <Typography className={styles["text--text"]}>{text}</Typography>
       <div className={styles["container--primary"]}>
-        <Typography className={styles["text--value"]}>
-          {value}
-        </Typography>
+        <Typography className={styles["text--value"]}>{value}</Typography>
         <SvgIcon
           component={icon}
           inheritViewBox

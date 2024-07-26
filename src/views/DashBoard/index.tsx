@@ -1,5 +1,6 @@
 "use client";
-import React, { createContext, ReactNode, useState } from "react";
+import type { ReactNode } from "react";
+import React, { createContext, useState } from "react";
 import styles from "./styles.module.css";
 import TopInfo from "@/components/TopInfo";
 import ProfileCard from "@/components/ProfileCard";
@@ -7,7 +8,7 @@ import RaffleCards from "@/components/RaffleCards";
 import RewardsCard from "@/components/RewardsCard";
 import WellcomeBackModal from "@/components/common/WellcomeBackModal";
 import ActionModal from "@/components/ActionModal";
-import { ActionModalContextStateType } from "@/types/commons";
+import type { ActionModalContextStateType } from "@/types/commons";
 import RaffleHistoryModal from "@/components/RaffleHistoryModal";
 
 export const ActionModalContext = createContext({
@@ -17,14 +18,14 @@ export const ActionModalContext = createContext({
     loadComponent: (<></>) as ReactNode,
     contentComponent: (<></>) as ReactNode,
   },
-  setActionModalContextState: (value: ActionModalContextStateType) => {},
+  setActionModalContextState: (_value: ActionModalContextStateType) => {},
 });
 
 export const RaffleHistoryModalContext = createContext({
   raffleHistoryModalState: {
     open: false,
   },
-  setRaffleHistoryModalState: (value: { open: boolean }) => {},
+  setRaffleHistoryModalState: (_value: { open: boolean }) => {},
 });
 function DashBoard() {
   const [actionModalState, setActionModalState] =

@@ -1,4 +1,4 @@
-import { Card, Stack } from "@mui/material";
+import { Card } from "@mui/material";
 import Optimisim from "@/public/images/optimisim-icon.svg";
 import Base from "@/public/images/base-icon.svg";
 import Mode from "@/public/images/mode-icon.svg";
@@ -25,7 +25,7 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RewardsCard() {
-  const { isConnected } = useAccount();
+  const { isConnected: _isConnected } = useAccount();
 
   const { data, status } = useQuery<MyRewardsData[]>(
     "myRewardsData",

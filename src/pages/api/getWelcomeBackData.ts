@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { WelcomeBackData } from "@/types/welcomeBack";
+import type { WelcomeBackData } from "@/types/welcomeBack";
 import welcomeBackData from "@/welcomeBackData.json";
 
 export default function handler(

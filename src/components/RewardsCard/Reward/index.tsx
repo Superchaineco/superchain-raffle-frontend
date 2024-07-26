@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, SvgIcon, Typography } from "@mui/material";
+import { Button, SvgIcon } from "@mui/material";
 import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
@@ -23,7 +23,7 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
     actionModalContext.setActionModalContextState({
       open: true,
       title: "Confirm to Claim Your Rewards",
-      loadComponent: (<></>),
+      loadComponent: <></>,
       contentComponent: (
         <ActionModalContentRewardInfo
           data={{

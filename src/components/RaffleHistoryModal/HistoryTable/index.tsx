@@ -12,6 +12,7 @@ export default function RaffleHistoryTable() {
     <Stack className={styles["container--all"]} spacing={2} paddingY={1}>
       {records.map((record, index) => (
         <Stack
+          key={index}
           direction={"row"}
           alignItems={"center"}
           justifyContent={"space-between"}

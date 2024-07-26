@@ -1,8 +1,9 @@
 import { SvgIcon, Typography } from "@mui/material";
 import HexagonSuccessIcon from "@/public/images/hexagon-success.svg";
 import styles from "./styles.module.css";
-import React, { ReactNode } from "react";
-import { QueryStatus } from "react-query";
+import type { ReactNode } from "react";
+import React from "react";
+import type { QueryStatus } from "react-query";
 
 type Props = {
   title: string;

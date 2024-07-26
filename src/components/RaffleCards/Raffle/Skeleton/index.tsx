@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardContent, Skeleton } from "@mui/material";
+import { Card, Skeleton } from "@mui/material";
 import RaffleInfoSkeleton from "../../RaffleInfo/Skeleton";
 import styles from "./styles.module.css";
 

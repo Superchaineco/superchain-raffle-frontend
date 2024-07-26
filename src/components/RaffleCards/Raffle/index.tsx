@@ -65,7 +65,7 @@ export const TicketsContext = createContext({
     max: 9,
     tickets: [] as number[],
   },
-  setState: (value: TicketsContextType) => {},
+  setState: (_value: TicketsContextType) => {},
 });
 
 function Raffle({
@@ -315,14 +315,12 @@ function Raffle({
               </motion.div>
             </motion.div>
             <Stack marginTop={4} spacing={2}>
-              {isMainCard &&
-                ticketsState.max == 0 && (
-                  <Alert severity="warning">
-                    This raffle has reached the maximum amount of raffle
-                    entries. You can try your luck again when this round is
-                    over.
-                  </Alert>
-                )}
+              {isMainCard && ticketsState.max == 0 && (
+                <Alert severity="warning">
+                  This raffle has reached the maximum amount of raffle entries.
+                  You can try your luck again when this round is over.
+                </Alert>
+              )}
               <div className={styles["container--detail"]}>
                 <TicketsContext.Provider
                   value={{ state: ticketsState, setState: setTicketsState }}

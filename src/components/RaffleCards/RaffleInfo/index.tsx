@@ -58,7 +58,7 @@ function RaffleInfo({
       </div>
       <div className={styles["container--secondary"]}>
         <div className={styles["container--secondary--group"]}>
-          <p style={{color: secondaryColor}}>{secondary1}</p>
+          <p style={{ color: secondaryColor }}>{secondary1}</p>
           {iconS1 && (
             <SvgIcon
               component={iconS1}

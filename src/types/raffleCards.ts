@@ -3,7 +3,6 @@ export type RaffleCardsData = {
   raffleCardText: string;
   raffleCardChip: RaffleCardChip;
   chipColor: string;
-  entriesColor: string;
   end: number;
   prizePotEth: number;
   prizePotSr: number;
