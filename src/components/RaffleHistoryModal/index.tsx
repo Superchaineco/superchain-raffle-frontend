@@ -40,6 +40,7 @@ export default function RaffleHistoryModal() {
     { label: "Round 1" },
   ];
 
+
   return (
     <Modal
       open={raffleHistoryModalContext.raffleHistoryModalState.open}
@@ -69,7 +70,10 @@ export default function RaffleHistoryModal() {
             disablePortal
             id="combo-box-demo"
             options={rounds}
+            aria-placeholder="Round 0"
             className={styles["dropdown"]}
+            size="small"
+            sx={{ width: 120}}
             renderInput={(params) => <TextField {...params} />}
           />
           <Stack direction={"row"} spacing={2}>

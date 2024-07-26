@@ -7,12 +7,18 @@
   text-decoration: underline;
 }
 
-.input--cuantity {
+.input--buy {
   flex: 1;
   border: none;
   height: 100%;
   border-radius: 6px 0px 0px 6px;
 }
+
+.input--buy :global .MuiInputBase-root {
+  border-radius: 6px 0px 0px 6px !important;
+  outline: none;
+}
+
 .button--buy {
   flex: 0.8;
   display: flex;
@@ -26,5 +32,5 @@
   letter-spacing: 0.25px;
   text-align: left;
   color: white;
-  border-radius: 0px, 12px, 12px, 0px;
+  border-radius: 0px 6px 6px 0px;
 }

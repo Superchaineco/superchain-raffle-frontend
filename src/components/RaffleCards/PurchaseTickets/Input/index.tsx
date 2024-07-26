@@ -68,7 +68,7 @@ export default function PurchaseTicketsInput() {
       justifyContent={"center"}
     >
       <TextField
-        className={styles["input--cuantity"]}
+        className={styles["input--buy"]}
         value={cuantity}
         size="small"
         inputProps={{ inputMode: "numeric" }}
@@ -131,6 +131,10 @@ export default function PurchaseTicketsInput() {
             cuantity > 0 && cuantity <= ticketsContext.state.max
               ? "pointer"
               : "default",
+          opacity:
+            cuantity > 0 && cuantity <= ticketsContext.state.max
+              ? 1
+              : 0.5,
         }}
         onClick={onBuyTickets}
         className={styles["button--buy"]}
