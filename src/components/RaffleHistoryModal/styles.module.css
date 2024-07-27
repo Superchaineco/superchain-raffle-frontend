@@ -28,7 +28,11 @@
   color: var(--color-text-gray-soft);
 }
 
+.dropdown :global .MuiAutocomplete-endAdornment {
+  z-index: 20;
+}
 .dropdown :global .MuiInputBase-root {
+  width: 30%;
   color: white !important;
   background-color: var(--color-text-black);
   padding-right: 12px !important;
@@ -43,4 +47,10 @@
   letter-spacing: 0.25px;
   text-align: left;
   color: white !important;
+}
+
+.dropdown :global .MuiSvgIcon-root {
+  z-index: 20;
+  fill: white;
+  cursor: pointer;
 }
