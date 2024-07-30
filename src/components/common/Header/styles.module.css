@@ -77,6 +77,10 @@
   padding-right: var(--space-2);
 }
 
+.select--network :global .css-p7vjcx-MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
 @media (max-width: 899.95px) {
   .logo {
     display: none;

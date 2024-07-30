@@ -33,6 +33,10 @@
   color: white;
 }
 
+.button--claim-rewards:hover {
+  background-color: black !important;
+}
+
 .text--while {
   font-size: 14px;
   font-weight: 400;
