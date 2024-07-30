@@ -3,7 +3,6 @@ import styles from "./styles.module.css";
 import PurchaseTicketsInput from "./Input";
 import { useContext } from "react";
 import { TicketsContext } from "../Raffle";
-import { ST } from "next/dist/shared/lib/utils";
 
 type Props = {
   wallet: boolean;
@@ -34,14 +33,14 @@ function PurchaseTickets({ wallet }: Props) {
             justifyContent={"space-between"}
             spacing={2}
           >
-            <Stack direction={"row"} alignItems={"center"} spacing={.2}>
+            <Stack direction={"row"} alignItems={"center"} spacing={0.2}>
               <p>Price: </p>
               <Typography className={styles["purchase-tickets--value"]}>
                 0.002
               </Typography>
               <p>ETH</p>
             </Stack>
-            <Stack direction={"row"} alignItems={"center"} spacing={.2}>
+            <Stack direction={"row"} alignItems={"center"} spacing={0.2}>
               <p>Total: </p>
               <Typography className={styles["purchase-tickets--value"]}>
                 0.000

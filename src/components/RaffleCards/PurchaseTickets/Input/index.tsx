@@ -132,9 +132,7 @@ export default function PurchaseTicketsInput() {
               ? "pointer"
               : "default",
           opacity:
-            cuantity > 0 && cuantity <= ticketsContext.state.max
-              ? 1
-              : 0.5,
+            cuantity > 0 && cuantity <= ticketsContext.state.max ? 1 : 0.5,
         }}
         onClick={onBuyTickets}
         className={styles["button--buy"]}
