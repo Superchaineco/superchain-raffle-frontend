@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Fade,
   IconButton,
   Modal,
   Stack,
@@ -100,6 +101,8 @@ function WellcomeBackModal() {
                   baseTickets={data.baseTickets}
                 />
               }
+              TransitionComponent={Fade}
+              TransitionProps={{ timeout: 200 }}
               arrow
               placement="top"
               PopperProps={{
@@ -108,7 +111,7 @@ function WellcomeBackModal() {
                 },
               }}
             >
-              <IconButton>
+              <IconButton className={styles["my-tickets"]}>
                 <Stack
                   direction={"row"}
                   alignItems={"center"}
