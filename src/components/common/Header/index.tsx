@@ -4,7 +4,7 @@ import {
   type SetStateAction,
   type ReactElement,
   useState,
-  ReactNode,
+  type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -24,7 +24,6 @@ import css from "./styles.module.css";
 import Link from "next/link";
 import SuperChainEco from "@/public/images/common/superchain-eco.svg";
 import WalletButton from "../WalletButton";
-import styles from "./styles.module.css";
 
 // import ConnectWallet from '../ConnectWallet';
 
@@ -63,8 +62,6 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
     }
   };
 
-  const handleNetworkClick = () => {};
-
   return (
     <Paper className={css.container}>
       <div
@@ -101,7 +98,7 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
           onClick={() => {}}
         >
           <Select
-            className={styles["select--network"]}
+            className={css["select--network"]}
             value={{ value: network.value, icon: network.icon }}
             onChange={(item) => {
               const findNetwork = networkOptions.find(
@@ -125,7 +122,7 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
             {networkOptions.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 <Stack
-                  className={styles["select--network--item"]}
+                  className={css["select--network--item"]}
                   direction="row"
                   gap={1}
                   paddingRight={2}
