@@ -30,7 +30,7 @@ function WellcomeBackModal() {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
 
-  if (data)
+  if (_status === "success")
     return (
       <Modal
         open={open}
