@@ -34,7 +34,7 @@ function AssetsParser(asset: string): ElementType {
 function RaffleCards() {
   const { data: raffleCardsData, status: _status } = useQuery<
     RaffleCardsData[]
-  >("leaderBoardData", getRaffleCardsData);
+  >("raffleCardsData", getRaffleCardsData);
   const [expandedCard, setExpandedCard] = useState<string | null>("");
 
   const handleCardClick = (id: string | null) => {
@@ -49,6 +49,7 @@ function RaffleCards() {
       setContainerHeight(containerRef.current.offsetHeight);
     }
   }, [expandedCard]);
+
   if (raffleCardsData) {
     return (
       <div ref={containerRef} className={styles["container--raffle-cards"]}>
