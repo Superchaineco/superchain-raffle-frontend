@@ -115,23 +115,16 @@ function WellcomeBackModal() {
                   },
                 }}
               >
-                <IconButton className={styles["my-tickets"]}>
-                  <Stack
-                    direction={"row"}
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    spacing={1}
-                  >
-                    <Typography className={styles["text--my-tickets"]}>
-                      My Winning Tickets
-                    </Typography>
-                    <SvgIcon
-                      component={MyTicketsIcon}
-                      inheritViewBox
-                      style={{ width: "20px", height: "20px" }}
-                    />
-                  </Stack>
-                </IconButton>
+                <Button 
+                  className={styles["text--my-tickets"]}
+                  endIcon={<SvgIcon
+                    component={MyTicketsIcon}
+                    inheritViewBox
+                    style={{ width: "20px", height: "20px" }}
+                  />}
+                >
+                  My Winning Tickets
+                </Button>
               </Tooltip>
             </Stack>
             <Button
