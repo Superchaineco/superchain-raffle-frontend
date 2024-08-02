@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Stack, SvgIcon } from "@mui/material";
+import { Typography, Grid, Stack, SvgIcon } from "@mui/material";
 import type { LeaderBoardAccountType } from "@/types/commons";
 import EthIcon from "@/public/images/eth-icon.svg";
 import SrIcon from "@/public/images/sr-icon.svg";
@@ -19,35 +19,26 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
     [account.position]
   );
   return (
-    <Stack
-      direction={"row"}
-      alignItems={"center"}
-      justifyContent={"space-between"}
-      width={"100%"}
+    <Grid 
+      container
+      rowGap={2}
       className={
         styles[
           `container--all--${isMyProfileCard ? "my-profile" : "another-profile"}`
         ]
       }
     >
-      <Stack
-        direction={"row"}
-        alignItems={"center"}
-        justifyContent={"space-center"}
-        spacing={2}
-      >
-        <div
-          className={`${styles["container--rank"]} ${styles[`rank--${podiumPositon != "offThePodium" ? podiumPositon : "off-podium"}`]}`}
-        >
-          <p>{account.position}</p>
-        </div>
+      <Grid item xs={12} md={8}>
         <Stack
           direction={"row"}
           alignItems={"center"}
-          justifyContent={"space-center"}
-          width={"40%"}
-          spacing={1}
+          spacing={2}
         >
+          <div
+            className={`${styles["container--rank"]} ${styles[`rank--${podiumPositon != "offThePodium" ? podiumPositon : "off-podium"}`]}`}
+          >
+            <p>{account.position}</p>
+          </div>
           <SvgIcon
             component={ProfileImage}
             inheritViewBox
@@ -57,69 +48,72 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
               borderRadius: "100%",
             }}
           />
-          <p>{account.address}</p>
+          <Typography noWrap>
+            {account.address}
+          </Typography>
         </Stack>
-      </Stack>
-      <Stack
-        direction={"row"}
-        alignItems={"center"}
-        justifyContent={"end"}
-        width={"30%"}
-        spacing={3}
-      >
+      </Grid>
+      <Grid item xs={12} md={4} display={"flex"} alignItems={"center"} justifyContent={"center"}>
         <Stack
           direction={"row"}
           alignItems={"center"}
           justifyContent={"center"}
-          width={"30%"}
-          spacing={1}
+          spacing={3}
+          width={"100%"}
         >
-          <p>{account.tickets}</p>
-          <SvgIcon
-            component={TicketsIcon}
-            inheritViewBox
-            style={{
-              width: "20px",
-              height: "16px",
-            }}
-          />
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            width={"30%"}
+            spacing={1}
+          >
+            <p>{account.tickets}</p>
+            <SvgIcon
+              component={TicketsIcon}
+              inheritViewBox
+              style={{
+                width: "20px",
+                height: "16px",
+              }}
+            />
+          </Stack>
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"space-center"}
+            width={"30%"}
+            spacing={1}
+          >
+            <p>{account.eth}</p>
+            <SvgIcon
+              component={EthIcon}
+              inheritViewBox
+              style={{
+                width: "20px",
+                height: "16px",
+              }}
+            />
+          </Stack>
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            justifyContent={"space-center"}
+            spacing={1}
+          >
+            <p>{account.sr}</p>
+            <SvgIcon
+              component={SrIcon}
+              inheritViewBox
+              style={{
+                width: "20px",
+                height: "16px",
+              }}
+            />
+          </Stack>
         </Stack>
-        <Stack
-          direction={"row"}
-          alignItems={"center"}
-          justifyContent={"space-center"}
-          width={"30%"}
-          spacing={1}
-        >
-          <p>{account.eth}</p>
-          <SvgIcon
-            component={EthIcon}
-            inheritViewBox
-            style={{
-              width: "20px",
-              height: "16px",
-            }}
-          />
-        </Stack>
-        <Stack
-          direction={"row"}
-          alignItems={"center"}
-          justifyContent={"space-center"}
-          width={"30%"}
-          spacing={1}
-        >
-          <p>{account.sr}</p>
-          <SvgIcon
-            component={SrIcon}
-            inheritViewBox
-            style={{
-              width: "20px",
-              height: "16px",
-            }}
-          />
-        </Stack>
-      </Stack>
-    </Stack>
+      </Grid>
+    </Grid>
   );
 }
 
