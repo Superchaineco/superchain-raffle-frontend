@@ -1,9 +1,9 @@
 .container--all {
   position: relative;
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: left;
   gap: 16px;
   border-radius: 6px;
@@ -27,7 +27,6 @@
 
 .container--icon {
   width: 80px;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,11 +47,9 @@
 
 .container--content {
   width: 100%;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   padding-right: var(--space-2);
-  gap: var(--space-2);
 }
 
 .container--content--text {
@@ -92,4 +89,12 @@
 
 .claim--button:hover {
   background-color: black;
+}
+
+@media (max-width: 599.95px) {
+  .claim--button {
+    width: 100%;
+    height: 42px;
+    margin-bottom: 20px;
+  }
 }
