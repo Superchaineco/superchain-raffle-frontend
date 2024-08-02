@@ -54,11 +54,11 @@ function RaffleInfo({
             height: "12px",
           }}
         />
-        <h5>{primary}</h5>
+        <h5 style={{whiteSpace: "nowrap"}}>{primary}</h5>
       </div>
       <div className={styles["container--secondary"]}>
         <div className={styles["container--secondary--group"]}>
-          <p style={{ color: secondaryColor }}>{secondary1}</p>
+          <p style={{ color: secondaryColor, whiteSpace: "nowrap" }}>{secondary1}</p>
           {iconS1 && (
             <SvgIcon
               component={iconS1}

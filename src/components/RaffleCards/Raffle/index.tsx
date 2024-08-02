@@ -25,7 +25,9 @@ import {
   createContext,
   type ElementType,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import RaffleInfo from "../RaffleInfo";
@@ -92,28 +94,37 @@ function Raffle({
     max: 9,
     tickets: [],
   });
+  const [initialSize, setInitialSize] = useState<string>("auto");
 
   const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const onShowRaffleHistory = () => {
     raffleHistoryModalContext.setRaffleHistoryModalState({ open: true });
   };
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setInitialSize(containerRef.current.offsetHeight + "px");
+    }
+}, []);
+
   return (
     <AnimatePresence>
       <motion.div
+        ref={containerRef}
         onClick={() => (isMainCard ? {} : onClick(id))}
-        initial={{ height: "238px", opacity: 1 }}
+        initial={{ height: initialSize, opacity: 1 }}
         animate={
           isMainCard
-            ? { height: offset, opacity: 1 }
+            ? { minHeight: offset, height: "auto", opacity: 1 }
             : expandedCard
               ? {
                   height: "0px",
                   opacity: 0,
-
                   display: "none",
                 }
-              : { height: "238px", opacity: 1 }
+              : { height: initialSize, opacity: 1 }
         }
         exit={{ height: "0px", opacity: 0 }}
         style={{
@@ -123,37 +134,43 @@ function Raffle({
       >
         <Card className={styles["container--all"]}>
           <div className={styles["container--principal"]}>
-            <div className={styles["container--header"]}>
-              {isMainCard && (
-                <div className={styles["container--back"]}>
-                  <SvgIcon
-                    onClick={() => onClick(null)}
-                    component={BackIcon}
-                    inheritViewBox
-                    style={{
-                      zIndex: 120,
-                      width: "20px",
-                      height: "16px",
-                      cursor: "pointer",
-                    }}
-                  />
-                  <span>All Raffles</span>
-                </div>
-              )}
-              <motion.div
-                initial={{ marginTop: 0, width: "60%" }}
-                animate={{ marginTop: isMainCard ? 64 : 0 }}
+            <Stack 
+              justifyContent={"space-between"} 
+              direction={{ xs: 'column', sm: 'row' }} 
+              className={styles["container--header"]}
               >
-                <Typography fontSize={24} fontWeight={600}>
-                  {raffleCardText}
-                </Typography>
-                {!noMainCard && (
-                  <p>
-                    Take part in this raffle for a chance to receive rewards
-                    lorem ipsum established fact that a reader.
-                  </p>
+              <div>
+                {isMainCard && (
+                  <div className={styles["container--back"]}>
+                    <SvgIcon
+                      onClick={() => onClick(null)}
+                      component={BackIcon}
+                      inheritViewBox
+                      style={{
+                        zIndex: 120,
+                        width: "20px",
+                        height: "16px",
+                        cursor: "pointer",
+                      }}
+                      />
+                    <span>All Raffles</span>
+                  </div>
                 )}
-              </motion.div>
+                <motion.div
+                  initial={{ marginTop: 0, width: "60%" }}
+                  animate={{ marginTop: isMainCard ? 64 : 0 }}
+                  >
+                  <Typography fontSize={24} fontWeight={600}>
+                    {raffleCardText}
+                  </Typography>
+                  {!noMainCard && (
+                    <p>
+                      Take part in this raffle for a chance to receive rewards
+                      lorem ipsum established fact that a reader.
+                    </p>
+                  )}
+                </motion.div>
+              </div>
               <div className={styles["container--header--chips"]}>
                 {noMainCard && (
                   <Chip
@@ -195,7 +212,7 @@ function Raffle({
                   }
                 />
               </div>
-            </div>
+            </Stack>
             <CardContent className={styles["container--body"]}>
               <AnimatePresence>
                 {isMainCard && (
@@ -230,20 +247,21 @@ function Raffle({
               </AnimatePresence>
               <motion.div
                 key={`container-info-${id}`}
+                style={{overflowY: "hidden"}}
                 initial={{
                   display: "grid",
                   gap: "12px",
                   gridTemplateRows: "1fr 1fr",
                   gridTemplateColumns: "1fr 1fr",
-                  width: "56%",
+                  maxWidth: "500px",
                 }}
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
                   gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
-                  width: isMainCard ? "80%" : "56%",
+                  maxWidth: isMainCard ? "700px" : "500px",
                   opacity: isMainCard
-                    ? [1, 0, 0, 0, 0, 0, 1]
-                    : [1, 0, 0, 0, 0, 0, 0, 1],
+                    ? [0, 0, 0, 0, 0, 0, 1]
+                    : [0, 0, 0, 0, 0, 0, 0, 0, 1],
                 }}
                 transition={{
                   type: "spring",
@@ -291,45 +309,47 @@ function Raffle({
               </motion.div>
             </CardContent>
             <motion.div
-              initial={{
-                position: "absolute",
-                height: "120%",
-                top: 0,
-                right: 0,
+              style={{position:"absolute", top: 0, right: 0, maxWidth: "320px", height: "auto"}}
+              animate={{
+                width: isMainCard ? "26%" : "30%",
               }}
-              animate={{ height: isMainCard ? "140%" : "120%" }}
             >
-              <motion.div
-                animate={{
-                  height: isMainCard ? "280px" : "320px",
-                  width: isMainCard ? "280px" : "320px",
+              <CardMedia
+                style={{
+                  height: "100%",
+                  width: "100%",
                 }}
-              >
-                <CardMedia
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                  }}
-                  component={bgImg}
-                />
-              </motion.div>
+                component={bgImg}
+              />
             </motion.div>
-            <Stack marginTop={4} spacing={2}>
-              {isMainCard && ticketsState.max == 0 && (
-                <Alert severity="warning">
-                  This raffle has reached the maximum amount of raffle entries.
-                  You can try your luck again when this round is over.
-                </Alert>
-              )}
-              <div className={styles["container--detail"]}>
-                <TicketsContext.Provider
-                  value={{ state: ticketsState, setState: setTicketsState }}
+            <AnimatePresence>
+              {isMainCard && (
+                <motion.div
+                  initial={{ opacity: 0}}
+                  animate={{
+                    opacity: isMainCard ? 1 : 0,
+                  }}
+                  exit={{ opacity: 0 }}
                 >
-                  <PurchaseTickets wallet={true} />
-                  <MyTickets />
-                </TicketsContext.Provider>
-              </div>
-            </Stack>
+                  <Stack marginTop={4} spacing={2}>
+                    {isMainCard && ticketsState.max == 0 && (
+                      <Alert severity="warning">
+                        This raffle has reached the maximum amount of raffle entries.
+                        You can try your luck again when this round is over.
+                      </Alert>
+                    )}
+                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2 }}>
+                      <TicketsContext.Provider
+                        value={{ state: ticketsState, setState: setTicketsState }}
+                      >
+                        <PurchaseTickets wallet={true} />
+                        <MyTickets />
+                      </TicketsContext.Provider>
+                    </Stack>
+                  </Stack>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </Card>
       </motion.div>

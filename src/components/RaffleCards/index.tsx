@@ -39,15 +39,15 @@ function RaffleCards() {
 
   const handleCardClick = (id: string | null) => {
     setExpandedCard(id);
+    if (containerRef.current) {
+      setContainerHeight(containerRef.current.offsetHeight);
+    }
   };
 
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (containerRef.current) {
-      setContainerHeight(containerRef.current.offsetHeight);
-    }
   }, [expandedCard]);
 
   if (raffleCardsData) {
