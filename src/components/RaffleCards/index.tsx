@@ -47,8 +47,7 @@ function RaffleCards() {
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-  }, [expandedCard]);
+  useEffect(() => {}, [expandedCard]);
 
   if (raffleCardsData) {
     return (

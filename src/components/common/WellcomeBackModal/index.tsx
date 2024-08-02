@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Fade,
-  IconButton,
   Modal,
   Stack,
   SvgIcon,
@@ -40,7 +39,7 @@ function WellcomeBackModal() {
           backdrop: {
             style: {
               backgroundColor: "rgba(0, 0, 0, 0.8)",
-            }
+            },
           },
         }}
       >
@@ -110,13 +109,15 @@ function WellcomeBackModal() {
                 arrow
                 placement="top"
               >
-                <Button 
+                <Button
                   className={styles["text--my-tickets"]}
-                  endIcon={<SvgIcon
-                    component={MyTicketsIcon}
-                    inheritViewBox
-                    style={{ width: "20px", height: "20px" }}
-                  />}
+                  endIcon={
+                    <SvgIcon
+                      component={MyTicketsIcon}
+                      inheritViewBox
+                      style={{ width: "20px", height: "20px" }}
+                    />
+                  }
                 >
                   My Winning Tickets
                 </Button>

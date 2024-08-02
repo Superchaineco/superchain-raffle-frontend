@@ -19,7 +19,7 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
     [account.position]
   );
   return (
-    <Grid 
+    <Grid
       container
       rowGap={2}
       className={
@@ -29,11 +29,7 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
       }
     >
       <Grid item xs={12} md={8}>
-        <Stack
-          direction={"row"}
-          alignItems={"center"}
-          spacing={2}
-        >
+        <Stack direction={"row"} alignItems={"center"} spacing={2}>
           <div
             className={`${styles["container--rank"]} ${styles[`rank--${podiumPositon != "offThePodium" ? podiumPositon : "off-podium"}`]}`}
           >
@@ -48,12 +44,17 @@ function LeaderBoardProfileCard({ account, isMyProfileCard }: Props) {
               borderRadius: "100%",
             }}
           />
-          <Typography noWrap>
-            {account.address}
-          </Typography>
+          <Typography noWrap>{account.address}</Typography>
         </Stack>
       </Grid>
-      <Grid item xs={12} md={4} display={"flex"} alignItems={"center"} justifyContent={"center"}>
+      <Grid
+        item
+        xs={12}
+        md={4}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
         <Stack
           direction={"row"}
           alignItems={"center"}

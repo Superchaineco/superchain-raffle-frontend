@@ -41,10 +41,11 @@ function LeaderBoard({ myInfo }: { myInfo: LeaderBoardAccountType }) {
               },
             },
           }}
-          style={{width: "100%"}}
+          style={{ width: "100%" }}
         >
           {data.map((account: LeaderBoardAccountType) => (
-            <motion.div 
+            <motion.div
+              key={account.address}
               variants={{
                 visible: { opacity: 1, x: 0 },
                 hidden: { opacity: 0, x: -100 },
@@ -52,7 +53,6 @@ function LeaderBoard({ myInfo }: { myInfo: LeaderBoardAccountType }) {
             >
               <Box mb={1}>
                 <LeaderBoardProfileCard
-                  key={account.address}
                   account={account}
                   isMyProfileCard={myInfo.address == account.address}
                 />

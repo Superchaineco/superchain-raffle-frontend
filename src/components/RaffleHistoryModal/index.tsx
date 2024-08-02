@@ -50,11 +50,14 @@ export default function RaffleHistoryModal() {
         backdrop: {
           style: {
             backgroundColor: "rgba(0, 0, 0, 0.8)",
-          }
+          },
         },
       }}
     >
-      <Fade in={raffleHistoryModalContext.raffleHistoryModalState.open} timeout={500}>
+      <Fade
+        in={raffleHistoryModalContext.raffleHistoryModalState.open}
+        timeout={500}
+      >
         <Box className={styles["container--modal"]}>
           <SvgIcon
             component={CloseIcon}

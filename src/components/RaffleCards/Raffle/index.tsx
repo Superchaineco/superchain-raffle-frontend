@@ -107,7 +107,7 @@ function Raffle({
     if (containerRef.current) {
       setInitialSize(containerRef.current.offsetHeight + "px");
     }
-}, []);
+  }, []);
 
   return (
     <AnimatePresence>
@@ -134,11 +134,11 @@ function Raffle({
       >
         <Card className={styles["container--all"]}>
           <div className={styles["container--principal"]}>
-            <Stack 
-              justifyContent={"space-between"} 
-              direction={{ xs: 'column', sm: 'row' }} 
+            <Stack
+              justifyContent={"space-between"}
+              direction={{ xs: "column", sm: "row" }}
               className={styles["container--header"]}
-              >
+            >
               <div>
                 {isMainCard && (
                   <div className={styles["container--back"]}>
@@ -152,14 +152,14 @@ function Raffle({
                         height: "16px",
                         cursor: "pointer",
                       }}
-                      />
+                    />
                     <span>All Raffles</span>
                   </div>
                 )}
                 <motion.div
                   initial={{ marginTop: 0, width: "60%" }}
                   animate={{ marginTop: isMainCard ? 64 : 0 }}
-                  >
+                >
                   <Typography fontSize={24} fontWeight={600}>
                     {raffleCardText}
                   </Typography>
@@ -247,7 +247,7 @@ function Raffle({
               </AnimatePresence>
               <motion.div
                 key={`container-info-${id}`}
-                style={{overflowY: "hidden"}}
+                style={{ overflowY: "hidden" }}
                 initial={{
                   display: "grid",
                   gap: "12px",
@@ -309,7 +309,13 @@ function Raffle({
               </motion.div>
             </CardContent>
             <motion.div
-              style={{position:"absolute", top: 0, right: 0, maxWidth: "320px", height: "auto"}}
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                maxWidth: "320px",
+                height: "auto",
+              }}
               animate={{
                 width: isMainCard ? "26%" : "30%",
               }}
@@ -325,7 +331,7 @@ function Raffle({
             <AnimatePresence>
               {isMainCard && (
                 <motion.div
-                  initial={{ opacity: 0}}
+                  initial={{ opacity: 0 }}
                   animate={{
                     opacity: isMainCard ? 1 : 0,
                   }}
@@ -334,13 +340,20 @@ function Raffle({
                   <Stack marginTop={4} spacing={2}>
                     {isMainCard && ticketsState.max == 0 && (
                       <Alert severity="warning">
-                        This raffle has reached the maximum amount of raffle entries.
-                        You can try your luck again when this round is over.
+                        This raffle has reached the maximum amount of raffle
+                        entries. You can try your luck again when this round is
+                        over.
                       </Alert>
                     )}
-                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 2 }}>
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      spacing={{ xs: 1, sm: 2 }}
+                    >
                       <TicketsContext.Provider
-                        value={{ state: ticketsState, setState: setTicketsState }}
+                        value={{
+                          state: ticketsState,
+                          setState: setTicketsState,
+                        }}
                       >
                         <PurchaseTickets wallet={true} />
                         <MyTickets />

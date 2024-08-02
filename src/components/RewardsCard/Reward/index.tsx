@@ -54,7 +54,10 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
           }}
         />
       </div>
-      <Stack direction={{ xs: 'column', sm: 'row' }}  className={styles["container--content"]}>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        className={styles["container--content"]}
+      >
         <div className={styles["container--content--text"]}>
           <div className={styles["container--content--eth"]}>
             <p className={styles["reward--text"]}>{`${eth} ETH`}</p>
