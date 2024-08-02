@@ -109,11 +109,6 @@ function WellcomeBackModal() {
                 TransitionProps={{ timeout: 200 }}
                 arrow
                 placement="top"
-                PopperProps={{
-                  sx: {
-                    width: "16%",
-                  },
-                }}
               >
                 <Button 
                   className={styles["text--my-tickets"]}
