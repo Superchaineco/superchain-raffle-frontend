@@ -34,21 +34,21 @@ function AssetsParser(asset: string): ElementType {
 function RaffleCards() {
   const { data: raffleCardsData, status: _status } = useQuery<
     RaffleCardsData[]
-  >("leaderBoardData", getRaffleCardsData);
+  >("raffleCardsData", getRaffleCardsData);
   const [expandedCard, setExpandedCard] = useState<string | null>("");
 
   const handleCardClick = (id: string | null) => {
     setExpandedCard(id);
+    if (containerRef.current) {
+      setContainerHeight(containerRef.current.offsetHeight);
+    }
   };
 
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      setContainerHeight(containerRef.current.offsetHeight);
-    }
-  }, [expandedCard]);
+  useEffect(() => {}, [expandedCard]);
+
   if (raffleCardsData) {
     return (
       <div ref={containerRef} className={styles["container--raffle-cards"]}>
