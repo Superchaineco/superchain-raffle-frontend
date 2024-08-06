@@ -3,9 +3,9 @@
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-3);
+  min-width: 520px;
   height: 238px;
 }
-
 .contianer--header {
   width: 100%;
   display: flex;
@@ -28,7 +28,6 @@
   background-color: var(--color-button-rank);
   color: white;
 }
-
 .button--rank:hover {
   background-color: var(--color-button-rank);
 }
