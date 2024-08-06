@@ -5,7 +5,6 @@
   border-radius: 6px;
   background-color: white;
 }
-
 .container--all--my-profile {
   width: Fill (1, 344px) px;
   height: Fixed (72px) px;
@@ -19,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
+  width: 32px;
   height: 32px;
   border-radius: 100%;
 }

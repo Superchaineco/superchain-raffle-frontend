@@ -15,7 +15,8 @@ function LeaderBoardView() {
     <Stack
       direction={"column"}
       alignContent={"start"}
-      className={styles["container--all"]}
+      width={"100vw"}
+      padding={"80px 48px"}
       spacing={6}
     >
       <Stack
