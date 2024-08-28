@@ -5,6 +5,7 @@ import {
   Stack,
   SvgIcon,
   TextField,
+  Fade,
 } from "@mui/material";
 import CloseIcon from "@/public/images/close-icon.svg";
 import PrizePotIcon from "@/public/images/trophy-icon.svg";
@@ -43,57 +44,66 @@ export default function RaffleHistoryModal() {
   return (
     <Modal
       open={raffleHistoryModalContext.raffleHistoryModalState.open}
-      BackdropProps={{
-        style: {
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
+      onClose={handleClose}
+      closeAfterTransition
+      slotProps={{
+        backdrop: {
+          style: {
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+          },
         },
       }}
     >
-      <Box className={styles["container--modal"]}>
-        <SvgIcon
-          component={CloseIcon}
-          onClick={handleClose}
-          inheritViewBox
-          style={{
-            width: "12px",
-            height: "12px",
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            cursor: "pointer",
-          }}
-        />
-        <Stack spacing={2}>
-          <h4 className={styles["title"]}>48 Hour OP Raffle Results</h4>
-          <Autocomplete
-            disableClearable
-            disablePortal
-            id="combo-box-demo"
-            options={rounds}
-            className={styles["dropdown"]}
-            size="small"
-            renderInput={(params) => <TextField {...params} />}
+      <Fade
+        in={raffleHistoryModalContext.raffleHistoryModalState.open}
+        timeout={500}
+      >
+        <Box className={styles["container--modal"]}>
+          <SvgIcon
+            component={CloseIcon}
+            onClick={handleClose}
+            inheritViewBox
+            style={{
+              width: "12px",
+              height: "12px",
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              cursor: "pointer",
+            }}
           />
-          <Stack direction={"row"} spacing={2}>
-            <RaffleInfo
-              icon={PrizePotIcon}
-              primary="Prize pot"
-              secondary1={0.005}
-              secondary2={100}
-              iconS1={EthIcon}
-              iconS2={SrIcon}
-              noMainCard={false}
+          <Stack spacing={2}>
+            <h4 className={styles["title"]}>48 Hour OP Raffle Results</h4>
+            <Autocomplete
+              disableClearable
+              disablePortal
+              id="combo-box-demo"
+              options={rounds}
+              className={styles["dropdown"]}
+              size="small"
+              renderInput={(params) => <TextField {...params} />}
             />
-            <RaffleInfo
-              icon={TotalEntriesIcon}
-              primary="Total entries"
-              secondary1={34 + "/" + 250}
-              noMainCard={false}
-            />
+            <Stack direction={"row"} spacing={2}>
+              <RaffleInfo
+                icon={PrizePotIcon}
+                primary="Prize pot"
+                secondary1={0.005}
+                secondary2={100}
+                iconS1={EthIcon}
+                iconS2={SrIcon}
+                noMainCard={false}
+              />
+              <RaffleInfo
+                icon={TotalEntriesIcon}
+                primary="Total entries"
+                secondary1={34 + "/" + 250}
+                noMainCard={false}
+              />
+            </Stack>
+            <RaffleHistoryTable />
           </Stack>
-          <RaffleHistoryTable />
-        </Stack>
-      </Box>
+        </Box>
+      </Fade>
     </Modal>
   );
 }

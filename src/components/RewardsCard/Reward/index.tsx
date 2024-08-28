@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, SvgIcon } from "@mui/material";
+import { Button, Stack, SvgIcon } from "@mui/material";
 import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
@@ -54,7 +54,10 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
           }}
         />
       </div>
-      <div className={styles["container--content"]}>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        className={styles["container--content"]}
+      >
         <div className={styles["container--content--text"]}>
           <div className={styles["container--content--eth"]}>
             <p className={styles["reward--text"]}>{`${eth} ETH`}</p>
@@ -83,7 +86,7 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
         <Button onClick={onClaimRewards} className={styles["claim--button"]}>
           Claim
         </Button>
-      </div>
+      </Stack>
     </div>
   );
 }

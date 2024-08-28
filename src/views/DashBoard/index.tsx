@@ -10,6 +10,7 @@ import WellcomeBackModal from "@/components/common/WellcomeBackModal";
 import ActionModal from "@/components/ActionModal";
 import type { ActionModalContextStateType } from "@/types/commons";
 import RaffleHistoryModal from "@/components/RaffleHistoryModal";
+import { Container, Grid, Stack } from "@mui/material";
 
 export const ActionModalContext = createContext({
   actionModalContextState: {
@@ -48,24 +49,30 @@ function DashBoard() {
         setActionModalContextState: setActionModalState,
       }}
     >
-      <main className={styles["container--all"]}>
-        <TopInfo eth="0.01" ethBonus="0.004" />
-        <RaffleHistoryModalContext.Provider
-          value={{
-            raffleHistoryModalState,
-            setRaffleHistoryModalState,
-          }}
-        >
-          <RaffleHistoryModal />
-          <RaffleCards />
-        </RaffleHistoryModalContext.Provider>
-        <div className={styles["container--profile-rewards"]}>
-          <ProfileCard />
-          <RewardsCard />
-        </div>
-        <WellcomeBackModal />
-        <ActionModal />
-      </main>
+      <TopInfo eth="0.01" ethBonus="0.004" />
+      <Container maxWidth={false} className={styles["container--all"]}>
+        <Grid container spacing={5} columns={7}>
+          <Grid item xs={7} lg={4}>
+            <RaffleHistoryModalContext.Provider
+              value={{
+                raffleHistoryModalState,
+                setRaffleHistoryModalState,
+              }}
+            >
+              <RaffleHistoryModal />
+              <RaffleCards />
+            </RaffleHistoryModalContext.Provider>
+          </Grid>
+          <Grid item xs={7} lg={3}>
+            <Stack spacing={2}>
+              <ProfileCard />
+              <RewardsCard />
+            </Stack>
+          </Grid>
+        </Grid>
+      </Container>
+      <WellcomeBackModal />
+      <ActionModal />
     </ActionModalContext.Provider>
   );
 }

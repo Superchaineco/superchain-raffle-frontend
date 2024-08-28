@@ -64,7 +64,7 @@ export default function PurchaseTicketsInput() {
         opacity: cuantity > 0 && cuantity <= ticketsContext.state.max ? 1 : 0.5,
       }}
       direction={"row"}
-      alignItems="center"
+      alignItems="stretch"
       justifyContent={"center"}
     >
       <TextField
