@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: var(--space-1);
   padding: 20px var(--space-3);
-  min-width: 520px;
 }
 
 .container--rewards {

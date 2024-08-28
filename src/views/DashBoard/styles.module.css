@@ -1,5 +1,7 @@
 .container--all {
+  display: flex;
   padding: var(--space-8) var(--space-6);
+  min-height: calc(100vh - 50px);
 }
 
 @media (max-width: 599.95px) {

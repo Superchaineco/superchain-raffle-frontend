@@ -100,6 +100,12 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
           <Select
             className={css["select--network"]}
             value={{ value: network.value, icon: network.icon }}
+            SelectDisplayProps={{
+              style: {
+                paddingTop: "13px",
+                paddingBottom: "7px",
+              },
+            }}
             onChange={(item) => {
               const findNetwork = networkOptions.find(
                 (option) => option.value == item.target.value
@@ -107,16 +113,14 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
               setNetwork(findNetwork ? findNetwork : networkOptions[0]);
             }}
             renderValue={(selected) => (
-              <div>
-                <SvgIcon
-                  inheritViewBox
-                  component={
-                    networkOptions.find(
-                      (option) => option.value == selected.value
-                    )?.icon
-                  }
-                />
-              </div>
+              <SvgIcon
+                inheritViewBox
+                component={
+                  networkOptions.find(
+                    (option) => option.value == selected.value
+                  )?.icon
+                }
+              />
             )}
           >
             {networkOptions.map((option) => (

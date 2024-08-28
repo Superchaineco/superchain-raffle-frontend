@@ -117,7 +117,7 @@ function Raffle({
         initial={{ height: initialSize, opacity: 1 }}
         animate={
           isMainCard
-            ? { minHeight: offset, height: "auto", opacity: 1 }
+            ? { minHeight: offset, height: offset, opacity: 1 }
             : expandedCard
               ? {
                   height: "0px",
@@ -157,17 +157,17 @@ function Raffle({
                   </div>
                 )}
                 <motion.div
-                  initial={{ marginTop: 0, width: "60%" }}
+                  initial={{ marginTop: 0 }}
                   animate={{ marginTop: isMainCard ? 64 : 0 }}
                 >
                   <Typography fontSize={24} fontWeight={600}>
                     {raffleCardText}
                   </Typography>
                   {!noMainCard && (
-                    <p>
+                    <Typography variant="body1" marginTop={1}>
                       Take part in this raffle for a chance to receive rewards
                       lorem ipsum established fact that a reader.
-                    </p>
+                    </Typography>
                   )}
                 </motion.div>
               </div>
@@ -308,26 +308,37 @@ function Raffle({
                 )}
               </motion.div>
             </CardContent>
-            <motion.div
+            <div
               style={{
                 position: "absolute",
                 top: 0,
                 right: 0,
                 maxWidth: "320px",
                 height: "auto",
-              }}
-              animate={{
-                width: isMainCard ? "26%" : "30%",
+                width: "34%",
               }}
             >
-              <CardMedia
+              <motion.div
                 style={{
-                  height: "100%",
-                  width: "100%",
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  maxWidth: "320px",
+                  height: "auto",
                 }}
-                component={bgImg}
-              />
-            </motion.div>
+                animate={{
+                  width: isMainCard ? "85%" : "100%",
+                }}
+              >
+                <CardMedia
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  component={bgImg}
+                />
+              </motion.div>
+            </div>
             <AnimatePresence>
               {isMainCard && (
                 <motion.div
