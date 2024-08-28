@@ -36,6 +36,7 @@ import styles from "./styles.module.css";
 import { formatTime } from "@/functions/auxiliarFunctions";
 import { RaffleHistoryModalContext } from "@/views/DashBoard";
 import type { TicketsContextType } from "@/types/commons";
+import Image from "next/image";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -46,8 +47,9 @@ enum ColorParser {
 type RaffleProps = {
   id: string;
   offset: number;
-  raffleCardText: string;
-  raffleCardChipsText: { value: number; network: string };
+  name: string;
+  description: string;
+  chipsText: { value: number; network: string };
   chipColor: string;
   endsIn: number;
   prizePotEth: number;
@@ -56,7 +58,7 @@ type RaffleProps = {
   currentEntries: number;
   entries: number;
   networkIcon: ElementType;
-  bgImg: ElementType;
+  bgImg: string;
   expandedCard: string | null;
   round: number;
   onClick: (id: string | null) => void;
@@ -73,8 +75,9 @@ export const TicketsContext = createContext({
 function Raffle({
   id,
   offset,
-  raffleCardText,
-  raffleCardChipsText,
+  name,
+  description,
+  chipsText,
   chipColor,
   endsIn,
   prizePotEth,
@@ -161,12 +164,11 @@ function Raffle({
                   animate={{ marginTop: isMainCard ? 64 : 0 }}
                 >
                   <Typography fontSize={24} fontWeight={600}>
-                    {raffleCardText}
+                    {name}
                   </Typography>
                   {!noMainCard && (
                     <Typography variant="body1" marginTop={1}>
-                      Take part in this raffle for a chance to receive rewards
-                      lorem ipsum established fact that a reader.
+                      {description}
                     </Typography>
                   )}
                 </motion.div>
@@ -175,7 +177,7 @@ function Raffle({
                 {noMainCard && (
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
-                    label={`${raffleCardChipsText.value} ETH`}
+                    label={`${chipsText.value} ETH`}
                     onDelete={() => {}}
                     deleteIcon={
                       <SvgIcon
@@ -196,7 +198,7 @@ function Raffle({
                       `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
                     ]
                   }`}
-                  label={raffleCardChipsText.network}
+                  label={chipsText.network}
                   onDelete={() => {}}
                   deleteIcon={
                     <SvgIcon
@@ -335,8 +337,9 @@ function Raffle({
                     height: "100%",
                     width: "100%",
                   }}
-                  component={bgImg}
-                />
+                >
+                  <Image alt={name} src={bgImg}  height={384} width={384}/>
+                </CardMedia>
               </motion.div>
             </div>
             <AnimatePresence>

@@ -11,6 +11,7 @@ import { useQuery } from "react-query";
 import { getRaffleCardsData } from "@/functions/fetchFunctions";
 import type { RaffleCardsData } from "@/types/raffleCards";
 import RaffleCardSkeleton from "./Raffle/Skeleton";
+import useGetRaffles from "@/hooks/useGetRaffles";
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {
@@ -32,11 +33,12 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RaffleCards() {
-  const { data: raffleCardsData, status: _status } = useQuery<
-    RaffleCardsData[]
-  >("raffleCardsData", getRaffleCardsData);
+  // const { data: raffleCardsData, status: _status } = useQuery<
+  //   RaffleCardsData[]
+  // >("raffleCardsData", getRaffleCardsData);
+  const { data: raffleCardsData } = useGetRaffles();
   const [expandedCard, setExpandedCard] = useState<string | null>("");
-
+  console.debug(raffleCardsData);
   const handleCardClick = (id: string | null) => {
     setExpandedCard(id);
     if (containerRef.current) {
@@ -47,36 +49,44 @@ function RaffleCards() {
   const [containerHeight, setContainerHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {}, [expandedCard]);
+  useEffect(() => {
+    if (raffleCardsData){
+
+       setExpandedCard(raffleCardsData.superchainRaffleCreateds[0].id);
+      if (containerRef.current) {
+        setContainerHeight(containerRef.current.offsetHeight);
+      }
+    }
+  }, [raffleCardsData]);
 
   if (raffleCardsData) {
     return (
       <div ref={containerRef} className={styles["container--raffle-cards"]}>
-        {raffleCardsData?.map((item) => {
-          const bgImg = item.bgImg as keyof typeof AssetsParser;
-          const networdIcon = item.networkIcon as keyof typeof AssetsParser;
+        {raffleCardsData?.superchainRaffleCreateds.map((item) => {
+          const bgImg = item.content.image;
           return (
             <Raffle
               offset={containerHeight}
               key={item.id}
               onClick={handleCardClick}
               id={item.id}
-              raffleCardText={item.raffleCardText}
-              raffleCardChipsText={{
-                value: item.raffleCardChip?.value,
-                network: item.raffleCardChip?.network,
+              name={item.content.name}
+              description={item.content.description}
+              chipsText={{
+                value: 10,
+                network: "Optimism",
               }}
-              chipColor={item.chipColor}
-              endsIn={item.end}
-              prizePotEth={item.prizePotEth}
-              prizePotSr={item.prizePotSr}
-              totalEntries={item.totalEntries}
-              currentEntries={item.currentEntries}
-              entries={item.entries}
-              networkIcon={AssetsParser(networdIcon)}
-              bgImg={AssetsParser(bgImg)}
+              chipColor={"#FF0420"}
+              endsIn={10}
+              prizePotEth={10}
+              prizePotSr={10}
+              totalEntries={250}
+              currentEntries={20}
+              entries={10}
+              networkIcon={AssetsParser("OptimisimIcon")}
+              bgImg={bgImg}
               expandedCard={expandedCard}
-              round={item.round}
+              round={1}
             />
           );
         })}
