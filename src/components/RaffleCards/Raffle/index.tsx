@@ -49,7 +49,7 @@ type RaffleProps = {
   offset: number;
   name: string;
   description: string;
-  chipsText: { value: number; network: string };
+  chipsText: { value: string; network: string };
   chipColor: string;
   endsIn: number;
   prizePotEth: number;
@@ -177,7 +177,7 @@ function Raffle({
                 {noMainCard && (
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
-                    label={`${chipsText.value} ETH`}
+                    label={`${chipsText.value}`}
                     onDelete={() => {}}
                     deleteIcon={
                       <SvgIcon

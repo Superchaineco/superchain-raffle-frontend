@@ -73,7 +73,7 @@ function RaffleCards() {
               name={item.content.name}
               description={item.content.description}
               chipsText={{
-                value: 10,
+                value: 'FREE',
                 network: "Optimism",
               }}
               chipColor={"#FF0420"}
