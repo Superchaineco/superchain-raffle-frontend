@@ -10,7 +10,7 @@ import {
   Alert,
   Stack,
 } from "@mui/material";
-import ethIcon from "@/public/images/eth-chip-icon.svg";
+import ethIcon from "@/public/images/ether.svg";
 import srIcon from "@/public/images/sr-icon.svg";
 import myEntriesBlueIcon from "@/public/images/tickets-icon-blue.svg";
 import myEntriesOpaqueIcon from "@/public/images/tickets-icon-opaque.svg";
@@ -37,6 +37,7 @@ import { formatTime } from "@/functions/auxiliarFunctions";
 import { RaffleHistoryModalContext } from "@/views/DashBoard";
 import type { TicketsContextType } from "@/types/commons";
 import Image from "next/image";
+import { useAccount } from "wagmi";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -51,9 +52,9 @@ type RaffleProps = {
   description: string;
   chipsText: { value: string; network: string };
   chipColor: string;
-  endsIn: number;
+  startTimestamp: number;
   prizePotEth: number;
-  prizePotSr: number;
+  prizePotOp: number;
   totalEntries: number;
   currentEntries: number;
   entries: number;
@@ -79,9 +80,9 @@ function Raffle({
   description,
   chipsText,
   chipColor,
-  endsIn,
+  startTimestamp,
   prizePotEth,
-  prizePotSr,
+  prizePotOp,
   totalEntries,
   currentEntries,
   entries,
@@ -99,8 +100,14 @@ function Raffle({
   });
   const [initialSize, setInitialSize] = useState<string>("auto");
 
+  const { isConnected } = useAccount();
   const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
   const containerRef = useRef<HTMLDivElement>(null);
+  const endsIn = Math.floor(
+    (7 * 24 * 60 * 60 * 1000 -
+      ((Date.now() - startTimestamp * 1000) % (7 * 24 * 60 * 60 * 1000))) /
+      (60 * 1000)
+  );
 
   const onShowRaffleHistory = () => {
     raffleHistoryModalContext.setRaffleHistoryModalState({ open: true });
@@ -163,11 +170,15 @@ function Raffle({
                   initial={{ marginTop: 0 }}
                   animate={{ marginTop: isMainCard ? 64 : 0 }}
                 >
-                  <Typography fontSize={24} fontWeight={600}>
+                  <Typography fontSize={isMainCard ? 32 : 24} fontWeight={600}>
                     {name}
                   </Typography>
                   {!noMainCard && (
-                    <Typography variant="body1" marginTop={1}>
+                    <Typography
+                      maxWidth={"400px"}
+                      variant="body1"
+                      marginTop={1}
+                    >
                       {description}
                     </Typography>
                   )}
@@ -215,7 +226,10 @@ function Raffle({
                 />
               </div>
             </Stack>
-            <CardContent className={styles["container--body"]}>
+            <CardContent
+              style={isMainCard ? {} : { maxWidth: "calc(100% - 380px)" }}
+              className={styles["container--body"]}
+            >
               <AnimatePresence>
                 {isMainCard && (
                   <motion.div
@@ -252,15 +266,18 @@ function Raffle({
                 style={{ overflowY: "hidden" }}
                 initial={{
                   display: "grid",
-                  gap: "12px",
+                  columnGap: "48px",
+                  rowGap:"8px",
                   gridTemplateRows: "1fr 1fr",
                   gridTemplateColumns: "1fr 1fr",
                   maxWidth: "500px",
                 }}
                 animate={{
                   gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
-                  gridTemplateColumns: isMainCard ? "1fr 1fr 1fr" : "1fr 1fr",
-                  maxWidth: isMainCard ? "700px" : "500px",
+                  gridTemplateColumns: isMainCard
+                    ? "auto auto auto"
+                    : "1fr 1fr",
+                  maxWidth: isMainCard ? "auto" : "500px",
                   opacity: isMainCard
                     ? [0, 0, 0, 0, 0, 0, 1]
                     : [0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -285,7 +302,7 @@ function Raffle({
                   icon={prizePotIcon}
                   primary="Prize pot"
                   secondary1={prizePotEth}
-                  secondary2={prizePotSr}
+                  secondary2={prizePotOp}
                   iconS1={ethIcon}
                   iconS2={srIcon}
                   noMainCard={noMainCard}
@@ -293,9 +310,9 @@ function Raffle({
                 <RaffleInfo
                   icon={totalEntriesIcon}
                   primary="Total entries"
-                  secondary1={totalEntries + "/" + currentEntries}
+                  secondary1={currentEntries + " / " + totalEntries}
                   secondaryColor={
-                    totalEntries / currentEntries == 1 ? "#FF0420" : "#0B0B0B"
+                    currentEntries / totalEntries == 1 ? "#FF0420" : "#0B0B0B"
                   }
                   noMainCard={noMainCard}
                 />
@@ -325,20 +342,11 @@ function Raffle({
                   position: "absolute",
                   top: 0,
                   right: 0,
-                  maxWidth: "320px",
                   height: "auto",
                 }}
-                animate={{
-                  width: isMainCard ? "85%" : "100%",
-                }}
               >
-                <CardMedia
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                  }}
-                >
-                  <Image alt={name} src={bgImg}  height={384} width={384}/>
+                <CardMedia>
+                  <Image alt={name} src={bgImg} height={320} width={320} />
                 </CardMedia>
               </motion.div>
             </div>
@@ -369,7 +377,7 @@ function Raffle({
                           setState: setTicketsState,
                         }}
                       >
-                        <PurchaseTickets wallet={true} />
+                        <PurchaseTickets wallet={isConnected} />
                         <MyTickets />
                       </TicketsContext.Provider>
                     </Stack>

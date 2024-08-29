@@ -1,6 +1,5 @@
 .container--all {
-  flex: 1;
-  padding: 8px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,32 +20,18 @@
   background-color: var(--color-profile-card-bg);
 }
 .container--primary {
-  height: 20px;
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.container--primary h5 {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 14px;
-  letter-spacing: 0.25px;
-  text-align: left;
-}
+
 
 .container--secondary {
-  height: 20px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.container--secondary p {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 16px;
-  letter-spacing: 0.25px;
-  text-align: left;
-}
+
 .container--secondary--group {
   display: flex;
   align-items: center;

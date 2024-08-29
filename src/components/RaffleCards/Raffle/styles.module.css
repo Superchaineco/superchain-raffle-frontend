@@ -1,5 +1,4 @@
 .container--all {
-  flex: 1;
   height: 100%;
   position: relative;
   min-height: 238px;
@@ -46,6 +45,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+;
   gap: var(--space-2);
 }
 

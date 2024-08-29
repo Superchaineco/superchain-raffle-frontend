@@ -1,6 +1,6 @@
 "use client";
 
-import { SvgIcon } from "@mui/material";
+import { SvgIcon, Typography } from "@mui/material";
 import styles from "./styles.module.css";
 import { motion } from "framer-motion";
 import type { ElementType } from "react";
@@ -54,38 +54,28 @@ function RaffleInfo({
             height: "12px",
           }}
         />
-        <h5 style={{ whiteSpace: "nowrap" }}>{primary}</h5>
+        <Typography variant="h5" fontSize={16} fontWeight={400} color='GrayText'>
+          {primary}:
+        </Typography>
       </div>
       <div className={styles["container--secondary"]}>
         <div className={styles["container--secondary--group"]}>
-          <p style={{ color: secondaryColor, whiteSpace: "nowrap" }}>
+          <Typography fontSize={18} fontWeight={600}>
             {secondary1}
-          </p>
-          {iconS1 && (
-            <SvgIcon
-              component={iconS1}
-              inheritViewBox
-              style={{
-                width: "16px",
-                height: "12px",
-              }}
-            />
-          )}
+          </Typography>
+          {iconS1 && <SvgIcon component={iconS1} inheritViewBox />}
         </div>
-        {secondary2 && <p>+</p>}
-        <div className={styles["container--secondary--group"]}>
-          {secondary2 && <p>{secondary2}</p>}
-          {iconS2 && (
-            <SvgIcon
-              component={iconS2}
-              inheritViewBox
-              style={{
-                width: "16px",
-                height: "12px",
-              }}
-            />
-          )}
-        </div>
+        {(secondary2 || secondary2 === 0) && (
+          <>
+            <strong> + </strong>
+            <div className={styles["container--secondary--group"]}>
+              <Typography fontSize={18} fontWeight={600}>
+                {secondary2}
+              </Typography>
+              {iconS2 && <SvgIcon component={iconS2} inheritViewBox />}
+            </div>
+          </>
+        )}
       </div>
     </motion.div>
   );
