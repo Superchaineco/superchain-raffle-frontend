@@ -20,6 +20,7 @@ import PurchaseTickets from "../PurchaseTickets";
 import HistoryIcon from "@/public/images/history-icon.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import BackIcon from "@/public/images/back-icon.svg";
+import TicketIconBlackFilled from "@/public/images/tickets-icon-black-filled.svg";
 import {
   createContext,
   type ElementType,
@@ -191,7 +192,8 @@ function Raffle({
                     onDelete={() => {}}
                     deleteIcon={
                       <SvgIcon
-                        component={ethIcon}
+                      
+                        component={TicketIconBlackFilled}
                         inheritViewBox
                         style={{
                           width: "16px",
