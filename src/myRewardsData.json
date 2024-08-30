@@ -6,21 +6,5 @@
     "srp": 0,
     "color": "red",
     "opaque":true 
-  },
-  {
-    "id": "base",
-    "icon": "BaseIcon",
-    "eth": 0,
-    "srp": 0,
-    "color": "blue",
-    "opaque": true
-  },
-  {
-    "id": "mode",
-    "icon": "ModeIcon",
-    "eth": 0,
-    "srp": 0,
-    "color": "dark",
-    "opaque": true
   }
 ]

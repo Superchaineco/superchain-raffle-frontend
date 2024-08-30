@@ -38,6 +38,7 @@ import { RaffleHistoryModalContext } from "@/views/DashBoard";
 import type { TicketsContextType } from "@/types/commons";
 import Image from "next/image";
 import { useAccount } from "wagmi";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -92,6 +93,7 @@ function Raffle({
   round,
   onClick,
 }: RaffleProps) {
+  const { connected } = useSafeAppsSDK();
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
   const [ticketsState, setTicketsState] = useState<TicketsContextType>({
@@ -192,7 +194,6 @@ function Raffle({
                     onDelete={() => {}}
                     deleteIcon={
                       <SvgIcon
-                      
                         component={TicketIconBlackFilled}
                         inheritViewBox
                         style={{
@@ -295,6 +296,7 @@ function Raffle({
                 exit={{ opacity: 0 }}
               >
                 <RaffleInfo
+                  bgColor={isMainCard ? "#F2F5F9" : "transparent"}
                   icon={endsInIcon}
                   primary="Ends in"
                   secondary1={formatTime(endsIn)}
@@ -302,6 +304,7 @@ function Raffle({
                   noMainCard={noMainCard}
                 />
                 <RaffleInfo
+                  bgColor={isMainCard ? "#F2F5F9" : "transparent"}
                   icon={prizePotIcon}
                   primary="Prize pot"
                   secondary1={prizePotEth}
@@ -311,6 +314,7 @@ function Raffle({
                   noMainCard={noMainCard}
                 />
                 <RaffleInfo
+                  bgColor={isMainCard ? "#F2F5F9" : "transparent"}
                   icon={totalEntriesIcon}
                   primary="Total entries"
                   secondary1={currentEntries + " / " + totalEntries}
@@ -385,7 +389,7 @@ function Raffle({
                           setState: setTicketsState,
                         }}
                       >
-                        <PurchaseTickets wallet={isConnected} />
+                        <PurchaseTickets isConnected={connected} />
                         <MyTickets />
                       </TicketsContext.Provider>
                     </Stack>

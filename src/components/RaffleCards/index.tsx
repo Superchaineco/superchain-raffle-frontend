@@ -14,9 +14,10 @@ import RaffleCardSkeleton from "./Raffle/Skeleton";
 import useGetRaffles, {
   type Raffle as RaffleType,
 } from "@/hooks/useGetRaffles";
-import { formatEther, formatUnits, zeroAddress } from "viem";
+import { Address, formatEther, formatUnits, zeroAddress } from "viem";
 import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
 import { useAccount } from "wagmi";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {
@@ -39,8 +40,9 @@ function AssetsParser(asset: string): ElementType {
 
 function RaffleCards() {
   const { data: raffleCardsData } = useGetRaffles();
-  const { address } = useAccount();
-  const { data } = useGetSuperchainAccount(address);
+  const { safe } = useSafeAppsSDK();
+
+  const { data } = useGetSuperchainAccount(safe.safeAddress as Address);
   const [expandedCard, setExpandedCard] = useState<string | null>("");
   const handleCardClick = (id: string | null) => {
     setExpandedCard(id);

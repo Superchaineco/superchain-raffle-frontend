@@ -3,6 +3,27 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET",
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "X-Requested-With, content-type, Authorization",
+          },
+        ],
+      },
+    ];
+  },
   webpack(config, { isServer }) {
     config.externals.push("pino-pretty", "lokijs", "encoding");
     config.module.rules.push({

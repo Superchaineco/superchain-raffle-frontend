@@ -8,7 +8,6 @@
 
 .main {
   background-color: var(--color-background-main);
-  padding-top: calc(var(--header-height));
   display: flex;
   flex-direction: column;
   min-height: 100vh;

@@ -5,6 +5,9 @@ import SafeThemeProvider from "../components/theme/SafeThemeProvider";
 import PageLayout from "../components/common/Layout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import SafeProvider from '@safe-global/safe-apps-react-sdk';
+
+  
 
 function Providers({ children }: { children: React.ReactNode }) {
   //   const themeMode = isDarkMode ? 'dark' : 'light';
@@ -12,7 +15,7 @@ function Providers({ children }: { children: React.ReactNode }) {
 
   const queryClient = new QueryClient();
   const client = new ApolloClient({
-  uri: "https://api.studio.thegraph.com/query/72352/superchain-raffle/version/latest",
+    uri: "https://api.studio.thegraph.com/query/72352/superchain-raffle/version/latest",
     cache: new InMemoryCache(),
   });
 
@@ -21,9 +24,11 @@ function Providers({ children }: { children: React.ReactNode }) {
       {(safeTheme: Theme) => (
         <ApolloProvider client={client}>
           <ThemeProvider theme={safeTheme}>
-            <QueryClientProvider client={queryClient}>
-              <PageLayout>{children}</PageLayout>
-            </QueryClientProvider>
+            <SafeProvider>
+              <QueryClientProvider client={queryClient}>
+                <PageLayout>{children}</PageLayout>
+              </QueryClientProvider>
+            </SafeProvider>
           </ThemeProvider>
         </ApolloProvider>
       )}

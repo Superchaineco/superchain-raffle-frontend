@@ -12,11 +12,11 @@ import Link from "next/link";
 import ProfileCardSkeleton from "./Skeleton";
 import { useQuery } from "react-query";
 import { getProfileData } from "@/functions/fetchFunctions";
-import { useAccount } from "wagmi";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 
 function ProfileCard() {
-  const { isConnected } = useAccount();
-
+  const { connected: isConnected } = useSafeAppsSDK()
+  ;
   const { data, status } = useQuery("profileData", getProfileData, {
     enabled: isConnected,
   });

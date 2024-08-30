@@ -17,12 +17,12 @@ function TopInfo({ eth, ethBonus }: TopInfoProps) {
       setIsShowed(false);
     }, 5000);
     return () => clearTimeout(timer);
-  });
+  }, []);
   return (
     <motion.div
-      initial={{ transform: "translateY(-80px)" }}
+      initial={{ transform: "translateY(-48px)" }}
       animate={{
-        transform: isShowed ? "translateY(0px)" : "translateY(-80px)",
+        transform: isShowed ? "translateY(-48px)" : "translateY(-200px)",
       }}
       transition={{
         type: "spring",

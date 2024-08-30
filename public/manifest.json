@@ -1,0 +1,11 @@
+{
+    "name": "Super Chain Raffle",
+    "description": "Super chain raffle DApp",
+    "icons": [
+      {
+        "src":"/next.svg",
+        "type": "image/svg+xml",
+        "sizes": "any"
+      }
+    ]
+  }

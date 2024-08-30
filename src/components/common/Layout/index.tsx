@@ -6,10 +6,6 @@ import Header from "../Header";
 const PageLayout = ({ children }: { children: ReactNode }): ReactNode => {
   return (
     <>
-      <header className={css.header}>
-        <Header onMenuToggle={undefined} onBatchToggle={undefined} />
-      </header>
-
       <main className={css.main}>
         {children}
 

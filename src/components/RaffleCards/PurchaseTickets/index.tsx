@@ -5,17 +5,17 @@ import { useContext } from "react";
 import { TicketsContext } from "../Raffle";
 
 type Props = {
-  wallet: boolean;
+  isConnected: boolean;
 };
 
-function PurchaseTickets({ wallet }: Props) {
+function PurchaseTickets({ isConnected }: Props) {
   const ticketsContext = useContext(TicketsContext);
   return (
     <div
-      className={`${styles["container--all"]} ${styles[`${wallet ? "container--all--blue" : "container--all--dark"}`]}`}
+      className={`${styles["container--all"]} ${styles[`${isConnected ? "container--all--blue" : "container--all--dark"}`]}`}
     >
       <h3 style={{ margin: "0px" }}>Purchase tickets</h3>
-      {!wallet && (
+      {!isConnected && (
         <>
           <p className={styles["text"]}>
             You need to connect your wallet before you can proceed with claiming
@@ -24,7 +24,7 @@ function PurchaseTickets({ wallet }: Props) {
           <button className={styles["button--connect"]}>Connect</button>
         </>
       )}
-      {wallet && (
+      {isConnected && (
         <>
           <p className={styles["text"]}>
             You can purchase up to <strong> {ticketsContext.state.max} </strong>{" "}
