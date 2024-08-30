@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import axios from "axios";
 
-type Raffle = {
+export type Raffle = {
   raffles: {
     id: string;
-    initTimestamp: number;
+    initTimestamp: string;
     superchainRaffle: string;
     uri: string;
     content: {
@@ -15,13 +15,19 @@ type Raffle = {
       description: string;
     };
     rounds: {
-      roundNumber: number;
-      prizeEth: number;
-      prizeOp: number;
+      roundNumber: string;
+      prizeEth: string;
+      prizeOp: string;
+      ticketsSold: string;
+      users: {
+        user: {
+          id: string;
+        }
+        numberOfTickets: string;
+      }[];
     }[];
   }[];
 };
-
 function useGetRaffles() {
   const [rafflesWithContent, setRafflesWithContent] = useState<Raffle | null>(
     null
@@ -36,6 +42,13 @@ function useGetRaffles() {
           roundNumber
           prizeEth
           prizeOp
+          ticketsSold
+          users {
+           user{
+            id
+                }
+          numberOfTickets  
+          }
         }
       }
     }

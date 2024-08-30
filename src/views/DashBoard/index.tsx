@@ -41,7 +41,6 @@ function DashBoard() {
   }>({
     open: false,
   });
-
   return (
     <ActionModalContext.Provider
       value={{

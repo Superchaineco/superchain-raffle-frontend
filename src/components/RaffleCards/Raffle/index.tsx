@@ -12,8 +12,7 @@ import {
 } from "@mui/material";
 import ethIcon from "@/public/images/ether.svg";
 import srIcon from "@/public/images/sr-icon.svg";
-import myEntriesBlueIcon from "@/public/images/tickets-icon-blue.svg";
-import myEntriesOpaqueIcon from "@/public/images/tickets-icon-opaque.svg";
+import TicketIconRed from "@/public/images/tickets-icon-red.svg";
 import prizePotIcon from "@/public/images/trophy-icon.svg";
 import totalEntriesIcon from "@/public/images/tickets-icon-gray-dotted.svg";
 import endsInIcon from "@/public/images/clock-icon.svg";
@@ -53,11 +52,11 @@ type RaffleProps = {
   chipsText: { value: string; network: string };
   chipColor: string;
   startTimestamp: number;
-  prizePotEth: number;
-  prizePotOp: number;
+  prizePotEth: string;
+  prizePotOp: string;
   totalEntries: number;
   currentEntries: number;
-  entries: number;
+  entries: string;
   networkIcon: ElementType;
   bgImg: string;
   expandedCard: string | null;
@@ -227,7 +226,7 @@ function Raffle({
               </div>
             </Stack>
             <CardContent
-              style={isMainCard ? {} : { maxWidth: "calc(100% - 380px)" }}
+              style={isMainCard ? {} : { maxWidth: "calc(100% - 300px)" }}
               className={styles["container--body"]}
             >
               <AnimatePresence>
@@ -263,21 +262,23 @@ function Raffle({
               </AnimatePresence>
               <motion.div
                 key={`container-info-${id}`}
-                style={{ overflowY: "hidden" }}
+                style={{
+                  overflowY: "hidden",
+                  justifyContent: "start",
+                  rowGap: "8px",
+                  columnGap: isMainCard ? "24px" : "48px",
+                }}
                 initial={{
                   display: "grid",
-                  columnGap: "48px",
-                  rowGap:"8px",
+
                   gridTemplateRows: "1fr 1fr",
                   gridTemplateColumns: "1fr 1fr",
-                  maxWidth: "500px",
                 }}
                 animate={{
-                  gridTemplateRows: isMainCard ? "1fr" : "1fr 1fr",
+                  gridTemplateRows: isMainCard ? "auto" : "auto auto",
                   gridTemplateColumns: isMainCard
                     ? "auto auto auto"
-                    : "1fr 1fr",
-                  maxWidth: isMainCard ? "auto" : "500px",
+                    : "auto auto",
                   opacity: isMainCard
                     ? [0, 0, 0, 0, 0, 0, 1]
                     : [0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -318,10 +319,15 @@ function Raffle({
                 />
                 {!isMainCard && (
                   <RaffleInfo
-                    icon={entries > 0 ? myEntriesBlueIcon : myEntriesOpaqueIcon}
-                    primary="My entries"
+                    icon={TicketIconRed}
+                    primary={
+                      <>
+                        My <strong>free</strong> entries
+                      </>
+                    }
                     secondary1={entries}
-                    color={entries > 0 ? "#00C2FF" : "#000000"}
+                    bgColor={"#FFE6E9"}
+                    borderColor={"#FF0420"}
                     noMainCard={noMainCard}
                   />
                 )}

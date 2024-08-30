@@ -17,10 +17,11 @@ export type SuperChainAccount = {
     }
 }
 
-function useGetSuperchainAccount(address: Address) {
-    return useQuery<SuperChainAccount>({
+function useGetSuperchainAccount(address?: Address) {
+    return useQuery<SuperChainAccount | null>({
         queryKey: ['superChainAccount', address],
         queryFn: async () => {
+            if(!address) return null
             const publicClient = createPublicClient({
                 chain: sepolia,
                 transport: http(),

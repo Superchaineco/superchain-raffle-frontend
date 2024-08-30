@@ -1,26 +1,24 @@
 "use client";
 
-import { SvgIcon, Typography } from "@mui/material";
+import { Box, SvgIcon, Typography } from "@mui/material";
 import styles from "./styles.module.css";
 import { motion } from "framer-motion";
-import type { ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 
 type RaffleInfoProps = {
   icon: ElementType;
-  primary: string;
-  secondary1: string | number;
+  primary: ReactNode;
+  secondary1: string | number | ReactNode;
   secondary2?: string | number;
   secondaryColor?: string;
   iconS1?: ElementType;
   iconS2?: ElementType;
-  color?: string;
+  bgColor?: string;
+  borderColor?: string;
   noMainCard: boolean;
 };
 
-enum ColorParser {
-  "#00C2FF" = "blue",
-  "#000000" = "opaque",
-}
+
 
 function RaffleInfo({
   icon,
@@ -30,20 +28,16 @@ function RaffleInfo({
   secondaryColor,
   iconS1,
   iconS2,
-  color,
+  bgColor,
+  borderColor,
   noMainCard,
 }: RaffleInfoProps) {
   return (
-    <motion.div
-      className={`${styles["container--all"]} ${
-        color
-          ? styles[
-              `container--all--color--${ColorParser[color as keyof typeof ColorParser]}`
-            ]
-          : !noMainCard
-            ? styles["container--all--main-card"]
-            : ""
-      }`}
+    <Box
+      className={`${styles["container--all"]}`}
+      bgcolor={bgColor || "transparent"}
+      border={borderColor ? 1 : 0}
+      borderColor={borderColor || "transparent"}
     >
       <div className={styles["container--primary"]}>
         <SvgIcon
@@ -54,7 +48,12 @@ function RaffleInfo({
             height: "12px",
           }}
         />
-        <Typography variant="h5" fontSize={16} fontWeight={400} color='GrayText'>
+        <Typography
+          variant="h5"
+          fontSize={16}
+          fontWeight={400}
+          color="GrayText"
+        >
           {primary}:
         </Typography>
       </div>
@@ -77,7 +76,7 @@ function RaffleInfo({
           </>
         )}
       </div>
-    </motion.div>
+    </Box>
   );
 }
 

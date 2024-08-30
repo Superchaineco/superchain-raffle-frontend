@@ -11,7 +11,12 @@ import { useQuery } from "react-query";
 import { getRaffleCardsData } from "@/functions/fetchFunctions";
 import type { RaffleCardsData } from "@/types/raffleCards";
 import RaffleCardSkeleton from "./Raffle/Skeleton";
-import useGetRaffles from "@/hooks/useGetRaffles";
+import useGetRaffles, {
+  type Raffle as RaffleType,
+} from "@/hooks/useGetRaffles";
+import { formatEther, formatUnits, zeroAddress } from "viem";
+import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
+import { useAccount } from "wagmi";
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {
@@ -33,10 +38,9 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RaffleCards() {
-  // const { data: raffleCardsData, status: _status } = useQuery<
-  //   RaffleCardsData[]
-  // >("raffleCardsData", getRaffleCardsData);
   const { data: raffleCardsData } = useGetRaffles();
+  const { address } = useAccount();
+  const { data } = useGetSuperchainAccount(address);
   const [expandedCard, setExpandedCard] = useState<string | null>("");
   const handleCardClick = (id: string | null) => {
     setExpandedCard(id);
@@ -64,18 +68,34 @@ function RaffleCards() {
           const bgImg = item.content.image;
           const round =
             Math.floor(
-              (Date.now() - item.initTimestamp * 1000) /
+              (Date.now() - parseInt(item.initTimestamp) * 1000) /
                 (7 * 24 * 60 * 60 * 1000)
             ) + 1;
 
           let currentRound = item.rounds.find(
-            (currentRound) => currentRound.roundNumber === (round)
+            (currentRound) => currentRound.roundNumber === round.toString()
           );
+          console.debug("currentRound", currentRound, item.rounds, round);
           if (!currentRound) {
             currentRound = {
-              roundNumber: round,
-              prizeEth: 0,
-              prizeOp: 0,
+              roundNumber: round.toString(),
+              prizeEth: "0",
+              ticketsSold: "0",
+              users: [],
+              prizeOp: "0",
+            };
+          }
+
+          let currentUser = currentRound.users.find(
+            (user) =>
+              user.user.id.toLowerCase() === data?.smartAccount.toLowerCase()
+          );
+          if (!currentUser) {
+            currentUser = {
+              user: {
+                id: data?.smartAccount.toLowerCase() || zeroAddress,
+              },
+              numberOfTickets: "0",
             };
           }
 
@@ -92,12 +112,12 @@ function RaffleCards() {
                 network: item.content.chain,
               }}
               chipColor={"#FF0420"}
-              startTimestamp={item.initTimestamp}
-              prizePotEth={currentRound.prizeEth}
-              prizePotOp={currentRound.prizeOp}
+              startTimestamp={parseInt(item.initTimestamp)}
+              prizePotEth={formatEther(BigInt(currentRound.prizeEth))}
+              prizePotOp={formatUnits(BigInt(currentRound.prizeOp), 18)}
               totalEntries={250}
-              currentEntries={20}
-              entries={10}
+              currentEntries={parseInt(currentRound.ticketsSold)}
+              entries={`${currentUser.numberOfTickets} / ${data ? data.level : 6}`}
               networkIcon={AssetsParser("OptimisimIcon")}
               bgImg={bgImg}
               expandedCard={expandedCard}
