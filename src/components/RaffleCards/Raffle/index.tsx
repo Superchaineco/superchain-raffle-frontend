@@ -39,6 +39,8 @@ import type { TicketsContextType } from "@/types/commons";
 import Image from "next/image";
 import { useAccount } from "wagmi";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
+import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
+import { Address } from "viem";
 
 enum ColorParser {
   "#FF0420" = "red",
@@ -68,7 +70,7 @@ type RaffleProps = {
 
 export const TicketsContext = createContext({
   state: {
-    max: 9,
+    max: 0,
     tickets: [] as number[],
   },
   setState: (_value: TicketsContextType) => {},
@@ -93,16 +95,16 @@ function Raffle({
   round,
   onClick,
 }: RaffleProps) {
-  const { connected } = useSafeAppsSDK();
+  const { connected, safe } = useSafeAppsSDK();
+  const { data :superchainSA} = useGetSuperchainAccount(safe.safeAddress as Address);
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
   const [ticketsState, setTicketsState] = useState<TicketsContextType>({
-    max: 9,
+    max: 0,
     tickets: [],
   });
   const [initialSize, setInitialSize] = useState<string>("auto");
 
-  const { isConnected } = useAccount();
   const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
   const containerRef = useRef<HTMLDivElement>(null);
   const endsIn = Math.floor(
@@ -110,6 +112,16 @@ function Raffle({
       ((Date.now() - startTimestamp * 1000) % (7 * 24 * 60 * 60 * 1000))) /
       (60 * 1000)
   );
+
+
+  useEffect(()=>{
+      if(superchainSA){
+          setTicketsState({
+              max: Number(superchainSA.level),
+              tickets: []
+          })
+      }
+  }, [superchainSA])
 
   const onShowRaffleHistory = () => {
     raffleHistoryModalContext.setRaffleHistoryModalState({ open: true });

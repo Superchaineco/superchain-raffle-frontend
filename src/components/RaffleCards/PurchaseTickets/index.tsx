@@ -14,7 +14,7 @@ function PurchaseTickets({ isConnected }: Props) {
     <div
       className={`${styles["container--all"]} ${styles[`${isConnected ? "container--all--blue" : "container--all--dark"}`]}`}
     >
-      <h3 style={{ margin: "0px" }}>Purchase tickets</h3>
+      <h3 style={{ margin: "0px" }}>Claim tickets</h3>
       {!isConnected && (
         <>
           <p className={styles["text"]}>
@@ -28,7 +28,7 @@ function PurchaseTickets({ isConnected }: Props) {
         <>
           <p className={styles["text"]}>
             You can purchase up to <strong> {ticketsContext.state.max} </strong>{" "}
-            more tickets this round.
+            more tickets this week.
           </p>
           <Stack spacing={1}>
             <PurchaseTicketsInput />
@@ -38,19 +38,11 @@ function PurchaseTickets({ isConnected }: Props) {
               justifyContent={"space-between"}
               spacing={2}
             >
-              <Stack direction={"row"} alignItems={"center"} spacing={0.2}>
+              <Stack direction={"row"} alignItems={"center"} spacing={0.5}>
                 <p>Price: </p>
-                <Typography className={styles["purchase-tickets--value"]}>
-                  0.002
+                <Typography fontWeight='600' className={styles["purchase-tickets--value"]}>
+                  FREE
                 </Typography>
-                <p>ETH</p>
-              </Stack>
-              <Stack direction={"row"} alignItems={"center"} spacing={0.2}>
-                <p>Total: </p>
-                <Typography className={styles["purchase-tickets--value"]}>
-                  0.000
-                </Typography>
-                <p>ETH</p>
               </Stack>
             </Stack>
           </Stack>

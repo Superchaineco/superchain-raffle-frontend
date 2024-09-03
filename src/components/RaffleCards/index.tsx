@@ -16,7 +16,6 @@ import useGetRaffles, {
 } from "@/hooks/useGetRaffles";
 import { Address, formatEther, formatUnits, zeroAddress } from "viem";
 import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
-import { useAccount } from "wagmi";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 
 function AssetsParser(asset: string): ElementType {
