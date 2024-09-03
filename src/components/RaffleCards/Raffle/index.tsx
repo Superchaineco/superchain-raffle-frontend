@@ -66,6 +66,7 @@ type RaffleProps = {
   expandedCard: string | null;
   round: number;
   onClick: (id: string | null) => void;
+  ticketNumbers: string[];
 };
 
 export const TicketsContext = createContext({
@@ -73,7 +74,7 @@ export const TicketsContext = createContext({
     max: 0,
     tickets: [] as number[],
   },
-  setState: (_value: TicketsContextType) => {},
+  setState: (_value: TicketsContextType) => { },
 });
 
 function Raffle({
@@ -94,15 +95,13 @@ function Raffle({
   expandedCard,
   round,
   onClick,
+  ticketNumbers,
 }: RaffleProps) {
   const { connected, safe } = useSafeAppsSDK();
-  const { data :superchainSA} = useGetSuperchainAccount(safe.safeAddress as Address);
+  const { data: superchainSA } = useGetSuperchainAccount(safe.safeAddress as Address);
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
-  const [ticketsState, setTicketsState] = useState<TicketsContextType>({
-    max: 0,
-    tickets: [],
-  });
+
   const [initialSize, setInitialSize] = useState<string>("auto");
 
   const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
@@ -110,18 +109,10 @@ function Raffle({
   const endsIn = Math.floor(
     (7 * 24 * 60 * 60 * 1000 -
       ((Date.now() - startTimestamp * 1000) % (7 * 24 * 60 * 60 * 1000))) /
-      (60 * 1000)
+    (60 * 1000)
   );
 
 
-  useEffect(()=>{
-      if(superchainSA){
-          setTicketsState({
-              max: Number(superchainSA.level),
-              tickets: []
-          })
-      }
-  }, [superchainSA])
 
   const onShowRaffleHistory = () => {
     raffleHistoryModalContext.setRaffleHistoryModalState({ open: true });
@@ -144,10 +135,10 @@ function Raffle({
             ? { minHeight: offset, height: offset, opacity: 1 }
             : expandedCard
               ? {
-                  height: "0px",
-                  opacity: 0,
-                  display: "none",
-                }
+                height: "0px",
+                opacity: 0,
+                display: "none",
+              }
               : { height: initialSize, opacity: 1 }
         }
         exit={{ height: "0px", opacity: 0 }}
@@ -203,7 +194,7 @@ function Raffle({
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
                     label={`${chipsText.value}`}
-                    onDelete={() => {}}
+                    onDelete={() => { }}
                     deleteIcon={
                       <SvgIcon
                         component={TicketIconBlackFilled}
@@ -218,13 +209,12 @@ function Raffle({
                   />
                 )}
                 <Chip
-                  className={`${styles["chip"]} ${
-                    styles[
-                      `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
+                  className={`${styles["chip"]} ${styles[
+                    `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
                     ]
-                  }`}
+                    }`}
                   label={chipsText.network}
-                  onDelete={() => {}}
+                  onDelete={() => { }}
                   deleteIcon={
                     <SvgIcon
                       component={networkIcon}
@@ -384,7 +374,7 @@ function Raffle({
                   exit={{ opacity: 0 }}
                 >
                   <Stack marginTop={4} spacing={2}>
-                    {isMainCard && ticketsState.max == 0 && (
+                    {isMainCard && Number(superchainSA?.level || 0) == 0 && (
                       <Alert severity="warning">
                         This raffle has reached the maximum amount of raffle
                         entries. You can try your luck again when this round is
@@ -395,15 +385,9 @@ function Raffle({
                       direction={{ xs: "column", sm: "row" }}
                       spacing={{ xs: 1, sm: 2 }}
                     >
-                      <TicketsContext.Provider
-                        value={{
-                          state: ticketsState,
-                          setState: setTicketsState,
-                        }}
-                      >
-                        <PurchaseTickets isConnected={connected} />
-                        <MyTickets />
-                      </TicketsContext.Provider>
+
+                      <PurchaseTickets isConnected={connected} currentEntries={currentEntries} max={Number(superchainSA?.level || 0)} />
+                      <MyTickets tickets={ticketNumbers} />
                     </Stack>
                   </Stack>
                 </motion.div>

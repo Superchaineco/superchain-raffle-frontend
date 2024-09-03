@@ -24,6 +24,7 @@ export type Raffle = {
           id: string;
         }
         numberOfTickets: string;
+        ticketNumbers: string[];
       }[];
     }[];
   }[];
@@ -47,7 +48,8 @@ function useGetRaffles() {
            user{
             id
                 }
-          numberOfTickets  
+                ticketNumbers
+                numberOfTickets  
           }
         }
       }

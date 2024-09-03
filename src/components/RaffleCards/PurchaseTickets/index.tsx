@@ -6,10 +6,11 @@ import { TicketsContext } from "../Raffle";
 
 type Props = {
   isConnected: boolean;
+  max: number;
+  currentEntries: number;
 };
 
-function PurchaseTickets({ isConnected }: Props) {
-  const ticketsContext = useContext(TicketsContext);
+function PurchaseTickets({ isConnected, max, currentEntries }: Props) {
   return (
     <div
       className={`${styles["container--all"]} ${styles[`${isConnected ? "container--all--blue" : "container--all--dark"}`]}`}
@@ -27,7 +28,7 @@ function PurchaseTickets({ isConnected }: Props) {
       {isConnected && (
         <>
           <p className={styles["text"]}>
-            You can purchase up to <strong> {ticketsContext.state.max} </strong>{" "}
+            You can purchase up to <strong> {max - currentEntries} </strong>{" "}
             more tickets this week.
           </p>
           <Stack spacing={1}>

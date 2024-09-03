@@ -42,13 +42,7 @@ export default function PurchaseTicketsInput() {
                     "internalType": "address"
                 }
             ],
-            "outputs": [
-                {
-                    "name": "saa",
-                    "type": "address",
-                    "internalType": "address"
-                }
-            ],
+            "outputs": [],
             "stateMutability": "nonpayable"
         }
      ])

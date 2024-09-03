@@ -4,19 +4,19 @@ import TicketImg from "@/public/images/ticket-white-img.svg";
 import { Grid, SvgIcon } from "@mui/material";
 import { TicketsContext } from "../Raffle";
 
-function MyTickets() {
-  const ticketsContext = useContext(TicketsContext);
+function MyTickets( {tickets}: {tickets: string[]}
+) {
   return (
     <div
-      className={`${styles["container--all"]} ${ticketsContext.state.tickets.length > 0 ? styles["container--all--blue"] : styles["container--all--dark"]}`}
+      className={`${styles["container--all"]} ${tickets.length > 0 ? styles["container--all--blue"] : styles["container--all--dark"]}`}
     >
       <h2 style={{ margin: "0px" }}>My Tickets</h2>
-      {ticketsContext.state.tickets.length == 0 && (
+      {tickets.length == 0 && (
         <p className={styles["text"]}>You have not bought any tickets yet.</p>
       )}
       <Grid container spacing={1} style={{ width: "100%", margin: 0 }}>
-        {ticketsContext.state.tickets &&
-          ticketsContext.state.tickets.map((ticket, index) => (
+        {tickets &&
+          tickets.map((ticket, index) => (
             <Grid item xs={3} key={index}>
               <div className={styles["container--ticket"]}>
                 <p>{ticket}</p>

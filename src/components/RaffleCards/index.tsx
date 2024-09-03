@@ -97,6 +97,7 @@ function RaffleCards() {
                 id: data?.smartAccount.toLowerCase() || zeroAddress,
               },
               numberOfTickets: "0",
+              ticketNumbers: [],
             };
           }
 
@@ -123,6 +124,7 @@ function RaffleCards() {
               bgImg={bgImg}
               expandedCard={expandedCard}
               round={round}
+              ticketNumbers={currentUser.ticketNumbers}
             />
           );
         })}
