@@ -4,46 +4,51 @@ import { Button, Stack, SvgIcon } from "@mui/material";
 import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
-import { useContext, type ElementType } from "react";
+import { useMemo, type ElementType } from "react";
 import { ActionModalContext } from "@/views/DashBoard";
 import ActionModalContentRewardInfo from "@/components/ActionModal/Content/Rewards";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
+import useGetClaimablePrizes from "@/hooks/useGetClaimablePrizes";
+import { Address, formatEther, formatUnits } from "viem";
 
 type RewardProps = {
   icon: ElementType;
-  eth: number;
-  srp: number;
   color: string;
-  opaque: boolean;
+  raffleAddress?: string;
 };
 
-function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
-  const actionModalContext = useContext(ActionModalContext);
+function Reward({ icon, color, raffleAddress }: RewardProps) {
+  const { safe } = useSafeAppsSDK()
+  const { data: claimablePrizes } = useGetClaimablePrizes(raffleAddress as Address, safe.safeAddress as Address)
+  console.debug({ claimablePrizes })
+  const opaque = useMemo(() => (
+    !(claimablePrizes &&
+      ((BigInt(claimablePrizes[0]) > BigInt(0)) || (BigInt(claimablePrizes[1]) > BigInt(0))))
+  ), [claimablePrizes]);
 
   const onClaimRewards = () => {
-    actionModalContext.setActionModalContextState({
-      open: true,
-      title: "Confirm to Claim Your Rewards",
-      loadComponent: <></>,
-      contentComponent: (
-        <ActionModalContentRewardInfo
-          data={{
-            eth: 0.1,
-            srPoints: 100,
-          }}
-        />
-      ),
-    });
+    // actionModalContext.setActionModalContextState({
+    //   open: true,
+    //   title: "Confirm to Claim Your Rewards",
+    //   loadComponent: <></>,
+    //   contentComponent: (
+    //     <ActionModalContentRewardInfo
+    //       data={{
+    //         eth: 0.1,
+    //         srPoints: 100,
+    //       }}
+    //     />
+    //   ),
+    // });
   };
   return (
     <div
-      className={`${styles["container--all"]} ${
-        styles[`container--all--color--${color}`]
-      } ${opaque ? styles["container--all--opaque"] : ""}`}
+      className={`${styles["container--all"]} ${styles[`container--all--color--${color}`]
+        } ${opaque ? styles["container--all--opaque"] : ""}`}
     >
       <div
-        className={`${styles["container--icon"]} ${
-          styles[`container--icon--color--${color}`]
-        }`}
+        className={`${styles["container--icon"]} ${styles[`container--icon--color--${color}`]
+          }`}
       >
         <SvgIcon
           component={icon}
@@ -60,7 +65,7 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
       >
         <div className={styles["container--content--text"]}>
           <div className={styles["container--content--eth"]}>
-            <p className={styles["reward--text"]}>{`${eth} ETH`}</p>
+            <p className={styles["reward--text"]}>{`${claimablePrizes ? formatEther(claimablePrizes[0]) : 0} ETH`}</p>
             <SvgIcon
               component={EthIcon}
               inheritViewBox
@@ -72,7 +77,7 @@ function Reward({ icon, eth, srp, color, opaque }: RewardProps) {
           </div>
           <p className={styles["reward--text"]}>+</p>
           <div className={styles["container--content--srp"]}>
-            <p className={styles["reward--text"]}>{`${srp} SRP`}</p>
+            <p className={styles["reward--text"]}>{`${claimablePrizes ? formatUnits(claimablePrizes[1], 18) : 0} OP`}</p>
             <SvgIcon
               component={SrIcon}
               inheritViewBox

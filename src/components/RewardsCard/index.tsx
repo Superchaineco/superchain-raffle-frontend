@@ -10,29 +10,13 @@ import RewardsCardSkeleton from "./Skeleton";
 import { type ElementType } from "react";
 import styles from "./styles.module.css";
 import { useAccount } from "wagmi";
-
-function AssetsParser(asset: string): ElementType {
-  switch (asset) {
-    case "OptimisimIcon":
-      return Optimisim as ElementType;
-    case "BaseIcon":
-      return Base as ElementType;
-    case "ModeIcon":
-      return Mode as ElementType;
-    default:
-      return Optimisim as ElementType;
-  }
-}
+import useGetRaffles from "@/hooks/useGetRaffles";
 
 function RewardsCard() {
   const { isConnected: _isConnected } = useAccount();
+  const { data, loading } = useGetRaffles()
 
-  const { data, status } = useQuery<MyRewardsData[]>(
-    "myRewardsData",
-    getMyRewardsData
-  );
-
-  if (status == "loading") {
+  if (loading) {
     return <RewardsCardSkeleton />;
   }
 
@@ -41,23 +25,19 @@ function RewardsCard() {
       <h2 className={styles["title"]}>My Rewards</h2>
       {data && (
         <section className={styles["container--rewards"]}>
-          {data.map((rewardCardData) => (
+          {data.raffles.map((rewardCardData) => (
             <Reward
               key={rewardCardData.id}
-              icon={AssetsParser(rewardCardData.icon)}
-              eth={rewardCardData.eth}
-              srp={rewardCardData.srp}
-              color={rewardCardData.color}
-              opaque={rewardCardData.opaque}
+              icon={Optimisim}
+              color={'red'}
+              raffleAddress={rewardCardData.id}
             />
           ))}
         </section>
       )}
       {!data && (
         <section className={styles["container--rewards"]}>
-          <Reward icon={Optimisim} eth={0} srp={0} color="dark" opaque={true} />
-          <Reward icon={Base} eth={0} srp={0} color="dark" opaque={true} />
-          <Reward icon={Mode} eth={0} srp={0} color="dark" opaque={true} />
+          <Reward icon={Optimisim} color="red" />
         </section>
       )}
     </Card>

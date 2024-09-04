@@ -6,7 +6,6 @@ export type Raffle = {
   raffles: {
     id: string;
     initTimestamp: string;
-    superchainRaffle: string;
     uri: string;
     content: {
       name: string;

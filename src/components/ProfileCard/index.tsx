@@ -13,15 +13,21 @@ import ProfileCardSkeleton from "./Skeleton";
 import { useQuery } from "react-query";
 import { getProfileData } from "@/functions/fetchFunctions";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
+import { useGetUserPrizes } from "@/hooks/useGetUserPrizes";
+import { Address } from "viem";
+import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
+import NounsAvatar from "../common/NounsAvatar";
 
 function ProfileCard() {
-  const { connected: isConnected } = useSafeAppsSDK()
-  ;
-  const { data, status } = useQuery("profileData", getProfileData, {
-    enabled: isConnected,
-  });
+  const { connected: isConnected, safe } = useSafeAppsSDK()
+  const { data: superchainAccount, isLoading: isLoadingSuperchainAccount } = useGetSuperchainAccount(safe.safeAddress as Address)
+    ;
+  // const { data, status } = useQuery("profileData", getProfileData, {
+  //   enabled: isConnected,
+  // });
+  const { data, loading } = useGetUserPrizes(safe.safeAddress as Address)
 
-  if (status === "loading") {
+  if (loading || isLoadingSuperchainAccount) {
     return <ProfileCardSkeleton />;
   }
   return (
@@ -29,11 +35,11 @@ function ProfileCard() {
       <div className={styles["contianer--header"]}>
         <h2>Profile</h2>
         <div className={styles["container--header--rigth"]}>
-          {data && (
+          {/* {data && (
             <Button className={styles["button--rank"]}>
               Rank: {data.rank}
             </Button>
-          )}
+          )} */}
           <Link href="/leaderBoard" className={styles["container--rank-icon"]}>
             <SvgIcon
               component={RankIcon}
@@ -63,16 +69,17 @@ function ProfileCard() {
       )}
       {data && (
         <div className={styles["container--profile"]}>
-          <SvgIcon
-            component={ProfileIcon}
-            inheritViewBox
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "100%",
-            }}
-          />
-          <p>{data.userHash}</p>
+
+          <Box width={"46px"} height={"46px"} borderRadius={"25%"}>
+            <NounsAvatar seed={{
+              accessory: Number(superchainAccount?.noun?.accessory),
+              background: Number(superchainAccount?.noun?.background),
+              body: Number(superchainAccount?.noun?.body),
+              glasses: Number(superchainAccount?.noun?.glasses),
+              head: Number(superchainAccount?.noun?.head),
+            }} />
+          </Box>
+          <p>{superchainAccount?.superChainID}</p>
           <SvgIcon
             component={CopyIcon}
             inheritViewBox
@@ -97,17 +104,18 @@ function ProfileCard() {
         <div className={styles["container--profile--info-cards"]}>
           <ProfileInfo
             secondary="ETH earned"
-            primary={data.eth}
+            primary={data.user.ethPrizes}
             icon={EthIcon}
           />
           <ProfileInfo
-            secondary="SRP earned"
-            primary={data.srp}
+            secondary="OP earned"
+            primary={data.user.opPrizes}
             icon={SrIcon}
           />
           <ProfileInfo
             secondary="Entries"
-            primary={data.entries}
+            isFixed={false}
+            primary={data.user.rounds.reduce((acc, curr) => acc + curr.numberOfTickets, 0)}
             icon={TicketsIcon}
           />
         </div>

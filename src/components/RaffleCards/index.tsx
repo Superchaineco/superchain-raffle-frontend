@@ -76,7 +76,6 @@ function RaffleCards() {
           let currentRound = item.rounds.find(
             (currentRound) => currentRound.roundNumber === round.toString()
           );
-          console.debug("currentRound", currentRound, item.rounds, round);
           if (!currentRound) {
             currentRound = {
               roundNumber: round.toString(),
