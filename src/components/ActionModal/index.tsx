@@ -10,13 +10,6 @@ import { getClaimRewardsModalData } from "@/functions/fetchFunctions";
 
 export default function ActionModal() {
   const claimRewardsContext = useContext(ActionModalContext);
-  const { data, status } = useQuery<ClaimRewardsModalData>(
-    "claimRewardsModalData",
-    getClaimRewardsModalData,
-    {
-      enabled: claimRewardsContext.actionModalContextState.open,
-    }
-  );
 
   const handleClose = () => {
     claimRewardsContext.setActionModalContextState({
@@ -55,15 +48,14 @@ export default function ActionModal() {
             }}
           />
           <ActionModalContent
-            status={status}
+            status={claimRewardsContext.actionModalContextState.status}
             title={claimRewardsContext.actionModalContextState.title}
             content={
               <>
-                {status == "loading" &&
+                {/* {status == "loading" &&
                   claimRewardsContext.actionModalContextState.loadComponent}
                 {status == "success" &&
-                  data &&
-                  claimRewardsContext.actionModalContextState.contentComponent}
+                  claimRewardsContext.actionModalContextState.contentComponent} */}
               </>
             }
           />

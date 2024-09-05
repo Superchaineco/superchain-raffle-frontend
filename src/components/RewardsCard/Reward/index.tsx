@@ -4,12 +4,15 @@ import { Button, Stack, SvgIcon } from "@mui/material";
 import SrIcon from "@/public/images/sr-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
-import { useMemo, type ElementType } from "react";
+import { useContext, useMemo, type ElementType } from "react";
 import { ActionModalContext } from "@/views/DashBoard";
 import ActionModalContentRewardInfo from "@/components/ActionModal/Content/Rewards";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 import useGetClaimablePrizes from "@/hooks/useGetClaimablePrizes";
 import { Address, formatEther, formatUnits } from "viem";
+import { Interface } from "ethers";
+import { SUPER_CHAIN_RAFFLE, SUPER_CHAIN_RAFFLE_ABI } from "@/constants";
+import { ActionModalStatus } from "@/types/commons";
 
 type RewardProps = {
   icon: ElementType;
@@ -18,7 +21,8 @@ type RewardProps = {
 };
 
 function Reward({ icon, color, raffleAddress }: RewardProps) {
-  const { safe } = useSafeAppsSDK()
+  const { safe, sdk } = useSafeAppsSDK()
+  const { actionModalContextState, setActionModalContextState } = useContext(ActionModalContext)
   const { data: claimablePrizes } = useGetClaimablePrizes(raffleAddress as Address, safe.safeAddress as Address)
   console.debug({ claimablePrizes })
   const opaque = useMemo(() => (
@@ -26,20 +30,69 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
       ((BigInt(claimablePrizes[0]) > BigInt(0)) || (BigInt(claimablePrizes[1]) > BigInt(0))))
   ), [claimablePrizes]);
 
-  const onClaimRewards = () => {
-    // actionModalContext.setActionModalContextState({
-    //   open: true,
-    //   title: "Confirm to Claim Your Rewards",
-    //   loadComponent: <></>,
-    //   contentComponent: (
-    //     <ActionModalContentRewardInfo
-    //       data={{
-    //         eth: 0.1,
-    //         srPoints: 100,
-    //       }}
-    //     />
-    //   ),
-    // });
+  const onClaimRewards = async () => {
+    setActionModalContextState({
+      open: true,
+      title: "Reeling in Your Rewards",
+      loadComponent: <></>,
+      status: ActionModalStatus.LOADING,
+      contentComponent: (
+        <></>
+      ),
+    });
+    try {
+
+      const iface = new Interface(SUPER_CHAIN_RAFFLE_ABI)
+      const calldata = iface.encodeFunctionData("claim")
+      const txs = [
+        {
+          to: raffleAddress!,
+          value: "0",
+          data: calldata
+
+        }
+      ]
+      try {
+
+        const transaction = await sdk.txs.send({ txs });
+        let transactionConfirmed = false;
+        let maxRetries = 10;
+        while (!transactionConfirmed && maxRetries > 0) {
+          const status = await sdk.txs.getBySafeTxHash(transaction.safeTxHash);
+          if (status.txStatus == 'SUCCESS') {
+            transactionConfirmed = true;
+          } else {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            maxRetries--;
+          }
+        }
+        if (transactionConfirmed) {
+          setActionModalContextState({
+            open: true,
+            title: 'Rewards Claimed!',
+          loadComponent: <></>,
+          status: ActionModalStatus.SUCCESS,
+            contentComponent: (
+              <></>
+            ),
+          });
+        }
+      } catch (e) {
+        setActionModalContextState({
+          open: true,
+          title: 'Something went wrong',
+          loadComponent: <></>,
+          status: ActionModalStatus.ERROR,
+          contentComponent: (
+            <></>
+          ),
+        });
+      }
+    }
+    catch (e) {
+
+    }
+
   };
   return (
     <div

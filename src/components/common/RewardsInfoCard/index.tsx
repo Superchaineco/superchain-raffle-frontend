@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 type ProfileInfoProps = {
   text: string;
-  value: number;
+  value: string | number;
   icon: ElementType;
 };
 

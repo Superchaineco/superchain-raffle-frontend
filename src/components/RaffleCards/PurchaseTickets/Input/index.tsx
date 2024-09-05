@@ -13,83 +13,98 @@ import ActionModalContentTicketsInfo from "@/components/ActionModal/Content/Tick
 import { ActionModalContext } from "@/views/DashBoard";
 import { TicketsContext } from "../../Raffle";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
-import {  Interface } from "ethers";
+import { Interface } from "ethers";
 import {
   SUPER_CHAIN_RAFFLE,
 } from "@/constants";
+import { ActionModalStatus } from "@/types/commons";
 
 export default function PurchaseTicketsInput() {
   const { sdk, safe } = useSafeAppsSDK();
   const [quantity, setQuantity] = useState(0);
-  const actionModalContext = useContext(ActionModalContext);
+  const { actionModalContextState, setActionModalContextState } = useContext(ActionModalContext);
 
   const ticketsContext = useContext(TicketsContext);
 
   const onBuyTickets = async () => {
-    const iface = new Interface( [
-         {
-            "type": "function",
-            "name": "enterRaffle",
-            "inputs": [
-                {
-                    "name": "_numberOfTickets",
-                    "type": "uint256",
-                    "internalType": "uint256"
-                },
-                {
-                    "name": "user",
-                    "type": "address",
-                    "internalType": "address"
-                }
-            ],
-            "outputs": [],
-            "stateMutability": "nonpayable"
+    setActionModalContextState({
+      open: true,
+      title: "Confirm to Claim Your Rewards",
+      loadComponent: <></>,
+      contentComponent: (
+        <></>
+      ),
+      status: ActionModalStatus.LOADING,
+    });
+    try {
+
+      const iface = new Interface([
+        {
+          "type": "function",
+          "name": "enterRaffle",
+          "inputs": [
+            {
+              "name": "_numberOfTickets",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "user",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
         }
-     ])
-     const calldata  = iface.encodeFunctionData("enterRaffle", [BigInt(quantity), safe.safeAddress ])
+      ])
+      const calldata = iface.encodeFunctionData("enterRaffle", [BigInt(quantity), safe.safeAddress])
 
-    const txs = [
-      {
-        to: SUPER_CHAIN_RAFFLE,
-        value: "0",
-        data: calldata,
-      },
-    ];
-    const transaction = await sdk.txs.send({ txs });
-    const transactionStatus = await sdk.txs.getBySafeTxHash(transaction.safeTxHash)
-
-    let transactionConfirmed = false;
-    while (!transactionConfirmed) {
-      const status = await sdk.txs.getBySafeTxHash(transaction.safeTxHash);
-      if (status.txStatus == 'SUCCESS' ) {
-        transactionConfirmed = true;
-      } else {
-        await new Promise(resolve => setTimeout(resolve, 5000));
+      const txs = [
+        {
+          to: SUPER_CHAIN_RAFFLE,
+          value: "0",
+          data: calldata,
+        },
+      ];
+      const transaction = await sdk.txs.send({ txs });
+      let transactionConfirmed = false;
+      while (!transactionConfirmed) {
+        const status = await sdk.txs.getBySafeTxHash(transaction.safeTxHash);
+        if (status.txStatus == 'SUCCESS') {
+          transactionConfirmed = true;
+        } else {
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
       }
+
+      if (transactionConfirmed) {
+        setActionModalContextState({
+          ...actionModalContextState,
+          status: ActionModalStatus.SUCCESS,
+          contentComponent: (
+            <ActionModalContentTicketsInfo />
+          ),
+        })
+      }
+
+      if (quantity > 0 && quantity <= ticketsContext.state.max) {
+        ticketsContext.setState({
+          max: ticketsContext.state.max - quantity,
+          tickets: [],
+        });
+
+      }
+
     }
-
-
-    const receipt = await sdk.eth.getTransactionReceipt([transactionStatus.txHash!]);
-    console.debug({ receipt });
-    if (quantity > 0 && quantity <= ticketsContext.state.max) {
-      ticketsContext.setState({
-        max: ticketsContext.state.max - quantity,
-        tickets: [],
-      });
-      actionModalContext.setActionModalContextState({
-        open: true,
-        title: "Confirm to Claim Your Rewards",
-        loadComponent: <></>,
+    catch (e) {
+      setActionModalContextState({
+        ...actionModalContextState,
+        status: ActionModalStatus.ERROR,
         contentComponent: (
-          <ActionModalContentTicketsInfo
-            data={{
-              eth: 0.1,
-              srPoints: 10,
-              tickets: [],
-            }}
-          />
+          <></>
         ),
-      });
+      })
     }
   };
 

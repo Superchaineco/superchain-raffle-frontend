@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import WellcomeBackImg from "@/public/images/welcome-back-img.svg";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import RewardsInfoCard from "../RewardsInfoCard";
 import ETHIcon from "@/public/images/eth-icon.svg";
 import SRIcon from "@/public/images/sr-icon.svg";
@@ -20,14 +20,45 @@ import WellcomeBackModalTicketsToolTip from "./TicketsToolTip";
 import { useQuery } from "react-query";
 import { getWelcomeBackData } from "@/functions/fetchFunctions";
 import type { WelcomeBackData } from "@/types/welcomeBack";
+import useGetClaimablePrizes from "@/hooks/useGetClaimablePrizes";
+import useGetRaffles from "@/hooks/useGetRaffles";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
+import { Address, formatEther } from "viem";
+import { useGetWinningTickets } from "@/hooks/useGetWinningTickets";
 
 function WellcomeBackModal() {
   const { data, status: _status } = useQuery<WelcomeBackData>(
     "welcomeBackData",
     getWelcomeBackData
   );
-  const [open, setOpen] = useState(true);
+  const { safe } = useSafeAppsSDK();
+  const { data: rafflesData } = useGetRaffles();
+  const { data: claimablePrizes, status: claimablePrizesStatus } = useGetClaimablePrizes(
+    rafflesData?.raffles[0].id as Address,
+    safe.safeAddress as Address
+  );
+  const previousRoundId = useMemo(() => {
+    const initRaffleTimestamp = rafflesData?.raffles[0].initTimestamp;
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    const secondsPerRound = 604800; 
+    const previousRoundNumber = Math.floor((currentTimestamp - Number(initRaffleTimestamp)) / secondsPerRound);
+    return previousRoundNumber.toString();
+  }, [rafflesData]);
+  
+  const { data: winningTicketsData } = useGetWinningTickets(safe.safeAddress as Address, previousRoundId);
+
+  const isClaimable = useMemo(() => {
+    return claimablePrizes && (BigInt(claimablePrizes[0]) > BigInt(0) || BigInt(claimablePrizes[1]) > BigInt(0));
+  }, [claimablePrizes]);
+
+  const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  useEffect(() => {
+    if (isClaimable) {
+      setOpen(true);
+    }
+  }, [isClaimable]);
+
 
   if (_status === "success")
     return (
@@ -90,18 +121,24 @@ function WellcomeBackModal() {
                 paddingX={4}
                 paddingY={2}
               >
-                <RewardsInfoCard text="ETH" value={data.eth} icon={ETHIcon} />
+                <RewardsInfoCard text="ETH" value={
+                  claimablePrizes ? formatEther(claimablePrizes[0]) : 0
+                } icon={ETHIcon} />
                 <RewardsInfoCard
-                  text="SR Points"
-                  value={data.srPoints}
+                  text="OP"
+                  value={claimablePrizes ? formatEther(claimablePrizes[1]) : 0}
                   icon={SRIcon}
                 />
               </Stack>
               <Tooltip
                 title={
                   <WellcomeBackModalTicketsToolTip
-                    opTickets={data.opTickets}
-                    baseTickets={data.baseTickets}
+                    winningTickets={[
+                      {
+                        raffleName: "Weekly OP Raffle",
+                        tickets: winningTicketsData?.round.winningTickets || []
+                      }
+                    ]}
                   />
                 }
                 TransitionComponent={Fade}

@@ -79,7 +79,7 @@ function ProfileCard() {
               head: Number(superchainAccount?.noun?.head),
             }} />
           </Box>
-          <p>{superchainAccount?.superChainID}</p>
+          <strong>{superchainAccount?.superChainID}</strong>
           <SvgIcon
             component={CopyIcon}
             inheritViewBox
