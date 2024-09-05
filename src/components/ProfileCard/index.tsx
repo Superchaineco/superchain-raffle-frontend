@@ -40,7 +40,7 @@ function ProfileCard() {
               Rank: {data.rank}
             </Button>
           )} */}
-          <Link href="/leaderBoard" className={styles["container--rank-icon"]}>
+          <Link href={`https://super-chain-smart-account-wallet.vercel.app/leaderboard?safe=${safe.safeAddress}`} target="_blank" className={styles["container--rank-icon"]}>
             <SvgIcon
               component={RankIcon}
               inheritViewBox
