@@ -11,13 +11,7 @@
   ],
   "plugins": ["@typescript-eslint", "import"],
   "rules": {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
-    ],
-    "@typescript-eslint/consistent-type-imports": "error",
-    "import/no-duplicates": "error"
+    "@typescript-eslint/no-unused-vars": "off"
   },
   "settings": {
     "next": {

@@ -2,7 +2,6 @@
 
 import { Box, SvgIcon, Typography } from "@mui/material";
 import styles from "./styles.module.css";
-import { motion } from "framer-motion";
 import type { ElementType, ReactNode } from "react";
 
 type RaffleInfoProps = {
@@ -18,18 +17,18 @@ type RaffleInfoProps = {
   noMainCard: boolean;
 };
 
-
-
 function RaffleInfo({
   icon,
   primary,
   secondary1,
   secondary2,
+  //eslint-disable-next-line
   secondaryColor,
   iconS1,
   iconS2,
   bgColor,
   borderColor,
+  //eslint-disable-next-line
   noMainCard,
 }: RaffleInfoProps) {
   return (

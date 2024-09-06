@@ -7,13 +7,8 @@ import BaseBgImg from "@/public/images/base-bg-img.svg";
 import ModeBgImg from "@/public/images/mode-bg-img.svg";
 import Raffle from "./Raffle";
 import styles from "./styles.module.css";
-import { useQuery } from "react-query";
-import { getRaffleCardsData } from "@/functions/fetchFunctions";
-import type { RaffleCardsData } from "@/types/raffleCards";
 import RaffleCardSkeleton from "./Raffle/Skeleton";
-import useGetRaffles, {
-  type Raffle as RaffleType,
-} from "@/hooks/useGetRaffles";
+import useGetRaffles from "@/hooks/useGetRaffles";
 import { Address, formatEther, formatUnits, zeroAddress } from "viem";
 import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";

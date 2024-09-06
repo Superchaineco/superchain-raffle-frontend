@@ -56,7 +56,9 @@ export default function ActionModalContent({ title, status, content }: Props) {
     <div className={styles["container--content"]}>
       <Typography className={styles["title"]}>{titleText}</Typography>
       {icon}
-      {(status === ActionModalStatus.LOADING || status === ActionModalStatus.SUCCESS) && content}
+      {(status === ActionModalStatus.LOADING ||
+        status === ActionModalStatus.SUCCESS) &&
+        content}
       {status === ActionModalStatus.LOADING && (
         <Typography className={styles["text"]}>
           Proceed in your wallet.

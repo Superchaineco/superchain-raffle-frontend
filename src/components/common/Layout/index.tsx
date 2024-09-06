@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import css from "./styles.module.css";
 import Footer from "../Footer";
-import Header from "../Header";
 
 const PageLayout = ({ children }: { children: ReactNode }): ReactNode => {
   return (

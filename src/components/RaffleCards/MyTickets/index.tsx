@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./styles.module.css";
 import TicketImg from "@/public/images/ticket-white-img.svg";
 import { Grid, SvgIcon } from "@mui/material";
-import { TicketsContext } from "../Raffle";
 
-function MyTickets( {tickets}: {tickets: string[]}
-) {
+function MyTickets({ tickets }: { tickets: string[] }) {
   return (
     <div
       className={`${styles["container--all"]} ${tickets.length > 0 ? styles["container--all--blue"] : styles["container--all--dark"]}`}

@@ -4,9 +4,6 @@ import React, { useContext } from "react";
 import styles from "./styles.module.css";
 import ActionModalContent from "./Content";
 import { ActionModalContext } from "@/views/DashBoard";
-import type { ClaimRewardsModalData } from "@/types/rewardsCard";
-import { useQuery } from "react-query";
-import { getClaimRewardsModalData } from "@/functions/fetchFunctions";
 
 export default function ActionModal() {
   const claimRewardsContext = useContext(ActionModalContext);

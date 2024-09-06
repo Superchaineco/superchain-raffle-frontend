@@ -33,22 +33,32 @@ function WellcomeBackModal() {
   );
   const { safe } = useSafeAppsSDK();
   const { data: rafflesData } = useGetRaffles();
-  const { data: claimablePrizes, status: claimablePrizesStatus } = useGetClaimablePrizes(
-    rafflesData?.raffles[0].id as Address,
-    safe.safeAddress as Address
-  );
+  const { data: claimablePrizes, status: claimablePrizesStatus } =
+    useGetClaimablePrizes(
+      rafflesData?.raffles[0].id as Address,
+      safe.safeAddress as Address
+    );
   const previousRoundId = useMemo(() => {
     const initRaffleTimestamp = rafflesData?.raffles[0].initTimestamp;
     const currentTimestamp = Math.floor(Date.now() / 1000);
-    const secondsPerRound = 604800; 
-    const previousRoundNumber = Math.floor((currentTimestamp - Number(initRaffleTimestamp)) / secondsPerRound);
+    const secondsPerRound = 604800;
+    const previousRoundNumber = Math.floor(
+      (currentTimestamp - Number(initRaffleTimestamp)) / secondsPerRound
+    );
     return previousRoundNumber.toString();
   }, [rafflesData]);
-  
-  const { data: winningTicketsData } = useGetWinningTickets(safe.safeAddress as Address, previousRoundId);
+
+  const { data: winningTicketsData } = useGetWinningTickets(
+    safe.safeAddress as Address,
+    previousRoundId
+  );
 
   const isClaimable = useMemo(() => {
-    return claimablePrizes && (BigInt(claimablePrizes[0]) > BigInt(0) || BigInt(claimablePrizes[1]) > BigInt(0));
+    return (
+      claimablePrizes &&
+      (BigInt(claimablePrizes[0]) > BigInt(0) ||
+        BigInt(claimablePrizes[1]) > BigInt(0))
+    );
   }, [claimablePrizes]);
 
   const [open, setOpen] = useState(false);
@@ -58,7 +68,6 @@ function WellcomeBackModal() {
       setOpen(true);
     }
   }, [isClaimable]);
-
 
   if (_status === "success")
     return (
@@ -121,9 +130,11 @@ function WellcomeBackModal() {
                 paddingX={4}
                 paddingY={2}
               >
-                <RewardsInfoCard text="ETH" value={
-                  claimablePrizes ? formatEther(claimablePrizes[0]) : 0
-                } icon={ETHIcon} />
+                <RewardsInfoCard
+                  text="ETH"
+                  value={claimablePrizes ? formatEther(claimablePrizes[0]) : 0}
+                  icon={ETHIcon}
+                />
                 <RewardsInfoCard
                   text="OP"
                   value={claimablePrizes ? formatEther(claimablePrizes[1]) : 0}
@@ -136,8 +147,8 @@ function WellcomeBackModal() {
                     winningTickets={[
                       {
                         raffleName: "Weekly OP Raffle",
-                        tickets: winningTicketsData?.round.winningTickets || []
-                      }
+                        tickets: winningTicketsData?.round.winningTickets || [],
+                      },
                     ]}
                   />
                 }

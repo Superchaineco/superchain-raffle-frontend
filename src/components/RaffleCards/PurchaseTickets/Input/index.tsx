@@ -14,15 +14,14 @@ import { ActionModalContext } from "@/views/DashBoard";
 import { TicketsContext } from "../../Raffle";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 import { Interface } from "ethers";
-import {
-  SUPER_CHAIN_RAFFLE,
-} from "@/constants";
+import { SUPER_CHAIN_RAFFLE } from "@/constants";
 import { ActionModalStatus } from "@/types/commons";
 
 export default function PurchaseTicketsInput() {
   const { sdk, safe } = useSafeAppsSDK();
   const [quantity, setQuantity] = useState(0);
-  const { actionModalContextState, setActionModalContextState } = useContext(ActionModalContext);
+  const { actionModalContextState, setActionModalContextState } =
+    useContext(ActionModalContext);
 
   const ticketsContext = useContext(TicketsContext);
 
@@ -31,34 +30,34 @@ export default function PurchaseTicketsInput() {
       open: true,
       title: "Confirm to Claim Your Rewards",
       loadComponent: <></>,
-      contentComponent: (
-        <></>
-      ),
+      contentComponent: <></>,
       status: ActionModalStatus.LOADING,
     });
     try {
-
       const iface = new Interface([
         {
-          "type": "function",
-          "name": "enterRaffle",
-          "inputs": [
+          type: "function",
+          name: "enterRaffle",
+          inputs: [
             {
-              "name": "_numberOfTickets",
-              "type": "uint256",
-              "internalType": "uint256"
+              name: "_numberOfTickets",
+              type: "uint256",
+              internalType: "uint256",
             },
             {
-              "name": "user",
-              "type": "address",
-              "internalType": "address"
-            }
+              name: "user",
+              type: "address",
+              internalType: "address",
+            },
           ],
-          "outputs": [],
-          "stateMutability": "nonpayable"
-        }
-      ])
-      const calldata = iface.encodeFunctionData("enterRaffle", [BigInt(quantity), safe.safeAddress])
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+      ]);
+      const calldata = iface.encodeFunctionData("enterRaffle", [
+        BigInt(quantity),
+        safe.safeAddress,
+      ]);
 
       const txs = [
         {
@@ -71,10 +70,10 @@ export default function PurchaseTicketsInput() {
       let transactionConfirmed = false;
       while (!transactionConfirmed) {
         const status = await sdk.txs.getBySafeTxHash(transaction.safeTxHash);
-        if (status.txStatus == 'SUCCESS') {
+        if (status.txStatus == "SUCCESS") {
           transactionConfirmed = true;
         } else {
-          await new Promise(resolve => setTimeout(resolve, 5000));
+          await new Promise((resolve) => setTimeout(resolve, 5000));
         }
       }
 
@@ -82,10 +81,8 @@ export default function PurchaseTicketsInput() {
         setActionModalContextState({
           ...actionModalContextState,
           status: ActionModalStatus.SUCCESS,
-          contentComponent: (
-            <ActionModalContentTicketsInfo />
-          ),
-        })
+          contentComponent: <ActionModalContentTicketsInfo />,
+        });
       }
 
       if (quantity > 0 && quantity <= ticketsContext.state.max) {
@@ -93,18 +90,13 @@ export default function PurchaseTicketsInput() {
           max: ticketsContext.state.max - quantity,
           tickets: [],
         });
-
       }
-
-    }
-    catch (e) {
+    } catch (e) {
       setActionModalContextState({
         ...actionModalContextState,
         status: ActionModalStatus.ERROR,
-        contentComponent: (
-          <></>
-        ),
-      })
+        contentComponent: <></>,
+      });
     }
   };
 

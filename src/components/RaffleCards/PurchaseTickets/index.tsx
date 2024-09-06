@@ -1,8 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import styles from "./styles.module.css";
 import PurchaseTicketsInput from "./Input";
-import { useContext } from "react";
-import { TicketsContext } from "../Raffle";
 
 type Props = {
   isConnected: boolean;
@@ -41,7 +39,10 @@ function PurchaseTickets({ isConnected, max, currentEntries }: Props) {
             >
               <Stack direction={"row"} alignItems={"center"} spacing={0.5}>
                 <p>Price: </p>
-                <Typography fontWeight='600' className={styles["purchase-tickets--value"]}>
+                <Typography
+                  fontWeight="600"
+                  className={styles["purchase-tickets--value"]}
+                >
                   FREE
                 </Typography>
               </Stack>

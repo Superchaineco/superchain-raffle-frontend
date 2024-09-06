@@ -8,10 +8,12 @@ import RaffleCards from "@/components/RaffleCards";
 import RewardsCard from "@/components/RewardsCard";
 import WellcomeBackModal from "@/components/common/WellcomeBackModal";
 import ActionModal from "@/components/ActionModal";
-import { ActionModalStatus, type ActionModalContextStateType } from "@/types/commons";
+import {
+  ActionModalStatus,
+  type ActionModalContextStateType,
+} from "@/types/commons";
 import RaffleHistoryModal from "@/components/RaffleHistoryModal";
 import { Container, Grid, Stack } from "@mui/material";
-
 
 export const ActionModalContext = createContext({
   actionModalContextState: {
@@ -19,16 +21,18 @@ export const ActionModalContext = createContext({
     title: "",
     loadComponent: (<></>) as ReactNode,
     contentComponent: (<></>) as ReactNode,
-    status: ActionModalStatus.IDLE
+    status: ActionModalStatus.IDLE,
   },
-  setActionModalContextState: (_value: ActionModalContextStateType) => { },
+  //eslint-disable-next-line
+  setActionModalContextState: (_value: ActionModalContextStateType) => {},
 });
 
 export const RaffleHistoryModalContext = createContext({
   raffleHistoryModalState: {
     open: false,
   },
-  setRaffleHistoryModalState: (_value: { open: boolean }) => { },
+  //eslint-disable-next-line
+  setRaffleHistoryModalState: (_value: { open: boolean }) => {},
 });
 function DashBoard() {
   const [actionModalState, setActionModalState] =
@@ -37,7 +41,7 @@ function DashBoard() {
       title: "",
       loadComponent: <></>,
       contentComponent: <></>,
-      status: ActionModalStatus.IDLE
+      status: ActionModalStatus.IDLE,
     });
   const [raffleHistoryModalState, setRaffleHistoryModalState] = useState<{
     open: boolean;

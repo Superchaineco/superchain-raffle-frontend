@@ -37,7 +37,6 @@ import { formatTime } from "@/functions/auxiliarFunctions";
 import { RaffleHistoryModalContext } from "@/views/DashBoard";
 import type { TicketsContextType } from "@/types/commons";
 import Image from "next/image";
-import { useAccount } from "wagmi";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
 import { Address } from "viem";
@@ -74,7 +73,7 @@ export const TicketsContext = createContext({
     max: 0,
     tickets: [] as number[],
   },
-  setState: (_value: TicketsContextType) => { },
+  setState: (_value: TicketsContextType) => {},
 });
 
 function Raffle({
@@ -98,7 +97,9 @@ function Raffle({
   ticketNumbers,
 }: RaffleProps) {
   const { connected, safe } = useSafeAppsSDK();
-  const { data: superchainSA } = useGetSuperchainAccount(safe.safeAddress as Address);
+  const { data: superchainSA } = useGetSuperchainAccount(
+    safe.safeAddress as Address
+  );
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
 
@@ -109,10 +110,8 @@ function Raffle({
   const endsIn = Math.floor(
     (7 * 24 * 60 * 60 * 1000 -
       ((Date.now() - startTimestamp * 1000) % (7 * 24 * 60 * 60 * 1000))) /
-    (60 * 1000)
+      (60 * 1000)
   );
-
-
 
   const onShowRaffleHistory = () => {
     raffleHistoryModalContext.setRaffleHistoryModalState({ open: true });
@@ -135,10 +134,10 @@ function Raffle({
             ? { minHeight: offset, height: offset, opacity: 1 }
             : expandedCard
               ? {
-                height: "0px",
-                opacity: 0,
-                display: "none",
-              }
+                  height: "0px",
+                  opacity: 0,
+                  display: "none",
+                }
               : { height: initialSize, opacity: 1 }
         }
         exit={{ height: "0px", opacity: 0 }}
@@ -194,7 +193,7 @@ function Raffle({
                   <Chip
                     className={`${styles["chip"]} ${styles[`chip--white`]}`}
                     label={`${chipsText.value}`}
-                    onDelete={() => { }}
+                    onDelete={() => {}}
                     deleteIcon={
                       <SvgIcon
                         component={TicketIconBlackFilled}
@@ -209,12 +208,13 @@ function Raffle({
                   />
                 )}
                 <Chip
-                  className={`${styles["chip"]} ${styles[
-                    `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
+                  className={`${styles["chip"]} ${
+                    styles[
+                      `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
                     ]
-                    }`}
+                  }`}
                   label={chipsText.network}
-                  onDelete={() => { }}
+                  onDelete={() => {}}
                   deleteIcon={
                     <SvgIcon
                       component={networkIcon}
@@ -385,8 +385,11 @@ function Raffle({
                       direction={{ xs: "column", sm: "row" }}
                       spacing={{ xs: 1, sm: 2 }}
                     >
-
-                      <PurchaseTickets isConnected={connected} currentEntries={currentEntries} max={Number(superchainSA?.level || 0)} />
+                      <PurchaseTickets
+                        isConnected={connected}
+                        currentEntries={currentEntries}
+                        max={Number(superchainSA?.level || 0)}
+                      />
                       <MyTickets tickets={ticketNumbers} />
                     </Stack>
                   </Stack>

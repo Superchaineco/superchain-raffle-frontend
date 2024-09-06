@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Divider, Stack, SvgIcon } from "@mui/material";
+import { Stack, SvgIcon } from "@mui/material";
 import TicketsIcon from "@/public/images/tickets-icon-blue.svg";
 
 type Props = {

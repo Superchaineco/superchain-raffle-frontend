@@ -9,12 +9,19 @@ type ProfileInfoProps = {
   isFixed?: boolean;
 };
 
-function ProfileInfo({ primary, secondary, icon, isFixed = true }: ProfileInfoProps) {
+function ProfileInfo({
+  primary,
+  secondary,
+  icon,
+  isFixed = true,
+}: ProfileInfoProps) {
   return (
     <Card className={styles["container--all"]}>
       <h4 className={styles["secondary--text"]}>{secondary}</h4>
       <div className={styles["container--primary"]}>
-        <span className={styles["primary--text"]}>{isFixed ? Number(primary).toFixed(2) : Number(primary)}</span>
+        <span className={styles["primary--text"]}>
+          {isFixed ? Number(primary).toFixed(2) : Number(primary)}
+        </span>
         <SvgIcon
           component={icon}
           inheritViewBox

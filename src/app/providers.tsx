@@ -1,13 +1,11 @@
 "use client";
-import React, { cache } from "react";
+import React from "react";
 import { type Theme, ThemeProvider } from "@mui/material";
 import SafeThemeProvider from "../components/theme/SafeThemeProvider";
 import PageLayout from "../components/common/Layout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import SafeProvider from '@safe-global/safe-apps-react-sdk';
-
-  
+import SafeProvider from "@safe-global/safe-apps-react-sdk";
 
 function Providers({ children }: { children: React.ReactNode }) {
   //   const themeMode = isDarkMode ? 'dark' : 'light';
