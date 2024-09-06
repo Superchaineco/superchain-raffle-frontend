@@ -24,9 +24,22 @@ export function useGetUserPrizes(user: Address) {
     }
   `;
 
-  return useQuery<UserPrizes>(GET_USER_PRIZES, {
+  const { data, ...rest } = useQuery<UserPrizes>(GET_USER_PRIZES, {
     variables: {
       id: user,
     },
   });
+
+  const defaultUserPrizes: UserPrizes = {
+    user: {
+      opPrizes: 0,
+      ethPrizes: 0,
+      rounds: [],
+    },
+  };
+
+  return {
+    data: data?.user ? data : defaultUserPrizes,
+    ...rest,
+  };
 }

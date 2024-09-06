@@ -23,10 +23,11 @@ function ProfileCard() {
   //   enabled: isConnected,
   // });
   const { data, loading } = useGetUserPrizes(safe.safeAddress as Address);
-
-  if (loading || isLoadingSuperchainAccount) {
+  console.debug({ superchainAccount });
+  if (loading || isLoadingSuperchainAccount || !superchainAccount) {
     return <ProfileCardSkeleton />;
   }
+
   return (
     <Card className={styles["container--all"]}>
       <div className={styles["contianer--header"]}>
@@ -73,11 +74,11 @@ function ProfileCard() {
           <Box width={"46px"} height={"46px"} borderRadius={"25%"}>
             <NounsAvatar
               seed={{
-                accessory: Number(superchainAccount?.noun?.accessory),
-                background: Number(superchainAccount?.noun?.background),
-                body: Number(superchainAccount?.noun?.body),
-                glasses: Number(superchainAccount?.noun?.glasses),
-                head: Number(superchainAccount?.noun?.head),
+                accessory: Number(superchainAccount?.noun?.accessory || 0),
+                background: Number(superchainAccount?.noun?.background || 0),
+                body: Number(superchainAccount?.noun?.body || 0),
+                glasses: Number(superchainAccount?.noun?.glasses || 0),
+                head: Number(superchainAccount?.noun?.head || 0),
               }}
             />
           </Box>

@@ -6,7 +6,7 @@ import { SUPER_CHAIN_ACCOUNT_MODULE_ADDRESS } from "@/constants";
 export type SuperChainAccount = {
   smartAccount: Address;
   superChainID: string;
-  points: bigint;
+  points: number;
   level: number;
   noun: {
     background: number;
@@ -21,7 +21,6 @@ function useGetSuperchainAccount(address?: Address) {
   return useQuery<SuperChainAccount | null>({
     queryKey: ["superChainAccount", address],
     queryFn: async () => {
-      if (!address) return null;
       const publicClient = createPublicClient({
         chain: optimism,
         transport: http(),
@@ -85,16 +84,17 @@ function useGetSuperchainAccount(address?: Address) {
           },
         ] as const,
         functionName: "getSuperChainAccount",
-        args: [address],
+        args: ["0xAAAbC1b0745f1481FF04826A1828BBb5025cDD52" as Address],
       });
       return {
         smartAccount: response.smartAccount,
         superChainID: response.superChainID,
-        points: response.points,
-        level: response.level,
+        points: Number(response.points),
+        level: Number(response.level),
         noun: response.noun,
       };
     },
+    enabled: !!address,
   });
 }
 
