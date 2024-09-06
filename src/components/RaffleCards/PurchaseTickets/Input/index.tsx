@@ -17,13 +17,11 @@ import { Interface } from "ethers";
 import { SUPER_CHAIN_RAFFLE } from "@/constants";
 import { ActionModalStatus } from "@/types/commons";
 
-export default function PurchaseTicketsInput() {
+export default function PurchaseTicketsInput({ max }: { max: number }) {
   const { sdk, safe } = useSafeAppsSDK();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState<number | null>(null);
   const { actionModalContextState, setActionModalContextState } =
     useContext(ActionModalContext);
-
-  const ticketsContext = useContext(TicketsContext);
 
   const onBuyTickets = async () => {
     setActionModalContextState({
@@ -55,7 +53,7 @@ export default function PurchaseTicketsInput() {
         },
       ]);
       const calldata = iface.encodeFunctionData("enterRaffle", [
-        BigInt(quantity),
+        BigInt(quantity || 0),
         safe.safeAddress,
       ]);
 
@@ -84,16 +82,10 @@ export default function PurchaseTicketsInput() {
           contentComponent: <ActionModalContentTicketsInfo />,
         });
       }
-
-      if (quantity > 0 && quantity <= ticketsContext.state.max) {
-        ticketsContext.setState({
-          max: ticketsContext.state.max - quantity,
-          tickets: [],
-        });
-      }
     } catch (e) {
       setActionModalContextState({
         ...actionModalContextState,
+        open: true,
         status: ActionModalStatus.ERROR,
         contentComponent: <></>,
       });
@@ -101,19 +93,35 @@ export default function PurchaseTicketsInput() {
   };
 
   const increaseQuantity = () => {
-    if (quantity != ticketsContext.state.max) {
+    if (quantity && quantity < max) {
       setQuantity(quantity + 1);
     }
   };
+
   const decreaseQuantity = () => {
-    if (quantity != 0) {
+    if (quantity && quantity > 0) {
       setQuantity(quantity - 1);
     }
   };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value === "" || event.target.value === null)
+      setQuantity(null);
+    const value = Number(event.target.value);
+    if (isNaN(value)) return;
+    if (value > max) {
+      setQuantity(max);
+    } else if (value < 0) {
+      setQuantity(null);
+    } else {
+      setQuantity(value);
+    }
+  };
+
   return (
     <Stack
       style={{
-        opacity: quantity > 0 && quantity <= ticketsContext.state.max ? 1 : 0.5,
+        opacity: quantity && quantity <= max ? 1 : 0.5,
       }}
       direction={"row"}
       alignItems="stretch"
@@ -123,9 +131,10 @@ export default function PurchaseTicketsInput() {
         className={styles["input--buy"]}
         value={quantity}
         size="small"
-        inputProps={{ inputMode: "numeric" }}
+        inputProps={{ inputMode: "numeric", min: 0, max: max }}
         placeholder="0"
         style={{ borderRadius: "0px 6px 6px 0px" }}
+        onChange={handleInputChange}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -135,18 +144,20 @@ export default function PurchaseTicketsInput() {
                 alignItems={"center"}
                 justifyContent={"center"}
               >
-                <Typography
-                  className={styles["decorator--max"]}
-                  onClick={() => setQuantity(ticketsContext.state.max)}
+                <button
                   style={{
-                    cursor:
-                      quantity == ticketsContext.state.max
-                        ? "default"
-                        : "pointer",
+                    backgroundColor: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    opacity: max ? 1 : 0.5,
                   }}
+                  onClick={() => setQuantity(max)}
+                  disabled={!max}
                 >
-                  Max
-                </Typography>
+                  <Typography className={styles["decorator--max"]}>
+                    Max
+                  </Typography>
+                </button>
                 <Stack direction={"column"} spacing={1}>
                   <SvgIcon
                     onClick={increaseQuantity}
@@ -155,10 +166,6 @@ export default function PurchaseTicketsInput() {
                     style={{
                       width: "8px",
                       height: "8px",
-                      cursor:
-                        quantity != ticketsContext.state.max
-                          ? "pointer"
-                          : "auto",
                     }}
                   />
                   <SvgIcon
@@ -168,7 +175,6 @@ export default function PurchaseTicketsInput() {
                     style={{
                       width: "8px",
                       height: "8px",
-                      cursor: quantity != 0 ? "pointer" : "auto",
                     }}
                   />
                 </Stack>
@@ -177,20 +183,17 @@ export default function PurchaseTicketsInput() {
           ),
         }}
       />
-      <div
+      <button
         style={{
-          cursor:
-            quantity > 0 && quantity <= ticketsContext.state.max
-              ? "pointer"
-              : "default",
-          opacity:
-            quantity > 0 && quantity <= ticketsContext.state.max ? 1 : 0.5,
+          cursor: "pointer",
+          opacity: quantity && quantity <= max ? 1 : 0.5,
         }}
         onClick={onBuyTickets}
         className={styles["button--buy"]}
+        disabled={!quantity}
       >
         Buy
-      </div>
+      </button>
     </Stack>
   );
 }

@@ -30,7 +30,7 @@ function PurchaseTickets({ isConnected, max, currentEntries }: Props) {
             more tickets this week.
           </p>
           <Stack spacing={1}>
-            <PurchaseTicketsInput />
+            <PurchaseTicketsInput max={max - currentEntries} />
             <Stack
               className={styles["container--purchase--info"]}
               direction="row"

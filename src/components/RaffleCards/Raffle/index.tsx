@@ -97,7 +97,7 @@ function Raffle({
   ticketNumbers,
 }: RaffleProps) {
   const { connected, safe } = useSafeAppsSDK();
-  const { data: superchainSA } = useGetSuperchainAccount(
+  const { data: superchainSA, isLoading } = useGetSuperchainAccount(
     safe.safeAddress as Address
   );
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
@@ -123,6 +123,7 @@ function Raffle({
     }
   }, []);
 
+  console.debug({ superchainSA, isLoading });
   return (
     <AnimatePresence>
       <motion.div
