@@ -2,14 +2,12 @@ import { SvgIcon, Typography } from "@mui/material";
 import HexagonSuccessIcon from "@/public/images/hexagon-success.svg";
 import styles from "./styles.module.css";
 import type { ReactNode } from "react";
-import React, { useContext, useMemo } from "react";
-import { ActionModalContext } from "@/views/DashBoard";
-import type { QueryStatus } from "react-query";
+import React, { useMemo } from "react";
 import { ActionModalStatus } from "@/types/commons";
 
 type Props = {
   title: string;
-  status: QueryStatus;
+  status: ActionModalStatus;
   content: ReactNode;
 };
 

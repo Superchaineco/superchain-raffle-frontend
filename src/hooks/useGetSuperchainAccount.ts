@@ -1,5 +1,5 @@
 import { Address, createPublicClient, http } from "viem";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { optimism } from "viem/chains";
 import { SUPER_CHAIN_ACCOUNT_MODULE_ADDRESS } from "@/constants";
 
