@@ -1,6 +1,6 @@
 import { Address, createPublicClient, http } from "viem";
 import { useQuery } from "react-query";
-import { sepolia } from "viem/chains";
+import { optimism } from "viem/chains";
 import { SUPER_CHAIN_ACCOUNT_MODULE_ADDRESS } from "@/constants";
 
 export type SuperChainAccount = {
@@ -23,7 +23,7 @@ function useGetSuperchainAccount(address?: Address) {
     queryFn: async () => {
       if (!address) return null;
       const publicClient = createPublicClient({
-        chain: sepolia,
+        chain: optimism,
         transport: http(),
       });
 

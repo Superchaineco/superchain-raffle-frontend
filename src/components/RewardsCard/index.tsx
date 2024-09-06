@@ -3,11 +3,9 @@ import Optimisim from "@/public/images/optimisim-icon.svg";
 import Reward from "./Reward";
 import RewardsCardSkeleton from "./Skeleton";
 import styles from "./styles.module.css";
-import { useAccount } from "wagmi";
 import useGetRaffles from "@/hooks/useGetRaffles";
 
 function RewardsCard() {
-  const { isConnected: _isConnected } = useAccount();
   const { data, loading } = useGetRaffles();
 
   if (loading) {
