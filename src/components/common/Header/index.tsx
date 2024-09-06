@@ -23,9 +23,6 @@ import classnames from "classnames";
 import css from "./styles.module.css";
 import Link from "next/link";
 import SuperChainEco from "@/public/images/common/superchain-eco.svg";
-import WalletButton from "../WalletButton";
-
-// import ConnectWallet from '../ConnectWallet';
 
 type HeaderProps = {
   onMenuToggle?: Dispatch<SetStateAction<boolean>>;
@@ -146,9 +143,6 @@ const Header = ({ onMenuToggle }: HeaderProps): ReactElement => {
             loading="lazy"
           /> */}
         </span>
-      </div>
-      <div className={classnames(css.element, css.button)}>
-        <WalletButton />
       </div>
     </Paper>
   );
