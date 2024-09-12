@@ -84,7 +84,7 @@ function useGetSuperchainAccount(address?: Address) {
           },
         ] as const,
         functionName: "getSuperChainAccount",
-        args: ["0xAAAbC1b0745f1481FF04826A1828BBb5025cDD52" as Address],
+        args: [address as Address],
       });
       return {
         smartAccount: response.smartAccount,
