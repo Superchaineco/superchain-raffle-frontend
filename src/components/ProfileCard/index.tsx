@@ -14,6 +14,8 @@ import { useGetUserPrizes } from "@/hooks/useGetUserPrizes";
 import { Address } from "viem";
 import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
 import NounsAvatar from "../common/NounsAvatar";
+import ExplorerButton from "../common/ExplorerButton";
+import CopyAddressButton from "../common/CopyAddressButton";
 
 function ProfileCard() {
   const { safe } = useSafeAppsSDK();
@@ -39,7 +41,7 @@ function ProfileCard() {
             </Button>
           )} */}
           <Link
-            href={`https://super-chain-smart-account-wallet.vercel.app/leaderboard?safe=${safe.safeAddress}`}
+            href={`https://account.superchain.eco/leaderboard?safe=${safe.safeAddress}`}
             target="_blank"
             className={styles["container--rank-icon"]}
           >
@@ -83,23 +85,11 @@ function ProfileCard() {
             />
           </Box>
           <strong>{superchainAccount?.superChainID}</strong>
-          <SvgIcon
-            component={CopyIcon}
-            inheritViewBox
-            style={{
-              width: "16px",
-              height: "16px",
-              cursor: "pointer",
-            }}
-          />
-          <SvgIcon
-            component={RedirectIcon}
-            inheritViewBox
-            style={{
-              width: "16px",
-              height: "16px",
-              cursor: "pointer",
-            }}
+
+          <CopyAddressButton address={safe.safeAddress} />
+          <ExplorerButton
+            href={`https://optimistic.etherscan.io/address/${safe.safeAddress}`}
+            title={"View on optimistic.etherscan.io"}
           />
         </div>
       )}

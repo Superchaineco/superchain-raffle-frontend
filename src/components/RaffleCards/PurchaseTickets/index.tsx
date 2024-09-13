@@ -26,7 +26,7 @@ function PurchaseTickets({ isConnected, max, currentEntries }: Props) {
       {isConnected && (
         <>
           <p className={styles["text"]}>
-            You can purchase up to <strong> {max - currentEntries} </strong>{" "}
+            You can claim up to <strong> {max - currentEntries} </strong>{" "}
             more tickets this week.
           </p>
           <Stack spacing={1}>

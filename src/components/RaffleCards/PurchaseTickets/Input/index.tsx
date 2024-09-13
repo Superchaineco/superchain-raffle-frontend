@@ -192,7 +192,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         className={styles["button--buy"]}
         disabled={!quantity}
       >
-        Buy
+        Claim
       </button>
     </Stack>
   );
