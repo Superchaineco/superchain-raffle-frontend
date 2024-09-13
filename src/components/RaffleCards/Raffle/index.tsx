@@ -388,7 +388,7 @@ function Raffle({
                     >
                       <PurchaseTickets
                         isConnected={connected}
-                        currentEntries={currentEntries}
+                        currentEntries={ticketNumbers.length}
                         max={Number(superchainSA?.level || 0)}
                       />
                       <MyTickets tickets={ticketNumbers} />

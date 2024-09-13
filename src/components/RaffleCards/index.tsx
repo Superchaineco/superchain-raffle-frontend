@@ -113,7 +113,7 @@ function RaffleCards() {
               prizePotOp={formatUnits(BigInt(currentRound.prizeOp), 18)}
               totalEntries={250}
               currentEntries={parseInt(currentRound.ticketsSold)}
-              entries={`${currentUser.numberOfTickets} / ${data ? data.level : 6}`}
+              entries={`${currentUser.numberOfTickets} / ${data ? data.level : 0}`}
               networkIcon={AssetsParser("OptimisimIcon")}
               bgImg={bgImg}
               expandedCard={expandedCard}
