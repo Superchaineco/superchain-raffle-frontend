@@ -1,5 +1,5 @@
-import type { ReactNode, ReactElement } from 'react'
-import CopyButton from '../CopyButton'
+import type { ReactNode, ReactElement } from "react";
+import CopyButton from "../CopyButton";
 
 const CopyAddressButton = ({
   prefix,
@@ -8,20 +8,15 @@ const CopyAddressButton = ({
   children,
   trusted = true,
 }: {
-  prefix?: string
-  address: string
-  copyPrefix?: boolean
-  children?: ReactNode
-  trusted?: boolean
+  prefix?: string;
+  address: string;
+  copyPrefix?: boolean;
+  children?: ReactNode;
+  trusted?: boolean;
 }): ReactElement => {
-  const addressText = copyPrefix && prefix ? `${prefix}:${address}` : address
+  const addressText = copyPrefix && prefix ? `${prefix}:${address}` : address;
 
+  return <CopyButton text={addressText}>{children}</CopyButton>;
+};
 
-  return (
-    <CopyButton text={addressText} >
-      {children}
-    </CopyButton>
-  )
-}
-
-export default CopyAddressButton
+export default CopyAddressButton;

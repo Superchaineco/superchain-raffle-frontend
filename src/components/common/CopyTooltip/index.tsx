@@ -1,53 +1,59 @@
-import type { ReactNode } from 'react'
-import React, { type ReactElement, type SyntheticEvent, useCallback, useState } from 'react'
-import { Tooltip } from '@mui/material'
+import type { ReactNode } from "react";
+import React, {
+  type ReactElement,
+  type SyntheticEvent,
+  useCallback,
+  useState,
+} from "react";
+import { Tooltip } from "@mui/material";
 
-const spanStyle = { cursor: 'pointer' }
+const spanStyle = { cursor: "pointer" };
 
 const CopyTooltip = ({
   text,
   children,
-  initialToolTipText = 'Copy to clipboard',
+  initialToolTipText = "Copy to clipboard",
   onCopy,
 }: {
-  text: string
-  children?: ReactNode
-  initialToolTipText?: string
-  onCopy?: () => void
+  text: string;
+  children?: ReactNode;
+  initialToolTipText?: string;
+  onCopy?: () => void;
 }): ReactElement => {
-  const [tooltipText, setTooltipText] = useState(initialToolTipText)
-  const [showTooltip, setShowTooltip] = useState(false)
-  const [isCopyEnabled, setIsCopyEnabled] = useState(true)
-  const [showConfirmation, setShowConfirmation] = useState(false)
+  const [tooltipText, setTooltipText] = useState(initialToolTipText);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [isCopyEnabled, setIsCopyEnabled] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleCopy = useCallback(
     (e: SyntheticEvent) => {
-      e.preventDefault()
-      e.stopPropagation()
+      e.preventDefault();
+      e.stopPropagation();
 
-    
-      let timeout: NodeJS.Timeout | undefined
+      let timeout: NodeJS.Timeout | undefined;
 
       try {
-        navigator.clipboard.writeText(text).then(() => setTooltipText('Copied'))
-        setShowConfirmation(false)
-        setShowTooltip(true)
+        navigator.clipboard
+          .writeText(text)
+          .then(() => setTooltipText("Copied"));
+        setShowConfirmation(false);
+        setShowTooltip(true);
         timeout = setTimeout(() => {
           if (isCopyEnabled) {
-            setShowTooltip(false)
-            setTooltipText(initialToolTipText)
+            setShowTooltip(false);
+            setTooltipText(initialToolTipText);
           }
-        }, 750)
-        onCopy?.()
+        }, 750);
+        onCopy?.();
       } catch (err) {
-        setIsCopyEnabled(false)
-        setTooltipText('Copying is disabled in your browser')
+        setIsCopyEnabled(false);
+        setTooltipText("Copying is disabled in your browser");
       }
 
-      return () => clearTimeout(timeout)
+      return () => clearTimeout(timeout);
     },
-    [ showConfirmation, text, onCopy, isCopyEnabled, initialToolTipText],
-  )
+    [showConfirmation, text, onCopy, isCopyEnabled, initialToolTipText]
+  );
 
   return (
     <>
@@ -67,7 +73,7 @@ const CopyTooltip = ({
         </span>
       </Tooltip>
     </>
-  )
-}
+  );
+};
 
-export default CopyTooltip
+export default CopyTooltip;
