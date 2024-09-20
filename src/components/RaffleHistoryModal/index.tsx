@@ -10,7 +10,7 @@ import {
 import CloseIcon from "@/public/images/close-icon.svg";
 import PrizePotIcon from "@/public/images/trophy-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
-import SrIcon from "@/public/images/sr-icon.svg";
+import SrIcon from "@/public/images/optimism.svg";
 import TotalEntriesIcon from "@/public/images/tickets-icon-gray-dotted.svg";
 import React, { useContext } from "react";
 import styles from "./styles.module.css";

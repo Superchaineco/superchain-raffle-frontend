@@ -12,7 +12,7 @@ import WellcomeBackImg from "@/public/images/welcome-back-img.svg";
 import React, { useEffect, useMemo, useState } from "react";
 import RewardsInfoCard from "../RewardsInfoCard";
 import ETHIcon from "@/public/images/eth-icon.svg";
-import SRIcon from "@/public/images/sr-icon.svg";
+import SRIcon from "@/public/images/optimism.svg";
 import MyTicketsIcon from "@/public/images/tickets-icon-opaque.svg";
 import CloseIcon from "@/public/images/close-icon.svg";
 import styles from "./styles.module.css";

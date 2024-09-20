@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Stack, SvgIcon } from "@mui/material";
-import SrIcon from "@/public/images/sr-icon.svg";
+import SrIcon from "@/public/images/optimism.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import styles from "./styles.module.css";
 import { useContext, useMemo, type ElementType } from "react";

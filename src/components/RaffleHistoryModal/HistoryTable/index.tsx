@@ -1,6 +1,6 @@
 import { Stack, SvgIcon } from "@mui/material";
 import EthIcon from "@/public/images/eth-icon.svg";
-import SrIcon from "@/public/images/sr-icon.svg";
+import SrIcon from "@/public/images/optimism.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue.svg";
 import React from "react";
 import styles from "./styles.module.css";

@@ -11,7 +11,7 @@ import {
   Stack,
 } from "@mui/material";
 import ethIcon from "@/public/images/ether.svg";
-import srIcon from "@/public/images/sr-icon.svg";
+import srIcon from "@/public/images/optimism.svg";
 import TicketIconRed from "@/public/images/tickets-icon-red.svg";
 import prizePotIcon from "@/public/images/trophy-icon.svg";
 import totalEntriesIcon from "@/public/images/tickets-icon-gray-dotted.svg";

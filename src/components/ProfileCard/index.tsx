@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import ProfileInfo from "./ProfileInfo";
 import RankIcon from "@/public/images/rank-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
-import SrIcon from "@/public/images/sr-icon.svg";
+import SrIcon from "@/public/images/optimism.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
 import CopyIcon from "@/public/images/copy-icon.svg";
 import RedirectIcon from "@/public/images/redirect-icon-opaque.svg";

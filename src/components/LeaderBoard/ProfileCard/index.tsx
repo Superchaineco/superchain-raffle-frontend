@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Typography, Grid, Stack, SvgIcon } from "@mui/material";
 import type { LeaderBoardAccountType } from "@/types/commons";
 import EthIcon from "@/public/images/eth-icon.svg";
-import SrIcon from "@/public/images/sr-icon.svg";
+import SrIcon from "@/public/images/optimism.svg";
 import TicketsIcon from "@/public/images/tickets-icon-blue-filled.svg";
 import styles from "./styles.module.css";
 import ProfileImage from "@/public/images/profile-icon.svg";
