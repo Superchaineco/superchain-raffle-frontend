@@ -3,8 +3,8 @@
   "description": "Super chain raffle DApp",
   "icons": [
     {
-      "src": "/next.svg",
-      "type": "image/svg+xml",
+      "src": "/favicon.ico",
+      "type": "image/png",
       "sizes": "any"
     }
   ]
