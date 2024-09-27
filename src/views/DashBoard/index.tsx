@@ -30,9 +30,10 @@ export const ActionModalContext = createContext({
 export const RaffleHistoryModalContext = createContext({
   raffleHistoryModalState: {
     open: false,
+    currentRound: 0,
   },
   //eslint-disable-next-line
-  setRaffleHistoryModalState: (_value: { open: boolean }) => {},
+  setRaffleHistoryModalState: (_value: { open: boolean; currentRound: number }) => {},
 });
 function DashBoard() {
   const [actionModalState, setActionModalState] =
@@ -45,8 +46,10 @@ function DashBoard() {
     });
   const [raffleHistoryModalState, setRaffleHistoryModalState] = useState<{
     open: boolean;
+    currentRound: number;
   }>({
     open: false,
+    currentRound: 0,
   });
   return (
     <ActionModalContext.Provider

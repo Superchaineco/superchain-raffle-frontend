@@ -42,19 +42,13 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
               type: "uint256",
               internalType: "uint256",
             },
-            {
-              name: "user",
-              type: "address",
-              internalType: "address",
-            },
           ],
           outputs: [],
           stateMutability: "nonpayable",
         },
       ]);
       const calldata = iface.encodeFunctionData("enterRaffle", [
-        BigInt(quantity || 0),
-        safe.safeAddress,
+        BigInt(quantity || 0)
       ]);
 
       const txs = [

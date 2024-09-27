@@ -18,7 +18,7 @@ export type Raffle = {
       prizeEth: string;
       prizeOp: string;
       ticketsSold: string;
-      users: {
+      roundTickets: {
         user: {
           id: string;
         };
@@ -43,7 +43,7 @@ function useGetRaffles() {
           prizeEth
           prizeOp
           ticketsSold
-          users {
+          roundTickets {
             user {
               id
             }

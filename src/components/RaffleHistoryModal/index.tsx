@@ -6,44 +6,50 @@ import {
   SvgIcon,
   TextField,
   Fade,
+  Skeleton,
 } from "@mui/material";
 import CloseIcon from "@/public/images/close-icon.svg";
 import PrizePotIcon from "@/public/images/trophy-icon.svg";
 import EthIcon from "@/public/images/eth-icon.svg";
 import SrIcon from "@/public/images/optimism.svg";
 import TotalEntriesIcon from "@/public/images/tickets-icon-gray-dotted.svg";
-import React, { useContext } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import styles from "./styles.module.css";
 import { RaffleHistoryModalContext } from "@/views/DashBoard";
 import RaffleInfo from "../RaffleCards/RaffleInfo";
 import RaffleHistoryTable from "./HistoryTable";
+import { useGetRounds } from "@/hooks/useGetRounds";
+import { formatEther, formatUnits } from "viem";
 
 export default function RaffleHistoryModal() {
-  const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
+  const { raffleHistoryModalState, setRaffleHistoryModalState } = useContext(
+    RaffleHistoryModalContext
+  );
+
+  const raffleRounds = useMemo(() => {
+    const currentRound = raffleHistoryModalState.currentRound;
+    const rounds = [];
+    for (let i = 1; i <= currentRound; i++) {
+      rounds.push({ label: `Round ${i}` });
+    }
+    return rounds;
+  }, [raffleHistoryModalState.currentRound]);
+
+  const [roundSelected, setRoundSelected] = useState("1");
+
+  const { data, loading } = useGetRounds(roundSelected);
+  console.debug(data, loading);
 
   const handleClose = () => {
-    raffleHistoryModalContext.setRaffleHistoryModalState({
+    setRaffleHistoryModalState({
       open: false,
+      currentRound: raffleHistoryModalState.currentRound,
     });
   };
 
-  const rounds = [
-    { label: "Round 11" },
-    { label: "Round 10" },
-    { label: "Round 9" },
-    { label: "Round 8" },
-    { label: "Round 7" },
-    { label: "Round 6" },
-    { label: "Round 5" },
-    { label: "Round 4" },
-    { label: "Round 3" },
-    { label: "Round 2" },
-    { label: "Round 1" },
-  ];
-
   return (
     <Modal
-      open={raffleHistoryModalContext.raffleHistoryModalState.open}
+      open={raffleHistoryModalState.open}
       onClose={handleClose}
       closeAfterTransition
       slotProps={{
@@ -54,10 +60,7 @@ export default function RaffleHistoryModal() {
         },
       }}
     >
-      <Fade
-        in={raffleHistoryModalContext.raffleHistoryModalState.open}
-        timeout={500}
-      >
+      <Fade in={raffleHistoryModalState.open} timeout={500}>
         <Box className={styles["container--modal"]}>
           <SvgIcon
             component={CloseIcon}
@@ -73,34 +76,47 @@ export default function RaffleHistoryModal() {
             }}
           />
           <Stack spacing={2}>
-            <h4 className={styles["title"]}>48 Hour OP Raffle Results</h4>
+            <h4 className={styles["title"]}>Weekly Superchain Raffle</h4>
             <Autocomplete
               disableClearable
               disablePortal
               id="combo-box-demo"
-              options={rounds}
+              options={raffleRounds}
+              defaultValue={raffleRounds[0]}
               className={styles["dropdown"]}
+              onChange={(event, value) => {
+                setRoundSelected(value.label.split(" ")[1]);
+              }}
               size="small"
               renderInput={(params) => <TextField {...params} />}
             />
-            <Stack direction={"row"} spacing={2}>
-              <RaffleInfo
-                icon={PrizePotIcon}
-                primary="Prize pot"
-                secondary1={0.005}
-                secondary2={100}
-                iconS1={EthIcon}
-                iconS2={SrIcon}
-                noMainCard={false}
-              />
-              <RaffleInfo
-                icon={TotalEntriesIcon}
-                primary="Total entries"
-                secondary1={34 + "/" + 250}
-                noMainCard={false}
-              />
-            </Stack>
-            <RaffleHistoryTable />
+            {!data ? (
+              <Stack direction={"row"} spacing={2}>
+                <Skeleton />
+                <Skeleton />
+              </Stack>
+            ) : (
+              <>
+                <Stack direction={"row"} spacing={2}>
+                  <RaffleInfo
+                    icon={PrizePotIcon}
+                    primary="Prize pot"
+                    secondary1={formatEther(BigInt(data?.round.prizeEth))}
+                    secondary2={formatUnits(BigInt(data?.round.prizeOp), 18)}
+                    iconS1={EthIcon}
+                    iconS2={SrIcon}
+                    noMainCard={false}
+                  />
+                  <RaffleInfo
+                    icon={TotalEntriesIcon}
+                    primary="Total entries"
+                    secondary1={data.round.ticketsSold + "/" + 250}
+                    noMainCard={false}
+                  />
+                </Stack>
+                <RaffleHistoryTable winners={data.round.winners} />
+              </>
+            )}
           </Stack>
         </Box>
       </Fade>

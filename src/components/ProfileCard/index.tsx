@@ -25,7 +25,6 @@ function ProfileCard() {
   //   enabled: isConnected,
   // });
   const { data, loading } = useGetUserPrizes(safe.safeAddress as Address);
-  console.debug({ superchainAccount });
   if (loading || isLoadingSuperchainAccount || !superchainAccount) {
     return <ProfileCardSkeleton />;
   }

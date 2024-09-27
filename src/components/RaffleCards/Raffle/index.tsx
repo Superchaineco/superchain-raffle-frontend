@@ -114,7 +114,7 @@ function Raffle({
   );
 
   const onShowRaffleHistory = () => {
-    raffleHistoryModalContext.setRaffleHistoryModalState({ open: true });
+    raffleHistoryModalContext.setRaffleHistoryModalState({ open: true, currentRound: round });
   };
 
   useEffect(() => {
@@ -123,7 +123,6 @@ function Raffle({
     }
   }, []);
 
-  console.debug({ superchainSA, isLoading });
   return (
     <AnimatePresence>
       <motion.div
@@ -175,7 +174,11 @@ function Raffle({
                   initial={{ marginTop: 0 }}
                   animate={{ marginTop: isMainCard ? 64 : 0 }}
                 >
-                  <Typography fontSize={isMainCard ? 32 : 24} fontWeight={600}>
+                  <Typography
+                    fontSize={isMainCard ? 32 : 24}
+                    lineHeight={1.2}
+                    fontWeight={600}
+                  >
                     {name}
                   </Typography>
                   {!noMainCard && (
@@ -232,7 +235,7 @@ function Raffle({
               </div>
             </Stack>
             <CardContent
-              style={isMainCard ? {} : { maxWidth: "calc(100% - 300px)" }}
+              style={isMainCard ? {} : { maxWidth: "calc(100% - 200px)" }}
               className={styles["container--body"]}
             >
               <AnimatePresence>
@@ -272,7 +275,7 @@ function Raffle({
                   overflowY: "hidden",
                   justifyContent: "start",
                   rowGap: "8px",
-                  columnGap: isMainCard ? "24px" : "48px",
+                  columnGap: isMainCard ? "24px" : "32px",
                 }}
                 initial={{
                   display: "grid",
@@ -361,7 +364,7 @@ function Raffle({
                 }}
               >
                 <CardMedia>
-                  <Image alt={name} src={bgImg} height={320} width={320} />
+                  <Image alt={name} src={bgImg} height={270} width={270} />
                 </CardMedia>
               </motion.div>
             </div>
@@ -375,24 +378,25 @@ function Raffle({
                   exit={{ opacity: 0 }}
                 >
                   <Stack marginTop={4} spacing={2}>
-                    {isMainCard && Number(superchainSA?.level || 0) == 0 && (
+                    {isMainCard && currentEntries - totalEntries == 0 ? (
                       <Alert severity="warning">
                         This raffle has reached the maximum amount of raffle
                         entries. You can try your luck again when this round is
                         over.
                       </Alert>
+                    ) : (
+                      <Stack
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={{ xs: 1, sm: 2 }}
+                      >
+                        <PurchaseTickets
+                          isConnected={connected}
+                          currentEntries={ticketNumbers.length}
+                          max={Number(superchainSA?.level || 0)}
+                        />
+                        <MyTickets tickets={ticketNumbers} />
+                      </Stack>
                     )}
-                    <Stack
-                      direction={{ xs: "column", sm: "row" }}
-                      spacing={{ xs: 1, sm: 2 }}
-                    >
-                      <PurchaseTickets
-                        isConnected={connected}
-                        currentEntries={ticketNumbers.length}
-                        max={Number(superchainSA?.level || 0)}
-                      />
-                      <MyTickets tickets={ticketNumbers} />
-                    </Stack>
                   </Stack>
                 </motion.div>
               )}

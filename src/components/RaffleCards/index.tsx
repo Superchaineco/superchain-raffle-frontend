@@ -33,7 +33,8 @@ function AssetsParser(asset: string): ElementType {
 }
 
 function RaffleCards() {
-  const { data: raffleCardsData } = useGetRaffles();
+  const { data: raffleCardsData, loading, error } = useGetRaffles();
+  console.debug({ raffleCardsData, loading, error });
   const { safe } = useSafeAppsSDK();
 
   const { data } = useGetSuperchainAccount(safe.safeAddress as Address);
@@ -76,14 +77,14 @@ function RaffleCards() {
               roundNumber: round.toString(),
               prizeEth: "0",
               ticketsSold: "0",
-              users: [],
+              roundTickets: [],
               prizeOp: "0",
             };
           }
 
-          let currentUser = currentRound.users.find(
-            (user) =>
-              user.user.id.toLowerCase() === data?.smartAccount.toLowerCase()
+          let currentUser = currentRound.roundTickets.find(
+            (roundTickets) =>
+              roundTickets.user.id.toLowerCase() === data?.smartAccount.toLowerCase()
           );
           if (!currentUser) {
             currentUser = {

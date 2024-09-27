@@ -27,7 +27,6 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
     raffleAddress as Address,
     safe.safeAddress as Address
   );
-  console.debug({ claimablePrizes });
   const opaque = useMemo(
     () =>
       !(
@@ -144,7 +143,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
             />
           </div>
         </div>
-        <Button onClick={onClaimRewards} className={styles["claim--button"]}>
+        <Button   disabled={opaque} onClick={onClaimRewards} className={styles["claim--button"]}>
           Claim
         </Button>
       </Stack>

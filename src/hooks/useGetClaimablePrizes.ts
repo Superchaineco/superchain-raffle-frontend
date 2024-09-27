@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Address, createPublicClient, getContract, http } from "viem";
-import { optimism } from "viem/chains";
+import { sepolia } from "viem/chains";
 
 function useGetClaimablePrizes(raffleAddress: Address, userAddress: Address) {
   const publicClient = createPublicClient({
-    chain: optimism,
+    chain: sepolia,
     transport: http(),
   });
 
