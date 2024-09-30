@@ -38,7 +38,6 @@ export default function RaffleHistoryModal() {
   const [roundSelected, setRoundSelected] = useState("1");
 
   const { data, loading } = useGetRounds(roundSelected);
-  console.debug(data, loading);
 
   const handleClose = () => {
     setRaffleHistoryModalState({
