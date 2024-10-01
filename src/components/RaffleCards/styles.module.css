@@ -4,3 +4,7 @@
   gap: var(--space-2);
   height: 100%;
 }
+
+.container--raffle-cards.expanded {
+  min-height: 100vh;
+}

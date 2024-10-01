@@ -60,7 +60,7 @@ function DashBoard() {
     >
       <TopInfo eth="0.01" ethBonus="0.004" />
       <Container maxWidth={false} className={styles["container--all"]}>
-        <Grid container spacing={5} columns={7}>
+        <Grid container  spacing={5} columns={7}>
           <Grid item xs={7} lg={4}>
             <RaffleHistoryModalContext.Provider
               value={{
