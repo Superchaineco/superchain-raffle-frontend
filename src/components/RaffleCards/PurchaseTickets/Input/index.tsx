@@ -87,13 +87,13 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
   };
 
   const increaseQuantity = () => {
-    if (quantity && quantity < max) {
+    if (quantity && quantity <= max) {
       setQuantity(quantity + 1);
     }
   };
 
   const decreaseQuantity = () => {
-    if (quantity && quantity > 0) {
+    if (quantity && quantity >= 0) {
       setQuantity(quantity - 1);
     }
   };
