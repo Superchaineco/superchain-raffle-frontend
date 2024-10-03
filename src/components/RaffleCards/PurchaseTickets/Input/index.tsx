@@ -16,9 +16,13 @@ import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
 import { Interface } from 'ethers';
 import { SUPER_CHAIN_RAFFLE } from '@/constants';
 import { ActionModalStatus } from '@/types/commons';
+import { useQueryClient } from '@tanstack/react-query';
+import { useApolloClient } from '@apollo/client';
 
 export default function PurchaseTicketsInput({ max }: { max: number }) {
   const { sdk, safe } = useSafeAppsSDK();
+  const queryClient = useQueryClient()
+  const client = useApolloClient()
   const [quantity, setQuantity] = useState<number>(0);
   const { actionModalContextState, setActionModalContextState } =
     useContext(ActionModalContext);
@@ -49,7 +53,8 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         },
       ]);
       const calldata = iface.encodeFunctionData('enterRaffle', [
-        BigInt(quantity), 
+        0
+        // BigInt(quantity), 
       ]);
 
       const txs = [
@@ -57,9 +62,11 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
           to: SUPER_CHAIN_RAFFLE,
           value: '0',
           data: calldata,
+
         },
       ];
       const transaction = await sdk.txs.send({ txs });
+      console.debug({safeTxHash: transaction});
       let transactionConfirmed = false;
       while (!transactionConfirmed) {
         const status = await sdk.txs.getBySafeTxHash(transaction.safeTxHash);
@@ -71,6 +78,10 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       }
 
       if (transactionConfirmed) {
+        queryClient.resetQueries();
+        client.refetchQueries({
+          include: 'active'
+        })
         setActionModalContextState({
           ...actionModalContextState,
           status: ActionModalStatus.SUCCESS,
