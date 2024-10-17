@@ -53,8 +53,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         },
       ]);
       const calldata = iface.encodeFunctionData('enterRaffle', [
-        0
-        // BigInt(quantity), 
+        BigInt(quantity), 
       ]);
 
       const txs = [
@@ -84,6 +83,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         })
         setActionModalContextState({
           ...actionModalContextState,
+          open: true,
           status: ActionModalStatus.SUCCESS,
           contentComponent: <ActionModalContentTicketsInfo />,
         });

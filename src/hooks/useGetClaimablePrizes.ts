@@ -33,7 +33,7 @@ function useGetClaimablePrizes(raffleAddress: Address, userAddress: Address) {
       const claimablePrizes = await raffle.read.getClaimableAmounts([
         userAddress,
       ]);
-      return claimablePrizes;
+      return claimablePrizes.map((prize) => prize.toString());
     },
     enabled: !!raffleAddress && !!userAddress,
   });

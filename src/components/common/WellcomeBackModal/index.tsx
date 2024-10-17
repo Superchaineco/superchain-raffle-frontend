@@ -124,12 +124,14 @@ function WellcomeBackModal() {
             >
               <RewardsInfoCard
                 text="ETH"
-                value={claimablePrizes ? formatEther(claimablePrizes[0]) : 0}
+                value={claimablePrizes ? formatEther(BigInt(claimablePrizes[0])) : 0}
                 icon={ETHIcon}
               />
               <RewardsInfoCard
                 text="OP"
-                value={claimablePrizes ? formatEther(claimablePrizes[1]) : 0}
+                value={
+                  claimablePrizes ? formatEther(BigInt(claimablePrizes[1])) : 0
+                }
                 icon={SRIcon}
               />
             </Stack>

@@ -118,7 +118,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
           <div className={styles["container--content--eth"]}>
             <p
               className={styles["reward--text"]}
-            >{`${claimablePrizes ? formatEther(claimablePrizes[0]) : 0} ETH`}</p>
+            >{`${claimablePrizes ? formatEther(BigInt(claimablePrizes[0])) : 0} ETH`}</p>
             <SvgIcon
               component={EthIcon}
               inheritViewBox
@@ -132,7 +132,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
           <div className={styles["container--content--srp"]}>
             <p
               className={styles["reward--text"]}
-            >{`${claimablePrizes ? formatUnits(claimablePrizes[1], 18) : 0} OP`}</p>
+            >{`${claimablePrizes ? formatEther(BigInt(claimablePrizes[1])) : 0} OP`}</p>
             <SvgIcon
               component={SrIcon}
               inheritViewBox
