@@ -63,7 +63,7 @@ const createSafeTheme = (mode: PaletteMode): Theme => {
 
   return createTheme({
     palette: {
-      mode: "light",
+      mode: isDarkMode ? 'dark' : 'light',
       ...colors,
     },
     spacing: base,

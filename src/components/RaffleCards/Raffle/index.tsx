@@ -226,6 +226,7 @@ function Raffle({
                       style={{
                         width: "20px",
                         height: "20px",
+                        borderRadius: "100%",
                         cursor: "default",
                         boxShadow: "0px 4px 4px 0px #00000024",
                       }}

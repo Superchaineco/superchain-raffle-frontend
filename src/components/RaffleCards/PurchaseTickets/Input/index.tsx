@@ -53,7 +53,8 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         },
       ]);
       const calldata = iface.encodeFunctionData('enterRaffle', [
-        BigInt(quantity), 
+        // BigInt(quantity), 
+        0
       ]);
 
       const txs = [
