@@ -143,7 +143,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
             />
           </div>
         </div>
-        <Button   disabled={opaque} onClick={onClaimRewards} className={styles["claim--button"]}>
+        <Button color="primary" variant="contained"  disabled={opaque} onClick={onClaimRewards} className={styles["claim--button"]}>
           Claim
         </Button>
       </Stack>
