@@ -25,7 +25,9 @@ const GET_ROUND = gql`
   prizeOp
   ticketsSold
   winners{
-    user
+    user{
+      id
+    }
     ticketNumber
     ethAmount
     opAmount

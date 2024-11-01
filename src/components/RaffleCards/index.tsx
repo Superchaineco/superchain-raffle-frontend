@@ -34,7 +34,6 @@ function AssetsParser(asset: string): ElementType {
 
 function RaffleCards() {
   const { data: raffleCardsData, loading, error } = useGetRaffles();
-  console.debug({ raffleCardsData, loading, error });
   const { safe } = useSafeAppsSDK();
 
   const { data } = useGetSuperchainAccount(safe.safeAddress as Address);

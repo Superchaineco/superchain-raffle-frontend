@@ -66,7 +66,6 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         },
       ];
       const transaction = await sdk.txs.send({ txs });
-      console.debug({safeTxHash: transaction});
       let transactionConfirmed = false;
       while (!transactionConfirmed) {
         const status = await sdk.txs.getBySafeTxHash(transaction.safeTxHash);

@@ -5,9 +5,12 @@ import TicketsIcon from "@/public/images/tickets-icon-blue.svg";
 import React from "react";
 import styles from "./styles.module.css";
 import raffleHistoryRecords from "@/raffleHistoryRecods.json";
+import { checksumAddress, formatUnits, formatEther } from "viem";
 type Props = {
   winners: {
-    user: string;
+    user: {
+      id: `0x${string}`;
+    };
     ticketNumber: string;
     ethAmount: string;
     opAmount: string;
@@ -43,7 +46,7 @@ export default function RaffleHistoryTable({ winners }: Props) {
               <p className={styles["text-rank"]}>{index + 1}</p>
             </div>
             <p className={styles["text-rank"]}>
-              {winner.user.substring(0, 10)}
+              {checksumAddress(winner.user.id).substring(0, 6)}...{checksumAddress(winner.user.id).slice(-3)}
             </p>
           </Stack>
           <Stack
@@ -78,7 +81,7 @@ export default function RaffleHistoryTable({ winners }: Props) {
               width={"30%"}
               spacing={0.2}
             >
-              <p className={styles["text-rank"]}>{winner.ethAmount}</p>
+              <p className={styles["text-rank"]}>{formatEther(BigInt(winner.ethAmount))}</p>
               <SvgIcon
                 component={EthIcon}
                 inheritViewBox
@@ -95,7 +98,7 @@ export default function RaffleHistoryTable({ winners }: Props) {
               width={"30%"}
               spacing={1}
             >
-              <p className={styles["text-rank"]}>{winner.opAmount}</p>
+              <p className={styles["text-rank"]}>{formatUnits(BigInt(winner.opAmount), 18)}</p>
               <SvgIcon
                 component={SrIcon}
                 inheritViewBox
