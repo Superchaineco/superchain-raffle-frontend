@@ -8,7 +8,9 @@ export type Round = {
         prizeOp: string;
         ticketsSold: string;
         winners: {
-            user: string;
+            user: {
+                id: `0x${string}`;
+            };
             ticketNumber: string;
             ethAmount: string;
             opAmount: string;
