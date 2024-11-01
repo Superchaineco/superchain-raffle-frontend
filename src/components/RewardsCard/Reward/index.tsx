@@ -23,7 +23,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
   const { safe, sdk } = useSafeAppsSDK();
   const { actionModalContextState, setActionModalContextState } =
     useContext(ActionModalContext);
-  const { data: claimablePrizes } = useGetClaimablePrizes(
+  const { data: claimablePrizes, refetch } = useGetClaimablePrizes(
     raffleAddress as Address,
     safe.safeAddress as Address
   );
@@ -76,6 +76,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
             status: ActionModalStatus.SUCCESS,
             contentComponent: <></>,
           });
+          refetch();
         }
       } catch (e) {
         setActionModalContextState({

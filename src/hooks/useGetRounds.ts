@@ -17,7 +17,6 @@ export type Round = {
         }[];
     };
 };
-
 const GET_ROUND = gql`
   query GetRound($roundId: String!) {
     round(id:$roundId){
