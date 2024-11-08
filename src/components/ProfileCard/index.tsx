@@ -28,6 +28,7 @@ function ProfileCard() {
   if (loading || isLoadingSuperchainAccount || !superchainAccount) {
     return <ProfileCardSkeleton />;
   }
+  console.debug(data.user)
 
   return (
     <Card className={styles["container--all"]}>
@@ -108,7 +109,7 @@ function ProfileCard() {
             secondary="Entries"
             isFixed={false}
             primary={data.user.rounds.reduce(
-              (acc, curr) => acc + curr.numberOfTickets,
+              (acc, curr) => acc + Number(curr.numberOfTickets),
               0
             )}
             icon={TicketsIcon}
