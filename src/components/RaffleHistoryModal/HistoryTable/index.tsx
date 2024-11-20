@@ -20,7 +20,7 @@ type Props = {
 export default function RaffleHistoryTable({ winners }: Props) {
   if (winners.length === 0) {
     return (
-      <Typography textAlign="center" variant="h6">
+      <Typography textAlign='center' variant='h6'>
         No winners yet
       </Typography>
     );
@@ -32,21 +32,21 @@ export default function RaffleHistoryTable({ winners }: Props) {
       spacing={2}
       paddingY={1}
       sx={{
-        overflow: 'auto', 
-        minWidth: '100%', 
+        overflow: 'auto',
+        minWidth: '100%',
       }}
     >
       {winners.map((winner, index) => (
         <Grid
           container
           key={index}
-          alignItems="center"
-          justifyContent="space-between"
+          alignItems='center'
+          justifyContent='space-between'
           px={2}
           py={1}
           sx={{
-            minWidth: '100%', 
-            flexWrap: 'nowrap', 
+            minWidth: '100%',
+            flexWrap: 'nowrap',
           }}
           gap={2}
         >
@@ -59,7 +59,7 @@ export default function RaffleHistoryTable({ winners }: Props) {
               alignItems: 'center',
               gap: 2,
               flexGrow: 1,
-              minWidth: 0, 
+              minWidth: 0,
             }}
           >
             <div
@@ -92,12 +92,21 @@ export default function RaffleHistoryTable({ winners }: Props) {
               justifyContent: 'flex-end',
               gap: 4,
               flexGrow: 2,
-              minWidth: 0, 
+              minWidth: 0,
             }}
           >
             {/* Tickets */}
-            <Stack direction="row" alignItems="center" gap={1} flexGrow={1} minWidth={0}>
-              <Typography className={styles['text-rank']}>{winner.ticketNumber}</Typography>
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='flex-start'
+              gap={1}
+              flexGrow={1}
+              minWidth={0}
+            >
+              <Typography className={styles['text-rank']}>
+                {winner.ticketNumber}
+              </Typography>
               <SvgIcon
                 component={TicketsIcon}
                 inheritViewBox
@@ -109,7 +118,14 @@ export default function RaffleHistoryTable({ winners }: Props) {
             </Stack>
 
             {/* ETH Amount */}
-            <Stack direction="row" alignItems="center" gap={0.5} flexGrow={1} minWidth={0}>
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='flex-end'
+              gap={0.5}
+              flexGrow={1}
+              minWidth={0}
+            >
               <Typography className={styles['text-rank']}>
                 {formatEther(BigInt(winner.ethAmount))}
               </Typography>
@@ -124,7 +140,14 @@ export default function RaffleHistoryTable({ winners }: Props) {
             </Stack>
 
             {/* OP Amount */}
-            <Stack direction="row" alignItems="center" gap={1} flexGrow={1} minWidth={0}>
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='flex-end'
+              gap={1}
+              flexGrow={1}
+              minWidth={0}
+            >
               <Typography className={styles['text-rank']}>
                 {formatUnits(BigInt(winner.opAmount), 18)}
               </Typography>
