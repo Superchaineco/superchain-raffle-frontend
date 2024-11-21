@@ -85,12 +85,12 @@ function ProfileCard() {
             />
           </Box>
           <strong>{superchainAccount?.superChainID}</strong>
-
+{/* 
           <CopyAddressButton address={safe.safeAddress} />
           <ExplorerButton
             href={`https://optimistic.etherscan.io/address/${safe.safeAddress}`}
             title={"View on optimistic.etherscan.io"}
-          />
+          /> */}
         </div>
       )}
       {data && (

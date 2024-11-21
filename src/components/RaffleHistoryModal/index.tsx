@@ -28,7 +28,7 @@ export default function RaffleHistoryModal() {
 
   const currentRound = raffleHistoryModalState.currentRound;
   const [roundSelected, setRoundSelected] = useState(
-    currentRound.toString()
+    currentRound > 1 ?  (currentRound - 1).toString() : "1"
   );
 
   const raffleRounds = useMemo(() => {
@@ -83,7 +83,7 @@ export default function RaffleHistoryModal() {
               disablePortal
               id='combo-box-demo'
               options={raffleRounds}
-              defaultValue={raffleRounds[currentRound - 1]}
+              defaultValue={raffleRounds[currentRound >= 2 ? currentRound - 2 : 0]}
               className={styles['dropdown']}
               onChange={(event, value) => {
                 setRoundSelected(value.label.split(' ')[1]);
