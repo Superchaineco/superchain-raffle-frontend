@@ -11,7 +11,6 @@ import ArrowDownIcon from '@/public/images/arrow-down-icon.svg';
 import styles from './styles.module.css';
 import ActionModalContentTicketsInfo from '@/components/ActionModal/Content/Tickets';
 import { ActionModalContext } from '@/views/DashBoard';
-import { TicketsContext } from '../../Raffle';
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
 import { Interface } from 'ethers';
 import { SUPER_CHAIN_RAFFLE } from '@/constants';
@@ -19,8 +18,8 @@ import { ActionModalStatus } from '@/types/commons';
 import { useQueryClient } from '@tanstack/react-query';
 import { useApolloClient } from '@apollo/client';
 
-export default function PurchaseTicketsInput({ max }: { max: number }) {
-  const { sdk, safe } = useSafeAppsSDK();
+export default function PurchaseTicketsInput({ max }: {  max: number }) {
+  const { sdk } = useSafeAppsSDK();
   const queryClient = useQueryClient()
   const client = useApolloClient()
   const [quantity, setQuantity] = useState<number>(0);
@@ -196,7 +195,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         }}
         onClick={onBuyTickets}
         className={styles['button--buy']}
-        disabled={!quantity}
+        disabled={!quantity || disabled}
       >
         Claim
       </button>
