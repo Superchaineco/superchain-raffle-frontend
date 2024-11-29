@@ -97,7 +97,7 @@ function Raffle({
   ticketNumbers,
 }: RaffleProps) {
   const { connected, safe } = useSafeAppsSDK();
-  const { data: superchainSA, isLoading } = useGetSuperchainAccount(
+  const { data: superchainSA } = useGetSuperchainAccount(
     safe.safeAddress as Address
   );
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
@@ -191,6 +191,7 @@ function Raffle({
                       maxWidth={'400px'}
                       variant='body1'
                       marginTop={1}
+                      fontSize={14}
                     >
                       {description}
                     </Typography>

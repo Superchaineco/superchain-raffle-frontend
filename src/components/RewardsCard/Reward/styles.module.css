@@ -23,6 +23,7 @@
 
 .container--all--opaque {
   opacity: 12%;
+  filter: grayscale(100%);
 }
 
 .container--icon {
