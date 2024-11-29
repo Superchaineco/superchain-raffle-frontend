@@ -43,7 +43,7 @@ function useGetRaffles() {
           prizeEth
           prizeOp
           ticketsSold
-          roundTickets {
+          roundTickets (first: 250) {
             user {
               id
             }
