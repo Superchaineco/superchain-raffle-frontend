@@ -192,6 +192,7 @@ function Raffle({
                       variant='body1'
                       marginTop={1}
                       fontSize={14}
+                      color='gray'
                     >
                       {description}
                     </Typography>
