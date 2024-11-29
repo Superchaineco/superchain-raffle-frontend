@@ -18,10 +18,10 @@ import { ActionModalStatus } from '@/types/commons';
 import { useQueryClient } from '@tanstack/react-query';
 import { useApolloClient } from '@apollo/client';
 
-export default function PurchaseTicketsInput({ max }: {  max: number }) {
+export default function PurchaseTicketsInput({ max }: { max: number }) {
   const { sdk } = useSafeAppsSDK();
-  const queryClient = useQueryClient()
-  const client = useApolloClient()
+  const queryClient = useQueryClient();
+  const client = useApolloClient();
   const [quantity, setQuantity] = useState<number>(0);
   const { actionModalContextState, setActionModalContextState } =
     useContext(ActionModalContext);
@@ -52,7 +52,7 @@ export default function PurchaseTicketsInput({ max }: {  max: number }) {
         },
       ]);
       const calldata = iface.encodeFunctionData('enterRaffle', [
-        BigInt(quantity), 
+        BigInt(quantity),
       ]);
 
       const txs = [
@@ -60,7 +60,6 @@ export default function PurchaseTicketsInput({ max }: {  max: number }) {
           to: SUPER_CHAIN_RAFFLE,
           value: '0',
           data: calldata,
-
         },
       ];
       const transaction = await sdk.txs.send({ txs });
@@ -77,8 +76,8 @@ export default function PurchaseTicketsInput({ max }: {  max: number }) {
       if (transactionConfirmed) {
         queryClient.resetQueries();
         client.refetchQueries({
-          include: 'active'
-        })
+          include: 'active',
+        });
         setActionModalContextState({
           ...actionModalContextState,
           open: true,
@@ -195,7 +194,7 @@ export default function PurchaseTicketsInput({ max }: {  max: number }) {
         }}
         onClick={onBuyTickets}
         className={styles['button--buy']}
-        disabled={!quantity || disabled}
+        disabled={!quantity}
       >
         Claim
       </button>
