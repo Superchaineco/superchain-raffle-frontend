@@ -120,3 +120,33 @@
   letter-spacing: 0.25px;
   text-align: left;
 }
+
+.bg-image-container {
+  position: absolute;
+  top: 0; /* Centrado verticalmente */
+  right: 0; /* Valor inicial */
+  height: auto;
+}
+
+@media (max-width: 1440px) {
+  .bg-image-container {
+    right: -35%; /* Desplazado más hacia la izquierda */
+  }
+}
+
+@media (max-width: 1200px) {
+  .bg-image-container {
+    right: 0; /* Aún más hacia la izquierda */
+  }
+}
+
+@media (max-width: 900px) {
+  .bg-image-container {
+    right: -35%; /* Sin desplazamiento */
+  }
+}
+@media (max-width: 740px) {
+  .bg-image-container {
+    right: -50%; /* Sin desplazamiento */
+  }
+}

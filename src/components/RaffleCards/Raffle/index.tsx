@@ -362,14 +362,7 @@ function Raffle({
                 width: '34%',
               }}
             >
-              <motion.div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  height: 'auto',
-                }}
-              >
+              <motion.div className={styles['bg-image-container']}>
                 <CardMedia>
                   <Image alt={name} src={bgImg} height={270} width={270} />
                 </CardMedia>
