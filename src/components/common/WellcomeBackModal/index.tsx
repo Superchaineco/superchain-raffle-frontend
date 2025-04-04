@@ -19,6 +19,7 @@ import styles from './styles.module.css';
 import WellcomeBackModalTicketsToolTip from './TicketsToolTip';
 import useGetClaimablePrizes from '@/hooks/useGetClaimablePrizes';
 import useGetRaffles from '@/hooks/useGetRaffles';
+import useGetRoundDetails from '@/hooks/useGetRoundDetails';
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
 import { Address, encodeFunctionData, formatEther } from 'viem';
 import { useGetWinningTickets } from '@/hooks/useGetWinningTickets';
@@ -36,7 +37,7 @@ function WellcomeBackModal() {
       rafflesData?.raffles[0].id as Address,
       safe.safeAddress as Address
     );
-    const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const { actionModalContextState, setActionModalContextState } =
     useContext(ActionModalContext);
   const previousRoundId = useMemo(() => {
@@ -48,6 +49,11 @@ function WellcomeBackModal() {
     );
     return previousRoundNumber.toString();
   }, [rafflesData]);
+
+  const { data: roundDetails } = useGetRoundDetails(
+    rafflesData?.raffles[0].id as Address,
+    previousRoundId
+  );
 
   const { data: winningTicketsData } = useGetWinningTickets(
     safe.safeAddress as Address,

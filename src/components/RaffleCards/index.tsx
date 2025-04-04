@@ -1,4 +1,4 @@
-import React, { type ElementType, useEffect, useRef, useState } from 'react';
+import React, { type ElementType, useEffect, useRef, useState, useMemo } from 'react';
 import Optimisim from '@/public/images/optimisim-icon.svg';
 import Mode from '@/public/images/mode-icon.svg';
 import Base from '@/public/images/base-icon.svg';
@@ -9,9 +9,26 @@ import Raffle from './Raffle';
 import styles from './styles.module.css';
 import RaffleCardSkeleton from './Raffle/Skeleton';
 import useGetRaffles from '@/hooks/useGetRaffles';
+import useGetRoundDetails from '@/hooks/useGetRoundDetails';
 import { Address, formatEther, formatUnits, zeroAddress } from 'viem';
 import useGetSuperchainAccount from '@/hooks/useGetSuperchainAccount';
 import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
+
+type RoundTickets = {
+  user: {
+    id: string;
+  };
+  numberOfTickets: string;
+  ticketNumbers: string[];
+};
+
+type Round = {
+  roundNumber: string;
+  prizeEth: string;
+  prizeOp: string;
+  ticketsSold: string;
+  roundTickets?: RoundTickets[];
+};
 
 function AssetsParser(asset: string): ElementType {
   switch (asset) {
@@ -35,9 +52,31 @@ function AssetsParser(asset: string): ElementType {
 function RaffleCards() {
   const { data: raffleCardsData, loading, error } = useGetRaffles();
   const { safe } = useSafeAppsSDK();
-
   const { data } = useGetSuperchainAccount(safe.safeAddress as Address);
   const [expandedCard, setExpandedCard] = useState<string | null>('');
+  const [containerHeight, setContainerHeight] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Calcular la ronda actual para cada rifa
+  const currentRounds = useMemo(() => {
+    if (!raffleCardsData?.raffles) return {};
+    
+    return raffleCardsData.raffles.reduce((acc, raffle) => {
+      const round = Math.floor(
+        (Date.now() - parseInt(raffle.initTimestamp) * 1000) /
+          (7 * 24 * 60 * 60 * 1000)
+      ) + 1;
+      acc[raffle.id] = round;
+      return acc;
+    }, {} as Record<string, number>);
+  }, [raffleCardsData]);
+
+  // Obtener los detalles de la ronda actual para la rifa expandida
+  const { data: currentRoundDetails } = useGetRoundDetails(
+    expandedCard || '',
+    expandedCard ? currentRounds[expandedCard]?.toString() || '' : ''
+  );
+  
   const handleCardClick = (id: string | null) => {
     setExpandedCard(id);
     if (containerRef.current) {
@@ -49,9 +88,6 @@ function RaffleCards() {
       setContainerHeight(height < 850 ? 850 : height);
     }
   };
-
-  const [containerHeight, setContainerHeight] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (raffleCardsData) {
@@ -92,27 +128,22 @@ function RaffleCards() {
       <div ref={containerRef} className={containerClassName}>
         {raffleCardsData?.raffles.map((item) => {
           const bgImg = item.content.image;
-          const round =
-            Math.floor(
-              (Date.now() - parseInt(item.initTimestamp) * 1000) /
-                (7 * 24 * 60 * 60 * 1000)
-            ) + 1;
+          const round = currentRounds[item.id];
+          const isExpanded = expandedCard === item.id;
+          
+          // Usar los detalles de la ronda actual si la tarjeta está expandida
+          const currentRound: Round = isExpanded && currentRoundDetails?.round 
+            ? currentRoundDetails.round 
+            : item.rounds[0] || {
+                roundNumber: round.toString(),
+                prizeEth: '0',
+                ticketsSold: '0',
+                roundTickets: [],
+                prizeOp: '0',
+              };
 
-          let currentRound = item.rounds.find(
-            (currentRound) => currentRound.roundNumber === round.toString()
-          );
-          if (!currentRound) {
-            currentRound = {
-              roundNumber: round.toString(),
-              prizeEth: '0',
-              ticketsSold: '0',
-              roundTickets: [],
-              prizeOp: '0',
-            };
-          }
-
-          let currentUser = currentRound.roundTickets.find(
-            (roundTickets) =>
+          let currentUser = currentRound.roundTickets?.find(
+            (roundTickets: RoundTickets) =>
               roundTickets.user.id.toLowerCase() ===
               data?.smartAccount.toLowerCase()
           );
