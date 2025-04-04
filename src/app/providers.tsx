@@ -13,7 +13,7 @@ function Providers({ children }: { children: React.ReactNode }) {
 
   const queryClient = new QueryClient();
   const client = new ApolloClient({
-    uri: "https://api.studio.thegraph.com/query/72352/superchain-raffle/version/latest",
+    uri: "https://gateway.thegraph.com/api/00ebf42f37ee2faa3f02f5ca587b1717/subgraphs/id/2EEqdCXk2wRAQsxmU3E8hftc6S6M8RAAgSoNfNoth6ky",
     cache: new InMemoryCache(),
   });
 
