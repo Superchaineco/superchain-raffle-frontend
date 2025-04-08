@@ -73,7 +73,7 @@ export const TicketsContext = createContext({
     max: 0,
     tickets: [] as number[],
   },
-  setState: (_value: TicketsContextType) => {},
+  setState: (_value: TicketsContextType) => { },
 });
 
 function Raffle({
@@ -110,7 +110,7 @@ function Raffle({
   const endsIn = Math.floor(
     (7 * 24 * 60 * 60 * 1000 -
       ((Date.now() - startTimestamp * 1000) % (7 * 24 * 60 * 60 * 1000))) /
-      (60 * 1000)
+    (60 * 1000)
   );
 
   const onShowRaffleHistory = () => {
@@ -139,10 +139,10 @@ function Raffle({
             ? { minHeight: offset, height: offset, opacity: 1 }
             : expandedCard
               ? {
-                  height: '0px',
-                  opacity: 0,
-                  display: 'none',
-                }
+                height: '0px',
+                opacity: 0,
+                display: 'none',
+              }
               : { height: initialSize, opacity: 1 }
         }
         exit={{ height: '0px', opacity: 0 }}
@@ -204,7 +204,7 @@ function Raffle({
                   <Chip
                     className={`${styles['chip']} ${styles[`chip--white`]}`}
                     label={`${chipsText.value}`}
-                    onDelete={() => {}}
+                    onDelete={() => { }}
                     deleteIcon={
                       <SvgIcon
                         component={TicketIconBlackFilled}
@@ -219,13 +219,12 @@ function Raffle({
                   />
                 )}
                 <Chip
-                  className={`${styles['chip']} ${
-                    styles[
-                      `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
+                  className={`${styles['chip']} ${styles[
+                    `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
                     ]
-                  }`}
+                    }`}
                   label={chipsText.network}
-                  onDelete={() => {}}
+                  onDelete={() => { }}
                   deleteIcon={
                     <SvgIcon
                       component={networkIcon}
@@ -396,7 +395,7 @@ function Raffle({
                             isMaximumReached={maximumTicketsReached}
                             isConnected={connected}
                             currentEntries={ticketNumbers.length}
-                            max={Number(superchainSA?.level || 0)}
+                            max={Number((superchainSA && superchainSA.level - 1) || 0)}
                           />
                           <MyTickets
                             isMaximumReached={maximumTicketsReached}
