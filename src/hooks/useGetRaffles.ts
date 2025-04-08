@@ -18,6 +18,13 @@ export type Raffle = {
       prizeEth: string;
       prizeOp: string;
       ticketsSold: string;
+      roundTickets: {
+        user: {
+          id: string;
+        };
+        numberOfTickets: string;
+        ticketNumbers: string[];
+      }[];
     }[];
   }[];
 };
@@ -37,6 +44,13 @@ function useGetRaffles() {
           prizeEth
           prizeOp
           ticketsSold
+          roundTickets(first: 250) {
+            user {
+              id
+            }
+            numberOfTickets
+            ticketNumbers
+          }
         }
       }
     }
