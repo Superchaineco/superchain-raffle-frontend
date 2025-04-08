@@ -62,10 +62,10 @@ function RaffleCards() {
     if (!raffleCardsData?.raffles) return {};
     
     return raffleCardsData.raffles.reduce((acc, raffle) => {
-      const round = Math.floor(
-        (Date.now() - parseInt(raffle.initTimestamp) * 1000) /
-          (7 * 24 * 60 * 60 * 1000)
-      ) + 1;
+      const initTimestamp = parseInt(raffle.initTimestamp);
+      const currentTimestamp = Math.floor(Date.now() / 1000);
+      const secondsPerRound = 604800; // 7 días en segundos
+      const round = Math.floor((currentTimestamp - initTimestamp) / secondsPerRound) + 1;
       acc[raffle.id] = round;
       return acc;
     }, {} as Record<string, number>);
@@ -131,10 +131,10 @@ function RaffleCards() {
           const round = currentRounds[item.id];
           const isExpanded = expandedCard === item.id;
           
-          // Usar los detalles de la ronda actual si la tarjeta está expandida
+          // Encontrar la ronda más cercana al timestamp actual
           const currentRound: Round = isExpanded && currentRoundDetails?.round 
             ? currentRoundDetails.round 
-            : item.rounds[0] || {
+            : item.rounds.find(r => parseInt(r.roundNumber) === round) || item.rounds[0] || {
                 roundNumber: round.toString(),
                 prizeEth: '0',
                 ticketsSold: '0',

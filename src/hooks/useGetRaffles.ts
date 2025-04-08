@@ -32,7 +32,7 @@ function useGetRaffles() {
         initTimestamp
         id
         uri
-        rounds(first: 1, orderBy: roundNumber, orderDirection: desc) {
+        rounds(first: 5, orderBy: roundNumber, orderDirection: desc) {
           roundNumber
           prizeEth
           prizeOp
