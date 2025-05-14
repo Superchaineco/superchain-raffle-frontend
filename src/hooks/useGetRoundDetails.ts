@@ -23,7 +23,7 @@ const GET_ROUND_DETAILS = gql`
       prizeEth
       prizeOp
       ticketsSold
-      roundTickets(first: 250) {
+      roundTickets(first: 1000) {
         user {
           id
         }

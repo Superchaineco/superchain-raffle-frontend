@@ -111,7 +111,7 @@ export default function RaffleHistoryModal() {
                   <RaffleInfo
                     icon={TotalEntriesIcon}
                     primary='Total entries'
-                    secondary1={data.round.ticketsSold + '/' + 250}
+                    secondary1={data.round.ticketsSold + '/' + 1000}
                     noMainCard={false}
                   />
                 </Stack>

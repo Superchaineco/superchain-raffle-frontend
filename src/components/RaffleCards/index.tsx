@@ -173,7 +173,7 @@ function RaffleCards() {
               startTimestamp={parseInt(item.initTimestamp)}
               prizePotEth={formatEther(BigInt(currentRound.prizeEth))}
               prizePotOp={formatUnits(BigInt(currentRound.prizeOp), 18)}
-              totalEntries={250}
+              totalEntries={1000}
               currentEntries={parseInt(currentRound.ticketsSold)}
               entries={`${currentUser.numberOfTickets} / ${data ? data.level : 0}`}
               networkIcon={AssetsParser('OptimisimIcon')}
