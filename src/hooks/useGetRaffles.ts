@@ -28,6 +28,7 @@ export type Raffle = {
     }[];
   }[];
 };
+
 function useGetRaffles() {
   const [rafflesWithContent, setRafflesWithContent] = useState<Raffle | null>(
     null
@@ -38,17 +39,17 @@ function useGetRaffles() {
         initTimestamp
         id
         uri
-        rounds {
+        rounds(first: 5, orderBy: roundNumber, orderDirection: desc) {
           roundNumber
           prizeEth
           prizeOp
           ticketsSold
-          roundTickets {
+          roundTickets(first: 1000) {
             user {
               id
             }
-            ticketNumbers
             numberOfTickets
+            ticketNumbers
           }
         }
       }

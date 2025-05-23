@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Card,
@@ -9,18 +9,18 @@ import {
   SvgIcon,
   Alert,
   Stack,
-} from "@mui/material";
-import ethIcon from "@/public/images/ether.svg";
-import srIcon from "@/public/images/optimism.svg";
-import TicketIconRed from "@/public/images/tickets-icon-red.svg";
-import prizePotIcon from "@/public/images/trophy-icon.svg";
-import totalEntriesIcon from "@/public/images/tickets-icon-gray-dotted.svg";
-import endsInIcon from "@/public/images/clock-icon.svg";
-import PurchaseTickets from "../PurchaseTickets";
-import HistoryIcon from "@/public/images/history-icon.svg";
-import { AnimatePresence, motion } from "framer-motion";
-import BackIcon from "@/public/images/back-icon.svg";
-import TicketIconBlackFilled from "@/public/images/tickets-icon-black-filled.svg";
+} from '@mui/material';
+import ethIcon from '@/public/images/ether.svg';
+import srIcon from '@/public/images/optimism.svg';
+import TicketIconRed from '@/public/images/tickets-icon-red.svg';
+import prizePotIcon from '@/public/images/trophy-icon.svg';
+import totalEntriesIcon from '@/public/images/tickets-icon-gray-dotted.svg';
+import endsInIcon from '@/public/images/clock-icon.svg';
+import PurchaseTickets from '../PurchaseTickets';
+import HistoryIcon from '@/public/images/history-icon.svg';
+import { AnimatePresence, motion } from 'framer-motion';
+import BackIcon from '@/public/images/back-icon.svg';
+import TicketIconBlackFilled from '@/public/images/tickets-icon-black-filled.svg';
 import {
   createContext,
   type ElementType,
@@ -29,22 +29,22 @@ import {
   useMemo,
   useRef,
   useState,
-} from "react";
-import RaffleInfo from "../RaffleInfo";
-import MyTickets from "../MyTickets";
-import styles from "./styles.module.css";
-import { formatTime } from "@/functions/auxiliarFunctions";
-import { RaffleHistoryModalContext } from "@/views/DashBoard";
-import type { TicketsContextType } from "@/types/commons";
-import Image from "next/image";
-import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
-import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
-import { Address } from "viem";
+} from 'react';
+import RaffleInfo from '../RaffleInfo';
+import MyTickets from '../MyTickets';
+import styles from './styles.module.css';
+import { formatTime } from '@/functions/auxiliarFunctions';
+import { RaffleHistoryModalContext } from '@/views/DashBoard';
+import type { TicketsContextType } from '@/types/commons';
+import Image from 'next/image';
+import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
+import useGetSuperchainAccount from '@/hooks/useGetSuperchainAccount';
+import { Address } from 'viem';
 
 enum ColorParser {
-  "#FF0420" = "red",
-  "#354FFC" = "blue",
-  "#DEFE2A" = "yellow",
+  '#FF0420' = 'red',
+  '#354FFC' = 'blue',
+  '#DEFE2A' = 'yellow',
 }
 
 type RaffleProps = {
@@ -74,7 +74,7 @@ export const TicketsContext = createContext({
     max: 0,
     tickets: [] as number[],
   },
-  setState: (_value: TicketsContextType) => {},
+  setState: (_value: TicketsContextType) => { },
 });
 
 function Raffle({
@@ -99,31 +99,36 @@ function Raffle({
   captchaToken
 }: RaffleProps) {
   const { connected, safe } = useSafeAppsSDK();
-  const { data: superchainSA, isLoading } = useGetSuperchainAccount(
+  const { data: superchainSA } = useGetSuperchainAccount(
     safe.safeAddress as Address
   );
   const isMainCard = useMemo(() => expandedCard === id, [expandedCard, id]);
   const noMainCard = useMemo(() => !expandedCard, [expandedCard]);
 
-  const [initialSize, setInitialSize] = useState<string>("auto");
+  const [initialSize, setInitialSize] = useState<string>('auto');
 
   const raffleHistoryModalContext = useContext(RaffleHistoryModalContext);
   const containerRef = useRef<HTMLDivElement>(null);
   const endsIn = Math.floor(
     (7 * 24 * 60 * 60 * 1000 -
       ((Date.now() - startTimestamp * 1000) % (7 * 24 * 60 * 60 * 1000))) /
-      (60 * 1000)
+    (60 * 1000)
   );
 
   const onShowRaffleHistory = () => {
-    raffleHistoryModalContext.setRaffleHistoryModalState({ open: true, currentRound: round });
+    raffleHistoryModalContext.setRaffleHistoryModalState({
+      open: true,
+      currentRound: round,
+    });
   };
 
   useEffect(() => {
     if (containerRef.current) {
-      setInitialSize(containerRef.current.offsetHeight + "px");
+      setInitialSize(containerRef.current.offsetHeight + 'px');
     }
   }, []);
+
+  const maximumTicketsReached = currentEntries - totalEntries === 0;
 
   return (
     <AnimatePresence>
@@ -136,37 +141,37 @@ function Raffle({
             ? { minHeight: offset, height: offset, opacity: 1 }
             : expandedCard
               ? {
-                  height: "0px",
-                  opacity: 0,
-                  display: "none",
-                }
+                height: '0px',
+                opacity: 0,
+                display: 'none',
+              }
               : { height: initialSize, opacity: 1 }
         }
-        exit={{ height: "0px", opacity: 0 }}
+        exit={{ height: '0px', opacity: 0 }}
         style={{
-          overflow: "hidden",
-          cursor: isMainCard ? "auto" : "pointer",
+          overflow: 'hidden',
+          cursor: isMainCard ? 'auto' : 'pointer',
         }}
       >
-        <Card className={styles["container--all"]}>
-          <div className={styles["container--principal"]}>
+        <Card className={styles['container--all']}>
+          <div className={styles['container--principal']}>
             <Stack
-              justifyContent={"space-between"}
-              direction={{ xs: "column", sm: "row" }}
-              className={styles["container--header"]}
+              justifyContent={'space-between'}
+              direction={{ xs: 'column', sm: 'row' }}
+              className={styles['container--header']}
             >
               <div>
                 {isMainCard && (
-                  <div className={styles["container--back"]}>
+                  <div className={styles['container--back']}>
                     <SvgIcon
                       onClick={() => onClick(null)}
                       component={BackIcon}
                       inheritViewBox
                       style={{
                         zIndex: 120,
-                        width: "20px",
-                        height: "16px",
-                        cursor: "pointer",
+                        width: '20px',
+                        height: '16px',
+                        cursor: 'pointer',
                       }}
                     />
                     <span>All Raffles</span>
@@ -185,51 +190,53 @@ function Raffle({
                   </Typography>
                   {!noMainCard && (
                     <Typography
-                      maxWidth={"400px"}
-                      variant="body1"
+                      maxWidth={'400px'}
+                      variant='body1'
                       marginTop={1}
+                      fontSize={14}
+                      color='gray'
                     >
                       {description}
                     </Typography>
                   )}
                 </motion.div>
               </div>
-              <div className={styles["container--header--chips"]}>
+              <div className={styles['container--header--chips']}>
                 {noMainCard && (
                   <Chip
-                    className={`${styles["chip"]} ${styles[`chip--white`]}`}
+                    className={`${styles['chip']} ${styles[`chip--white`]}`}
                     label={`${chipsText.value}`}
-                    onDelete={() => {}}
+                    onDelete={() => { }}
                     deleteIcon={
                       <SvgIcon
                         component={TicketIconBlackFilled}
                         inheritViewBox
                         style={{
-                          width: "16px",
-                          height: "12px",
-                          cursor: "default",
+                          width: '16px',
+                          height: '12px',
+                          cursor: 'default',
                         }}
                       />
                     }
                   />
                 )}
                 <Chip
-                  className={`${styles["chip"]} ${
-                    styles[
-                      `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
+                  className={`${styles['chip']} ${styles[
+                    `chip--${ColorParser[chipColor as keyof typeof ColorParser]}`
                     ]
-                  }`}
+                    }`}
                   label={chipsText.network}
-                  onDelete={() => {}}
+                  onDelete={() => { }}
                   deleteIcon={
                     <SvgIcon
                       component={networkIcon}
                       inheritViewBox
                       style={{
-                        width: "20px",
-                        height: "20px",
-                        cursor: "default",
-                        boxShadow: "0px 4px 4px 0px #00000024",
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '100%',
+                        cursor: 'default',
+                        boxShadow: '0px 4px 4px 0px #00000024',
                       }}
                     />
                   }
@@ -237,32 +244,32 @@ function Raffle({
               </div>
             </Stack>
             <CardContent
-              style={isMainCard ? {} : { maxWidth: "calc(100% - 200px)" }}
-              className={styles["container--body"]}
+              style={isMainCard ? {} : { maxWidth: 'calc(100% - 200px)' }}
+              className={styles['container--body']}
             >
               <AnimatePresence>
                 {isMainCard && (
                   <motion.div
                     key={`text-${id}`}
-                    initial={{ opacity: 0, maxWidth: "60%" }}
+                    initial={{ opacity: 0, maxWidth: '60%' }}
                     animate={{
                       opacity: isMainCard ? 1 : 0,
                     }}
                     exit={{ opacity: 0 }}
                   >
-                    <div className={styles["container--raffle--text--buttons"]}>
+                    <div className={styles['container--raffle--text--buttons']}>
                       <Chip
-                        className={`${styles["chip"]} ${styles[`chip--black`]}`}
+                        className={`${styles['chip']} ${styles[`chip--black`]}`}
                         label={`Round ${round}`}
                       />
-                      <div className={styles["container--raffle-history"]}>
+                      <div className={styles['container--raffle-history']}>
                         <SvgIcon
                           component={HistoryIcon}
                           inheritViewBox
                           style={{
-                            width: "20px",
-                            height: "20px",
-                            cursor: "default",
+                            width: '20px',
+                            height: '20px',
+                            cursor: 'default',
                           }}
                         />
                         <h4 onClick={onShowRaffleHistory}>Raffle history</h4>
@@ -274,28 +281,28 @@ function Raffle({
               <motion.div
                 key={`container-info-${id}`}
                 style={{
-                  overflowY: "hidden",
-                  justifyContent: "start",
-                  rowGap: "8px",
-                  columnGap: isMainCard ? "24px" : "32px",
+                  overflowY: 'hidden',
+                  justifyContent: 'start',
+                  rowGap: '8px',
+                  columnGap: isMainCard ? '24px' : '32px',
                 }}
                 initial={{
-                  display: "grid",
+                  display: 'grid',
 
-                  gridTemplateRows: "1fr 1fr",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateRows: '1fr 1fr',
+                  gridTemplateColumns: '1fr 1fr',
                 }}
                 animate={{
-                  gridTemplateRows: isMainCard ? "auto" : "auto auto",
+                  gridTemplateRows: isMainCard ? 'auto' : 'auto auto',
                   gridTemplateColumns: isMainCard
-                    ? "auto auto auto"
-                    : "auto auto",
+                    ? 'auto auto auto'
+                    : 'auto auto',
                   opacity: isMainCard
                     ? [0, 0, 0, 0, 0, 0, 1]
                     : [0, 0, 0, 0, 0, 0, 0, 0, 1],
                 }}
                 transition={{
-                  type: "spring",
+                  type: 'spring',
                   stiffness: 100,
                   damping: 20,
                   duration: 0.2,
@@ -304,17 +311,17 @@ function Raffle({
                 exit={{ opacity: 0 }}
               >
                 <RaffleInfo
-                  bgColor={isMainCard ? "#F2F5F9" : "transparent"}
+                  bgColor={isMainCard ? '#F2F5F9' : 'transparent'}
                   icon={endsInIcon}
-                  primary="Ends in"
+                  primary='Ends in'
                   secondary1={formatTime(endsIn)}
-                  secondaryColor={endsIn < 60 ? "#FF0420" : "#0B0B0B"}
+                  secondaryColor={endsIn < 60 ? '#FF0420' : '#0B0B0B'}
                   noMainCard={noMainCard}
                 />
                 <RaffleInfo
-                  bgColor={isMainCard ? "#F2F5F9" : "transparent"}
+                  bgColor={isMainCard ? '#F2F5F9' : 'transparent'}
                   icon={prizePotIcon}
-                  primary="Prize pot"
+                  primary='Prize pot'
                   secondary1={prizePotEth}
                   secondary2={prizePotOp}
                   iconS1={ethIcon}
@@ -322,12 +329,12 @@ function Raffle({
                   noMainCard={noMainCard}
                 />
                 <RaffleInfo
-                  bgColor={isMainCard ? "#F2F5F9" : "transparent"}
+                  bgColor={isMainCard ? '#F2F5F9' : 'transparent'}
                   icon={totalEntriesIcon}
-                  primary="Total entries"
-                  secondary1={currentEntries + " / " + totalEntries}
+                  primary='Total entries'
+                  secondary1={currentEntries + ' / ' + totalEntries}
                   secondaryColor={
-                    currentEntries / totalEntries == 1 ? "#FF0420" : "#0B0B0B"
+                    currentEntries / totalEntries == 1 ? '#FF0420' : '#0B0B0B'
                   }
                   noMainCard={noMainCard}
                 />
@@ -340,8 +347,8 @@ function Raffle({
                       </>
                     }
                     secondary1={entries}
-                    bgColor={"#FFE6E9"}
-                    borderColor={"#FF0420"}
+                    bgColor={'#FFE6E9'}
+                    borderColor={'#FF0420'}
                     noMainCard={noMainCard}
                   />
                 )}
@@ -349,22 +356,15 @@ function Raffle({
             </CardContent>
             <div
               style={{
-                position: "absolute",
+                position: 'absolute',
                 top: 0,
                 right: 0,
-                maxWidth: "320px",
-                height: "auto",
-                width: "34%",
+                maxWidth: '320px',
+                height: 'auto',
+                width: '34%',
               }}
             >
-              <motion.div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  height: "auto",
-                }}
-              >
+              <motion.div className={styles['bg-image-container']}>
                 <CardMedia>
                   <Image alt={name} src={bgImg} height={270} width={270} />
                 </CardMedia>
@@ -398,7 +398,6 @@ function Raffle({
                             isConnected={connected}
                             currentEntries={ticketNumbers.length}
                             max={Number((superchainSA && superchainSA.level - 1) || 0)}
-                             captchaToken={captchaToken}
                           />
                           <MyTickets
                             isMaximumReached={maximumTicketsReached}

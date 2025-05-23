@@ -11,7 +11,7 @@ import Link from "next/link";
 import ProfileCardSkeleton from "./Skeleton";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 import { useGetUserPrizes } from "@/hooks/useGetUserPrizes";
-import { Address } from "viem";
+import { Address, formatEther, formatUnits } from "viem";
 import useGetSuperchainAccount from "@/hooks/useGetSuperchainAccount";
 import NounsAvatar from "../common/NounsAvatar";
 import ExplorerButton from "../common/ExplorerButton";
@@ -28,6 +28,7 @@ function ProfileCard() {
   if (loading || isLoadingSuperchainAccount || !superchainAccount) {
     return <ProfileCardSkeleton />;
   }
+  console.debug(data.user)
 
   return (
     <Card className={styles["container--all"]}>
@@ -84,31 +85,31 @@ function ProfileCard() {
             />
           </Box>
           <strong>{superchainAccount?.superChainID}</strong>
-
+{/* 
           <CopyAddressButton address={safe.safeAddress} />
           <ExplorerButton
             href={`https://optimistic.etherscan.io/address/${safe.safeAddress}`}
             title={"View on optimistic.etherscan.io"}
-          />
+          /> */}
         </div>
       )}
       {data && (
         <div className={styles["container--profile--info-cards"]}>
           <ProfileInfo
             secondary="ETH earned"
-            primary={data.user.ethPrizes}
+            primary={formatEther(BigInt(data.user.ethPrizes)) || "0"}
             icon={EthIcon}
           />
           <ProfileInfo
             secondary="OP earned"
-            primary={data.user.opPrizes}
+            primary={formatUnits(BigInt(data.user.opPrizes), 18) || "0"}
             icon={SrIcon}
           />
           <ProfileInfo
             secondary="Entries"
             isFixed={false}
             primary={data.user.rounds.reduce(
-              (acc, curr) => acc + curr.numberOfTickets,
+              (acc, curr) => acc + Number(curr.numberOfTickets),
               0
             )}
             icon={TicketsIcon}

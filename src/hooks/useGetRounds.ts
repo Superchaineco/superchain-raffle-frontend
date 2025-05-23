@@ -8,14 +8,15 @@ export type Round = {
         prizeOp: string;
         ticketsSold: string;
         winners: {
-            user: string;
+            user: {
+                id: `0x${string}`;
+            };
             ticketNumber: string;
             ethAmount: string;
             opAmount: string;
         }[];
     };
 };
-
 const GET_ROUND = gql`
   query GetRound($roundId: String!) {
     round(id:$roundId){
@@ -25,7 +26,9 @@ const GET_ROUND = gql`
   prizeOp
   ticketsSold
   winners{
-    user
+    user{
+      id
+    }
     ticketNumber
     ethAmount
     opAmount

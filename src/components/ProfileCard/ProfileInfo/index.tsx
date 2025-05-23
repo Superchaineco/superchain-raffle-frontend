@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import type { ElementType } from "react";
 
 type ProfileInfoProps = {
-  primary: number;
+  primary: string | number;
   secondary: string;
   icon: ElementType;
   isFixed?: boolean;

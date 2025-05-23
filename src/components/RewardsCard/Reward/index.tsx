@@ -23,7 +23,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
   const { safe, sdk } = useSafeAppsSDK();
   const { actionModalContextState, setActionModalContextState } =
     useContext(ActionModalContext);
-  const { data: claimablePrizes } = useGetClaimablePrizes(
+  const { data: claimablePrizes, refetch } = useGetClaimablePrizes(
     raffleAddress as Address,
     safe.safeAddress as Address
   );
@@ -76,6 +76,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
             status: ActionModalStatus.SUCCESS,
             contentComponent: <></>,
           });
+          refetch();
         }
       } catch (e) {
         setActionModalContextState({
@@ -118,7 +119,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
           <div className={styles["container--content--eth"]}>
             <p
               className={styles["reward--text"]}
-            >{`${claimablePrizes ? formatEther(claimablePrizes[0]) : 0} ETH`}</p>
+            >{`${claimablePrizes ? formatEther(BigInt(claimablePrizes[0])) : 0} ETH`}</p>
             <SvgIcon
               component={EthIcon}
               inheritViewBox
@@ -132,7 +133,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
           <div className={styles["container--content--srp"]}>
             <p
               className={styles["reward--text"]}
-            >{`${claimablePrizes ? formatUnits(claimablePrizes[1], 18) : 0} OP`}</p>
+            >{`${claimablePrizes ? formatEther(BigInt(claimablePrizes[1])) : 0} OP`}</p>
             <SvgIcon
               component={SrIcon}
               inheritViewBox
@@ -143,7 +144,7 @@ function Reward({ icon, color, raffleAddress }: RewardProps) {
             />
           </div>
         </div>
-        <Button   disabled={opaque} onClick={onClaimRewards} className={styles["claim--button"]}>
+        <Button color="primary" variant="contained"  disabled={opaque} onClick={onClaimRewards} className={styles["claim--button"]}>
           Claim
         </Button>
       </Stack>

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Address, createPublicClient, getContract, http } from "viem";
-import { sepolia } from "viem/chains";
+import { optimism } from "viem/chains";
 
 function useGetClaimablePrizes(raffleAddress: Address, userAddress: Address) {
   const publicClient = createPublicClient({
-    chain: sepolia,
+    chain: optimism,
     transport: http(),
   });
 
@@ -33,7 +33,7 @@ function useGetClaimablePrizes(raffleAddress: Address, userAddress: Address) {
       const claimablePrizes = await raffle.read.getClaimableAmounts([
         userAddress,
       ]);
-      return claimablePrizes;
+      return claimablePrizes.map((prize) => prize.toString());
     },
     enabled: !!raffleAddress && !!userAddress,
   });

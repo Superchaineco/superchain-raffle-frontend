@@ -1,6 +1,6 @@
 import { Address, createPublicClient, http } from "viem";
 import { useQuery } from "@tanstack/react-query";
-import { sepolia } from "viem/chains";
+import { optimism } from "viem/chains";
 import { SUPER_CHAIN_ACCOUNT_MODULE_ADDRESS } from "@/constants";
 
 export type SuperChainAccount = {
@@ -22,7 +22,7 @@ function useGetSuperchainAccount(address?: Address) {
     queryKey: ["superChainAccount", address],
     queryFn: async () => {
       const publicClient = createPublicClient({
-        chain: sepolia,
+        chain: optimism,
         transport: http(),
       });
 

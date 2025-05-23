@@ -1,13 +1,16 @@
-import { Stack, SvgIcon, Typography } from "@mui/material";
-import EthIcon from "@/public/images/eth-icon.svg";
-import SrIcon from "@/public/images/optimism.svg";
-import TicketsIcon from "@/public/images/tickets-icon-blue.svg";
-import React from "react";
-import styles from "./styles.module.css";
-import raffleHistoryRecords from "@/raffleHistoryRecods.json";
+import { Grid, Stack, SvgIcon, Typography } from '@mui/material';
+import EthIcon from '@/public/images/eth-icon.svg';
+import SrIcon from '@/public/images/optimism.svg';
+import TicketsIcon from '@/public/images/tickets-icon-blue.svg';
+import React from 'react';
+import styles from './styles.module.css';
+import { checksumAddress, formatUnits, formatEther } from 'viem';
+
 type Props = {
   winners: {
-    user: string;
+    user: {
+      id: `0x${string}`;
+    };
     ticketNumber: string;
     ethAmount: string;
     opAmount: string;
@@ -15,98 +18,150 @@ type Props = {
 };
 
 export default function RaffleHistoryTable({ winners }: Props) {
-  if(winners.length === 0) {
+  if (winners.length === 0) {
     return (
-        <Typography textAlign='center' variant="h6">No winners yet</Typography>
+      <Typography textAlign='center' variant='h6'>
+        No winners yet
+      </Typography>
     );
   }
+
   return (
-    <Stack className={styles["container--all"]} spacing={2} paddingY={1}>
+    <Stack
+      className={styles['container--all']}
+      spacing={2}
+      paddingY={1}
+      sx={{
+        overflow: 'auto',
+        minWidth: '100%',
+      }}
+    >
       {winners.map((winner, index) => (
-        <Stack
+        <Grid
+          container
           key={index}
-          direction={"row"}
-          alignItems={"center"}
-          justifyContent={"space-between"}
-          paddingX={2}
-          width={"100%"}
+          alignItems='center'
+          justifyContent='space-between'
+          px={2}
+          py={1}
+          sx={{
+            minWidth: '100%',
+            flexWrap: 'nowrap',
+          }}
+          gap={2}
         >
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"space-center"}
-            spacing={2}
+          <Grid
+            item
+            xs={12}
+            sm={5}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+              flexGrow: 1,
+              minWidth: 0,
+            }}
           >
             <div
-              className={`${styles["container--rank"]} ${styles[`rank--${index <= 2 ? index + 1 : "off-podium"}`]}`}
+              className={`${styles['container--rank']} ${styles[`rank--${index <= 2 ? index + 1 : 'off-podium'}`]}`}
             >
-              <p className={styles["text-rank"]}>{index + 1}</p>
+              <Typography margin={0} className={styles['text-rank']}>
+                {index + 1}
+              </Typography>
             </div>
-            <p className={styles["text-rank"]}>
-              {winner.user.substring(0, 10)}
-            </p>
-          </Stack>
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"end"}
-            width={"30%"}
-            paddingRight={4}
-            spacing={4}
-          >
-            <Stack
-              direction={"row"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              width={"30%"}
-              spacing={1}
+            <Typography
+              margin={0}
+              className={styles['text-rank']}
+              noWrap
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
             >
-              <p className={styles["text-rank"]}>{winner.ticketNumber}</p>
+              {checksumAddress(winner.user.id).substring(0, 6)}...
+              {checksumAddress(winner.user.id).slice(-3)}
+            </Typography>
+          </Grid>
+
+          <Grid
+            item
+            xs={12}
+            sm={7}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              gap: 4,
+              flexGrow: 2,
+              minWidth: 0,
+            }}
+          >
+            {/* Tickets */}
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='flex-start'
+              gap={1}
+              flexGrow={1}
+              minWidth={0}
+            >
+              <Typography className={styles['text-rank']}>
+                {winner.ticketNumber}
+              </Typography>
               <SvgIcon
                 component={TicketsIcon}
                 inheritViewBox
                 style={{
-                  width: "20px",
-                  height: "16px",
+                  width: '20px',
+                  height: '16px',
                 }}
               />
             </Stack>
+
+            {/* ETH Amount */}
             <Stack
-              direction={"row"}
-              alignItems={"center"}
-              justifyContent={"space-center"}
-              width={"30%"}
-              spacing={0.2}
+              direction='row'
+              alignItems='center'
+              justifyContent='flex-end'
+              gap={0.5}
+              flexGrow={1}
+              minWidth={0}
             >
-              <p className={styles["text-rank"]}>{winner.ethAmount}</p>
+              <Typography className={styles['text-rank']}>
+                {formatEther(BigInt(winner.ethAmount))}
+              </Typography>
               <SvgIcon
                 component={EthIcon}
                 inheritViewBox
                 style={{
-                  width: "20px",
-                  height: "16px",
+                  width: '20px',
+                  height: '16px',
                 }}
               />
             </Stack>
+
+            {/* OP Amount */}
             <Stack
-              direction={"row"}
-              alignItems={"center"}
-              justifyContent={"space-center"}
-              width={"30%"}
-              spacing={1}
+              direction='row'
+              alignItems='center'
+              justifyContent='flex-end'
+              gap={1}
+              flexGrow={1}
+              minWidth={0}
             >
-              <p className={styles["text-rank"]}>{winner.opAmount}</p>
+              <Typography className={styles['text-rank']}>
+                {formatUnits(BigInt(winner.opAmount), 18)}
+              </Typography>
               <SvgIcon
                 component={SrIcon}
                 inheritViewBox
                 style={{
-                  width: "20px",
-                  height: "16px",
+                  width: '20px',
+                  height: '16px',
                 }}
               />
             </Stack>
-          </Stack>
-        </Stack>
+          </Grid>
+        </Grid>
       ))}
     </Stack>
   );

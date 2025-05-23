@@ -6,6 +6,7 @@ import PageLayout from "../components/common/Layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import SafeProvider from "@safe-global/safe-apps-react-sdk";
+import { SUBGRAPH_URL } from "@/constants";
 
 function Providers({ children }: { children: React.ReactNode }) {
   //   const themeMode = isDarkMode ? 'dark' : 'light';
@@ -13,7 +14,7 @@ function Providers({ children }: { children: React.ReactNode }) {
 
   const queryClient = new QueryClient();
   const client = new ApolloClient({
-    uri: "https://api.studio.thegraph.com/query/72352/superchain-raffle/version/latest",
+    uri: SUBGRAPH_URL,
     cache: new InMemoryCache(),
   });
 
