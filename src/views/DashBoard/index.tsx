@@ -1,24 +1,24 @@
-'use client';
-import type { ReactNode } from 'react';
-import React, { createContext, useState } from 'react';
-import styles from './styles.module.css';
-import TopInfo from '@/components/TopInfo';
-import ProfileCard from '@/components/ProfileCard';
-import RaffleCards from '@/components/RaffleCards';
-import RewardsCard from '@/components/RewardsCard';
-import WellcomeBackModal from '@/components/common/WellcomeBackModal';
-import ActionModal from '@/components/ActionModal';
+"use client";
+import type { ReactNode } from "react";
+import React, { createContext, useState } from "react";
+import styles from "./styles.module.css";
+import TopInfo from "@/components/TopInfo";
+import ProfileCard from "@/components/ProfileCard";
+import RaffleCards from "@/components/RaffleCards";
+import RewardsCard from "@/components/RewardsCard";
+import WellcomeBackModal from "@/components/common/WellcomeBackModal";
+import ActionModal from "@/components/ActionModal";
 import {
   ActionModalStatus,
   type ActionModalContextStateType,
-} from '@/types/commons';
-import RaffleHistoryModal from '@/components/RaffleHistoryModal';
-import { Container, Grid, Stack } from '@mui/material';
+} from "@/types/commons";
+import RaffleHistoryModal from "@/components/RaffleHistoryModal";
+import { Container, Grid, Stack } from "@mui/material";
 
 export const ActionModalContext = createContext({
   actionModalContextState: {
     open: false,
-    title: '',
+    title: "",
     loadComponent: (<></>) as ReactNode,
     contentComponent: (<></>) as ReactNode,
     status: ActionModalStatus.IDLE,
@@ -42,7 +42,7 @@ function DashBoard({ captchaToken }: { captchaToken: string | null }) {
   const [actionModalState, setActionModalState] =
     useState<ActionModalContextStateType>({
       open: false,
-      title: '',
+      title: "",
       loadComponent: <></>,
       contentComponent: <></>,
       status: ActionModalStatus.IDLE,
@@ -62,7 +62,7 @@ function DashBoard({ captchaToken }: { captchaToken: string | null }) {
       }}
     >
       {/* <TopInfo eth="0.01" ethBonus="0.004" /> */}
-      <Container maxWidth={false} className={styles['container--all']}>
+      <Container maxWidth={false} className={styles["container--all"]}>
         <Grid container spacing={5} columns={7}>
           <Grid item xs={7} lg={4}>
             <RaffleHistoryModalContext.Provider
@@ -72,7 +72,7 @@ function DashBoard({ captchaToken }: { captchaToken: string | null }) {
               }}
             >
               {raffleHistoryModalState.open && <RaffleHistoryModal />}
-              <RaffleCards />
+              <RaffleCards captchaToken={captchaToken} />
             </RaffleHistoryModalContext.Provider>
           </Grid>
           <Grid item xs={7} lg={3}>

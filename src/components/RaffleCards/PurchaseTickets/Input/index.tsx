@@ -1,24 +1,31 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from "react";
 import {
   InputAdornment,
   Stack,
   SvgIcon,
   TextField,
   Typography,
-} from '@mui/material';
-import ArrowUpIcon from '@/public/images/arrow-up-icon.svg';
-import ArrowDownIcon from '@/public/images/arrow-down-icon.svg';
-import styles from './styles.module.css';
-import ActionModalContentTicketsInfo from '@/components/ActionModal/Content/Tickets';
-import { ActionModalContext } from '@/views/DashBoard';
-import { useSafeAppsSDK } from '@safe-global/safe-apps-react-sdk';
-import { Interface } from 'ethers';
-import { SUPER_CHAIN_RAFFLE } from '@/constants';
-import { ActionModalStatus } from '@/types/commons';
-import { useQueryClient } from '@tanstack/react-query';
-import { useApolloClient } from '@apollo/client';
+} from "@mui/material";
+import ArrowUpIcon from "@/public/images/arrow-up-icon.svg";
+import ArrowDownIcon from "@/public/images/arrow-down-icon.svg";
+import styles from "./styles.module.css";
+import ActionModalContentTicketsInfo from "@/components/ActionModal/Content/Tickets";
+import { ActionModalContext } from "@/views/DashBoard";
+import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
+import { Interface } from "ethers";
+import { SUPER_CHAIN_RAFFLE } from "@/constants";
+import { ActionModalStatus } from "@/types/commons";
+import { useQueryClient } from "@tanstack/react-query";
+import { useApolloClient } from "@apollo/client";
+import axios from "axios";
 
-export default function PurchaseTicketsInput({ max }: { max: number }) {
+export default function PurchaseTicketsInput({
+  max,
+  captchaToken,
+}: {
+  max: number;
+  captchaToken: string | null;
+}) {
   const { sdk } = useSafeAppsSDK();
   const queryClient = useQueryClient();
   const client = useApolloClient();
@@ -30,14 +37,13 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
     if (!quantity || quantity <= 0 || quantity > max) return;
     setActionModalContextState({
       open: true,
-      title: 'Confirm to Claim Your Rewards',
+      title: "Confirm to Claim Your Rewards",
       loadComponent: <></>,
       contentComponent: <></>,
       status: ActionModalStatus.LOADING,
     });
 
     try {
-
       //TODO create a service for this
       const httpInstance = axios.create({
         baseURL: process.env.NEXT_PUBLIC_BACKEND_URI,
@@ -48,30 +54,29 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       if (response.data.result != true)
         throw new Error("Not enough tickets to claim");
 
-
       const iface = new Interface([
         {
-          type: 'function',
-          name: 'enterRaffle',
+          type: "function",
+          name: "enterRaffle",
           inputs: [
             {
-              name: '_numberOfTickets',
-              type: 'uint256',
-              internalType: 'uint256',
+              name: "_numberOfTickets",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [],
-          stateMutability: 'nonpayable',
+          stateMutability: "nonpayable",
         },
       ]);
-      const calldata = iface.encodeFunctionData('enterRaffle', [
+      const calldata = iface.encodeFunctionData("enterRaffle", [
         BigInt(quantity),
       ]);
 
       const txs = [
         {
           to: SUPER_CHAIN_RAFFLE,
-          value: '0',
+          value: "0",
           data: calldata,
         },
       ];
@@ -79,7 +84,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       let transactionConfirmed = false;
       while (!transactionConfirmed) {
         const status = await sdk.txs.getBySafeTxHash(transaction.safeTxHash);
-        if (status.txStatus == 'SUCCESS') {
+        if (status.txStatus == "SUCCESS") {
           transactionConfirmed = true;
         } else {
           await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -89,7 +94,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       if (transactionConfirmed) {
         queryClient.resetQueries();
         client.refetchQueries({
-          include: 'active',
+          include: "active",
         });
         setActionModalContextState({
           ...actionModalContextState,
@@ -138,50 +143,50 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       style={{
         opacity: quantity && quantity <= max ? 1 : 0.5,
       }}
-      direction={'row'}
-      alignItems='stretch'
-      justifyContent={'center'}
+      direction={"row"}
+      alignItems="stretch"
+      justifyContent={"center"}
     >
       <TextField
-        className={styles['input--buy']}
+        className={styles["input--buy"]}
         value={quantity}
-        size='small'
-        inputProps={{ inputMode: 'numeric', min: 0, max: max }}
-        placeholder='0'
-        style={{ borderRadius: '0px 6px 6px 0px' }}
+        size="small"
+        inputProps={{ inputMode: "numeric", min: 0, max: max }}
+        placeholder="0"
+        style={{ borderRadius: "0px 6px 6px 0px" }}
         onChange={handleInputChange}
         InputProps={{
           endAdornment: (
-            <InputAdornment position='end'>
+            <InputAdornment position="end">
               <Stack
-                direction={'row'}
+                direction={"row"}
                 spacing={1}
-                alignItems={'center'}
-                justifyContent={'center'}
+                alignItems={"center"}
+                justifyContent={"center"}
               >
                 <button
                   style={{
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    cursor: 'pointer',
+                    backgroundColor: "transparent",
+                    border: "none",
+                    cursor: "pointer",
                     opacity: max ? 1 : 0.5,
                   }}
                   onClick={() => setQuantity(max)}
                   disabled={!max}
                 >
-                  <Typography className={styles['decorator--max']}>
+                  <Typography className={styles["decorator--max"]}>
                     Max
                   </Typography>
                 </button>
-                <Stack direction={'column'} spacing={1}>
+                <Stack direction={"column"} spacing={1}>
                   <SvgIcon
                     onClick={increaseQuantity}
                     component={ArrowUpIcon}
                     inheritViewBox
                     style={{
-                      cursor: 'pointer',
-                      width: '8px',
-                      height: '8px',
+                      cursor: "pointer",
+                      width: "8px",
+                      height: "8px",
                     }}
                   />
                   <SvgIcon
@@ -189,9 +194,9 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
                     component={ArrowDownIcon}
                     inheritViewBox
                     style={{
-                      cursor: 'pointer',
-                      width: '8px',
-                      height: '8px',
+                      cursor: "pointer",
+                      width: "8px",
+                      height: "8px",
                     }}
                   />
                 </Stack>
@@ -202,11 +207,11 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       />
       <button
         style={{
-          cursor: 'pointer',
+          cursor: "pointer",
           opacity: quantity && quantity <= max ? 1 : 0.5,
         }}
         onClick={onBuyTickets}
-        className={styles['button--buy']}
+        className={styles["button--buy"]}
         disabled={!quantity}
       >
         Claim

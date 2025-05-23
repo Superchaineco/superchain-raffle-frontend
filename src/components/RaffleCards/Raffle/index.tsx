@@ -398,6 +398,7 @@ function Raffle({
                             isConnected={connected}
                             currentEntries={ticketNumbers.length}
                             max={Number((superchainSA && superchainSA.level - 1) || 0)}
+                            captchaToken={captchaToken}
                           />
                           <MyTickets
                             isMaximumReached={maximumTicketsReached}

@@ -15,6 +15,7 @@ function PurchaseTickets({
   isConnected,
   max,
   currentEntries,
+  captchaToken
 }: Props) {
   return (
     <div
@@ -44,7 +45,7 @@ function PurchaseTickets({
           </p>
 
           <Stack spacing={1}>
-            <PurchaseTicketsInput max={isMaximumReached ? 0 : max - currentEntries} />
+            <PurchaseTicketsInput max={isMaximumReached ? 0 : max - currentEntries}  captchaToken={captchaToken} />
             <Stack
               className={styles['container--purchase--info']}
               direction='row'
