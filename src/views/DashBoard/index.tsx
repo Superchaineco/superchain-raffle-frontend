@@ -35,7 +35,7 @@ export const RaffleHistoryModalContext = createContext({
   //eslint-disable-next-line
   setRaffleHistoryModalState: (_value: { open: boolean; currentRound: number }) => {},
 });
-function DashBoard() {
+function DashBoard({ captchaToken }: { captchaToken: string | null }) {
   const [actionModalState, setActionModalState] =
     useState<ActionModalContextStateType>({
       open: false,
@@ -58,7 +58,7 @@ function DashBoard() {
         setActionModalContextState: setActionModalState,
       }}
     >
-      <TopInfo eth="0.01" ethBonus="0.004" />
+      {/* <TopInfo eth="0.01" ethBonus="0.004" /> */}
       <Container maxWidth={false} className={styles["container--all"]}>
         <Grid container spacing={5} columns={7}>
           <Grid item xs={7} lg={4}>
@@ -68,8 +68,8 @@ function DashBoard() {
                 setRaffleHistoryModalState,
               }}
             >
-              <RaffleHistoryModal />
-              <RaffleCards />
+              {raffleHistoryModalState.open && <RaffleHistoryModal />}
+              <RaffleCards captchaToken={captchaToken} />
             </RaffleHistoryModalContext.Provider>
           </Grid>
           <Grid item xs={7} lg={3}>

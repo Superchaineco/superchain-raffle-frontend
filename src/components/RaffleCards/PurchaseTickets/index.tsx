@@ -6,9 +6,16 @@ type Props = {
   isConnected: boolean;
   max: number;
   currentEntries: number;
+  captchaToken: string | null
 };
 
-function PurchaseTickets({ isConnected, max, currentEntries }: Props) {
+function PurchaseTickets({
+  isMaximumReached,
+  isConnected,
+  max,
+  currentEntries,
+  captchaToken
+}: Props) {
   return (
     <div
       className={`${styles["container--all"]} ${styles[`${isConnected ? "container--all--blue" : "container--all--dark"}`]}`}
@@ -30,7 +37,7 @@ function PurchaseTickets({ isConnected, max, currentEntries }: Props) {
             tickets this week.
           </p>
           <Stack spacing={1}>
-            <PurchaseTicketsInput max={max - currentEntries} />
+            <PurchaseTicketsInput max={isMaximumReached ? 0 : max - currentEntries}  captchaToken={captchaToken} />
             <Stack
               className={styles["container--purchase--info"]}
               direction="row"

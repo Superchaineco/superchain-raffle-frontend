@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import {
   InputAdornment,
   Stack,
@@ -11,15 +11,25 @@ import ArrowDownIcon from "@/public/images/arrow-down-icon.svg";
 import styles from "./styles.module.css";
 import ActionModalContentTicketsInfo from "@/components/ActionModal/Content/Tickets";
 import { ActionModalContext } from "@/views/DashBoard";
-import { TicketsContext } from "../../Raffle";
 import { useSafeAppsSDK } from "@safe-global/safe-apps-react-sdk";
 import { Interface } from "ethers";
 import { SUPER_CHAIN_RAFFLE } from "@/constants";
 import { ActionModalStatus } from "@/types/commons";
+import { useQueryClient } from "@tanstack/react-query";
+import { useApolloClient } from "@apollo/client";
+import axios from "axios";
 
-export default function PurchaseTicketsInput({ max }: { max: number }) {
-  const { sdk, safe } = useSafeAppsSDK();
-  const [quantity, setQuantity] = useState<number | null>(null);
+export default function PurchaseTicketsInput({
+  max,
+  captchaToken,
+}: {
+  max: number;
+  captchaToken: string | null;
+}) {
+  const { sdk } = useSafeAppsSDK();
+  const queryClient = useQueryClient();
+  const client = useApolloClient();
+  const [quantity, setQuantity] = useState<number>(0);
   const { actionModalContextState, setActionModalContextState } =
     useContext(ActionModalContext);
 
@@ -31,7 +41,20 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       contentComponent: <></>,
       status: ActionModalStatus.LOADING,
     });
+
     try {
+
+      //TODO create a service for this
+      const httpInstance = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_URI,
+      });
+      const response = await httpInstance.post(`/raffle/claim`, {
+        claimKey: captchaToken,
+      });
+      if (response.data.result != true)
+        throw new Error("Not enough tickets to claim");
+
+
       const iface = new Interface([
         {
           type: "function",
@@ -48,7 +71,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         },
       ]);
       const calldata = iface.encodeFunctionData("enterRaffle", [
-        BigInt(quantity || 0)
+        BigInt(quantity),
       ]);
 
       const txs = [
@@ -70,6 +93,10 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
       }
 
       if (transactionConfirmed) {
+        queryClient.resetQueries();
+        client.refetchQueries({
+          include: "active",
+        });
         setActionModalContextState({
           ...actionModalContextState,
           status: ActionModalStatus.SUCCESS,
@@ -158,6 +185,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
                     component={ArrowUpIcon}
                     inheritViewBox
                     style={{
+                      cursor: "pointer",
                       width: "8px",
                       height: "8px",
                     }}
@@ -167,6 +195,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
                     component={ArrowDownIcon}
                     inheritViewBox
                     style={{
+                      cursor: "pointer",
                       width: "8px",
                       height: "8px",
                     }}
@@ -184,7 +213,7 @@ export default function PurchaseTicketsInput({ max }: { max: number }) {
         }}
         onClick={onBuyTickets}
         className={styles["button--buy"]}
-        disabled={!quantity}
+        disabled={!quantity || !captchaToken}
       >
         Claim
       </button>

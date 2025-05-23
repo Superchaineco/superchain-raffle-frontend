@@ -66,6 +66,7 @@ type RaffleProps = {
   round: number;
   onClick: (id: string | null) => void;
   ticketNumbers: string[];
+  captchaToken: string | null
 };
 
 export const TicketsContext = createContext({
@@ -95,6 +96,7 @@ function Raffle({
   round,
   onClick,
   ticketNumbers,
+  captchaToken
 }: RaffleProps) {
   const { connected, safe } = useSafeAppsSDK();
   const { data: superchainSA, isLoading } = useGetSuperchainAccount(
@@ -378,24 +380,32 @@ function Raffle({
                   exit={{ opacity: 0 }}
                 >
                   <Stack marginTop={4} spacing={2}>
-                    {isMainCard && currentEntries - totalEntries == 0 ? (
-                      <Alert severity="warning">
-                        This raffle has reached the maximum amount of raffle
-                        entries. You can try your luck again when this round is
-                        over.
-                      </Alert>
-                    ) : (
-                      <Stack
-                        direction={{ xs: "column", sm: "row" }}
-                        spacing={{ xs: 1, sm: 2 }}
-                      >
-                        <PurchaseTickets
-                          isConnected={connected}
-                          currentEntries={ticketNumbers.length}
-                          max={Number(superchainSA?.level || 0)}
-                        />
-                        <MyTickets tickets={ticketNumbers} />
-                      </Stack>
+                    {isMainCard && (
+                      <>
+                        {maximumTicketsReached && (
+                          <Alert severity='warning'>
+                            This raffle has reached the maximum amount of raffle
+                            entries. You can try your luck again when this round
+                            is over.
+                          </Alert>
+                        )}
+                        <Stack
+                          direction={{ xs: 'column', sm: 'row' }}
+                          spacing={{ xs: 1, sm: 2 }}
+                        >
+                          <PurchaseTickets
+                            isMaximumReached={maximumTicketsReached}
+                            isConnected={connected}
+                            currentEntries={ticketNumbers.length}
+                            max={Number((superchainSA && superchainSA.level - 1) || 0)}
+                             captchaToken={captchaToken}
+                          />
+                          <MyTickets
+                            isMaximumReached={maximumTicketsReached}
+                            tickets={ticketNumbers}
+                          />
+                        </Stack>
+                      </>
                     )}
                   </Stack>
                 </motion.div>
